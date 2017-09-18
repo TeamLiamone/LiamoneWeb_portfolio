@@ -1,0 +1,20 @@
+.hero-header  {
+	background-color: $blackBg-color;
+	height: 100vh;
+	padding: 35vh 0;
+
+	.hero-title  {
+		@extend .big-title;
+		text-align: center;
+		color: $white-color;
+		font-size: calculateSize(42px);
+	}
+}
+
+
+.cta-scroll  {
+	position: absolute; 
+	bottom: 1em;
+	transform: rotateZ(-90deg);
+
+}

@@ -1,0 +1,51 @@
+.menu-top  {
+	position: fixed;
+	z-index: 900;
+	background-color: transparent;
+	padding: 1.25em 0;
+	background-color: $blackBg-color;
+
+	a:not(.menu-brand)  {
+		color: $white-color;
+		display: block;
+		padding: 0.25em 0;
+	}
+}
+
+.menu-header  {
+	width: 100%;
+	position: relative;
+	z-index: 902;
+}
+
+.menu-toggle  {
+	position: relative;
+	padding: $gutter;
+	@extend %float-right;
+	@extend %btn-noStyle;
+	@include dimension(42px, 42px);
+
+	.line  {
+		@include dimension(16px, 2px);
+		display: block;
+		margin: 0.25em auto;
+		background-color: $white-color;
+	}
+}
+
+.menu-container  {
+	display: none;
+	width: 100vw;
+	min-height: 100vh;
+	position: fixed;
+	z-index: 901;
+	top: 0;
+	left: 0;
+	transition:  all 0.65s cubic-bezier(1, 0, 0, 1) 0.25s;
+	overflow-x: hidden;
+	background-color: $blackBg-color;
+}
+
+.menu-nav  {
+	padding: 30vh 0;
+}

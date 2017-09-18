@@ -1,0 +1,149 @@
+%gradient  {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e82d3c+0,e70774+100 */
+	background: $gradient-color1;
+	background: -moz-linear-gradient(left, $gradient-color1 0%, $gradient-color2 100%);
+	background: -webkit-linear-gradient(left, $gradient-color1 0%, $gradient-color2 100%);
+	background: linear-gradient(to right, $gradient-color1 0%, $gradient-color2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+}
+
+%col {
+	float: left;
+	position: relative;
+	padding: $gutter;
+	min-height: 1px;
+}
+
+%col-center {
+	margin: 0 auto;
+	float: none;
+}
+
+%bg-image {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+%btn {
+	cursor: pointer;
+	background: $white-color;
+	border: 2px solid $white-color;
+	color: $blackTitle-color;
+	@extend %font-bold;
+	text-shadow: none;
+	box-shadow: none;
+	@include dimension(auto, auto);
+	transition: background 0.3s ease-in;
+
+	&:hover, 
+	&:active:hover, 
+	&.active:hover {
+		background: $yellowLink-color;
+		color: $white-color;	
+		outline: none;
+		box-shadow: none;
+		text-shadow: none;
+	}
+
+	&:focus,
+	&:active:focus,
+	&.active:focus  {
+		border-color: $yellowLink-color;
+	}
+
+	&:active  {
+		@extend %font-black;
+	}
+}
+
+%btn-noStyle  {
+	cursor: pointer;
+	background: none;
+	border: none;
+	text-shadow: none;
+	box-shadow: none;
+	@include dimension(auto, auto);
+}
+
+%border-yellow {
+	border: 2px solid white;
+	border-radius: 20px;
+}
+
+%clearfix {
+	*zoom: 1;
+
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+//Font-family
+%font-titles  {
+	font-family: 'Futura Bold', 'Open Sans', sans-serif;
+}
+
+%font-text  {
+	font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+//Font weight
+%font-bold  {
+	font-weight: $font-bold;
+}
+%font-regular  {
+	font-weight: $font-regular;
+}
+%font-black  {
+	font-weight: $font-black,
+}
+%font-light  {
+	font-weight: $font-light;
+}
+
+//Font style
+%font-italic  {
+	font-style: $font-italic;
+}
+%font-normal  {
+	font-style:: $font-normal;
+}
+
+//Font transform
+%font-uppercase  {
+	text-transform: $font-upper;
+}
+%font-lowercase  {
+	text-transform: $font-lower;
+}
+
+//Text align
+%text-left  {
+	text-align: left;
+}
+%text-right  {
+	text-align: right;
+}
+%text-center  {
+	text-align: center;
+}
+%text-justify  {
+	text-align: justify;
+}
+%text-nowrap  {
+	whitespace: nowrap;
+}
+
+//Float
+%float-right {
+	float: right;
+}
+%float-left  {
+	float: left;
+}

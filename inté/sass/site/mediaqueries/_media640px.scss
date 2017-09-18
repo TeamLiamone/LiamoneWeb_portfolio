@@ -1,0 +1,11 @@
+@media screen and (min-width: $tablet-small){
+	
+	//Container
+	.container{
+		max-width: 640px;
+	}
+
+	//Columns
+	@include responsive-columns('xsm');
+
+}

@@ -1,0 +1,176 @@
+@charset "UTF-8";
+
+/****
+Personal animation
+2017 Jeremie Nehlil
+****/
+
+@keyframes levitate {
+
+  from{
+    transform: translateY(0);
+  }
+  25%{
+    transform: translateY(-1%);
+  }
+  50%{
+    transform: translateY(0);
+  }
+  75%{
+    transform: translateY(1%);
+  }
+  to{
+    transform: translateY(0);
+  }
+}
+
+.levitate{
+  -webkit-animation-name: levitate;
+  animation-name: levitate;
+}
+
+@keyframes blockRevealY {
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  from{ 
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  1%{
+    opacity: 1;
+  }
+  to{
+    transform: scaleY(1);
+    opacity: 1;
+  }
+} 
+
+.blockRevealInY{
+  -webkit-animation-name: blockRevealY;
+  animation-name: blockRevealY;
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+}
+
+.blockRevealOutY{
+  -webkit-animation-name: blockRevealY;
+  animation-name: blockRevealY;
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+}
+
+@keyframes blockRevealX {
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  from{ 
+    transform: scaleX(0);
+    display: none;
+  }
+  1%{
+    display: block;
+  }
+  to{
+    transform: scaleX(1);
+  }
+} 
+
+.blockRevealInX{
+  -webkit-animation-name: blockRevealX;
+  animation-name: blockRevealX;
+  transform: scaleX(0);
+  transform-origin: 50% 0;
+}
+
+.blockRevealOutX{
+  -webkit-animation-name: blockRevealX;
+  animation-name: blockRevealX;
+  transform: scaleX(0);
+  transform-origin: 50% 100%;
+}
+
+@keyframes blockFullRevealY{
+  transistion-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  0%{
+    transform-origin: 50% 0;
+    transform: scaleY(0);
+    display: none;
+  }
+  1%{
+    display: block;
+  }
+  49%{
+    transform-origin: 50% 0;
+  }
+  50%{
+    transform: scaleY(1);
+    transform-origin: 50% 100%;
+  }
+  99%{
+    display: block;
+  }
+  100%{
+    transform: scaleY(0);
+    transform-origin: 50% 100%;
+  }
+}
+
+.blockFullRevealY{
+  -webkit-animation-name: blockFullRevealY;
+  animation-name: blockFullRevealY;
+  transform-origin: 50% 100%;
+  transform: scaleY(0);
+}
+
+@keyframes blockLogRevealY{
+  transistion-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  from{
+    transform-origin: 50% 100%;
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  1%{
+    opacity: 1;  
+  }
+  49%{
+    transform-origin: 50% 100%;
+  }
+  50%{
+    transform: scaleY(1);
+    transform-origin: 50% 0;
+  }
+  60%{
+    transform: scaleY(1);
+  }
+  99%{
+    opacity: 1;
+  }
+  to{
+    transform: scaleY(0.1);
+    transform-origin: 50% 0;
+    opacity: 0;
+  }
+}
+
+.blockLogRevealY{
+  -webkit-animation-name: blockLogRevealY;
+  animation-name: blockLogRevealY;
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+}
+
+@keyframes show{
+
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.opacity{
+  -webkit-animation-name: show;
+  animation-name: show;
+}

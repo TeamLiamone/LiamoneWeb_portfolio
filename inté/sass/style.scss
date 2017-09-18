@@ -1,0 +1,53 @@
+@charset 'UTF-8';
+
+/*Variable, mixins, functions, placeholder*/
+@import 'site/helpers/variables';
+@import 'site/helpers/mixins';
+@import 'site/helpers/placeholders';
+@import 'site/helpers/functions';
+
+/*****************
+Reset
+*****************/
+@import 'site/reset/reset';				//Reset css
+
+/*****************
+Base
+*****************/
+@import 'site/base/utils'; 				//Utils
+@import 'site/base/grid'; 				//Grid
+@import 'site/base/fonts'; 				//Font
+
+/*****************
+Components
+*****************/
+@import 'site/components/nav'; 			//Nav components
+@import 'site/components/button'; 		//Buttons components
+
+/*****************
+Layout
+*****************/
+@import 'site/layout/header'; 			//Header
+@import 'site/layout/form';				//Form
+@import 'site/layout/footer'; 			//Footer
+@import 'site/layout/hero'; 			//Hero
+@import 'site/layout/section'; 			//Section
+
+/*****************
+Pages
+*****************/
+@import 'site/pages/index'; 			//Index page elements
+
+/*Animate*//*
+@import 'animation/animate';			//Animate.css
+@import 'animation/anim';				//Own animation
+*/
+
+/*****************
+Media-queries
+*****************/
+@import 'site/mediaqueries/media640px';	
+@import 'site/mediaqueries/media768px';
+@import 'site/mediaqueries/media992px';	
+@import 'site/mediaqueries/media1200px';	
+@import 'site/mediaqueries/media1920px';	

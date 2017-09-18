@@ -1,0 +1,14 @@
+.home  {
+
+	.big-title:not(.hero-title)  {
+		@extend %font-uppercase;
+	}
+}
+
+.liamone  {
+
+	.little-title  {
+		@extend %font-uppercase;
+		@extend %font-bold;
+	}
+}

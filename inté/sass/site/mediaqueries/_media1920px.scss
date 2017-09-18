@@ -1,0 +1,11 @@
+@media screen and (min-width: $desktop-large){
+
+	//Container
+	.container{
+		max-width: 1440px;
+	}
+
+	//Columns
+	@include responsive-columns('xlg');
+
+}	

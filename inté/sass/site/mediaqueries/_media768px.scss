@@ -1,0 +1,11 @@
+@media screen and (min-width: $tablet-large){
+
+		//Container
+	.container{
+		max-width: 720px;
+	}
+
+	//Columns
+	@include responsive-columns('sm');
+
+}

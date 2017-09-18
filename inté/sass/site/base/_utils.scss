@@ -1,0 +1,60 @@
+/*HELPERS*/
+//Float
+.pull-left  {
+	float: left !important;
+}
+
+.pull-right  {
+	float: right !important;
+}
+
+//Center
+.center  {
+	display: block;
+	margin: 0 auto;
+}
+
+//Clearfix
+.clearfix  {
+
+	&::before,
+	&::after  {
+		content: '';
+		display: table;
+	}
+
+	&::after  {
+		clear: both;
+	}
+}
+
+//Show & Hide content
+.show  {
+	display: block !important;
+}
+
+.hide  {
+	display: none !important;
+}
+
+//Image
+.img-fluid  {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+img  {
+	@extend .img-fluid;
+}
+
+//
+.sr-only  {
+	position: absolute;
+	@include dimension(1px, 1px);
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+}

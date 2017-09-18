@@ -1,0 +1,12 @@
+@media screen and (min-width: $tablet-big){
+
+	//Container
+	.container{
+		max-width: 960px;
+	}
+
+	//Columns
+	@include responsive-columns('md');
+
+
+}
