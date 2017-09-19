@@ -1,9 +1,18 @@
-%gradient  {
+%gradientX {
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e82d3c+0,e70774+100 */
 	background: $gradient-color1;
 	background: -moz-linear-gradient(left, $gradient-color1 0%, $gradient-color2 100%);
 	background: -webkit-linear-gradient(left, $gradient-color1 0%, $gradient-color2 100%);
 	background: linear-gradient(to right, $gradient-color1 0%, $gradient-color2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+}
+
+%gradientY  {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e82d3c+0,e70774+100 */
+	background: $gradient-color1;
+	background: -moz-linear-gradient(top, $gradient-color1 0%, $gradient-color2 100%);
+	background: -webkit-linear-gradient(top, $gradient-color1 0%, $gradient-color2 100%);
+	background: linear-gradient(to bottom, $gradient-color1 0%, $gradient-color2 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
 }
 
@@ -29,8 +38,8 @@
 	cursor: pointer;
 	background: $white-color;
 	border: 2px solid $white-color;
-	color: $blackTitle-color;
-	@extend %font-bold;
+	color: $blackBtn-color;
+	@extend %font-black;
 	text-shadow: none;
 	box-shadow: none;
 	@include dimension(auto, auto);
@@ -84,6 +93,18 @@
 	}
 }
 
+%pos-relative  {
+	position: relative;
+}
+
+%pos-absolute  {
+	position: absolute;
+}
+
+%pos-fixed  {
+	position: fixed;
+}
+
 //Font-family
 %font-titles  {
 	font-family: 'Futura Bold', 'Open Sans', sans-serif;
@@ -95,16 +116,19 @@
 
 //Font weight
 %font-bold  {
-	font-weight: $font-bold;
+	font-weight: $font-bold !important;
+}
+%font-medium  {
+	font-weight: $font-medium !important;
 }
 %font-regular  {
-	font-weight: $font-regular;
+	font-weight: $font-regular !important;
 }
 %font-black  {
-	font-weight: $font-black,
+	font-weight: $font-black !important,
 }
 %font-light  {
-	font-weight: $font-light;
+	font-weight: $font-light !important;
 }
 
 //Font style

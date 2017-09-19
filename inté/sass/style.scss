@@ -19,10 +19,20 @@ Base
 @import 'site/base/fonts'; 				//Font
 
 /*****************
+Fontello
+*****************/
+@import 'site/fontello/fontello';
+@import 'site/fontello/fontello-codes';
+//@import 'site/fontello/fontello-embedded';
+@import 'site/fontello/fontello-ie7';
+@import 'site/fontello/fontello-ie7-codes';
+
+/*****************
 Components
 *****************/
 @import 'site/components/nav'; 			//Nav components
 @import 'site/components/button'; 		//Buttons components
+@import 'site/components/card';	//Card (work thumbs) components
 
 /*****************
 Layout

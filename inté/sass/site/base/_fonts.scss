@@ -8,15 +8,20 @@ h6  {font-size: $font-14;}
 
 h1, h2, h3, h4, h5, h6  {
 	@extend %font-titles;
+	@extend %font-bold;
+	color: $blackTitle-color;
 }
 
-p  {
+p:not(.big-number)  {
 	@extend %font-text;
+	@extend %font-medium;
+	margin-bottom: 1.25em;
 	font-size:  $font-14;
 }
 
 .big-number  {
 	font-size: calculateSize(200px);
+	@extend %font-black;
 }
 
 .big-title  {
@@ -46,4 +51,3 @@ p  {
 a  {
 	text-decoration: none;
 }
-

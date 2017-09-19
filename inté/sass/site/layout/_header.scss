@@ -1,5 +1,5 @@
 .menu-top  {
-	position: fixed;
+	@extend %pos-fixed;
 	z-index: 900;
 	background-color: transparent;
 	padding: 1.25em 0;
@@ -13,13 +13,13 @@
 }
 
 .menu-header  {
+	@extend %pos-relative;
 	width: 100%;
-	position: relative;
 	z-index: 902;
 }
 
 .menu-toggle  {
-	position: relative;
+	@extend %pos-relative;
 	padding: $gutter;
 	@extend %float-right;
 	@extend %btn-noStyle;
@@ -34,10 +34,10 @@
 }
 
 .menu-container  {
+	@extend %pos-fixed;
 	display: none;
 	width: 100vw;
 	min-height: 100vh;
-	position: fixed;
 	z-index: 901;
 	top: 0;
 	left: 0;

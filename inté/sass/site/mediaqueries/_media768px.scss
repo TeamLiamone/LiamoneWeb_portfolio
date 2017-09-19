@@ -1,11 +1,33 @@
 @media screen and (min-width: $tablet-large){
 
-		//Container
+	//Container
 	.container{
 		max-width: 720px;
 	}
 
 	//Columns
 	@include responsive-columns('sm');
+
+	.liamone  {
+
+		img  {
+			margin-top: 10em;
+		}
+
+		.big-number  {
+			left: 2em;
+		}
+	}
+
+	.objectif  {
+
+		.block-title  {
+			height: 329px;
+		}
+
+		.block-content  {
+			padding-left: 2em;
+		}
+	}
 
 }

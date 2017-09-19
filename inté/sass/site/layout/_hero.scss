@@ -5,7 +5,7 @@
 
 	.hero-title  {
 		@extend .big-title;
-		text-align: center;
+		@extend %text-center;
 		color: $white-color;
 		font-size: calculateSize(42px);
 	}
@@ -13,8 +13,15 @@
 
 
 .cta-scroll  {
-	position: absolute; 
-	bottom: 1em;
+	@extend %pos-absolute; 
+	bottom: 2em;
+	left: 45vw;
 	transform: rotateZ(-90deg);
 
+	& > i  {
+		@extend %pos-relative;
+		color: $white-color;
+		left: -4px;
+		top: 1px;
+	}
 }

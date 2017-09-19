@@ -1,14 +1,192 @@
+.content-list  {
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	h3  {
+		@extend %font-black;
+		font-size: $font-16;
+	}
+
+	ol  {
+		padding: 0.5em 0;
+	}
+
+	li  {
+		font-size: $font-14;
+	}
+
+}
+
+.block-title,
+.block-content  {
+	padding-top: 1em;
+	padding-bottom: 1em; 
+}
+
+.block-title  {
+
+	h2  {
+		@extend %pos-relative;
+		z-index: 2; 
+	}
+}
+
+.block-content  {
+	@extend %pos-relative;
+	z-index: 2;
+}
+
+.big-number  {
+	@extend %pos-absolute;
+	color: $greyNumber-color;
+	z-index: 0;
+	top: -0.1em;
+	left: 0.25em;
+}
+
 .home  {
 
 	.big-title:not(.hero-title)  {
 		@extend %font-uppercase;
 	}
+
+	.block-title  {
+		@extend %clearfix;
+		min-height: 230px;
+
+		h2  {
+			margin-top: 2em;
+		}
+	}
+}
+
+.parallax-geometry  {
+	display: none;
 }
 
 .liamone  {
 
+	.block-title  {
+
+		h2  {
+			margin-top: 0;
+		}
+	}
+
 	.little-title  {
 		@extend %font-uppercase;
 		@extend %font-bold;
+	}
+}
+
+.objectif  {
+
+	.left-block  {
+		background-color: $greyNumber-color;
+	}
+
+	.right-block  {
+		@extend %gradientX;
+		padding-top: 2.5em;
+		padding-bottom: 2.5em;
+
+		p  {
+			@extend %font-bold;
+			color: $white-color;
+			font-size: $font-16;
+		}
+
+		.black-text  {
+			color:: $blackText-color;
+		}
+
+		.btn  {
+			margin-top: 3em;
+		}
+	}
+
+	.big-number  {
+		color: $white-color; 
+	}
+
+	p  {
+		font-size: $font-regular;
+	}
+}
+
+.expertises  {
+	padding: 0;
+
+	.content-list  {
+		border-bottom: 1px solid rgba($blackBtn-color, 0.25);
+
+		&:last-child  {
+			border: none;
+		}
+	}
+
+	i  {
+		margin: 0 1em 0 0;
+	}
+}
+
+.competences  {
+	@extend %gradientY;
+
+	.block-title  {
+		padding-bottom: 0;
+	}
+
+	.block-content  {
+		padding-top: 0;
+	}
+
+	.big-number  {
+		color: rgba($greyNumber-color, 0.16);
+	}
+
+	.separator  {
+		background-color: $white-color;
+	}
+
+	.content-caption  {
+		padding: 0.5em 0;
+	}
+
+	svg  {
+		margin-bottom: 0.25em;
+	}
+
+	h3  {
+		margin-bottom: 0.75em;
+	}
+}
+
+.clients  {
+
+	img  {
+		@extend %float-left;
+		width: 45%;
+		margin: 0.5em 2.5%;
+	}
+}
+
+.actus  {
+
+	.actualite  {
+		background-color: $blackTitle-color;
+		padding: 6em 4em;
+
+		h2  {
+			@extend %font-uppercase;
+			color: $white-color;
+			font-size: $font-24;
+
+		}
+	}
+
+	.btn  {
+		width: 270px;
+		margin: 2.5em auto;
 	}
 }

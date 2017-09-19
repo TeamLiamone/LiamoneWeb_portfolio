@@ -4,5 +4,16 @@ aside  {
 }
 
 aside  {
-	@extend %gradient;
+	@extend %gradientX;
+
+	h2  {
+		@extend %font-uppercase;
+		@extend %font-black;
+		font-size: $font-18;
+	}
+
+	p  {
+		margin-top: 1em;
+		color: $blackText-color;
+	}
 }
