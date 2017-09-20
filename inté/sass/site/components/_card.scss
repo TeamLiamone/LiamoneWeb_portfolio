@@ -51,6 +51,11 @@
 	}	 
 }
 
+.client-card  {
+	@include dimension(270px, 270px);
+	border: 1px solid $greyData-color;
+}
+
 .actu-card  {
 	@include dimension(270px, 270px);
 	margin: 1em auto;

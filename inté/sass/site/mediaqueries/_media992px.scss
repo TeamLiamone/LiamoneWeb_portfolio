@@ -8,5 +8,44 @@
 	//Columns
 	@include responsive-columns('md');
 
+	.padded-block  {
+		
+		& > .block-content,
+		.block-title,
+		.left-block .block-title,
+		.left-block .block-content,
+		.left-block  {
+			padding-left: 8.33333%;
+		}
+	}
 
+	.skewed-bg  {
+
+		&.shape-right  {
+			transform: skew(0deg, -30deg);
+		}
+	}
+
+	.competences  {
+
+		.block-content  {
+			padding-top: 3em;
+		}
+	}
+
+	aside .left-block  {
+		padding-left: 8.33333%;
+	}
+
+	.clients .client-card,
+	.actu-card  {
+		@include dimension(270px, 270px);
+	}
+
+	.actus  {
+
+		.actualite  {
+			padding: 5em;
+		}
+	}
 }

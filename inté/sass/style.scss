@@ -1,15 +1,15 @@
 @charset 'UTF-8';
 
-/*Variable, mixins, functions, placeholder*/
-@import 'site/helpers/variables';
-@import 'site/helpers/mixins';
-@import 'site/helpers/placeholders';
-@import 'site/helpers/functions';
-
 /*****************
 Reset
 *****************/
 @import 'site/reset/reset';				//Reset css
+
+//Variable, mixins, functions, placeholder
+@import 'site/helpers/variables';
+@import 'site/helpers/mixins';
+@import 'site/helpers/placeholders';
+@import 'site/helpers/functions';
 
 /*****************
 Base

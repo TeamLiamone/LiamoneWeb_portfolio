@@ -1,5 +1,61 @@
 @charset "UTF-8";
-/*Variable, mixins, functions, placeholder*/
+/*****************
+Reset
+*****************/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 aside, .objectif .right-block {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e82d3c+0,e70774+100 */
   background: #ffcb00;
@@ -138,7 +194,7 @@ aside, .objectif .right-block {
   position: relative;
 }
 
-.sr-only, .cta-scroll, .big-number {
+.sr-only, .cta-scroll, .big-number, .skewed-bg {
   position: absolute;
 }
 
@@ -182,65 +238,8 @@ p:not(.big-number) {
   float: right;
 }
 
-.separator, .clients img {
+.separator, .clients .client-card {
   float: left;
-}
-
-/*****************
-Reset
-*****************/
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-
-body {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
 /*****************
@@ -347,7 +346,6 @@ body {
   width: 100%;
   margin: 0 auto;
   max-width: 320px;
-  background: red;
   padding: 0 15px;
 }
 
@@ -1124,6 +1122,12 @@ Components
   margin: 1em auto;
 }
 
+.client-card {
+  width: 270px;
+  height: 270px;
+  border: 1px solid #e0e0e0;
+}
+
 .actu-card {
   width: 270px;
   height: 270px;
@@ -1191,7 +1195,7 @@ Layout
 .menu-bottom:before {
   content: '';
   display: block;
-  width: 90%;
+  width: calc(100vw - 30px);
   height: 1px;
   margin: auto;
   background-color: rgba(28, 27, 27, 0.25);
@@ -1223,7 +1227,12 @@ Layout
   font-size: 0.875rem;
 }
 
-.menu-bottom .mention p {
+.menu-bottom .mention {
+  margin-top: 1em;
+}
+
+.menu-bottom .mention p,
+.menu-bottom .mention a {
   font-size: 0.75rem;
 }
 
@@ -1357,7 +1366,7 @@ Pages
 }
 
 .expertises .content-list {
-  border-bottom: 1px solid rgba(28, 27, 27, 0.25);
+  border-bottom: 1px solid rgba(28, 27, 27, 0.15);
 }
 
 .expertises .content-list:last-child {
@@ -1370,6 +1379,10 @@ Pages
 
 .competences .block-title {
   padding-bottom: 0;
+}
+
+.competences .big-title, .competences .dot, .competences .hero-header .hero-title, .hero-header .competences .hero-title {
+  color: white;
 }
 
 .competences .block-content {
@@ -1394,11 +1407,67 @@ Pages
 
 .competences h3 {
   margin-bottom: 0.75em;
+  font-size: 1rem;
 }
 
-.clients img {
+.skewed-bg {
+  width: 100vw;
+  height: 100%;
+  display: none;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.1);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.02)), to(rgba(255, 255, 255, 0.18)));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.18) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#fff',GradientType=1 );
+}
+
+.clients .client-card {
   width: 45%;
+  height: 42vw;
   margin: 0.5em 2.5%;
+  text-align: center;
+}
+
+.clients .client-card img {
+  display: inline-block;
+  margin: auto;
+  vertical-align: middle;
+}
+
+.clients .client-1 {
+  background-image: url("../img/client/sponsoweb-logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.clients .client-2 {
+  background-image: url("../img/client/autobiz-logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.clients .client-3 {
+  background-image: url("../img/client/orange-logo.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.clients .client-4 {
+  background-image: url("../img/client/voyagesncf-logo.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.clients .client-5 {
+  background-image: url("../img/client/immodefrance-logo.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 .actus .actualite {
@@ -1818,17 +1887,102 @@ Media-queries
   .col-sm-pull-12 {
     left: 100%;
   }
+  aside {
+    padding: 3em 0;
+  }
   .liamone img {
     margin-top: 10em;
   }
   .liamone .big-number {
     left: 2em;
   }
-  .objectif .block-title {
+  .objectif .block-title,
+  .objectif .right-block {
     height: 329px;
   }
   .objectif .block-content {
     padding-left: 2em;
+  }
+  .block-card {
+    display: block;
+    position: relative;
+  }
+  .block-card:before {
+    float: none;
+  }
+  .block-card .card-caption {
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    bottom: auto;
+  }
+  .projet {
+    position: relative;
+  }
+  .projet .block-content {
+    max-height: 1080px;
+    top: -6em;
+  }
+  .projet .block-card {
+    float: left;
+    margin-right: 20vw;
+  }
+  .projet .block-card:first-of-type {
+    z-index: 3;
+  }
+  .projet .block-card:nth-child(even) {
+    top: -10vw;
+    left: 0;
+    float: right;
+    margin-right: 0;
+    z-index: 2;
+  }
+  .projet .block-card:nth-child(even):before {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .projet .block-card:last-child {
+    top: -20vw;
+    z-index: 1;
+  }
+  .competences {
+    position: relative;
+    overflow: hidden;
+  }
+  .competences .content-caption {
+    width: 48%;
+    float: left;
+    margin: 0 1%;
+    height: 250px;
+  }
+  .skewed-bg {
+    display: block;
+  }
+  .skewed-bg.shape-left {
+    -webkit-transform: skew(24deg, 0deg);
+            transform: skew(24deg, 0deg);
+    left: -83%;
+  }
+  .skewed-bg.shape-right {
+    -webkit-transform: skew(0deg, -35deg);
+            transform: skew(0deg, -35deg);
+    top: 45%;
+  }
+  .clients .client-card,
+  .actu-card {
+    width: 230px;
+    height: 230px;
+    margin: 0.5em;
+  }
+  .actus .actu-card {
+    float: left;
+  }
+  .actus .actualite {
+    padding: 4em;
+  }
+  .mention {
+    text-align: center;
   }
 }
 
@@ -2027,6 +2181,31 @@ Media-queries
   }
   .col-md-pull-12 {
     left: 100%;
+  }
+  .padded-block > .block-content,
+  .padded-block .block-title,
+  .padded-block .left-block .block-title,
+  .padded-block .left-block .block-content,
+  .padded-block .left-block {
+    padding-left: 8.33333%;
+  }
+  .skewed-bg.shape-right {
+    -webkit-transform: skew(0deg, -30deg);
+            transform: skew(0deg, -30deg);
+  }
+  .competences .block-content {
+    padding-top: 3em;
+  }
+  aside .left-block {
+    padding-left: 8.33333%;
+  }
+  .clients .client-card,
+  .actu-card {
+    width: 270px;
+    height: 270px;
+  }
+  .actus .actualite {
+    padding: 5em;
   }
 }
 

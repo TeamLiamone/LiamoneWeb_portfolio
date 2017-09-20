@@ -3,7 +3,7 @@
 	&:before  {
 		content: '';
 		display: block;
-		width: 90%;
+		width: calc(100vw - 30px);
 		height: 1px;
 		margin: auto;
 		background-color: rgba($blackBtn-color, 0.25);
@@ -42,8 +42,10 @@
 	}
 
 	.mention  {
+		margin-top: 1em;
 
-		p  {
+		p,
+		a  {
 			font-size: $font-12;
 		}
 	}	

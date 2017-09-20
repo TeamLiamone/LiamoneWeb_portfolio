@@ -7,7 +7,11 @@
 
 	//Columns
 	@include responsive-columns('sm');
+	
+	//Aside
+	aside  {padding: 3em 0;}
 
+	//Home
 	.liamone  {
 
 		img  {
@@ -21,13 +25,118 @@
 
 	.objectif  {
 
-		.block-title  {
+		.block-title,
+		.right-block  {
 			height: 329px;
 		}
 
 		.block-content  {
 			padding-left: 2em;
 		}
+	}
+
+	.block-card  {
+		display: block;
+		position: relative;
+
+		&:before  {
+			float: none;
+		}
+
+		.card-caption  {
+			position: absolute;
+			left: 5%;
+			top: 30%;
+			bottom: auto;
+		}
+	}
+
+	.projet  {
+		position: relative;
+
+		.block-content  {
+			max-height: 1080px;
+			top: -6em;
+		}
+
+		.block-card  {
+			float: left;
+			margin-right: 20vw;
+
+			&:first-of-type  {z-index: 3;}
+
+			&:nth-child(even)  {
+				top: -10vw;
+				left: 0;
+				float: right;
+				margin-right: 0;
+				z-index: 2;
+				
+				&:before  {
+					position: absolute;
+					top: 0;
+					right: 0;
+				}	
+			}
+
+			&:last-child  {
+				top: -20vw;
+				z-index: 1;
+			}
+		}
+	}
+
+	.competences  {
+		position: relative;
+		overflow: hidden;
+
+		.content-caption  {
+			width: 48%;
+			float: left;
+			margin: 0 1%;
+			height: 250px;
+		}
+	}
+
+	.skewed-bg  {
+		display: block;
+
+		&.shape-left  {
+			//border-left: 0 solid transparent;
+	        //border-right: 40vw solid transparent;
+	        //border-bottom: 580px solid rgba($white-color, 0.1);
+	        transform: skew(24deg, 0deg);
+	        left: -83%;
+		}
+		
+		&.shape-right  {
+			//border-left: 100vw solid transparent;
+	        //border-right: 0 solid transparent;
+	        //border-bottom: 580px solid rgba($white-color, 0.10);
+	        transform: skew(0deg, -35deg);
+	        top: 45%;
+		}
+	}
+
+	.clients .client-card,
+	.actu-card  {
+		@include dimension(230px, 230px);
+		margin: 0.5em;
+	}
+
+	.actus  {
+
+		.actu-card  {
+			float: left;
+		}
+
+		.actualite  {
+			padding: 4em;
+		}
+	}
+
+	.mention  {
+		text-align: center; 
 	}
 
 }
