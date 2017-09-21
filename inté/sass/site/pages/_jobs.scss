@@ -1,0 +1,37 @@
+.block-job  {
+	padding: 1em 0;
+	margin: 1em auto;
+	width: 100%;
+	border-top: 1px solid rgba($blackBtn-color, 0.25);
+
+	&:first-of-type  {
+		border: none;
+	}
+
+	.job-title  {
+		font-size: $font-14;
+	}
+
+	.job-info  {
+		@extend %font-italic;
+		font-size: $font-12;
+		color: $greyLight-color;
+	}
+
+	.job-description  {
+		font-size: $font-14;
+	}
+
+	.btn  {
+		margin-top: 2.5em;
+		width: 100%;
+	}
+}
+
+.jobs  {
+	@extend .home;
+
+	.block-content  {
+		padding-top: 0;
+	}
+}

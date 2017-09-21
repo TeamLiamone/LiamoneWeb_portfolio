@@ -8,17 +8,38 @@
 	//Columns
 	@include responsive-columns('lg');
 
-	.menu-top  {
-		
-
+	section, 
+	aside,
+	.expertises  {
+		padding: 6.25em 0;
 	}
 
-	.hero-header  {
+	/*Menu-top*/
+	.menu-toggle  {
+		display: none;
+	}
 
-		.hero-title  {
-			font-size: calculateSize(90px);
+	.menu-container  {
+		position: relative;
+		display: block;
+		width: 75%;
+		min-height: auto;
+
+		.nav-item  {
+			display: inline-block;
+
+			.item-link  {
+				padding: 0 1em;
+			}
 		}
 	}
+
+	.menu-nav  {
+		padding: 5px 0;
+		float: right;
+	}
+	/*End Menu-top*/
+
 
 	h1  {font-size: $font-36;}
 	h2  {font-size: $font-30;}
@@ -27,12 +48,58 @@
 	h5  {font-size: $font-16;}
 	h6  {font-size: $font-14;}	
 
+	.big-title  {
+		font-size: calculateSize(60px);
+	}
+
 	.big-number  {
 		font-size: calculateSize(300px);
+		top: -0.3em;
 	}
 
-	.big-title  {
-		font-size: calculateSize(30px);
+	/*Hero*/
+	.hero-header  {
+
+		.hero-title  {
+			font-size: calculateSize(90px);
+		}
+	}
+	/*End Hero*/
+
+	/*Home*/
+	.liamone  {
+
+		.left-block  {
+			padding: 0;
+		}
 	}
 
+	.projet  {
+
+		.block-content  {
+			max-height: 1020px;
+		}
+	}
+
+	.skewed-bg  {
+			
+		&.shape-right  {
+			transform: skew(0deg, -25deg);
+		}
+	}
+
+	.clients .client-card,
+	.actu-card  {
+		@include dimension(260px, 260px);
+	}
+	/*End Home*/
+
+	/*Footer*/
+	footer  {
+
+		.big-title  {
+			font-size: calculateSize(21px);
+		}
+	}
+	/*End Footer*/
 }

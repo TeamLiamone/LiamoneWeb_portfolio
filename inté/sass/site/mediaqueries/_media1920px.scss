@@ -7,5 +7,21 @@
 
 	//Columns
 	@include responsive-columns('xlg');
+	
+	/*Home*/
+	.projet  {
+
+		.block-card  {
+			margin-right: 35vw;
+		}
+	}
+
+	.expertises  {
+
+		.content-list  {
+			max-width: 70%;
+		}
+	}
+	/*End Home*/
 
 }	

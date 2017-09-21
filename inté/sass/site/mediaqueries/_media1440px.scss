@@ -1,0 +1,13 @@
+@media screen and (min-width: $desktop-small){
+	
+	/*Home*/
+	.skewed-bg  {
+
+		&.shape-right  {
+			transform: skew(0deg, -16deg);
+			top: 30%;
+			left: 15%;
+		}
+	}
+	/*End Home*/
+}

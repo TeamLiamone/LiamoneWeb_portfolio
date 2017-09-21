@@ -1,3 +1,4 @@
+/*Hero*/
 .hero-header  {
 	background-color: $blackBg-color;
 	height: 100vh;
@@ -11,6 +12,34 @@
 	}
 }
 
+.hero-grey  {
+	background: $greyNumber-color;
+	background: -moz-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 70%, $white-color 70%, $white-color 100%);
+	background: -webkit-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 70%, $white-color 70%, $white-color 100%);
+	background: linear-gradient(to bottom, $greyNumber-color 0%, $greyNumber-color 70%, $white-color 70%, $white-color 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+	padding: 15vh 0 0;
+	height: 100%;
+
+	.hero-title  {
+		@extend %font-uppercase;
+		text-align: left !important;
+		color: $blackTitle-color;
+	}
+
+	&.full  {
+		background: $greyNumber-color;
+		padding: 15vh 0 5vh;
+	}
+
+	.block-title  {
+		min-height: auto !important;
+	}
+
+	.separator  {
+		margin-top: 2em;
+	}
+}
 
 .cta-scroll  {
 	@extend %pos-absolute; 
@@ -25,3 +54,4 @@
 		top: 1px;
 	}
 }
+/*End Hero*/

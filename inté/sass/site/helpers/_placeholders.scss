@@ -4,7 +4,7 @@
 	background: -moz-linear-gradient(left, $gradient-color1 0%, $gradient-color2 100%);
 	background: -webkit-linear-gradient(left, $gradient-color1 0%, $gradient-color2 100%);
 	background: linear-gradient(to right, $gradient-color1 0%, $gradient-color2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcb00', endColorstr='#ff9800',GradientType=1 );
 }
 
 %gradientY  {
@@ -13,7 +13,7 @@
 	background: -moz-linear-gradient(top, $gradient-color1 0%, $gradient-color2 100%);
 	background: -webkit-linear-gradient(top, $gradient-color1 0%, $gradient-color2 100%);
 	background: linear-gradient(to bottom, $gradient-color1 0%, $gradient-color2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcb00', endColorstr='#ff9800',GradientType=1 );
 }
 
 %col {

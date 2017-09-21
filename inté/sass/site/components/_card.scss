@@ -1,3 +1,4 @@
+/*Card*/
 .block-card  {
 	@extend %clearfix;
 	padding: 1em 0;
@@ -34,20 +35,20 @@
 		}
 
 		&:after  {
+			@extend %pos-absolute;
 			content: '';
 			display: block;
 			height: 3px;
 			width: 60px;
 			background-color: $yellowMinTitle-color;
 			transform: rotateZ(-45deg);
-			position: relative;
-			bottom: -20px;
+			bottom: 0;
 			left: calc( (100% - 60px) / 2);
 		}
 	}
 
 	.btn  {
-		margin: 1em auto;
+		margin: 2em auto 1em;
 	}	 
 }
 
@@ -66,3 +67,49 @@
 		left: 10px;	
 	}
 }
+
+.job-card  {
+	background-color: $white-color;
+	padding: 1em;
+	margin-top: 2em;
+
+	.list-title  {
+		@extend %font-uppercase;
+		@extend %font-italic;
+		font-size: $font-14;
+	}
+
+	.list-response  {
+		@extend %font-bold;
+	}
+
+	li  {
+
+		&:nth-child(odd)  {
+			margin-top: 0.75em;
+		}
+		&:nth-child(even)  {
+			margin-bottom: 0.75em;
+		}
+	}
+}
+
+.black-card  {
+	background-color: $blackBg-color;
+	padding: 1em;
+
+	h2  {
+		color: $white-color;
+		font-size: $font-16;
+		text-transform: initial;
+	}
+
+	p  {
+		color: $white-color;
+	}
+
+	a  {
+		color:: $yellowMinTitle-color;
+	}
+}
+/*End Card*/

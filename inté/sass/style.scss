@@ -47,6 +47,8 @@ Layout
 Pages
 *****************/
 @import 'site/pages/index'; 			//Index page elements
+@import 'site/pages/jobs'; 				//Jobs page elements
+@import 'site/pages/job-detail'; 		//Job details page elements
 
 /*Animate*//*
 @import 'animation/animate';			//Animate.css
@@ -60,4 +62,5 @@ Media-queries
 @import 'site/mediaqueries/media768px';
 @import 'site/mediaqueries/media992px';	
 @import 'site/mediaqueries/media1200px';	
-@import 'site/mediaqueries/media1920px';	
+@import 'site/mediaqueries/media1440px';	
+@import 'site/mediaqueries/media1920px';

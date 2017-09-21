@@ -1,3 +1,4 @@
+/*Home*/
 .content-list  {
 	padding-top: 1em;
 	padding-bottom: 1em;
@@ -80,13 +81,16 @@
 }
 
 .objectif  {
+	background: $gradient-color1;
+	background: -moz-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 45%, $gradient-color1 45%, $gradient-color2 100%);
+	background: -webkit-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 45%, $gradient-color1 45%, $gradient-color2 100%);
+	background: linear-gradient(to bottom, $greyNumber-color 0%, $greyNumber-color 45%, $gradient-color1 45%, $gradient-color2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
 
 	.left-block  {
-		background-color: $greyNumber-color;
 	}
 
 	.right-block  {
-		@extend %gradientX;
 		padding-top: 2.5em;
 		padding-bottom: 2.5em;
 
@@ -232,3 +236,4 @@
 		margin: 2.5em auto;
 	}
 }
+/*End Home*/

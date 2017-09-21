@@ -1,3 +1,4 @@
+/*Buttons*/
 .btn  {
 	@extend %btn;
 	@extend %font-uppercase;
@@ -17,9 +18,16 @@
 	& > i  {
 		margin-left: 0.5em;
 	}
+
+	&.yellow  {
+		background: transparent;
+		color: $yellowMinTitle-color;
+		border-color: $white-color;
+	}
 }
 
 .cta-scroll  {
 	@extend %btn-noStyle;
 	color: $yellowDot-color;
 }
+/*End Buttons*/

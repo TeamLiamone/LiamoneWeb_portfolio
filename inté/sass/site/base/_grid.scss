@@ -5,6 +5,7 @@
 //Body default typo style
 html,
 body  {
+	@include dimension(100vw, 100%);
 	font-family: 'Helvetica Neue', 'Roboto', helvetica, arial, sans-serif;
 	font-size: $font-default;
 	font-weight: $font-regular;
@@ -12,7 +13,6 @@ body  {
 	line-height: 1.45;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
-	height: 100%;
 	background-color: $white-color;
 }
 
@@ -35,7 +35,7 @@ body  {
 	width: 100%;
 	margin: 0 auto;
 	max-width: 320px;
-	padding: $gutter;
+	padding: 0;
 }
 
 //Row
@@ -57,3 +57,4 @@ body  {
 }
 
 @include responsive-columns ('xxsm');
+/*End Grid*/

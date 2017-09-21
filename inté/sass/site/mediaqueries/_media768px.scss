@@ -9,9 +9,19 @@
 	@include responsive-columns('sm');
 	
 	//Aside
-	aside  {padding: 3em 0;}
+	aside  {
+		padding: 3em 0;
+		
+		h2  {
+			font-size: $font-24;
+		}
 
-	//Home
+		p  {
+			font-size: $font-16 !important;
+		}
+	}
+	
+	/*Home*/
 	.liamone  {
 
 		img  {
@@ -24,7 +34,12 @@
 	}
 
 	.objectif  {
-
+		background: $gradient-color1;
+		background: -moz-linear-gradient(left, $greyNumber-color 0%, $greyNumber-color 50%, $gradient-color1 50%, $gradient-color2 100%);
+		background: -webkit-linear-gradient(left, $greyNumber-color 0%, $greyNumber-color 50%, $gradient-color1 50%, $gradient-color2 100%);
+		background: linear-gradient(to right, $greyNumber-color 0%, $greyNumber-color 50%, $gradient-color1 50%, $gradient-color2 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+		
 		.block-title,
 		.right-block  {
 			height: 329px;
@@ -36,18 +51,20 @@
 	}
 
 	.block-card  {
-		display: block;
-		position: relative;
 
-		&:before  {
-			float: none;
-		}
+		.card-caption {
+			@include dimension(260px, 240px);
+			left: calc((100% - 260px) / 2);
+			
+			h3  {
+				font-size: $font-24;
+			}
 
-		.card-caption  {
-			position: absolute;
-			left: 5%;
-			top: 30%;
-			bottom: auto;
+			&:after  {
+				position: absolute;
+				top: 100%;
+				bottom: 0;
+			}
 		}
 	}
 
@@ -60,7 +77,6 @@
 		}
 
 		.block-card  {
-			float: left;
 			margin-right: 20vw;
 
 			&:first-of-type  {z-index: 3;}
@@ -102,17 +118,11 @@
 		display: block;
 
 		&.shape-left  {
-			//border-left: 0 solid transparent;
-	        //border-right: 40vw solid transparent;
-	        //border-bottom: 580px solid rgba($white-color, 0.1);
 	        transform: skew(24deg, 0deg);
 	        left: -83%;
 		}
 		
 		&.shape-right  {
-			//border-left: 100vw solid transparent;
-	        //border-right: 0 solid transparent;
-	        //border-bottom: 580px solid rgba($white-color, 0.10);
 	        transform: skew(0deg, -35deg);
 	        top: 45%;
 		}
@@ -120,7 +130,7 @@
 
 	.clients .client-card,
 	.actu-card  {
-		@include dimension(230px, 230px);
+		@include dimension(210px, 210px);
 		margin: 0.5em;
 	}
 
@@ -134,9 +144,71 @@
 			padding: 4em;
 		}
 	}
-
+	/*End Home*/
+	
+	/*Footer*/
 	.mention  {
 		text-align: center; 
 	}
 
+	.footer-nav  {
+		margin-top: 1em;
+	}
+	/*Footer*/
+	
+		
+	/*Jobs*/
+	.block-job  {
+
+		.job-content,
+		.job-cta  {
+			display: inline-block;
+			float: left;
+		}
+
+		.job-content  {
+			width: 70%;
+		}
+
+		.job-cta  {
+			width: 25%;
+			margin-left: 5%;
+		}
+	}
+
+	.hero-grey  {
+		background: $greyNumber-color;
+		background: -moz-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 90%, $white-color 90%, $white-color 100%);
+		background: -webkit-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 90%, $white-color 90%, $white-color 100%);
+		background: linear-gradient(to bottom, $greyNumber-color 0%, $greyNumber-color 90%, $white-color 90%, $white-color 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );		
+	}
+
+	.jobs  {
+
+		.hero-grey  {
+			
+			img  {
+				margin-top: 2em;
+				float: right;
+			}
+		}
+	}
+	/*End Jobs*/
+
+	/*Job detail*/
+	.job-detail  {
+
+		.black-card  {
+			margin-top: 3em;
+		}
+
+		.cta  {
+
+			.btn  {
+				margin-top: 3em;
+			}
+		}
+	}
+	/*End Job detail*/
 }

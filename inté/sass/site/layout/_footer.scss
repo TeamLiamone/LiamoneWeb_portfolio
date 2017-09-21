@@ -1,13 +1,6 @@
+/*Menu bottom*/
 .menu-bottom  {
-
-	&:before  {
-		content: '';
-		display: block;
-		width: calc(100vw - 30px);
-		height: 1px;
-		margin: auto;
-		background-color: rgba($blackBtn-color, 0.25);
-	}
+	border-top: 1px solid rgba($blackBtn-color, 0.25);
 
 	nav  {
 		padding-top: 1em;
@@ -50,3 +43,4 @@
 		}
 	}	
 }
+/*End Menu bottom*/

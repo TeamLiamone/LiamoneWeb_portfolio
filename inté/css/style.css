@@ -56,12 +56,12 @@ table {
   border-spacing: 0;
 }
 
-aside, .objectif .right-block {
+aside {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e82d3c+0,e70774+100 */
   background: #ffcb00;
   background: -webkit-gradient(linear, left top, right top, from(#ffcb00), to(#ff9800));
   background: linear-gradient(to right, #ffcb00 0%, #ff9800 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcb00', endColorstr='#ff9800',GradientType=1 );
 }
 
 .competences {
@@ -69,7 +69,7 @@ aside, .objectif .right-block {
   background: #ffcb00;
   background: -webkit-gradient(linear, left top, left bottom, from(#ffcb00), to(#ff9800));
   background: linear-gradient(to bottom, #ffcb00 0%, #ff9800 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcb00', endColorstr='#ff9800',GradientType=1 );
 }
 
 .col-xxsm-1,
@@ -177,16 +177,16 @@ aside, .objectif .right-block {
   height: auto;
 }
 
-.padded-block, .row, .block-card, .block-card .card-caption, .home .block-title {
+.padded-block, .row, .block-card, .block-card .card-caption, .home .block-title, .jobs .block-title {
   *zoom: 1;
 }
 
-.padded-block:before, .row:before, .block-card:before, .block-card .card-caption:before, .home .block-title:before, .padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after {
+.padded-block:before, .row:before, .block-card:before, .block-card .card-caption:before, .home .block-title:before, .jobs .block-title:before, .padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after {
   content: " ";
   display: table;
 }
 
-.padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after {
+.padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after {
   clear: both;
 }
 
@@ -194,7 +194,7 @@ aside, .objectif .right-block {
   position: relative;
 }
 
-.sr-only, .cta-scroll, .big-number, .skewed-bg {
+.sr-only, .block-card .card-caption:after, .cta-scroll, .big-number, .skewed-bg {
   position: absolute;
 }
 
@@ -210,7 +210,7 @@ p:not(.big-number) {
   font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p {
+h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p {
   font-weight: 700 !important;
 }
 
@@ -222,11 +222,11 @@ p:not(.big-number) {
   font-weight: 900 !important;
 }
 
-.block-card .card-caption p {
+.block-card .card-caption p, .job-card .list-title, .block-job .job-info {
   font-style: italic;
 }
 
-.btn, .block-card .card-caption h3, .menu-bottom nav:first-of-type h2, .menu-bottom .cta-mail, aside h2, .home .big-title:not(.hero-title), .home .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2 {
+.btn, .block-card .card-caption h3, .job-card .list-title, .menu-bottom nav:first-of-type h2, .menu-bottom .cta-mail, .hero-grey .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2 {
   text-transform: uppercase;
 }
 
@@ -245,7 +245,7 @@ p:not(.big-number) {
 /*****************
 Base
 *****************/
-/*HELPERS*/
+/*UTILS*/
 .pull-left {
   float: left !important;
 }
@@ -310,6 +310,7 @@ img {
   color: #4d4d4d;
 }
 
+/*End Utils*/
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -317,6 +318,8 @@ img {
 
 html,
 body {
+  width: 100vw;
+  height: 100%;
   font-family: 'Helvetica Neue', 'Roboto', helvetica, arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -324,7 +327,6 @@ body {
   line-height: 1.45;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  height: 100%;
   background-color: white;
 }
 
@@ -346,7 +348,7 @@ body {
   width: 100%;
   margin: 0 auto;
   max-width: 320px;
-  padding: 0 15px;
+  padding: 0;
 }
 
 .row {
@@ -605,6 +607,7 @@ body {
   left: 100%;
 }
 
+/*End Grid*/
 h1 {
   font-size: 2.25rem;
 }
@@ -1052,6 +1055,7 @@ Fontello
 /*****************
 Components
 *****************/
+/*Buttons*/
 .btn {
   width: 195px;
   height: 60px;
@@ -1070,10 +1074,18 @@ Components
   margin-left: 0.5em;
 }
 
+.btn.yellow {
+  background: transparent;
+  color: #ffb942;
+  border-color: white;
+}
+
 .cta-scroll {
   color: #ffc900;
 }
 
+/*End Buttons*/
+/*Card*/
 .block-card {
   padding: 1em 0;
 }
@@ -1113,13 +1125,12 @@ Components
   background-color: #ffb942;
   -webkit-transform: rotateZ(-45deg);
           transform: rotateZ(-45deg);
-  position: relative;
-  bottom: -20px;
+  bottom: 0;
   left: calc( (100% - 60px) / 2);
 }
 
 .block-card .btn {
-  margin: 1em auto;
+  margin: 2em auto 1em;
 }
 
 .client-card {
@@ -1140,9 +1151,48 @@ Components
   left: 10px;
 }
 
+.job-card {
+  background-color: white;
+  padding: 1em;
+  margin-top: 2em;
+}
+
+.job-card .list-title {
+  font-size: 0.875rem;
+}
+
+.job-card li:nth-child(odd) {
+  margin-top: 0.75em;
+}
+
+.job-card li:nth-child(even) {
+  margin-bottom: 0.75em;
+}
+
+.black-card {
+  background-color: #1b1f1f;
+  padding: 1em;
+}
+
+.black-card h2 {
+  color: white;
+  font-size: 1rem;
+  text-transform: initial;
+}
+
+.black-card p {
+  color: white;
+}
+
+.black-card a {
+  color: #ffb942;
+}
+
+/*End Card*/
 /*****************
 Layout
 *****************/
+/*Menu top*/
 .menu-top {
   z-index: 900;
   background-color: transparent;
@@ -1192,13 +1242,10 @@ Layout
   padding: 30vh 0;
 }
 
-.menu-bottom:before {
-  content: '';
-  display: block;
-  width: calc(100vw - 30px);
-  height: 1px;
-  margin: auto;
-  background-color: rgba(28, 27, 27, 0.25);
+/*End Menu top*/
+/*Menu bottom*/
+.menu-bottom {
+  border-top: 1px solid rgba(28, 27, 27, 0.25);
 }
 
 .menu-bottom nav {
@@ -1236,6 +1283,8 @@ Layout
   font-size: 0.75rem;
 }
 
+/*End Menu bottom*/
+/*Hero*/
 .hero-header {
   background-color: #1b1f1f;
   height: 100vh;
@@ -1245,6 +1294,33 @@ Layout
 .hero-header .hero-title {
   color: white;
   font-size: 2.625rem;
+}
+
+.hero-grey {
+  background: #f1f1f1;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), color-stop(70%, #f1f1f1), color-stop(70%, white), to(white));
+  background: linear-gradient(to bottom, #f1f1f1 0%, #f1f1f1 70%, white 70%, white 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+  padding: 15vh 0 0;
+  height: 100%;
+}
+
+.hero-grey .hero-title {
+  text-align: left !important;
+  color: #4d4d4d;
+}
+
+.hero-grey.full {
+  background: #f1f1f1;
+  padding: 15vh 0 5vh;
+}
+
+.hero-grey .block-title {
+  min-height: auto !important;
+}
+
+.hero-grey .separator {
+  margin-top: 2em;
 }
 
 .cta-scroll {
@@ -1260,6 +1336,7 @@ Layout
   top: 1px;
 }
 
+/*End Hero*/
 section,
 aside {
   padding: 2em 0;
@@ -1277,6 +1354,7 @@ aside p {
 /*****************
 Pages
 *****************/
+/*Home*/
 .content-list {
   padding-top: 1em;
   padding-bottom: 1em;
@@ -1315,11 +1393,11 @@ Pages
   left: 0.25em;
 }
 
-.home .block-title {
+.home .block-title, .jobs .block-title {
   min-height: 230px;
 }
 
-.home .block-title h2 {
+.home .block-title h2, .jobs .block-title h2 {
   margin-top: 2em;
 }
 
@@ -1331,8 +1409,11 @@ Pages
   margin-top: 0;
 }
 
-.objectif .left-block {
-  background-color: #f1f1f1;
+.objectif {
+  background: #ffcb00;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), color-stop(45%, #f1f1f1), color-stop(45%, #ffcb00), to(#ff9800));
+  background: linear-gradient(to bottom, #f1f1f1 0%, #f1f1f1 45%, #ffcb00 45%, #ff9800 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
 }
 
 .objectif .right-block {
@@ -1483,6 +1564,64 @@ Pages
 .actus .btn {
   width: 270px;
   margin: 2.5em auto;
+}
+
+/*End Home*/
+.block-job {
+  padding: 1em 0;
+  margin: 1em auto;
+  width: 100%;
+  border-top: 1px solid rgba(28, 27, 27, 0.25);
+}
+
+.block-job:first-of-type {
+  border: none;
+}
+
+.block-job .job-title {
+  font-size: 0.875rem;
+}
+
+.block-job .job-info {
+  font-size: 0.75rem;
+  color: #73739b;
+}
+
+.block-job .job-description {
+  font-size: 0.875rem;
+}
+
+.block-job .btn {
+  margin-top: 2.5em;
+  width: 100%;
+}
+
+.jobs .block-content {
+  padding-top: 0;
+}
+
+.job-detail h2 {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+.job-detail p,
+.job-detail li {
+  font-size: 0.875rem;
+}
+
+.job-detail ol {
+  list-style: disc;
+  padding-left: 1em;
+}
+
+.job-detail article {
+  padding: 1em 0;
+}
+
+.job-detail .btn {
+  width: 100%;
+  margin: 2em auto;
 }
 
 /*Animate*/
@@ -1689,6 +1828,24 @@ Media-queries
   .col-xsm-pull-12 {
     left: 100%;
   }
+  /*Home*/
+  .block-card {
+    display: block;
+    position: relative;
+  }
+  .block-card:before {
+    float: none;
+  }
+  .block-card .card-caption {
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    bottom: auto;
+  }
+  .projet .block-card {
+    float: left;
+  }
+  /*End Home*/
 }
 
 @media screen and (min-width: 768px) {
@@ -1890,11 +2047,24 @@ Media-queries
   aside {
     padding: 3em 0;
   }
+  aside h2 {
+    font-size: 1.5rem;
+  }
+  aside p {
+    font-size: 1rem !important;
+  }
+  /*Home*/
   .liamone img {
     margin-top: 10em;
   }
   .liamone .big-number {
     left: 2em;
+  }
+  .objectif {
+    background: #ffcb00;
+    background: -webkit-gradient(linear, left top, right top, from(#f1f1f1), color-stop(50%, #f1f1f1), color-stop(50%, #ffcb00), to(#ff9800));
+    background: linear-gradient(to right, #f1f1f1 0%, #f1f1f1 50%, #ffcb00 50%, #ff9800 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
   }
   .objectif .block-title,
   .objectif .right-block {
@@ -1903,18 +2073,18 @@ Media-queries
   .objectif .block-content {
     padding-left: 2em;
   }
-  .block-card {
-    display: block;
-    position: relative;
-  }
-  .block-card:before {
-    float: none;
-  }
   .block-card .card-caption {
+    width: 260px;
+    height: 240px;
+    left: calc((100% - 260px) / 2);
+  }
+  .block-card .card-caption h3 {
+    font-size: 1.5rem;
+  }
+  .block-card .card-caption:after {
     position: absolute;
-    left: 5%;
-    top: 30%;
-    bottom: auto;
+    top: 100%;
+    bottom: 0;
   }
   .projet {
     position: relative;
@@ -1924,7 +2094,6 @@ Media-queries
     top: -6em;
   }
   .projet .block-card {
-    float: left;
     margin-right: 20vw;
   }
   .projet .block-card:first-of-type {
@@ -1971,8 +2140,8 @@ Media-queries
   }
   .clients .client-card,
   .actu-card {
-    width: 230px;
-    height: 230px;
+    width: 210px;
+    height: 210px;
     margin: 0.5em;
   }
   .actus .actu-card {
@@ -1981,9 +2150,47 @@ Media-queries
   .actus .actualite {
     padding: 4em;
   }
+  /*End Home*/
+  /*Footer*/
   .mention {
     text-align: center;
   }
+  .footer-nav {
+    margin-top: 1em;
+  }
+  /*Footer*/
+  /*Jobs*/
+  .block-job .job-content,
+  .block-job .job-cta {
+    display: inline-block;
+    float: left;
+  }
+  .block-job .job-content {
+    width: 70%;
+  }
+  .block-job .job-cta {
+    width: 25%;
+    margin-left: 5%;
+  }
+  .hero-grey {
+    background: #f1f1f1;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), color-stop(90%, #f1f1f1), color-stop(90%, white), to(white));
+    background: linear-gradient(to bottom, #f1f1f1 0%, #f1f1f1 90%, white 90%, white 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+  }
+  .jobs .hero-grey img {
+    margin-top: 2em;
+    float: right;
+  }
+  /*End Jobs*/
+  /*Job detail*/
+  .job-detail .black-card {
+    margin-top: 3em;
+  }
+  .job-detail .cta .btn {
+    margin-top: 3em;
+  }
+  /*End Job detail*/
 }
 
 @media screen and (min-width: 992px) {
@@ -2182,12 +2389,12 @@ Media-queries
   .col-md-pull-12 {
     left: 100%;
   }
-  .padded-block > .block-content,
-  .padded-block .block-title,
-  .padded-block .left-block .block-title,
-  .padded-block .left-block .block-content,
-  .padded-block .left-block {
-    padding-left: 8.33333%;
+  .big-title, .dot, .hero-header .hero-title {
+    font-size: 2.5rem;
+  }
+  /*Home*/
+  .liamone .big-number {
+    left: 2.75em;
   }
   .skewed-bg.shape-right {
     -webkit-transform: skew(0deg, -30deg);
@@ -2195,9 +2402,6 @@ Media-queries
   }
   .competences .block-content {
     padding-top: 3em;
-  }
-  aside .left-block {
-    padding-left: 8.33333%;
   }
   .clients .client-card,
   .actu-card {
@@ -2207,6 +2411,26 @@ Media-queries
   .actus .actualite {
     padding: 5em;
   }
+  /*End Home*/
+  /*Footer*/
+  footer .big-title, footer .dot, footer .hero-header .hero-title, .hero-header footer .hero-title {
+    font-size: 1.3125rem;
+  }
+  /*End Footer*/
+  /*Jobs*/
+  .hero-grey {
+    background: #f1f1f1;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), color-stop(80%, #f1f1f1), color-stop(80%, white), to(white));
+    background: linear-gradient(to bottom, #f1f1f1 0%, #f1f1f1 80%, white 80%, white 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+  }
+  .jobs .hero-grey {
+    padding: 15vh 0 0;
+  }
+  .jobs section {
+    padding: 2em 0;
+  }
+  /*End Jobs*/
 }
 
 @media screen and (min-width: 1200px) {
@@ -2405,9 +2629,32 @@ Media-queries
   .col-lg-pull-12 {
     left: 100%;
   }
-  .hero-header .hero-title {
-    font-size: 5.625rem;
+  section,
+  aside,
+  .expertises {
+    padding: 6.25em 0;
   }
+  /*Menu-top*/
+  .menu-toggle {
+    display: none;
+  }
+  .menu-container {
+    position: relative;
+    display: block;
+    width: 75%;
+    min-height: auto;
+  }
+  .menu-container .nav-item {
+    display: inline-block;
+  }
+  .menu-container .nav-item .item-link {
+    padding: 0 1em;
+  }
+  .menu-nav {
+    padding: 5px 0;
+    float: right;
+  }
+  /*End Menu-top*/
   h1 {
     font-size: 2.25rem;
   }
@@ -2426,12 +2673,51 @@ Media-queries
   h6 {
     font-size: 0.875rem;
   }
+  .big-title, .dot, .hero-header .hero-title {
+    font-size: 3.75rem;
+  }
   .big-number {
     font-size: 18.75rem;
+    top: -0.3em;
   }
-  .big-title, .dot, .hero-header .hero-title {
-    font-size: 1.875rem;
+  /*Hero*/
+  .hero-header .hero-title {
+    font-size: 5.625rem;
   }
+  /*End Hero*/
+  /*Home*/
+  .liamone .left-block {
+    padding: 0;
+  }
+  .projet .block-content {
+    max-height: 1020px;
+  }
+  .skewed-bg.shape-right {
+    -webkit-transform: skew(0deg, -25deg);
+            transform: skew(0deg, -25deg);
+  }
+  .clients .client-card,
+  .actu-card {
+    width: 260px;
+    height: 260px;
+  }
+  /*End Home*/
+  /*Footer*/
+  footer .big-title, footer .dot, footer .hero-header .hero-title, .hero-header footer .hero-title {
+    font-size: 1.3125rem;
+  }
+  /*End Footer*/
+}
+
+@media screen and (min-width: 1440px) {
+  /*Home*/
+  .skewed-bg.shape-right {
+    -webkit-transform: skew(0deg, -16deg);
+            transform: skew(0deg, -16deg);
+    top: 30%;
+    left: 15%;
+  }
+  /*End Home*/
 }
 
 @media screen and (min-width: 1920px) {
@@ -2630,4 +2916,12 @@ Media-queries
   .col-xlg-pull-12 {
     left: 100%;
   }
+  /*Home*/
+  .projet .block-card {
+    margin-right: 35vw;
+  }
+  .expertises .content-list {
+    max-width: 70%;
+  }
+  /*End Home*/
 }

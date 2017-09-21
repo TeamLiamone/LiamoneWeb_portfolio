@@ -8,14 +8,15 @@
 	//Columns
 	@include responsive-columns('md');
 
-	.padded-block  {
-		
-		& > .block-content,
-		.block-title,
-		.left-block .block-title,
-		.left-block .block-content,
-		.left-block  {
-			padding-left: 8.33333%;
+	.big-title  {
+		font-size: calculateSize(40px);
+	}
+
+	/*Home*/
+	.liamone  {
+
+		.big-number  {
+			left: 2.75em;
 		}
 	}
 
@@ -33,10 +34,6 @@
 		}
 	}
 
-	aside .left-block  {
-		padding-left: 8.33333%;
-	}
-
 	.clients .client-card,
 	.actu-card  {
 		@include dimension(270px, 270px);
@@ -48,4 +45,35 @@
 			padding: 5em;
 		}
 	}
+	/*End Home*/
+
+	/*Footer*/
+	footer  {
+
+		.big-title  {
+			font-size: calculateSize(21px);
+		}
+	}
+	/*End Footer*/
+
+	/*Jobs*/
+	.hero-grey  {
+		background: $greyNumber-color;
+		background: -moz-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 80%, $white-color 80%, $white-color 100%);
+		background: -webkit-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 80%, $white-color 80%, $white-color 100%);
+		background: linear-gradient(to bottom, $greyNumber-color 0%, $greyNumber-color 80%, $white-color 80%, $white-color 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+	}
+
+	.jobs  {
+
+		.hero-grey  {
+			padding: 15vh 0 0;
+		}
+
+		section  {
+			padding: 2em 0;
+		}
+	}
+	/*End Jobs*/
 }
