@@ -5,7 +5,7 @@
 //Body default typo style
 html,
 body  {
-	@include dimension(100vw, 100%);
+	@include dimension(100%, 100%);
 	font-family: 'Helvetica Neue', 'Roboto', helvetica, arial, sans-serif;
 	font-size: $font-default;
 	font-weight: $font-regular;
@@ -27,7 +27,7 @@ body  {
 //Container
 .fluid-container  {
 	width: 100vw;
-	max-width: 100vw;
+	max-width: 100%;
 	margin: auto;
 }
 

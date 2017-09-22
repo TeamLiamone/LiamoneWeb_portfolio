@@ -194,7 +194,7 @@ aside {
   position: relative;
 }
 
-.sr-only, .block-card .card-caption:after, .cta-scroll, .big-number, .skewed-bg {
+.sr-only, .block-card .card-caption:after, .content-slider .slider-nav, .content-slider .slider-arrows a:first-of-type, .content-slider .slider-arrows a:last-of-type, .content-slider .slider-count p, .cta-scroll, .big-number, .skewed-bg {
   position: absolute;
 }
 
@@ -210,7 +210,7 @@ p:not(.big-number) {
   font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p {
+h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .content-slider .slider-count .count-passed, .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p, .services .hero-img a, .services section {
   font-weight: 700 !important;
 }
 
@@ -226,7 +226,8 @@ p:not(.big-number) {
   font-style: italic;
 }
 
-.btn, .block-card .card-caption h3, .job-card .list-title, .menu-bottom nav:first-of-type h2, .menu-bottom .cta-mail, .hero-grey .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2 {
+.btn, .block-card .card-caption h3, .job-card .list-title, .menu-bottom nav:first-of-type h2, .menu-bottom .cta-mail, .hero-grey .hero-title,
+.hero-img .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2, .services .hero-img h2, .services .block-title {
   text-transform: uppercase;
 }
 
@@ -310,6 +311,18 @@ img {
   color: #4d4d4d;
 }
 
+a {
+  color: #4d4d4d;
+}
+
+.grey-bg {
+  background-color: #f1f1f1;
+}
+
+.yellow-bg {
+  background-color: #ffd442;
+}
+
 /*End Utils*/
 * {
   -webkit-box-sizing: border-box;
@@ -318,7 +331,7 @@ img {
 
 html,
 body {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   font-family: 'Helvetica Neue', 'Roboto', helvetica, arial, sans-serif;
   font-size: 16px;
@@ -340,7 +353,7 @@ body {
 /*GRID*/
 .fluid-container {
   width: 100vw;
-  max-width: 100vw;
+  max-width: 100%;
   margin: auto;
 }
 
@@ -1189,21 +1202,59 @@ Components
 }
 
 /*End Card*/
+.content-slider {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.content-slider .slider-nav {
+  width: 140px;
+  height: 64px;
+  position: absolute;
+  right: 0;
+  top: 75%;
+}
+
+.content-slider .slider-arrows a {
+  top: 40%;
+}
+
+.content-slider .slider-arrows a:first-of-type {
+  margin-left: 1em;
+  left: 0;
+}
+
+.content-slider .slider-arrows a:last-of-type {
+  margin-right: 1em;
+  right: 0;
+}
+
+.content-slider .slider-arrows a i {
+  font-size: 125%;
+}
+
+.content-slider .slider-count p {
+  top: 36%;
+  left: 37%;
+  font-size: 0.875rem;
+}
+
+.content-slider .slider-count .count-total {
+  color: #999999;
+}
+
 /*****************
 Layout
 *****************/
 /*Menu top*/
 .menu-top {
   z-index: 900;
-  background-color: transparent;
+  background: transparent;
   padding: 1.25em 0;
-  background-color: #1b1f1f;
 }
 
 .menu-top a:not(.menu-brand) {
-  color: white;
-  display: block;
-  padding: 0.25em 0;
+  color: #1b1f1f;
 }
 
 .menu-header {
@@ -1222,6 +1273,16 @@ Layout
   height: 2px;
   display: block;
   margin: 0.25em auto;
+  background-color: #1b1f1f;
+}
+
+.menu-home a:not(.menu-brand) {
+  color: white;
+  display: block;
+  padding: 0.25em 0;
+}
+
+.menu-home .line {
   background-color: white;
 }
 
@@ -1235,7 +1296,6 @@ Layout
   -webkit-transition: all 0.65s cubic-bezier(1, 0, 0, 1) 0.25s;
   transition: all 0.65s cubic-bezier(1, 0, 0, 1) 0.25s;
   overflow-x: hidden;
-  background-color: #1b1f1f;
 }
 
 .menu-nav {
@@ -1305,11 +1365,6 @@ Layout
   height: 100%;
 }
 
-.hero-grey .hero-title {
-  text-align: left !important;
-  color: #4d4d4d;
-}
-
 .hero-grey.full {
   background: #f1f1f1;
   padding: 15vh 0 5vh;
@@ -1321,6 +1376,22 @@ Layout
 
 .hero-grey .separator {
   margin-top: 2em;
+}
+
+.hero-img {
+  background: white;
+}
+
+.hero-grey,
+.hero-img {
+  height: 100%;
+  padding: 15vh 0 0;
+}
+
+.hero-grey .hero-title,
+.hero-img .hero-title {
+  text-align: left !important;
+  color: #4d4d4d;
 }
 
 .cta-scroll {
@@ -1610,7 +1681,7 @@ Pages
   font-size: 0.875rem;
 }
 
-.job-detail ol {
+.job-detail ol:not(.job-list) {
   list-style: disc;
   padding-left: 1em;
 }
@@ -1622,6 +1693,47 @@ Pages
 .job-detail .btn {
   width: 100%;
   margin: 2em auto;
+}
+
+.services .hero-img {
+  min-height: 510px;
+}
+
+.services .hero-img h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+
+.services .hero-img address,
+.services .hero-img a {
+  font-size: 0.875rem;
+}
+
+.services .block-list ol {
+  padding-left: 1em;
+}
+
+.services .block-list li {
+  font-size: 0.875rem;
+  list-style: disc;
+  margin: 0.25em 0;
+}
+
+.services .block-title {
+  font-size: 1.875rem;
+}
+
+.services section {
+  color: #4d4d4d;
+}
+
+.services section .btn {
+  margin: 3em auto;
+  width: 100%;
+}
+
+.services .illustration {
+  display: none;
 }
 
 /*Animate*/
@@ -2191,6 +2303,41 @@ Media-queries
     margin-top: 3em;
   }
   /*End Job detail*/
+  /*Services*/
+  /*End Services*/
+  .services .hero-img .block-content .left-block {
+    width: 65%;
+  }
+  .services .hero-img .block-content .right-block {
+    width: 25%;
+    margin-left: 10%;
+    margin-top: 3.5em;
+  }
+  .services .hero-img .block-content .left-block,
+  .services .hero-img .block-content .right-block {
+    float: left;
+  }
+  .services .illustration {
+    display: block;
+  }
+  .services .illustration img {
+    max-width: initial;
+  }
+  .services section .btn {
+    width: 195px;
+  }
+  .branding.grey-bg {
+    background: #f1f1f1;
+    background: -webkit-gradient(linear, left top, right top, from(#f1f1f1), color-stop(60%, #f1f1f1), color-stop(60%, white), to(white));
+    background: linear-gradient(to right, #f1f1f1 0%, #f1f1f1 60%, white 60%, white 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcb00', endColorstr='#ff9800',GradientType=1 );
+  }
+  /*Content slider*/
+  .content-slider .slider-nav {
+    top: 88%;
+    right: -2%;
+  }
+  /*End Content slider*/
 }
 
 @media screen and (min-width: 992px) {
@@ -2684,6 +2831,10 @@ Media-queries
   .hero-header .hero-title {
     font-size: 5.625rem;
   }
+  .hero-grey .hero-title,
+  .hero-img .hero-title {
+    font-size: 3.75rem;
+  }
   /*End Hero*/
   /*Home*/
   .liamone .left-block {
@@ -2718,12 +2869,14 @@ Media-queries
     left: 15%;
   }
   /*End Home*/
+  /*Menu-top*/
+  .menu-top .container {
+    max-width: 1440px;
+  }
+  /*End Menu-top*/
 }
 
 @media screen and (min-width: 1920px) {
-  .container {
-    max-width: 1440px;
-  }
   .col-xlg-1 {
     width: 8.33333%;
   }

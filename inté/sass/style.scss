@@ -32,7 +32,8 @@ Components
 *****************/
 @import 'site/components/nav'; 			//Nav components
 @import 'site/components/button'; 		//Buttons components
-@import 'site/components/card';	//Card (work thumbs) components
+@import 'site/components/card';			//Card (work thumbs) components
+@import 'site/components/slider';		//Slider components
 
 /*****************
 Layout
@@ -49,6 +50,7 @@ Pages
 @import 'site/pages/index'; 			//Index page elements
 @import 'site/pages/jobs'; 				//Jobs page elements
 @import 'site/pages/job-detail'; 		//Job details page elements
+@import 'site/pages/services'; 			//Services page elements
 
 /*Animate*//*
 @import 'animation/animate';			//Animate.css

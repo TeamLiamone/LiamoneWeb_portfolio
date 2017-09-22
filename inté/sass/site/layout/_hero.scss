@@ -21,11 +21,6 @@
 	padding: 15vh 0 0;
 	height: 100%;
 
-	.hero-title  {
-		@extend %font-uppercase;
-		text-align: left !important;
-		color: $blackTitle-color;
-	}
 
 	&.full  {
 		background: $greyNumber-color;
@@ -40,6 +35,25 @@
 		margin-top: 2em;
 	}
 }
+
+.hero-img  {
+	background: $white-color;
+}
+
+.hero-grey,
+.hero-img  {
+	height: 100%;
+	padding: 15vh 0 0;
+
+	.hero-title  {
+		@extend %font-uppercase;
+		text-align: left !important;
+		color: $blackTitle-color;
+	}
+	
+}
+
+
 
 .cta-scroll  {
 	@extend %pos-absolute; 

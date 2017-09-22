@@ -1,0 +1,53 @@
+.content-slider  {
+	position: relative;
+	margin-bottom: 2em;
+
+	.slider-nav  {
+		@include dimension(140px, 64px);
+		@extend %pos-absolute;
+		position: absolute;
+		right: 0;
+		top: 75%;
+	}
+
+	.slider-arrows  {
+
+		a  {
+			top: 40%;
+
+			&:first-of-type  {
+				@extend %pos-absolute;
+				margin-left: 1em;
+				left: 0;
+			}
+
+			&:last-of-type  {
+				@extend %pos-absolute;
+				margin-right: 1em;
+				right: 0;
+			}
+
+			i  {
+				font-size: 125%;
+			}
+		}
+	}
+
+	.slider-count  {
+
+		p  {
+			@extend %pos-absolute;
+			top: 36%;
+			left: 37%;
+			font-size: $font-14
+		}
+
+		.count-passed  {
+			@extend %font-bold;
+		}
+
+		.count-total  {
+			color: $greySlider-color;
+		}
+	}
+}

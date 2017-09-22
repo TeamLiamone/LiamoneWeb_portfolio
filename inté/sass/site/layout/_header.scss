@@ -2,14 +2,12 @@
 .menu-top  {
 	@extend %pos-fixed;
 	z-index: 900;
-	background-color: transparent;
+	background: transparent;
 	padding: 1.25em 0;
-	background-color: $blackBg-color;
-
+	//background-color: $blackBg-color;
+	
 	a:not(.menu-brand)  {
-		color: $white-color;
-		display: block;
-		padding: 0.25em 0;
+		color: $blackBg-color;
 	}
 }
 
@@ -30,6 +28,19 @@
 		@include dimension(16px, 2px);
 		display: block;
 		margin: 0.25em auto;
+		background-color: $blackBg-color;
+	}
+}
+
+.menu-home  {
+
+	a:not(.menu-brand)  {
+		color: $white-color;
+		display: block;
+		padding: 0.25em 0;
+	}
+
+	.line  {
 		background-color: $white-color;
 	}
 }
@@ -44,7 +55,7 @@
 	left: 0;
 	transition:  all 0.65s cubic-bezier(1, 0, 0, 1) 0.25s;
 	overflow-x: hidden;
-	background-color: $blackBg-color;
+	//background-color: $blackBg-color;
 }
 
 .menu-nav  {

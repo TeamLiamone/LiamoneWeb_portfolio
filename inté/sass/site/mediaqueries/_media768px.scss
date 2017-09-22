@@ -211,4 +211,67 @@
 		}
 	}
 	/*End Job detail*/
+
+	/*Services*/
+
+	/*End Services*/
+	.services  {
+
+		.hero-img  {
+
+			.block-content  {
+
+				.left-block  {
+					width: 65%;
+				}
+
+				.right-block  {
+					width: 25%;
+					margin-left: 10%;
+					margin-top: 3.5em;
+				}
+
+				.left-block,
+				.right-block  {
+					float: left;
+				}
+			}
+		}
+
+		.illustration  {
+			display: block;
+
+			img  {
+				max-width: initial;
+			}
+		}
+
+		section  {
+
+			.btn  {
+				width: 195px;
+			}
+		}
+	}
+
+	.branding  {
+
+		&.grey-bg  {
+			background: $greyNumber-color;
+			background: -moz-linear-gradient(left, $greyNumber-color 0%, $greyNumber-color 60%, $white-color 60%, $white-color 100%);
+			background: -webkit-linear-gradient(left, $greyNumber-color 0%, $greyNumber-color 60%, $white-color 60%, $white-color 100%);
+			background: linear-gradient(to right, $greyNumber-color 0%, $greyNumber-color 60%, $white-color 60%, $white-color 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcb00', endColorstr='#ff9800',GradientType=1 );
+		}
+	}
+
+	/*Content slider*/
+	.content-slider  {
+
+		.slider-nav  {
+			top: 88%;
+			right: -2%;
+		}
+	}
+	/*End Content slider*/
 }
