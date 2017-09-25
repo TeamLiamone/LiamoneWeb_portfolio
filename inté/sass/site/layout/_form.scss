@@ -1,0 +1,44 @@
+form  {
+	padding-top: 2em;
+	padding-bottom: 2em;
+
+	.req-mention  {
+		font-size: $font-12;
+	}
+	
+	input  {
+		border: none;
+		border-bottom: 4px solid $greyBg-color;
+		color: $greyBg-color;
+	}
+
+	label  {
+		font-size: $font-40;
+	}
+
+	&.natural-language  {
+		@extend %text-center;
+
+		label, 
+		input  {
+			font-size: $font-40;
+		}
+
+		input  {@extend %text-center;}
+	}
+
+	.error-msg  {
+		font-size: $font-14;
+		color: $red-color;
+		height: 20px;
+		display: none;
+	}
+
+	.btn  {
+		margin: 2.5em auto 1em;
+	}
+}
+
+.form-group  {
+	margin-bottom: 1em;
+}

@@ -2,6 +2,11 @@
 	position: relative;
 	margin-bottom: 2em;
 
+	.slider-img  {
+		max-width: 1140px;
+		margin: auto;
+	}
+
 	.slider-nav  {
 		@include dimension(140px, 64px);
 		@extend %pos-absolute;

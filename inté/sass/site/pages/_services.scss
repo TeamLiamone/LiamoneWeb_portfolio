@@ -1,8 +1,10 @@
 .services  {
+	overflow-x: hidden;
 
 	.hero-img  {
-		//@include backgroundImg('../img/background/service-headerBg.jpg', top left, no-repeat, contain, $greyNumber-color);
+		@include backgroundImg('../img/background/service-headerBg.jpg', top left, no-repeat, contain, $white-color);
 		min-height: 510px;
+		padding-bottom: 2em;
 
 		h2  {
 			@extend %font-uppercase;
@@ -22,6 +24,7 @@
 
 
 	.block-list  {
+		@extend %clearfix;
 
 		ol  {
 			padding-left: 1em;
@@ -52,5 +55,4 @@
 	.illustration  {
 		display: none;
 	}
-
 }

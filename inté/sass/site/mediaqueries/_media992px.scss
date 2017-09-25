@@ -76,4 +76,99 @@
 		}
 	}
 	/*End Jobs*/
+
+	/*Services*/
+	.services  {
+
+		.big-title  {
+			font-size: $font-40;
+		}
+		
+		.illustration  {
+
+			& > img  {
+				width: initial;
+			}
+		}
+
+		.vitrine  {
+
+			img  {
+				top: -6em;
+			}
+		}
+
+		.store  {
+
+			img  {
+				top: 8em;
+				left: -40%;
+			}
+		}
+
+		.on-demand  {
+
+			img  {
+				left: -85%;
+				top: -2.5em;
+			}
+		}
+
+		section  {
+			padding: 4em 0;
+		}
+	}
+
+	.branding  {
+
+		img  {
+			left: 0;
+		}
+
+		ol.left-list,
+		ol.right-list  {
+			width: 50%;
+		}
+	}
+	/*End Services*/
+
+	/*Slider*/
+	.content-slider  {
+
+		.slider-nav  {
+			height: 140px;
+			top: 85%;
+		}
+
+		.slider-arrows  {
+			position: relative;
+			top: 60%;
+
+			a  {
+
+				&:first-of-type  {
+					left: 2em;
+				}
+				&:last-of-type  {
+					right: 2em;
+				}
+			}
+		}
+	}
+	/*End Slider*/
+
+	/*Contact*/
+	.contact  {
+
+		.hero-grey  {
+
+			.btn  {
+				float: left;
+				margin: 1em 2em;
+
+				&:first-of-type  {margin-left: 0;}
+			}
+		}
+	}
+	/*End Contact*/
 }

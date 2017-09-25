@@ -240,28 +240,67 @@
 
 		.illustration  {
 			display: block;
+			position: relative;
 
-			img  {
+			& > img  {
+				position: absolute;
 				max-width: initial;
+				z-index: 3;
 			}
 		}
+
+		.vitrine  {
+
+			img  {
+				left: -8em;
+				width: 360px;
+			}
+		}
+
+		.store  {
+
+			img  {
+				width: 508px;
+				left: -55%;
+				top: 14em;
+			}
+		}
+
+		.on-demand  {
+			
+			img  {
+				width: 488px;
+				left: -100%;
+				top: 6.5em;
+			}
+		}
+
 
 		section  {
 
 			.btn  {
 				width: 195px;
+				float: left;
+			}
+
+			.left-list,
+			.right-list  {
+				width: 50%;
+				display: inline-block;
+				float: left;
 			}
 		}
 	}
 
 	.branding  {
 
-		&.grey-bg  {
-			background: $greyNumber-color;
-			background: -moz-linear-gradient(left, $greyNumber-color 0%, $greyNumber-color 60%, $white-color 60%, $white-color 100%);
-			background: -webkit-linear-gradient(left, $greyNumber-color 0%, $greyNumber-color 60%, $white-color 60%, $white-color 100%);
-			background: linear-gradient(to right, $greyNumber-color 0%, $greyNumber-color 60%, $white-color 60%, $white-color 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcb00', endColorstr='#ff9800',GradientType=1 );
+		img  {
+			left: -50%;
+		}
+
+		ol.right-list,
+		ol.left-list  {
+			width: auto;
 		}
 	}
 

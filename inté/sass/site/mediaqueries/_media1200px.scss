@@ -109,4 +109,51 @@
 		}
 	}
 	/*End Footer*/
+
+	/*Services*/
+	.services  {
+
+		.hero-img  {
+
+			.block-content  {
+
+				.left-block  {
+					width: 50%;
+				}
+
+				.right-block  {
+					margin-left: 25%;
+				}
+			}
+		}
+
+		.vitrine  {
+
+			img  {
+				left: -5%;
+			}
+		}
+
+		.store  {
+
+			img  {
+				left: -30%;
+			}
+		}
+
+		.on-demand  {
+
+			img  {
+				left: -65%;
+			}
+		}
+	}
+
+	.branding  {
+
+		img  {
+			left: 10%;
+		}
+	}
+	/*End Services*/
 }
