@@ -1,5 +1,5 @@
 .content-slider  {
-	position: relative;
+	@extend %pos-relative;
 	margin-bottom: 2em;
 
 	.slider-img  {
@@ -10,7 +10,6 @@
 	.slider-nav  {
 		@include dimension(140px, 64px);
 		@extend %pos-absolute;
-		position: absolute;
 		right: 0;
 		top: 75%;
 	}

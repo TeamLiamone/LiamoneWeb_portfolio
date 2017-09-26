@@ -313,4 +313,52 @@
 		}
 	}
 	/*End Content slider*/
+
+	/*Training*/
+	.training  {
+
+		.hero-grey  {
+			background: $greyNumber-color;
+			background: -moz-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 65%, $white-color 65%, $white-color 100%);
+			background: -webkit-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 65%, $white-color 65%, $white-color 100%);
+			background: linear-gradient(to bottom, $greyNumber-color 0%, $greyNumber-color 65%, $white-color 65%, $white-color 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );		
+		}
+
+		.filter-select  {
+			display: none; 
+		}
+
+		.filter-btn,
+		.block-logo  {
+			display: block;
+		}
+
+		.block-img  {
+			@include dimension(128px, 128px);
+			border: 1px solid rgba($blackBtn-color, 0.25);
+			background-color: $white-color;
+			display: inline-block;
+			float: left;
+			margin: 0.25em;
+		}
+	}
+
+	.block-formation  {
+
+		.resume-text  {
+			width: 65%;
+		}
+
+		.resume-cta  {
+			width: 35%;
+		}
+
+		.resume-text,
+		.resume-cta  {
+			display: inline-blokc;
+			float: left;
+		}
+	}
+	/*End Training*/
 }

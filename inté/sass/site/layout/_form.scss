@@ -6,10 +6,13 @@ form  {
 		font-size: $font-12;
 	}
 	
-	input  {
+	input,
+	select,
+	textarea  {
 		border: none;
-		border-bottom: 4px solid $greyBg-color;
-		color: $greyBg-color;
+		border-bottom: 2px solid $greySlider-color;
+		color: $greySlider-color;
+		max-width: 300px;
 	}
 
 	label  {
@@ -20,8 +23,10 @@ form  {
 		@extend %text-center;
 
 		label, 
-		input  {
-			font-size: $font-40;
+		input,
+		select,
+		textarea  {
+			font-size: $font-40; 
 		}
 
 		input  {@extend %text-center;}
@@ -41,4 +46,8 @@ form  {
 
 .form-group  {
 	margin-bottom: 1em;
+}
+
+.form-field  {
+	
 }

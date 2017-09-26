@@ -177,24 +177,24 @@ aside {
   height: auto;
 }
 
-.padded-block, .row, .block-card, .block-card .card-caption, .home .block-title, .jobs .block-title, .services .block-list {
+.padded-block, .row, .block-card, .block-card .card-caption, .home .block-title, .jobs .block-title, .services .block-list, .training .block-title, .block-formation .content-titles {
   *zoom: 1;
 }
 
-.padded-block:before, .row:before, .block-card:before, .block-card .card-caption:before, .home .block-title:before, .jobs .block-title:before, .services .block-list:before, .padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after {
+.padded-block:before, .row:before, .block-card:before, .block-card .card-caption:before, .home .block-title:before, .jobs .block-title:before, .services .block-list:before, .training .block-title:before, .block-formation .content-titles:before, .padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after {
   content: " ";
   display: table;
 }
 
-.padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after {
+.padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after {
   clear: both;
 }
 
-.menu-header, .menu-toggle, .cta-scroll > i, .block-title h2, .block-content {
+.block-card .card-caption, .actu-card figcaption, .content-slider, .menu-header, .menu-toggle, .cta-scroll > i, .block-title h2, .block-content {
   position: relative;
 }
 
-.sr-only, .block-card .card-caption:after, .content-slider .slider-nav, .content-slider .slider-arrows a:first-of-type, .content-slider .slider-arrows a:last-of-type, .content-slider .slider-count p, .cta-scroll, .big-number, .skewed-bg {
+.sr-only, .block-card .card-caption:after, .content-slider .slider-nav, .content-slider .slider-arrows a:first-of-type, .content-slider .slider-arrows a:last-of-type, .content-slider .slider-count p, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form {
   position: absolute;
 }
 
@@ -210,7 +210,7 @@ p:not(.big-number) {
   font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .content-slider .slider-count .count-passed, .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p, .services .hero-img a, .services section, .contact .find-us li {
+h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .content-slider .slider-count .count-passed, .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p, .services .hero-img a, .services section, .contact .find-us li, .training header select, .block-formation .item-title {
   font-weight: 700 !important;
 }
 
@@ -227,7 +227,7 @@ p:not(.big-number) {
 }
 
 .btn, .block-card .card-caption h3, .job-card .list-title, .menu-bottom nav:first-of-type h2, .menu-bottom .cta-mail, .hero-grey .hero-title,
-.hero-img .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2, .services .hero-img h2, .services .block-title {
+.hero-img .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2, .services .hero-img h2, .services .block-title, .training header select, .block-formation .formation-tag, .block-formation .item-title {
   text-transform: uppercase;
 }
 
@@ -239,7 +239,7 @@ p:not(.big-number) {
   float: right;
 }
 
-.separator, .clients .client-card {
+.separator, .clients .client-card, .block-formation .formation-techno img, .block-formation .content-titles li {
   float: left;
 }
 
@@ -1110,7 +1110,6 @@ Components
 }
 
 .block-card .card-caption {
-  position: relative;
   background-color: white;
   bottom: 2.5em;
   width: 90%;
@@ -1159,7 +1158,6 @@ Components
 }
 
 .actu-card figcaption {
-  position: relative;
   top: -75px;
   left: 10px;
 }
@@ -1203,7 +1201,6 @@ Components
 
 /*End Card*/
 .content-slider {
-  position: relative;
   margin-bottom: 2em;
 }
 
@@ -1215,7 +1212,6 @@ Components
 .content-slider .slider-nav {
   width: 140px;
   height: 64px;
-  position: absolute;
   right: 0;
   top: 75%;
 }
@@ -1317,10 +1313,13 @@ form .req-mention {
   font-size: 0.75rem;
 }
 
-form input {
+form input,
+form select,
+form textarea {
   border: none;
-  border-bottom: 4px solid #f8f8f9;
-  color: #f8f8f9;
+  border-bottom: 2px solid #999999;
+  color: #999999;
+  max-width: 300px;
 }
 
 form label {
@@ -1328,7 +1327,9 @@ form label {
 }
 
 form.natural-language label,
-form.natural-language input {
+form.natural-language input,
+form.natural-language select,
+form.natural-language textarea {
   font-size: 2.5rem;
 }
 
@@ -1822,13 +1823,83 @@ Pages
 }
 
 .contact .contact-form {
-  width: 100vw;
+  width: 100%;
   height: 100%;
-  position: absolute;
   z-index: 5;
   top: 15vh;
   left: 0;
   background: white;
+}
+
+.contact .contact-form .btn {
+  margin-top: 2em;
+}
+
+.training header .btn {
+  width: 260px;
+}
+
+.training header select {
+  font-size: 1rem;
+  padding: 1em 0;
+  border: 1px solid rgba(28, 27, 27, 0.25);
+}
+
+.training .filter-btn,
+.training .block-logo {
+  display: none;
+}
+
+.block-formation .row:not(:last-of-type) {
+  border-bottom: 1px solid rgba(28, 27, 27, 0.25);
+  padding: 1em 0;
+}
+
+.block-formation .formation-techno img {
+  display: inline-block;
+}
+
+.block-formation .formation-techno img:not(:first-of-type) {
+  margin-left: 1em;
+}
+
+.block-formation .formation-title {
+  text-transform: initial;
+  font-size: 1.5rem;
+}
+
+.block-formation .formation-tag {
+  font-size: 0.75rem;
+  color: #999999;
+  margin: 0.5em 0;
+}
+
+.block-formation .item-title {
+  font-size: 0.75rem;
+}
+
+.block-formation .btn {
+  width: 100%;
+}
+
+.block-formation .formation-resume,
+.block-formation .formation-techno,
+.block-formation .formation-content {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.block-formation .content-titles {
+  padding: 1em 0;
+}
+
+.block-formation .content-titles li {
+  width: 33%;
+  display: inline-block;
+}
+
+.block-formation .content-titles a {
+  padding: 1em 0;
 }
 
 /*Animate*/
@@ -2046,7 +2117,7 @@ Media-queries
   .block-card .card-caption {
     position: absolute;
     left: 5%;
-    top: 30%;
+    top: 20%;
     bottom: auto;
   }
   .projet .block-card {
@@ -2458,6 +2529,41 @@ Media-queries
     right: -2%;
   }
   /*End Content slider*/
+  /*Training*/
+  .training .hero-grey {
+    background: #f1f1f1;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), color-stop(65%, #f1f1f1), color-stop(65%, white), to(white));
+    background: linear-gradient(to bottom, #f1f1f1 0%, #f1f1f1 65%, white 65%, white 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
+  }
+  .training .filter-select {
+    display: none;
+  }
+  .training .filter-btn,
+  .training .block-logo {
+    display: block;
+  }
+  .training .block-img {
+    width: 128px;
+    height: 128px;
+    border: 1px solid rgba(28, 27, 27, 0.25);
+    background-color: white;
+    display: inline-block;
+    float: left;
+    margin: 0.25em;
+  }
+  .block-formation .resume-text {
+    width: 65%;
+  }
+  .block-formation .resume-cta {
+    width: 35%;
+  }
+  .block-formation .resume-text,
+  .block-formation .resume-cta {
+    display: inline-blokc;
+    float: left;
+  }
+  /*End Training*/
 }
 
 @media screen and (min-width: 992px) {
@@ -3271,6 +3377,9 @@ Media-queries
   /*Home*/
   .projet .block-card {
     margin-right: 35vw;
+  }
+  .projet .block-content {
+    max-height: 730px;
   }
   .expertises .content-list {
     max-width: 70%;

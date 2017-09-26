@@ -1,0 +1,94 @@
+.training  {
+
+	.block-title  {
+		@extend %clearfix;
+	}
+
+	header  {
+
+		.btn  {
+			width: 260px;
+		}
+
+		select  {
+			@extend %font-uppercase;
+			@extend %font-bold;
+			font-size: $font-16;
+			padding: 1em 0;
+			border: 1px solid rgba($blackBtn-color, 0.25); 
+		}
+	}
+
+	.filter-btn,
+	.block-logo  {
+		display: none;
+	}
+}
+
+.block-formation  {
+
+	.row  {
+
+		&:not(:last-of-type)  {
+			border-bottom: 1px solid rgba($blackBtn-color, 0.25);
+			padding: 1em 0;
+		}
+	}
+
+	.formation-techno  {
+
+		img  {
+			@extend %float-left;
+			display: inline-block;
+
+			&:not(:first-of-type)  {
+				margin-left: 1em;
+			}
+
+		}
+	}
+
+	.formation-title  {
+		text-transform: initial;
+		font-size: $font-24;
+	}
+
+	.formation-tag  {
+		@extend %font-uppercase;
+		font-size: $font-12;
+		color: $greySlider-color;
+		margin: 0.5em 0;
+	}
+
+	.item-title  {
+		@extend %font-uppercase;
+		@extend %font-bold;
+		font-size: $font-12;
+	}
+
+	.btn  {
+		width: 100%;
+	}
+
+	.formation-resume,
+	.formation-techno,
+	.formation-content  {
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
+
+	.content-titles {
+		@extend %clearfix;
+		padding: 1em 0;
+
+		li  {
+			@extend %float-left;
+			width: 33%;
+			display: inline-block;
+		}
+
+		a  {
+			padding: 1em 0;
+		}
+	}
+}

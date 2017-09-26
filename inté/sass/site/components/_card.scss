@@ -14,7 +14,7 @@
 	.card-caption  {
 		@extend %clearfix;
 		@extend %text-center;
-		position: relative;
+		@extend %pos-relative;
 		background-color: $white-color;
 		bottom: 2.5em;
 		width: 90%;
@@ -62,7 +62,7 @@
 	margin: 1em auto;
 
 	figcaption  {
-		position: relative;
+		@extend %pos-relative;
 		top: -75px;
 		left: 10px;	
 	}

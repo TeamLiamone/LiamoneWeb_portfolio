@@ -33,11 +33,15 @@
 	}
 
 	.contact-form  {
-		@include dimension(100vw, 100%);
-		position: absolute;
+		@include dimension(100%, 100%);
+		@extend %pos-absolute;
 		z-index: 5;
 		top: 15vh;
 		left: 0;
 		background: $white-color;
+
+		.btn  {
+			margin-top: 2em;
+		}
 	}
 }
