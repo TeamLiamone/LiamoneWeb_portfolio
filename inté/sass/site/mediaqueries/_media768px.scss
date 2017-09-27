@@ -323,15 +323,25 @@
 			background: -webkit-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 65%, $white-color 65%, $white-color 100%);
 			background: linear-gradient(to bottom, $greyNumber-color 0%, $greyNumber-color 65%, $white-color 65%, $white-color 100%);
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );		
+		
+			.block-content  {
+
+				.left-block,
+				.right-block  {
+					width: 45%;
+					display: inline-block;
+					float: left;
+				}
+
+				.left-block  {
+					margin-right: 5%;
+				}
+			}
 		}
 
-		.filter-select  {
-			display: none; 
-		}
-
-		.filter-btn,
 		.block-logo  {
 			display: block;
+			margin: 1em auto 3em;
 		}
 
 		.block-img  {
@@ -348,6 +358,7 @@
 
 		.resume-text  {
 			width: 65%;
+			padding: 0 1em 0 0;
 		}
 
 		.resume-cta  {
@@ -356,9 +367,42 @@
 
 		.resume-text,
 		.resume-cta  {
-			display: inline-blokc;
+			display: inline-block;
 			float: left;
+		}
+
+		.formation-techno  {
+
+			img  {
+				margin: 0.25em auto !important;
+			}
 		}
 	}
 	/*End Training*/
+
+
+	/*Projects*/
+	.project-thumbs  {
+		top: -10em;
+	}
+	
+	.project-link  {
+		padding: 3.5em 1em 3.5em 2.5em;
+	}
+
+	.project-item  {
+
+		&.in-view  {
+
+			.cover-img  {
+				background-size: cover;
+				background-position: top right;
+			}
+
+			.project-link  {
+				max-width: 320px;
+			}
+		}
+	}
+	/*End Projects*/
 }

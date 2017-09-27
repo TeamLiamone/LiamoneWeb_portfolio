@@ -28,10 +28,10 @@
 .block-formation  {
 
 	.row  {
+		padding: 1em 0;
 
 		&:not(:last-of-type)  {
 			border-bottom: 1px solid rgba($blackBtn-color, 0.25);
-			padding: 1em 0;
 		}
 	}
 
@@ -44,7 +44,6 @@
 			&:not(:first-of-type)  {
 				margin-left: 1em;
 			}
-
 		}
 	}
 
@@ -88,7 +87,55 @@
 		}
 
 		a  {
+			@extend %pos-relative;
 			padding: 1em 0;
+			overflow: hidden;
+
+			&:before  {
+				@include dimension(100%, 2px);
+				@extend %pos-absolute;
+				bottom: 0.5em;
+				content: '';
+				background-color: $yellowDot-color;
+			}
+
+			&.item-activ  {
+
+			}
 		}
+	}
+}
+
+.block-img  {
+
+	&.html5-logo  {
+		@include backgroundImg('../img/techno/html5-logo.png', center center, no-repeat, initial, $white-color);
+	}
+	&.css3-logo  {
+		@include backgroundImg('../img/techno/css3-logo.png', center center, no-repeat, initial, $white-color);
+	}
+	&.bootstrap-logo  {
+		@include backgroundImg('../img/techno/bootstrap-logo.png', center center, no-repeat, initial, $white-color);
+	}
+	&.wordpress-logo  {
+		@include backgroundImg('../img/techno/wordpress-logo.png', center center, no-repeat, initial, $white-color);
+	}
+	&.angular-logo  {
+		@include backgroundImg('../img/techno/angular-logo.png', center center, no-repeat, 60%, $white-color);
+	}
+	&.js-logo  {
+		@include backgroundImg('../img/techno/javascript-logo.png', center center, no-repeat, initial, $white-color);
+	}
+	&.drupal-logo  {
+		@include backgroundImg('../img/techno/drupal-logo.png', center center, no-repeat, initial, $white-color);
+	}
+	&.mysql-logo  {
+		@include backgroundImg('../img/techno/mysql-logo.png', center center, no-repeat, initial, $white-color);
+	}
+	&.php-logo  {
+		@include backgroundImg('../img/techno/php-logo.png', center center, no-repeat, initial, $white-color);
+	}
+	&.java-logo  {
+		@include backgroundImg('../img/techno/java-logo.png', center center, no-repeat, 35%, $white-color);
 	}
 }

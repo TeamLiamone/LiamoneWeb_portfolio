@@ -177,24 +177,24 @@ aside {
   height: auto;
 }
 
-.padded-block, .row, .block-card, .block-card .card-caption, .home .block-title, .jobs .block-title, .services .block-list, .training .block-title, .block-formation .content-titles {
+.padded-block, .row, .block-card, .block-card .card-caption, .home .block-title, .jobs .block-title, .services .block-list, .training .block-title, .block-formation .content-titles, .project-item {
   *zoom: 1;
 }
 
-.padded-block:before, .row:before, .block-card:before, .block-card .card-caption:before, .home .block-title:before, .jobs .block-title:before, .services .block-list:before, .training .block-title:before, .block-formation .content-titles:before, .padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after {
+.padded-block:before, .row:before, .block-card:before, .block-card .card-caption:before, .home .block-title:before, .jobs .block-title:before, .services .block-list:before, .training .block-title:before, .block-formation .content-titles:before, .project-item:before, .padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after, .project-item:after {
   content: " ";
   display: table;
 }
 
-.padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after {
+.padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after, .project-item:after {
   clear: both;
 }
 
-.block-card .card-caption, .actu-card figcaption, .content-slider, .menu-header, .menu-toggle, .cta-scroll > i, .block-title h2, .block-content {
+.block-card .card-caption, .actu-card figcaption, .content-slider, .menu-header, .menu-toggle, .cta-scroll > i, .block-title h2, .block-content, .block-formation .content-titles a, .project-link, .project-item .project-cover {
   position: relative;
 }
 
-.sr-only, .block-card .card-caption:after, .content-slider .slider-nav, .content-slider .slider-arrows a:first-of-type, .content-slider .slider-arrows a:last-of-type, .content-slider .slider-count p, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form {
+.sr-only, .block-card .card-caption:after, .content-slider .slider-nav, .content-slider .slider-arrows a:first-of-type, .content-slider .slider-arrows a:last-of-type, .content-slider .slider-count p, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form, .block-formation .content-titles a:before, .project-item .cover-img {
   position: absolute;
 }
 
@@ -227,7 +227,7 @@ p:not(.big-number) {
 }
 
 .btn, .block-card .card-caption h3, .job-card .list-title, .menu-bottom nav:first-of-type h2, .menu-bottom .cta-mail, .hero-grey .hero-title,
-.hero-img .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2, .services .hero-img h2, .services .block-title, .training header select, .block-formation .formation-tag, .block-formation .item-title {
+.hero-img .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2, .services .hero-img h2, .services .block-title, .training header select, .block-formation .formation-tag, .block-formation .item-title, .project-link h2 {
   text-transform: uppercase;
 }
 
@@ -1903,6 +1903,166 @@ Pages
 
 .block-formation .content-titles a {
   padding: 1em 0;
+  overflow: hidden;
+}
+
+.block-formation .content-titles a:before {
+  width: 100%;
+  height: 2px;
+  bottom: 0.5em;
+  content: '';
+  background-color: #ffc900;
+}
+
+.block-img.html5-logo {
+  background-image: url("../img/techno/html5-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-color: white;
+}
+
+.block-img.css3-logo {
+  background-image: url("../img/techno/css3-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-color: white;
+}
+
+.block-img.bootstrap-logo {
+  background-image: url("../img/techno/bootstrap-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-color: white;
+}
+
+.block-img.wordpress-logo {
+  background-image: url("../img/techno/wordpress-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-color: white;
+}
+
+.block-img.angular-logo {
+  background-image: url("../img/techno/angular-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-color: white;
+}
+
+.block-img.js-logo {
+  background-image: url("../img/techno/javascript-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-color: white;
+}
+
+.block-img.drupal-logo {
+  background-image: url("../img/techno/drupal-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-color: white;
+}
+
+.block-img.mysql-logo {
+  background-image: url("../img/techno/mysql-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-color: white;
+}
+
+.block-img.php-logo {
+  background-image: url("../img/techno/php-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: initial;
+  background-color: white;
+}
+
+.block-img.java-logo {
+  background-image: url("../img/techno/java-logo.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 35%;
+  background-color: white;
+}
+
+.projects .hero-grey {
+  background: #f1f1f1;
+  padding: 15vh 0 20vh;
+}
+
+.project-thumbs {
+  position: relative;
+  top: -8em;
+}
+
+.project-link {
+  z-index: 1;
+  color: white;
+  padding: 3.5em 1em;
+}
+
+.project-link h2 {
+  color: white;
+}
+
+.project-link p,
+.project-link .btn {
+  margin-top: 1.25em;
+}
+
+.project-link .btn {
+  width: 80px;
+  height: 80px;
+  line-height: 4.2;
+}
+
+.project-link .btn .visible-text {
+  display: none;
+}
+
+.project-item {
+  margin: 2em 0;
+}
+
+.project-item .project-cover {
+  width: 100%;
+  height: 320px;
+  max-width: 320px;
+}
+
+.project-item .cover-img {
+  background-image: url("../img/projets/sponsoblog/sponsoblog-cover.jpg");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: initial;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.project-item.in-view .project-cover {
+  max-width: 100%;
+}
+
+.project-item.in-view .project-link {
+  max-width: 290px;
+}
+
+.project-item.in-view .project-link .btn {
+  width: 195px;
+}
+
+.project-item.in-view .project-link .btn .visible-text {
+  display: inline;
 }
 
 /*Animate*/
@@ -2561,13 +2721,6 @@ Media-queries
     float: left;
     margin: 0.25em;
   }
-  .training .block-img img {
-    margin: auto;
-    padding: 1.5em 0;
-  }
-  .training .block-img .php-logo {
-    padding: 2.75em 0;
-  }
   .block-formation .resume-text {
     width: 65%;
     padding: 0 1em 0 0;
@@ -2584,6 +2737,21 @@ Media-queries
     margin: 0.25em auto !important;
   }
   /*End Training*/
+  /*Projects*/
+  .project-thumbs {
+    top: -10em;
+  }
+  .project-link {
+    padding: 3.5em 1em 3.5em 2.5em;
+  }
+  .project-item.in-view .cover-img {
+    background-size: cover;
+    background-position: top right;
+  }
+  .project-item.in-view .project-link {
+    max-width: 320px;
+  }
+  /*End Projects*/
 }
 
 @media screen and (min-width: 992px) {
@@ -2878,6 +3046,41 @@ Media-queries
     margin-left: 0;
   }
   /*End Contact*/
+  /*Training*/
+  .training .block-img {
+    width: 150px;
+    height: 150px;
+    margin: 0.75em;
+  }
+  .training .filter-select select {
+    margin-left: 0.75em;
+  }
+  .block-formation .resume-text,
+  .block-formation .resume-cta {
+    width: 100%;
+  }
+  .block-formation .btn {
+    width: 250px;
+  }
+  /*End Training*/
+  /*Projects*/
+  .project-item .project-cover {
+    max-width: 420px;
+    height: 420px;
+  }
+  .project-item.in-view .project-link {
+    max-width: 420px;
+  }
+  .project-link {
+    padding: 5em 0 5em 3em;
+  }
+  .project-link .btn {
+    margin-top: 5em;
+  }
+  .project-link.in-view {
+    max-width: 320px;
+  }
+  /*End Projects*/
 }
 
 @media screen and (min-width: 1200px) {
@@ -3182,27 +3385,34 @@ Media-queries
   .training .filter-select {
     display: none;
   }
-  .training .filter-btn,
-  .training .block-logo {
+  .training .filter-btn {
     display: block;
+  }
+  .training .filter-btn .btn {
+    display: inline-block;
+    float: left;
+  }
+  .training .filter-btn .btn:not(:last-of-type) {
+    margin-right: 0.5em;
   }
   .training .block-img {
     width: 180px;
     height: 180px;
-    border: 1px solid rgba(28, 27, 27, 0.25);
-    background-color: white;
-    display: inline-block;
-    float: left;
     margin: 1em;
   }
-  .training .block-img img {
-    margin: auto;
-    padding: 3.5em 0;
-  }
-  .training .block-img .php-logo {
-    padding: 4.25em 0;
-  }
   /*End Training*/
+  /*Projects*/
+  .project-item .project-cover {
+    height: 520px;
+    max-width: 520px;
+  }
+  .project-item.in-view .project-link {
+    max-width: 480px;
+  }
+  .project-link {
+    padding: 8em 0 7em 4em;
+  }
+  /*End Projects*/
 }
 
 @media screen and (min-width: 1440px) {

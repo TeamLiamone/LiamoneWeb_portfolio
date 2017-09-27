@@ -1,0 +1,76 @@
+.projects  {
+	
+	.hero-grey  {
+		background: $greyNumber-color;
+		padding: 15vh 0 20vh;
+	}
+}
+
+.project-thumbs  {
+	position: relative;
+	top: -8em;
+}
+
+.project-link  {
+	@extend %pos-relative;
+	z-index: 1;
+	color: $white-color;
+	padding: 3.5em 1em;
+
+	h2  {
+		@extend %font-uppercase;
+		color: $white-color;
+	}
+
+	p,
+	.btn  {
+		margin-top: 1.25em;
+	}
+
+	.btn  {
+		@include dimension(80px, 80px);
+		line-height: 4.2;
+
+		.visible-text  {
+			display: none;
+		}
+	}
+}
+
+.project-item  {
+	@extend %clearfix;
+	margin: 2em 0;
+
+	.project-cover  {
+		@extend %pos-relative;
+		@include dimension(100%, 320px);		
+		max-width: 320px;
+	}
+
+	.cover-img  {
+		@extend %pos-absolute;
+		@include backgroundImg('../img/projets/sponsoblog/sponsoblog-cover.jpg', top left, no-repeat, initial);
+		@include dimension(100%, 100%);
+		z-index: 0;
+	}
+	
+	&.in-view  {
+
+		.project-cover  {
+			max-width: 100%;
+		}
+
+		.project-link  {
+			max-width: 290px;
+
+			.btn  {
+				width: 195px;
+
+				.visible-text  {
+					display: inline;
+				}
+			}
+		}
+	}
+}
+

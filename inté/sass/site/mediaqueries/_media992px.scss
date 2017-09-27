@@ -171,4 +171,62 @@
 		}
 	}
 	/*End Contact*/
+
+	/*Training*/
+	.training  {
+
+		.block-img  {
+			@include dimension(150px, 150px);
+			margin: 0.75em;
+		}
+
+		.filter-select  {
+
+			select  {
+				margin-left: 0.75em;
+			}
+		}
+	}
+
+	.block-formation  {
+
+		.resume-text,
+		.resume-cta  {
+			width: 100%;
+		}
+
+		.btn  {
+			width: 250px;
+		}
+	}
+	/*End Training*/
+
+	/*Projects*/
+	.project-item  {
+
+		.project-cover  {
+			max-width: 420px;
+			height: 420px;
+		}
+
+		&.in-view  {
+
+			.project-link  {
+				max-width: 420px;
+			}
+		}
+	}
+
+	.project-link  {
+		padding: 5em 0 5em 3em;
+
+		.btn  {
+			margin-top: 5em;
+		}
+
+		&.in-view  {
+			max-width: 320px;
+		}
+	}
+	/*End Projects*/
 }
