@@ -1850,9 +1850,12 @@ Pages
   display: none;
 }
 
+.block-formation .row {
+  padding: 1em 0;
+}
+
 .block-formation .row:not(:last-of-type) {
   border-bottom: 1px solid rgba(28, 27, 27, 0.25);
-  padding: 1em 0;
 }
 
 .block-formation .formation-techno img {
@@ -2536,12 +2539,18 @@ Media-queries
     background: linear-gradient(to bottom, #f1f1f1 0%, #f1f1f1 65%, white 65%, white 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
   }
-  .training .filter-select {
-    display: none;
+  .training .hero-grey .block-content .left-block,
+  .training .hero-grey .block-content .right-block {
+    width: 45%;
+    display: inline-block;
+    float: left;
   }
-  .training .filter-btn,
+  .training .hero-grey .block-content .left-block {
+    margin-right: 5%;
+  }
   .training .block-logo {
     display: block;
+    margin: 1em auto 3em;
   }
   .training .block-img {
     width: 128px;
@@ -2552,16 +2561,27 @@ Media-queries
     float: left;
     margin: 0.25em;
   }
+  .training .block-img img {
+    margin: auto;
+    padding: 1.5em 0;
+  }
+  .training .block-img .php-logo {
+    padding: 2.75em 0;
+  }
   .block-formation .resume-text {
     width: 65%;
+    padding: 0 1em 0 0;
   }
   .block-formation .resume-cta {
     width: 35%;
   }
   .block-formation .resume-text,
   .block-formation .resume-cta {
-    display: inline-blokc;
+    display: inline-block;
     float: left;
+  }
+  .block-formation .formation-techno img {
+    margin: 0.25em auto !important;
   }
   /*End Training*/
 }
@@ -3158,6 +3178,31 @@ Media-queries
     left: 10%;
   }
   /*End Services*/
+  /*Training*/
+  .training .filter-select {
+    display: none;
+  }
+  .training .filter-btn,
+  .training .block-logo {
+    display: block;
+  }
+  .training .block-img {
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(28, 27, 27, 0.25);
+    background-color: white;
+    display: inline-block;
+    float: left;
+    margin: 1em;
+  }
+  .training .block-img img {
+    margin: auto;
+    padding: 3.5em 0;
+  }
+  .training .block-img .php-logo {
+    padding: 4.25em 0;
+  }
+  /*End Training*/
 }
 
 @media screen and (min-width: 1440px) {
