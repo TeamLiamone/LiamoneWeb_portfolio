@@ -185,23 +185,68 @@
 	/*End Training*/
 
 	/*Projects*/
-	.project-item  {
+	.projects-list  {
 
-		.project-cover  {
-			height: 520px;
-			max-width: 520px;
+		.project-item  {
+			min-height: 520px;
 		}
 
-		&.in-view  {
+		.project-link  {
+			top: 25%;
 
-			.project-link  {
-				max-width: 480px;
+			.btn  {
+				margin-top: 3.5em;
 			}
 		}
 	}
 
-	.project-link  {
-		padding: 8em 0 7em 4em;
+	.project-cover  {
+
+		.mask  {
+
+			& > .project-img  {
+				width: 1140px;
+			}
+		}
+	}
+
+	.project-focus  {
+
+		.project-link  {
+			max-width: 600px;
+
+			.project-tags  {
+				width: 80%;
+			}
+
+			p  {
+				font-size: calculateSize(60px);
+			}
+		}
+
+		.project-context  {
+
+			h2  {
+				font-size: $font-30;
+			}
+		}
+	}
+
+	.project-context  {
+		padding: 2.5em 0;
+	}
+
+	.project-brand,
+	.project-design  {
+		padding: 1em 0;
+	}
+
+	.project-nav  {
+		
+		& > div  {
+			height: 320px;
+			padding: 8em 1em;
+		}
 	}
 	/*End Projects*/
 }

@@ -382,27 +382,179 @@
 
 
 	/*Projects*/
-	.project-thumbs  {
-		top: -10em;
+	.projects  {
+
+		.projects-wrap  {
+			top: -10em;
+		}
 	}
-	
-	.project-link  {
-		padding: 3.5em 1em 3.5em 2.5em;
-	}
 
-	.project-item  {
+	.projects-list  {
+		
+		.project-link  {
+			top: 20%;
+			left: 5%;
+			max-width: 300px;
 
-		&.in-view  {
-
-			.cover-img  {
-				background-size: cover;
-				background-position: top right;
+			.btn  {
+				width: 80px;
 			}
+		}
 
-			.project-link  {
-				max-width: 320px;
+		.visible-text  {
+			display: none;
+			width: 60px;
+		}
+
+		.project-item  {
+
+			&.in-view  {
+
+				.project-cover  {
+
+					.mask  {
+						width: 100%;
+					}
+				}
+
+				.btn  {
+					width: 195px;
+				}
+
+				.visible-text  {
+					display: inline;
+				}
 			}
 		}
 	}
+
+	.project-cover  {
+
+		.mask  {
+			width: 50%;
+
+			& > .project-img  {
+				width: 720px;
+			}
+		}
+	}
+
+	.project-focus  {
+
+		.project-link  {
+			max-width: 420px;
+			
+			p  {
+				font-size: $font-40;
+			}
+		}
+
+		.project-design,
+		.project-brand  {
+
+			h3  {
+				font-size: $font-40;
+			}
+
+			p  {
+				width: 33.333333%;
+				margin: 2em 0 5em;
+				float: left;
+
+				&:first-of-type  {
+					margin-left: 25%;
+					margin-right: 2em;
+				}
+			}
+		}
+
+		.project-brand  {
+
+			.site-presentation  {
+				margin: 5em auto;
+			}
+		}
+	}
+
+	.project-nav  {
+		margin-bottom: 3em;
+
+		& > div  {
+			height: 210px;
+			padding: 4em 1em;
+		}
+
+		.project-name  {
+			font-size: $font-24;
+		}
+
+		.btn-name  {
+			font-size: $font-16;
+		}
+		
+		.btn-ico  {
+			top: 50%;
+		}
+
+		.next-project  {
+
+			.btn-ico  {
+				right: 10%;
+			}
+		}
+
+		.prev-project  {
+
+			.btn-ico  {
+				left: 10%;
+			}
+		}
+	}
+
+	/*Listed Project*/
+	.sponsoblog  {
+
+		.project-img  {
+			background: #00c1b6;
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -moz-linear-gradient(45deg, #00c1b6 0%, #136eb5 100%);
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -webkit-linear-gradient(45deg, #00c1b6 0%, #136eb5 100%);
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), linear-gradient(45deg, #00c1b6 0%, #136eb5 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c1b6', endColorstr='#136eb5',GradientType=1 );
+		}
+	}
+
+	.kleyver  {
+
+		.project-img  {
+			background: #e82c3e;
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -moz-linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -webkit-linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82c3e', endColorstr='#e6027b',GradientType=1 );
+		}
+	}
+
+	.mailuneed  {
+
+		.project-img  {
+			background: #00ace9;
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -moz-linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -webkit-linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ace9', endColorstr='#175ba7',GradientType=1 );
+		}
+	}
+
+	.sponsoweb  {
+
+		.project-img  {
+			background: #db2e31;
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -moz-linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -webkit-linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
+			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db2e31', endColorstr='#ffcb00',GradientType=1 );
+		}
+	}
+	/*End Listed Project*/
 	/*End Projects*/
 }

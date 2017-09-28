@@ -202,30 +202,45 @@
 	/*End Training*/
 
 	/*Projects*/
-	.project-item  {
+	.projects-list  {
 
-		.project-cover  {
-			max-width: 420px;
-			height: 420px;
+		.project-item  {
+			min-height: 420px;
 		}
 
-		&.in-view  {
+		.project-link  {
 
-			.project-link  {
-				max-width: 420px;
+			.btn  {
+				margin-top: 3.5em;
 			}
 		}
 	}
 
-	.project-link  {
-		padding: 5em 0 5em 3em;
+	.project-cover  {
 
-		.btn  {
-			margin-top: 5em;
+		.mask  {
+
+			& > .project-img  {
+				width: 960px;
+			}
 		}
+	}
 
-		&.in-view  {
-			max-width: 320px;
+	.project-focus  {
+
+		.design-illustration  {
+			
+			img  {
+				float: left;
+				width: 45%;
+				display: inline;
+
+				&:not(:first-child)  {
+					float: right;
+					margin-left: 5%;
+				}
+			}
+
 		}
 	}
 	/*End Projects*/

@@ -50,10 +50,23 @@
 		text-align: left !important;
 		color: $blackTitle-color;
 	}
-	
 }
 
+.hero-project  {
+	@include dimension(100%, 100vh);
+	@extend %pos-relative;
 
+	.project-cover  {
+
+		.mask  {
+			width: 100%;
+
+			& > .project-img  {
+				width: 100vw;
+			}
+		}
+	}
+}
 
 .cta-scroll  {
 	@extend %pos-absolute; 

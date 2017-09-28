@@ -177,24 +177,26 @@ aside {
   height: auto;
 }
 
-.padded-block, .row, .block-card, .block-card .card-caption, .home .block-title, .jobs .block-title, .services .block-list, .training .block-title, .block-formation .content-titles, .project-item {
+.padded-block, .row, .block-card, .block-card .card-caption, .home .block-title, .jobs .block-title, .services .block-list, .training .block-title, .block-formation .content-titles {
   *zoom: 1;
 }
 
-.padded-block:before, .row:before, .block-card:before, .block-card .card-caption:before, .home .block-title:before, .jobs .block-title:before, .services .block-list:before, .training .block-title:before, .block-formation .content-titles:before, .project-item:before, .padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after, .project-item:after {
+.padded-block:before, .row:before, .block-card:before, .block-card .card-caption:before, .home .block-title:before, .jobs .block-title:before, .services .block-list:before, .training .block-title:before, .block-formation .content-titles:before, .padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after {
   content: " ";
   display: table;
 }
 
-.padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after, .project-item:after {
+.padded-block:after, .row:after, .block-card:after, .block-card .card-caption:after, .home .block-title:after, .jobs .block-title:after, .services .block-list:after, .training .block-title:after, .block-formation .content-titles:after {
   clear: both;
 }
 
-.block-card .card-caption, .actu-card figcaption, .content-slider, .menu-header, .menu-toggle, .cta-scroll > i, .block-title h2, .block-content, .block-formation .content-titles a, .project-link, .project-item .project-cover {
+.block-card .card-caption, .actu-card figcaption, .content-slider, .menu-header, .menu-toggle, .hero-project, .cta-scroll > i, .block-title h2, .block-content, .block-formation .content-titles a, .projects .projects-wrap, .projects-list .project-item,
+.project-focus .project-item {
   position: relative;
 }
 
-.sr-only, .block-card .card-caption:after, .content-slider .slider-nav, .content-slider .slider-arrows a:first-of-type, .content-slider .slider-arrows a:last-of-type, .content-slider .slider-count p, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form, .block-formation .content-titles a:before, .project-item .cover-img {
+.sr-only, .block-card .card-caption:after, .content-slider .slider-nav, .content-slider .slider-arrows a:first-of-type, .content-slider .slider-arrows a:last-of-type, .content-slider .slider-count p, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form, .block-formation .content-titles a:before, .projects-list .project-link,
+.project-focus .project-link, .project-cover, .project-cover .mask, .project-cover .mask > .project-img, .project-nav .btn-ico {
   position: absolute;
 }
 
@@ -210,7 +212,7 @@ p:not(.big-number) {
   font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .content-slider .slider-count .count-passed, .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p, .services .hero-img a, .services section, .contact .find-us li, .training header select, .block-formation .item-title {
+h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .content-slider .slider-count .count-passed, .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p, .services .hero-img a, .services section, .contact .find-us li, .training header select, .block-formation .item-title, .project-focus .project-link .project-url, .project-nav .project-name {
   font-weight: 700 !important;
 }
 
@@ -218,7 +220,7 @@ p:not(.big-number) {
   font-weight: 500 !important;
 }
 
-.btn, .btn:active, .big-number, aside h2, .content-list h3 {
+.btn, .btn:active, .big-number, aside h2, .content-list h3, .project-focus .project-link p {
   font-weight: 900 !important;
 }
 
@@ -227,11 +229,13 @@ p:not(.big-number) {
 }
 
 .btn, .block-card .card-caption h3, .job-card .list-title, .menu-bottom nav:first-of-type h2, .menu-bottom .cta-mail, .hero-grey .hero-title,
-.hero-img .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2, .services .hero-img h2, .services .block-title, .training header select, .block-formation .formation-tag, .block-formation .item-title, .project-link h2 {
+.hero-img .hero-title, aside h2, .home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title), .liamone .little-title, .actus .actualite h2, .job-detail h2, .services .hero-img h2, .services .block-title, .training header select, .block-formation .formation-tag, .block-formation .item-title, .projects-list .project-link h2,
+.project-focus .project-link h2, .project-focus .project-link .project-url, .project-focus .project-link .project-tags li, .project-focus .project-brand .yellow-title,
+.project-focus .project-design .yellow-title, .project-nav .project-name {
   text-transform: uppercase;
 }
 
-.rounded, .btn, .block-card .card-caption, form.natural-language, form.natural-language input, .hero-header .hero-title {
+.rounded, .btn, .block-card .card-caption, form.natural-language, form.natural-language input, .hero-header .hero-title, .project-nav > div {
   text-align: center;
 }
 
@@ -1439,6 +1443,19 @@ form .btn {
   color: #4d4d4d;
 }
 
+.hero-project {
+  width: 100%;
+  height: 100vh;
+}
+
+.hero-project .project-cover .mask {
+  width: 100%;
+}
+
+.hero-project .project-cover .mask > .project-img {
+  width: 100vw;
+}
+
 .cta-scroll {
   bottom: 2em;
   left: 45vw;
@@ -1999,70 +2016,221 @@ Pages
   padding: 15vh 0 20vh;
 }
 
-.project-thumbs {
-  position: relative;
-  top: -8em;
+.projects .projects-wrap {
+  top: -5em;
+  padding: 0 1em;
 }
 
-.project-link {
-  z-index: 1;
+.projects-list .project-item,
+.project-focus .project-item {
+  margin: 2em auto;
+  display: block;
+  width: 100%;
+  min-height: 320px;
+  background: transparent;
+}
+
+.projects-list .project-link,
+.project-focus .project-link {
+  top: 15%;
+  z-index: 10;
+}
+
+.projects-list .project-link h2,
+.projects-list .project-link p,
+.project-focus .project-link h2,
+.project-focus .project-link p {
   color: white;
-  padding: 3.5em 1em;
 }
 
-.project-link h2 {
-  color: white;
+.projects-list .project-link h2,
+.project-focus .project-link h2 {
+  margin-bottom: 0.75em;
 }
 
-.project-link p,
-.project-link .btn {
-  margin-top: 1.25em;
-}
-
-.project-link .btn {
-  width: 80px;
+.projects-list .project-link .btn,
+.project-focus .project-link .btn {
+  margin-top: 1.5em;
   height: 80px;
   line-height: 4.2;
 }
 
-.project-link .btn .visible-text {
-  display: none;
-}
-
-.project-item {
-  margin: 2em 0;
-}
-
-.project-item .project-cover {
-  width: 100%;
-  height: 320px;
-  max-width: 320px;
-}
-
-.project-item .cover-img {
-  background-image: url("../img/projets/sponsoblog/sponsoblog-cover.jpg");
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: initial;
+.project-cover {
   width: 100%;
   height: 100%;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  overflow: hidden;
   z-index: 0;
 }
 
-.project-item.in-view .project-cover {
-  max-width: 100%;
+.project-cover .mask {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  top: 0;
+  left: 0;
 }
 
-.project-item.in-view .project-link {
-  max-width: 290px;
+.project-cover .mask > .project-img {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: right 0 top;
 }
 
-.project-item.in-view .project-link .btn {
-  width: 195px;
+/*Listed project*/
+.sponsoblog .project-img {
+  background: #00c1b6;
+  background: linear-gradient(45deg, #00c1b6 0%, #136eb5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c1b6', endColorstr='#136eb5',GradientType=1 );
 }
 
-.project-item.in-view .project-link .btn .visible-text {
+.kleyver .project-img {
+  background: #e82c3e;
+  background: linear-gradient(45degt, #e82c3e 0%, #e6027b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82c3e', endColorstr='#e6027b',GradientType=1 );
+}
+
+.mailuneed .project-img {
+  background: #00ace9;
+  background: linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ace9', endColorstr='#175ba7',GradientType=1 );
+}
+
+.sponsoweb .project-img {
+  background: #db2e31;
+  background: linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db2e31', endColorstr='#ffcb00',GradientType=1 );
+}
+
+/*End Listed project*/
+.project-focus .project-link {
+  left: 5%;
+}
+
+.project-focus .project-link .project-url {
+  cursor: pointer;
+  font-size: 1.125rem;
+  color: white;
+}
+
+.project-focus .project-link p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 1.875rem;
+}
+
+.project-focus .project-link .separator {
+  background-color: white;
+}
+
+.project-focus .project-link .project-tags {
+  margin-top: 1em;
+}
+
+.project-focus .project-link .project-tags li {
   display: inline;
+  font-size: 0.625rem;
+  color: white;
+  margin: 0 0.25em;
+}
+
+.project-focus .project-context h2 {
+  font-size: 1.125rem;
+}
+
+.project-focus .project-context .col-xxsm-12 {
+  margin: 1em auto;
+}
+
+.project-focus .project-brand .yellow-title,
+.project-focus .project-design .yellow-title {
+  margin-bottom: 1em;
+  padding-left: 15px;
+  font-size: 0.75rem;
+  color: #dc9227;
+}
+
+.project-focus .project-brand .separator,
+.project-focus .project-design .separator {
+  background-color: #dc9227;
+}
+
+.project-focus .project-brand h3,
+.project-focus .project-design h3 {
+  font-size: 1.875rem;
+  margin-bottom: 0.5em;
+}
+
+.project-focus .project-brand p,
+.project-focus .project-design p {
+  margin: 2em auto;
+}
+
+.project-focus .project-design .design-illustration img {
+  -webkit-box-shadow: 3px 8px 20px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 3px 8px 20px 2px rgba(0, 0, 0, 0.25);
+  margin: 2em auto;
+}
+
+.project-focus .project-brand .brand-illustration {
+  margin: 2em auto;
+}
+
+.project-focus .project-brand .site-presentation {
+  margin: 2.5em auto;
+}
+
+.project-focus .project-brand .site-presentation img {
+  margin: auto;
+}
+
+.project-nav > div {
+  height: 90px;
+  padding: 1em;
+}
+
+.project-nav span {
+  color: white;
+  display: block;
+}
+
+.project-nav .btn-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.875rem;
+}
+
+.project-nav .project-name {
+  font-size: 1.125rem;
+  margin-top: 0.5em;
+}
+
+.project-nav .btn-ico {
+  top: 1em;
+}
+
+.project-nav .prev-project {
+  background-color: #6eaab0;
+}
+
+.project-nav .prev-project .btn-ico {
+  left: 1em;
+}
+
+.project-nav .next-project {
+  background-color: #c83040;
+}
+
+.project-nav .next-project .btn-ico {
+  right: 1em;
 }
 
 /*Animate*/
@@ -2738,19 +2906,104 @@ Media-queries
   }
   /*End Training*/
   /*Projects*/
-  .project-thumbs {
+  .projects .projects-wrap {
     top: -10em;
   }
-  .project-link {
-    padding: 3.5em 1em 3.5em 2.5em;
+  .projects-list .project-link {
+    top: 20%;
+    left: 5%;
+    max-width: 300px;
   }
-  .project-item.in-view .cover-img {
-    background-size: cover;
-    background-position: top right;
+  .projects-list .project-link .btn {
+    width: 80px;
   }
-  .project-item.in-view .project-link {
-    max-width: 320px;
+  .projects-list .visible-text {
+    display: none;
+    width: 60px;
   }
+  .projects-list .project-item.in-view .project-cover .mask {
+    width: 100%;
+  }
+  .projects-list .project-item.in-view .btn {
+    width: 195px;
+  }
+  .projects-list .project-item.in-view .visible-text {
+    display: inline;
+  }
+  .project-cover .mask {
+    width: 50%;
+  }
+  .project-cover .mask > .project-img {
+    width: 720px;
+  }
+  .project-focus .project-link {
+    max-width: 420px;
+  }
+  .project-focus .project-link p {
+    font-size: 2.5rem;
+  }
+  .project-focus .project-design h3,
+  .project-focus .project-brand h3 {
+    font-size: 2.5rem;
+  }
+  .project-focus .project-design p,
+  .project-focus .project-brand p {
+    width: 33.333333%;
+    margin: 2em 0 5em;
+    float: left;
+  }
+  .project-focus .project-design p:first-of-type,
+  .project-focus .project-brand p:first-of-type {
+    margin-left: 25%;
+    margin-right: 2em;
+  }
+  .project-focus .project-brand .site-presentation {
+    margin: 5em auto;
+  }
+  .project-nav {
+    margin-bottom: 3em;
+  }
+  .project-nav > div {
+    height: 210px;
+    padding: 4em 1em;
+  }
+  .project-nav .project-name {
+    font-size: 1.5rem;
+  }
+  .project-nav .btn-name {
+    font-size: 1rem;
+  }
+  .project-nav .btn-ico {
+    top: 50%;
+  }
+  .project-nav .next-project .btn-ico {
+    right: 10%;
+  }
+  .project-nav .prev-project .btn-ico {
+    left: 10%;
+  }
+  /*Listed Project*/
+  .sponsoblog .project-img {
+    background: #00c1b6;
+    background: url("../img/projets/sponsoblog/sponsoblog-cover.png"), linear-gradient(45deg, #00c1b6 0%, #136eb5 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c1b6', endColorstr='#136eb5',GradientType=1 );
+  }
+  .kleyver .project-img {
+    background: #e82c3e;
+    background: url("../img/projets/sponsoblog/sponsoblog-cover.png"), linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82c3e', endColorstr='#e6027b',GradientType=1 );
+  }
+  .mailuneed .project-img {
+    background: #00ace9;
+    background: url("../img/projets/sponsoblog/sponsoblog-cover.png"), linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ace9', endColorstr='#175ba7',GradientType=1 );
+  }
+  .sponsoweb .project-img {
+    background: #db2e31;
+    background: url("../img/projets/sponsoblog/sponsoblog-cover.png"), linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db2e31', endColorstr='#ffcb00',GradientType=1 );
+  }
+  /*End Listed Project*/
   /*End Projects*/
 }
 
@@ -3064,21 +3317,23 @@ Media-queries
   }
   /*End Training*/
   /*Projects*/
-  .project-item .project-cover {
-    max-width: 420px;
-    height: 420px;
+  .projects-list .project-item {
+    min-height: 420px;
   }
-  .project-item.in-view .project-link {
-    max-width: 420px;
+  .projects-list .project-link .btn {
+    margin-top: 3.5em;
   }
-  .project-link {
-    padding: 5em 0 5em 3em;
+  .project-cover .mask > .project-img {
+    width: 960px;
   }
-  .project-link .btn {
-    margin-top: 5em;
+  .project-focus .design-illustration img {
+    float: left;
+    width: 45%;
+    display: inline;
   }
-  .project-link.in-view {
-    max-width: 320px;
+  .project-focus .design-illustration img:not(:first-child) {
+    float: right;
+    margin-left: 5%;
   }
   /*End Projects*/
 }
@@ -3402,15 +3657,40 @@ Media-queries
   }
   /*End Training*/
   /*Projects*/
-  .project-item .project-cover {
-    height: 520px;
-    max-width: 520px;
+  .projects-list .project-item {
+    min-height: 520px;
   }
-  .project-item.in-view .project-link {
-    max-width: 480px;
+  .projects-list .project-link {
+    top: 25%;
   }
-  .project-link {
-    padding: 8em 0 7em 4em;
+  .projects-list .project-link .btn {
+    margin-top: 3.5em;
+  }
+  .project-cover .mask > .project-img {
+    width: 1140px;
+  }
+  .project-focus .project-link {
+    max-width: 600px;
+  }
+  .project-focus .project-link .project-tags {
+    width: 80%;
+  }
+  .project-focus .project-link p {
+    font-size: 3.75rem;
+  }
+  .project-focus .project-context h2 {
+    font-size: 1.875rem;
+  }
+  .project-context {
+    padding: 2.5em 0;
+  }
+  .project-brand,
+  .project-design {
+    padding: 1em 0;
+  }
+  .project-nav > div {
+    height: 320px;
+    padding: 8em 1em;
   }
   /*End Projects*/
 }
