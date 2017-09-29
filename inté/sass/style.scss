@@ -42,7 +42,7 @@ Layout
 @import 'site/layout/form';				//Form
 @import 'site/layout/footer'; 			//Footer
 @import 'site/layout/hero'; 			//Hero
-@import 'site/layout/section'; 			//Section
+@import 'site/layout/section'; 			//Section 
 
 /*****************
 Pages
@@ -54,7 +54,8 @@ Pages
 @import 'site/pages/contact'; 			//Contact page elements
 @import 'site/pages/training'; 			//Training page elements
 @import 'site/pages/projects'; 			//Projects page elements
-@import 'site/pages/project-detail'; 			//Project details page elements
+@import 'site/pages/project-detail'; 	//Project details page elements
+@import 'site/pages/legal-notice'; 		//Legal notice page elements
 
 /*Animate*//*
 @import 'animation/animate';			//Animate.css

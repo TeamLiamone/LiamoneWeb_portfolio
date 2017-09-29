@@ -8,6 +8,11 @@
 	a:not(.menu-brand)  {
 		color: $blackBg-color;
 	}
+
+	&.is-visible  {
+		@extend %pos-fixed;
+		background-color: $white-color;
+	}
 }
 
 .menu-header  {
@@ -34,6 +39,7 @@
 .menu-home  {
 
 	a:not(.menu-brand)  {
+		@extend %font-bold;
 		color: $white-color;
 		display: block;
 		padding: 0.25em 0;
@@ -42,10 +48,14 @@
 	.line  {
 		background-color: $white-color;
 	}
+	
+	&.is-visible  {
+		background-color: $blackBg-color;
+	}
 }
 
 .menu-container  {
-	@extend %pos-fixed;
+	@extend %pos-absolute;
 	display: none;
 	width: 100vw;
 	min-height: 100vh;
@@ -54,6 +64,43 @@
 	left: 0;
 	transition:  all 0.65s cubic-bezier(1, 0, 0, 1) 0.25s;
 	overflow-x: hidden;
+}
+
+.nav-item  {
+	overflow: hidden;	
+
+	.item-link  {
+		@extend %pos-relative;
+
+		&:before  {
+			@extend %pos-absolute;
+			@include dimension(100%, 6px);
+			top: 41%;
+			left: 0;
+			content: '';
+			background-color: $yellowLink-color;
+			z-index: -1;
+			transform: translate3d(-100%, 0, 0);
+			transition: transform 0.3s cubic-bezier(1, 0, 0, 1) 0.35s;
+		}
+
+		&:hover  {
+
+			&:before  {
+				transform: translate3D(0, 0, 0);
+			}
+		}
+	}
+
+	&.activ-page  {
+
+		.item-link  {
+
+			&:before  {
+				transform: translate3d(0, 0, 0);
+			}
+		}
+	}
 }
 
 .menu-nav  {

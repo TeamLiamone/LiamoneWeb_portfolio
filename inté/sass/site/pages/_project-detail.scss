@@ -1,7 +1,9 @@
 .project-focus  {
 
 	.project-link  {
-		left: 5%;
+		@extend .container;
+		position: relative !important; 
+		padding: 0 15px;
 
 		.project-url  {
 			@extend %font-uppercase;
