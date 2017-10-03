@@ -441,6 +441,16 @@
 
 	.project-focus  {
 
+		.project-cover  {
+
+			.mask  {
+
+				& > .project-img  {
+					background-position: 40vw bottom, right bottom;
+				}
+			}
+		}
+
 		.project-link  {
 			
 			p  {

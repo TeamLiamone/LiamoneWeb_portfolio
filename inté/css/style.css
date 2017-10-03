@@ -1,4 +1,18 @@
 @charset "UTF-8";
+/*
+Theme Name: Liamoneweb
+Author: Team Liamone
+Author URI: www.liamoneweb.com
+Description: Liamone website portfolio.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: liamone
+Tags: custom, portfolio, liamone
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
 /*****************
 Reset
 *****************/
@@ -251,6 +265,14 @@ p:not(.big-number) {
 Base
 *****************/
 /*UTILS*/
+.entry-header {
+  display: none !important;
+}
+
+.single-featured-image-header {
+  display: none !important;
+}
+
 .pull-left {
   float: left !important;
 }
@@ -1679,47 +1701,29 @@ Pages
   height: 42vw;
   margin: 0.5em 2.5%;
   text-align: center;
-}
-
-.clients .client-card img {
-  display: inline-block;
-  margin: auto;
-  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
 }
 
 .clients .client-1 {
   background-image: url("../img/client/sponsoweb-logo.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
 }
 
 .clients .client-2 {
   background-image: url("../img/client/autobiz-logo.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
 }
 
 .clients .client-3 {
   background-image: url("../img/client/orange-logo.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
 }
 
 .clients .client-4 {
   background-image: url("../img/client/voyagesncf-logo.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
 }
 
 .clients .client-5 {
   background-image: url("../img/client/immodefrance-logo.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
 }
 
 .actus .actualite {
@@ -1884,6 +1888,7 @@ Pages
   top: 15vh;
   left: 0;
   background: white;
+  display: none;
 }
 
 .contact .contact-form .btn {
@@ -1966,87 +1971,67 @@ Pages
   height: 2px;
   bottom: 0.5em;
   content: '';
+}
+
+.block-formation .content-titles a.item-activ:before {
   background-color: #ffc900;
+}
+
+.block-formation .content-result .content-block {
+  display: none;
+}
+
+.block-formation .content-result .content-block.content-activ {
+  display: block;
+}
+
+.block-img {
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-position: center center;
 }
 
 .block-img.html5-logo {
   background-image: url("../img/techno/html5-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
-  background-color: white;
 }
 
 .block-img.css3-logo {
   background-image: url("../img/techno/css3-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
-  background-color: white;
 }
 
 .block-img.bootstrap-logo {
   background-image: url("../img/techno/bootstrap-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
-  background-color: white;
 }
 
 .block-img.wordpress-logo {
   background-image: url("../img/techno/wordpress-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
-  background-color: white;
 }
 
 .block-img.angular-logo {
   background-image: url("../img/techno/angular-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
   background-size: 60%;
-  background-color: white;
 }
 
 .block-img.js-logo {
   background-image: url("../img/techno/javascript-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
-  background-color: white;
 }
 
 .block-img.drupal-logo {
   background-image: url("../img/techno/drupal-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
-  background-color: white;
 }
 
 .block-img.mysql-logo {
   background-image: url("../img/techno/mysql-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
-  background-color: white;
 }
 
 .block-img.php-logo {
   background-image: url("../img/techno/php-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
-  background-color: white;
 }
 
 .block-img.java-logo {
   background-image: url("../img/techno/java-logo.png");
-  background-position: center center;
-  background-repeat: no-repeat;
   background-size: 35%;
-  background-color: white;
 }
 
 .projects .hero-grey {
@@ -2118,7 +2103,7 @@ Pages
   height: 100%;
   top: 0;
   left: 0;
-  background-size: auto 100%;
+  background-size: auto 100%, 100%;
   background-repeat: no-repeat;
   background-position: right bottom;
 }
@@ -2989,6 +2974,9 @@ Media-queries
   .project-cover .mask > .project-img {
     width: 720px;
   }
+  .project-focus .project-cover .mask > .project-img {
+    background-position: 40vw bottom, right bottom;
+  }
   .project-focus .project-link p {
     font-size: 2.5rem;
   }
@@ -3724,6 +3712,9 @@ Media-queries
   }
   .project-cover .mask > .project-img {
     width: 1140px;
+  }
+  .project-focus .project-cover .mask > .project-img {
+    background-position: right bottom;
   }
   .project-focus .project-link .project-tags {
     width: 80%;

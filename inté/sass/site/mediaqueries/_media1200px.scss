@@ -212,6 +212,16 @@
 
 	.project-focus  {
 
+		.project-cover  {
+
+			.mask  {
+
+				& > .project-img  {
+					background-position: right bottom;
+				}
+			}
+		}		
+
 		.project-link  {
 
 			.project-tags  {

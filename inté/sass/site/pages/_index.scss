@@ -192,28 +192,26 @@
 		height: 42vw;
 		margin: 0.5em 2.5%;
 		text-align: center;
+		background-repeat: no-repeat;
+		background-size: auto;
+		background-position: center;
 
-		img  {
-			display: inline-block;
-			margin: auto;
-			vertical-align: middle;
-		}
 	}
 
 	.client-1 {
-		@include backgroundImg('../img/client/sponsoweb-logo.png', center, no-repeat, auto);
+		background-image: url('../img/client/sponsoweb-logo.png');
 	}
 	.client-2 {
-		@include backgroundImg('../img/client/autobiz-logo.png', center, no-repeat, auto);
+		background-image: url('../img/client/autobiz-logo.png');
 	}
 	.client-3 {
-		@include backgroundImg('../img/client/orange-logo.jpg', center, no-repeat, auto);
+		background-image: url('../img/client/orange-logo.jpg');
 	}
 	.client-4 {
-		@include backgroundImg('../img/client/voyagesncf-logo.jpg', center, no-repeat, auto);
+		background-image: url('../img/client/voyagesncf-logo.jpg');
 	}
 	.client-5 {
-		@include backgroundImg('../img/client/immodefrance-logo.jpg', center, no-repeat, auto);
+		background-image: url('../img/client/immodefrance-logo.jpg');
 	}
 }
 

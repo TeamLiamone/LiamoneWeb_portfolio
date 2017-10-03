@@ -96,46 +96,65 @@
 				@extend %pos-absolute;
 				bottom: 0.5em;
 				content: '';
-				background-color: $yellowDot-color;
 			}
 
 			&.item-activ  {
 
+				&:before  {
+					background-color: $yellowDot-color;
+				}
+			}
+		}
+	}
+
+	.content-result  {
+
+		.content-block  {
+			display: none;
+
+			&.content-activ  {
+				display: block;
 			}
 		}
 	}
 }
 
 .block-img  {
+	background-size: initial;
+	background-repeat: no-repeat;
+	background-color: $white-color;
+	background-position: center center;
 
 	&.html5-logo  {
-		@include backgroundImg('../img/techno/html5-logo.png', center center, no-repeat, initial, $white-color);
+		background-image: url('../img/techno/html5-logo.png');
 	}
 	&.css3-logo  {
-		@include backgroundImg('../img/techno/css3-logo.png', center center, no-repeat, initial, $white-color);
+		background-image: url('../img/techno/css3-logo.png');
 	}
 	&.bootstrap-logo  {
-		@include backgroundImg('../img/techno/bootstrap-logo.png', center center, no-repeat, initial, $white-color);
+		background-image: url('../img/techno/bootstrap-logo.png');
 	}
 	&.wordpress-logo  {
-		@include backgroundImg('../img/techno/wordpress-logo.png', center center, no-repeat, initial, $white-color);
+		background-image: url('../img/techno/wordpress-logo.png');
 	}
 	&.angular-logo  {
-		@include backgroundImg('../img/techno/angular-logo.png', center center, no-repeat, 60%, $white-color);
+		background-image: url('../img/techno/angular-logo.png');
+		background-size: 60%;
 	}
 	&.js-logo  {
-		@include backgroundImg('../img/techno/javascript-logo.png', center center, no-repeat, initial, $white-color);
+		background-image: url('../img/techno/javascript-logo.png');
 	}
 	&.drupal-logo  {
-		@include backgroundImg('../img/techno/drupal-logo.png', center center, no-repeat, initial, $white-color);
+		background-image: url('../img/techno/drupal-logo.png');
 	}
 	&.mysql-logo  {
-		@include backgroundImg('../img/techno/mysql-logo.png', center center, no-repeat, initial, $white-color);
+		background-image: url('../img/techno/mysql-logo.png');
 	}
 	&.php-logo  {
-		@include backgroundImg('../img/techno/php-logo.png', center center, no-repeat, initial, $white-color);
+		background-image: url('../img/techno/php-logo.png');
 	}
 	&.java-logo  {
-		@include backgroundImg('../img/techno/java-logo.png', center center, no-repeat, 35%, $white-color);
+		background-image: url('../img/techno/java-logo.png');
+		background-size: 35%;
 	}
 }
