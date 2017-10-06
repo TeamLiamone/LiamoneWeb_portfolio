@@ -57,7 +57,6 @@
 	z-index: 0;
 
 	.mask  {
-		//@extend .container;
 		@extend %pos-absolute;
 		@include dimension(100%, 100%);
 		cursor: pointer;
@@ -65,6 +64,7 @@
 		white-space: nowrap;
 		top: 0;
 		left: 0;
+		transition: width 0.6s cubic-bezier(.72,.01,.6,1);
 
 		& > .project-img  {
 			@include dimension(100%, 100%);

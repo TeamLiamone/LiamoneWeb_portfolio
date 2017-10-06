@@ -22,14 +22,24 @@
 	.menu-container  {
 		position: relative;
 		display: block;
-		width: 75%;
+		max-width: initial;
 		min-height: auto;
+		transform: translateX(0);
 
 		.nav-item  {
 			display: inline-block;
 
 			.item-link  {
 				padding: 0 1em;
+				opacity: 1;
+				transform: translateY(0);
+
+				&:hover  {
+
+					&:before  {
+						transform: translateX(0);
+					}
+				}
 			}
 		}
 	}
