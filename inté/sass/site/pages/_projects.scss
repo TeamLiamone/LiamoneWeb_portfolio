@@ -43,6 +43,7 @@
 			margin-top: 1.5em;
 			height: 80px;
 			line-height: 4.2;
+			transition: width 1.2s cubic-bezier(0.7, 0, 0.3, 1) 0s;
 		}
 	}
 }
@@ -64,7 +65,7 @@
 		white-space: nowrap;
 		top: 0;
 		left: 0;
-		transition: width 0.6s cubic-bezier(.72,.01,.6,1);
+		transition: width 1s cubic-bezier(0.7, 0, 0.3, 1) 0.25s;
 
 		& > .project-img  {
 			@include dimension(100%, 100%);
@@ -120,6 +121,28 @@
 		background: -webkit-linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
 		background: linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db2e31', endColorstr='#ffcb00',GradientType=1 );
+	}
+}
+
+.lastimmo  {
+
+	.project-img  {
+		background: #022381;
+		background: -moz-linear-gradient(45deg, #022381 0%, #074cd5 100%);
+		background: -webkit-linear-gradient(45deg, #022381 0%, #074cd5 100%);
+		background: linear-gradient(45deg, #022381 0%, #074cd5 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#022381', endColorstr='#074cd5',GradientType=1 );
+	}
+}
+
+.styleparis  {
+
+	.project-img  {
+		background: #d7d7d7;
+		background: -moz-linear-gradient(45deg, #d7d7d7 0%, #dfdfdf 100%);
+		background: -webkit-linear-gradient(45deg, #d7d7d7 0%, #dfdfdf 100%);
+		background: linear-gradient(45deg, #d7d7d7 0%, #dfdfdf 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7d7d7', endColorstr='#dfdfdf',GradientType=1 );
 	}
 }
 /*End Listed project*/

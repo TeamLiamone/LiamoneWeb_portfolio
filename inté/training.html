@@ -258,19 +258,19 @@
                         </div>
                     </div>
                     <div class="block-filter filter-btn col-xxsm-12">
-                        <button class="btn bordered" type="button">Développement <i class="icon-right"></i></button>
-                        <button class="btn bordered" type="button">Graphisme <i class="icon-right"></i></button>
-                        <button class="btn bordered" type="button">E-marketing <i class="icon-right"></i></button>
-                        <button class="btn bordered" type="button">Solutions open source <i class="icon-right"></i></button>
+                        <button class="btn bordered filter-cta" type="button" data-filter="dev">Développement <i class="icon-right"></i></button>
+                        <button class="btn bordered filter-cta" type="button" data-filter="graphisme">Graphisme <i class="icon-right"></i></button>
+                        <button class="btn bordered filter-cta" type="button" data-filter="eMarketing">E-marketing <i class="icon-right"></i></button>
+                        <button class="btn bordered filter-cta" type="button" data-filter="openSource">Solutions open source <i class="icon-right"></i></button>
                     </div>
 
                     <div class="block-filter filter-select col-xxsm-12">
-                        <select id="" class="form-field" name="sort-training" aria-required="false">
-                            <option disabled="true" selected="true">Trier par</option>
-                            <option value="dev">Développement</option>
-                            <option value="graph">Graphisme</option>
-                            <option value="emark">E-marketing</option>
-                            <option value="openSource">Solutions open source</option>
+                        <select id="" class="form-field filter-field" name="sort-training" aria-required="false">
+                            <option disabled="true">Trier par</option>
+                            <option text="dev">Développement</option>
+                            <option text="graphisme">Graphisme</option>
+                            <option text="eMarketing">E-marketing</option>
+                            <option text="openSource">Solutions open source</option>
                         </select>
                     </div>
                 </div>
@@ -281,7 +281,7 @@
             <div class="container">
 
                 <!--Formation: Initiation HTML & CSS-->
-                <div id="init-html-css" class="row">
+                <div id="init-html-css" class="row" data-category="dev, graphisme">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/html5-logo.png" alt="" width="37" height="50">
                         <img src="img/techno/css3-logo.png" alt="" width="37" height="50">
@@ -321,10 +321,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: Initiation HTML & CSS-->
+                <!--./Formation: Initiation HTML & CSS-->
 
                 <!--Formation: Certification HTML & CSS-->
-                <div id="certif-html-css" class="row">
+                <div id="certif-html-css" class="row" data-category="dev, graphisme">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/html5-logo.png" alt="" width="37" height="50">
                         <img src="img/techno/css3-logo.png" alt="" width="37" height="50">
@@ -364,10 +364,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: Certification HTML & CSS-->
+                <!--./Formation: Certification HTML & CSS-->
 
                 <!--Formation: Wordpress-->
-                <div id="wordpress-formation" class="row">
+                <div id="wordpress-formation" class="row" data-category="dev, openSource">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/wordpress-logo.png" alt="" width="35" height="35">
                     </div>
@@ -406,10 +406,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: Wordpress-->
+                <!--./Formation: Wordpress-->
 
                 <!--Formation: Jquery & Ajax-->
-                <div id="jquery-ajax" class="row">
+                <div id="jquery-ajax" class="row" data-category="dev">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/javascript-logo.png" alt="" width="35" height="35">
                         <img src="img/techno/jquery-logo.png" alt="" width="33" height="35">
@@ -449,10 +449,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: Jquery & Ajax-->
+                <!--./Formation: Jquery & Ajax-->
 
                 <!--Formation: Performances web-->
-                <div id="perf-web" class="row">
+                <div id="perf-web" class="row" data-category="dev">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/html5-logo.png" alt="" width="37" height="50">
                         <img src="img/techno/css3-logo.png" alt="" width="37" height="50">
@@ -493,10 +493,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: Performances web-->
+                <!--./Formation: Performances web-->
 
                 <!--Formation: Performances web-->
-                <div id="acces-num" class="row">
+                <div id="acces-num" class="row" data-category="dev">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/html5-logo.png" alt="" width="37" height="50">
                     </div>
@@ -535,10 +535,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: Performances web-->
+                <!--./Formation: Performances web-->
 
                 <!--Formation: HTML5-->
-                <div id="html5-formation" class="row">
+                <div id="html5-formation" class="row" data-category="dev, eMarketing">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/html5-logo.png" alt="" width="37" height="50">
                         <img src="img/techno/bootstrap-logo.png" alt="" width="35" height="35">
@@ -578,10 +578,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: HTML5-->
+                <!--./Formation: HTML5-->
 
                 <!--Formation: Intégration e-mail mobiles-->
-                <div id="email-inte" class="row">
+                <div id="email-inte" class="row" data-category="dev">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/html5-logo.png" alt="" width="37" height="50">
                         <img src="img/techno/css3-logo.png" alt="" width="37" height="50">
@@ -590,7 +590,7 @@
                     <div class="formation-resume col-xxsm-12 col-sm-11 col-md-5">
                         <div class="resume-text">
                             <h2 class="formation-title">Formation Intégration d'e-mails mobiles</h2>
-                            <p class="formation-tag">Mailling, Responsive Design, HTML</p>
+                            <p class="formation-tag">Mailing, Responsive Design, HTML</p>
                             <p class="formation-desc">Modernisez les intégrations d'e-mails, notamment destinés aux mobiles pour une meilleure efficacité, avec des optimisations et un confort de lecture accru.</p>
                         </div>
                         <div class="resume-cta">
@@ -622,10 +622,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: Intégration e-mail mobiles-->
+                <!--./Formation: Intégration e-mail mobiles-->
 
                 <!--Formation: CSS3 technique de pros-->
-                <div id="css3-tech-pro" class="row">
+                <div id="css3-tech-pro" class="row" data-category="dev">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/css3-logo.png" alt="" width="37" height="50">
                     </div>
@@ -664,10 +664,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: CSS3 technique de pros-->
+                <!--./Formation: CSS3 technique de pros-->
 
                 <!--Formation: Concepteur Développeur informatique-->
-                <div id="concept-dev" class="row">
+                <div id="concept-dev" class="row" data-category="dev">
                     <div class="formation-techno col-xxsm-12 col-sm-1">
                         <img src="img/techno/javascript-logo.png" alt="" width="35" height="35">
                         <img src="img/techno/php-logo.png" alt="" width="35" height="19">
@@ -686,10 +686,10 @@
                     <div class="formation-content col-xxsm-12 col-md-6">
                         <ul class="content-titles">
                             <li>
-                                <a class="item-title item-activ" href="#" title="A qui s'adresse cette formation ?" data-tab="f-10-prerequis">Public</a>
+                                <a class="item-title item-activ" href="#" title="A qui s'adresse cette formation ?" data-tab="f-10-public">Public</a>
                             </li>
                             <li>
-                                <a class="item-title" href="#" title="Les objectifs de cette formation" data-tab="f-10-prerequis">Objectifs</a>
+                                <a class="item-title" href="#" title="Les objectifs de cette formation" data-tab="f-10-objectifs">Objectifs</a>
                             </li>
                             <li>
                                 <a class="item-title" href="#" title="Les pré-requis pour cette formation" data-tab="f-10-prerequis">Prérequis</a>
@@ -708,7 +708,7 @@
                         </div>
                     </div>
                 </div>
-                <!--Formation: Concepteur Développeur informatique-->
+                <!--./Formation: Concepteur Développeur informatique-->
 
             </div>
         </section>

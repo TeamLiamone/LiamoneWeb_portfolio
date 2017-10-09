@@ -21,6 +21,11 @@
 		}
 	}
 	
+	/*Menu-top*/
+	.menu-container  {
+		max-width: 50vw;
+	}
+
 	/*Home*/
 	.liamone  {
 
@@ -398,12 +403,23 @@
 
 			.btn  {
 				width: 80px;
+				position: relative;
+				overflow-x: hidden;
+			
+				.icon-right  {
+					position: absolute;
+					transform: translate3d(-1em, 1.5em, 0);
+					transition: transform 0.5s ease-in-out 0.8s;
+				}
 			}
 		}
 
 		.visible-text  {
-			display: none;
+			position: absolute;
+			opacity: 0;
 			width: 60px;
+			transform: translateX(-150%);
+			transition: all 0.2s ease-in-out 1s;
 		}
 
 		.project-item  {
@@ -419,10 +435,16 @@
 
 				.btn  {
 					width: 195px;
+					overflow: hidden;
+
+					.icon-right  {
+						transform: translate3d(2em, 1.5em, 0);
+					}
 				}
 
 				.visible-text  {
-					display: inline;
+					transform: translateX(-100%);
+					opacity: 1;
 				}
 			}
 		}
@@ -536,9 +558,9 @@
 
 		.project-img  {
 			background: #e82c3e;
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -moz-linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -webkit-linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
+			background: url('../img/projets/kleyver/kleyver-cover.png'), -moz-linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
+			background: url('../img/projets/kleyver/kleyver-cover.png'), -webkit-linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
+			background: url('../img/projets/kleyver/kleyver-cover.png'), linear-gradient(45deg, #e82c3e 0%, #e6027b 100%);
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82c3e', endColorstr='#e6027b',GradientType=1 );
 		}
 	}
@@ -547,9 +569,9 @@
 
 		.project-img  {
 			background: #00ace9;
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -moz-linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -webkit-linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
+			background: url('../img/projets/mailuneed/mailuneed-cover.png'), -moz-linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
+			background: url('../img/projets/mailuneed/mailuneed-cover.png'), -webkit-linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
+			background: url('../img/projets/mailuneed/mailuneed-cover.png'), linear-gradient(45deg, #00ace9 0%, #175ba7 100%);
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ace9', endColorstr='#175ba7',GradientType=1 );
 		}
 	}
@@ -558,10 +580,32 @@
 
 		.project-img  {
 			background: #db2e31;
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -moz-linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), -webkit-linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
-			background: url('../img/projets/sponsoblog/sponsoblog-cover.png'), linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
+			background: url('../img/projets/sponsoweb/sponsoweb-cover.png'), -moz-linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
+			background: url('../img/projets/sponsoweb/sponsoweb-cover.png'), -webkit-linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
+			background: url('../img/projets/sponsoweb/sponsoweb-cover.png'), linear-gradient(45deg, #db2e31 0%, #ffcb00 100%);
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db2e31', endColorstr='#ffcb00',GradientType=1 );
+		}
+	}
+
+	.lastimmo  {
+
+		.project-img  {
+			background: #022381;
+			background: url('../img/projets/lastimmo/lastimmo-cover.png'), -moz-linear-gradient(45deg, #022381 0%, #074cd5 100%);
+			background: url('../img/projets/lastimmo/lastimmo-cover.png'), -webkit-linear-gradient(45deg, #022381 0%, #074cd5 100%);
+			background: url('../img/projets/lastimmo/lastimmo-cover.png'), linear-gradient(45deg, #022381 0%, #074cd5 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#022381', endColorstr='#074cd5',GradientType=1 );
+		}
+	}
+
+	.styleparis  {
+
+		.project-img  {
+			background: #d7d7d7;
+			background: url('../img/projets/styleparis/styleparis-cover.png'), -moz-linear-gradient(45deg, #d7d7d7 0%, #dfdfdf 100%);
+			background: url('../img/projets/styleparis/styleparis-cover.png'), -webkit-linear-gradient(45deg, #d7d7d7 0%, #dfdfdf 100%);
+			background: url('../img/projets/styleparis/styleparis-cover.png'), linear-gradient(45deg, #d7d7d7 0%, #dfdfdf 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7d7d7', endColorstr='#dfdfdf',GradientType=1 );
 		}
 	}
 	/*End Listed Project*/

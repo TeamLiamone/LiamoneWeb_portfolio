@@ -30,15 +30,22 @@
 			display: inline-block;
 
 			.item-link  {
+				font-size: $font-16;
 				padding: 0 1em;
 				opacity: 1;
 				transform: translateY(0);
+			}
+		}
+	}
 
-				&:hover  {
+	.nav-item  {
 
-					&:before  {
-						transform: translateX(0);
-					}
+		.item-link  {
+
+			&:hover  {
+
+				&:before  {
+					transform: translateX(0);
 				}
 			}
 		}
@@ -227,7 +234,7 @@
 			.mask  {
 
 				& > .project-img  {
-					background-position: right bottom;
+					background-position: 50vw bottom, right bottom;
 				}
 			}
 		}		

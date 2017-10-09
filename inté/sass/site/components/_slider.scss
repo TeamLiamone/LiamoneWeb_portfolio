@@ -3,6 +3,9 @@
 	margin-bottom: 2em;
 
 	.slider-img  {
+		@extend %pos-relative;
+		@include dimension(100%, 517px);
+		overflow: hidden;
 		max-width: 1140px;
 		margin: auto;
 	}
@@ -12,6 +15,12 @@
 		@extend %pos-absolute;
 		right: 0;
 		top: 75%;
+	}
+
+	.slider-block  {
+		@extend %pos-absolute;
+		top: 0;
+		left: 0;
 	}
 
 	.slider-arrows  {
