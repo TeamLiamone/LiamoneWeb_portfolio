@@ -223,10 +223,10 @@
                             <hr class="separator">
                         </div>
                     </div>
-                    <div class="right-block col-xxsm-12">
-                        <button class="btn bordered" type="button">Développer un projet ?</button>
-                        <button class="btn bordered" type="button">Suivre une formation ?</button>
-                        <button class="btn bordered" type="button">Nous contacter ?</button>
+                    <div class="right-block demand-type col-xxsm-12">
+                        <button class="btn bordered" data-type="project" type="button">Développer un projet ?</button>
+                        <button class="btn bordered" data-type="training" type="button">Suivre une formation ?</button>
+                        <button class="btn bordered" data-type="contact" type="button">Nous contacter ?</button>
                     </div>
                 </div>
             </div>
@@ -238,7 +238,7 @@
                     <!--Name (first or last)-->
                     <div class="form-group">
                         <label for="input-name" aria-label="Votre nom">
-                            <span class="label-text">Bonjour,<br></span>je m'appelle<span class="required">*</span>
+                            <span class="label-text">Bonjour,<br><br></span>Je m'appelle<span class="required">*</span>
                         </label>
                         <input id="input-name" class="form-field" type="text" name="user-name" aria-requied="true" placeholder="votre nom" required>
                         <span class="error-msg">Erreur !</span>
@@ -246,7 +246,7 @@
                     <!--./Name (first or last)-->
 
                     <!--Project type-->
-                    <div class="form-group">
+                    <div id="is-project" class="form-group">
                         <label for="input-project" aria-label="Type de projet">j'ai un projet de<span class="required">*</span></label>
                         <input id="input-project" class="form-field" type="text" name="project-type" aria-required="true" required>
                         <span class="error-msg">Erreur !</span>
@@ -254,7 +254,7 @@
                     <!--./Project type-->
 
                     <!--Formation-->
-                    <div class="form-group">
+                    <div id="is-training" class="form-group">
                         <label for="input-formation" aria-label="Formation">j'aimerai suivre la formation<span class="required">*</span></label>
                         <select id="input-formation" class="form-field" name="formation-type" aria-required="true" required>
                             <option>Initiation HTML et CSS</option>
@@ -273,7 +273,7 @@
                     <!--./Formation-->
 
                     <!--Object-->
-                    <div class="form-group">
+                    <div id="is-contact" class="form-group">
                         <label for="input-object" aria-label="Objet">je vous contact pour<span class="required">*</span></label>
                         <textarea id="input-object" class="form-field" name="mail-object" aria-required="true" required></textarea>
                         <span class="error-msg">Erreur !</span>
@@ -281,7 +281,7 @@
                     <!--./Object-->
 
                     <!--Company-->
-                    <div class="form-group">
+                    <div id="is-company" class="form-group">
                         <label for="input-company" aria-label="Le nom de votre société">pour la société</label>
                         <input id="input-company" class="form-field" type="text" name="Votre société" placeholder="Votre société">
                         <span class="error-msg">Erreur !</span>
@@ -290,7 +290,7 @@
 
                     <!--Email-->
                     <div class="form-group">
-                        <label for="'input-email" aria-label="Email">Voici mon email<span class="required">*</span></label>
+                        <label for="'input-email" aria-label="Email">Vous pouvez me contacter par mail à l'adresse :<span class="required">*</span></label>
                         <input id="input-email" class="form-field" type="email" name="user-email" aria-required="true" placeholder="votre email" required>
                         <span class="error-msg">Erreur !</span>
                     </div>
@@ -298,8 +298,8 @@
 
                     <!--Phone-->
                     <div class="form-group">
-                        <label for="input-phone" aria-label="Téléphone">&amp; mon téléphone</label>
-                        <input id="input-phone" class="form-field" type="tel" name="user-phone" placeholder="xx xx xx xx xx">
+                        <label for="input-phone" aria-label="Téléphone">ou par téléphone :</label>
+                        <input id="input-phone" class="form-field" type="tel" name="user-phone" placeholder="0102030405" maxlength="10"><span>.</span>
                     </div>
                     <!--./Phone-->
 
@@ -388,6 +388,13 @@
 
     <!--Jquery CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!--ScrollMagic CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
+
+    <!--TweenMax CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 
     <!--Liamone script-->
     <script src="js/script.js"></script>

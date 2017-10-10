@@ -41,6 +41,9 @@
     <!--Fav-->
     <link rel="icon" type="image/png" href="/img/.png" />
 
+    <!--Swiper slider-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">    
+
     <!--Liamone CSS -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -225,29 +228,39 @@
                         </div>
                     </div>
                     <div class="right-block col-xxsm-12">
-                        <div class="block-content content-slider clearfix">
-                            <div class="slider-img">
-                                <div class="slider-block slide-activ">
+                        <div class="block-content content-slider swiper-container clearfix">
+                            <div class="swiper-wrapper">
+                                <div class="slider-block swiper-slide">
                                     <img src="http://via.placeholder.com/1170x545" alt="" width="1170" height="545">
                                 </div>
-                                <div class="slider-block">
+                                <div class="slider-block swiper-slide">
                                     <img src="http://via.placeholder.com/1170x545" width="1170" height="545">
                                 </div>
-                                <div class="slider-block">
+                                <div class="slider-block swiper-slide">
                                     <img src="http://via.placeholder.com/1170x545" width="1170" height="545">
                                 </div>
-                                <div class="slider-block">
+                                <div class="slider-block swiper-slide">
                                     <img src="http://via.placeholder.com/1170x545" width="1170" height="545">
                                 </div>
                             </div>
-                            <div class="slider-nav yellow-bg">
-                                <div class="slider-count">
-                                    <p><span class="count-passed">02</span>/<span class="count-total">03</span></p>
-                                </div>
-                                <div class="slider-arrows">
-                                    <a class="slider-nav nav-prev" href="" title="Slide précédent"><i class="icon-left-1"></i><span class="sr-only">Précédent</span></a>
-                                    <a class="slider-nav nav-next" href="" title="Slide suivant"><i class="icon-right-1"></i><span class="sr-only">Suivant</span></a>
-                                </div>
+                        </div>
+                        <div class="slider-nav yellow-bg">
+                            <div class="slider-count">
+                                <p class="swiper-pagination">
+                                    <span class="swiper-pagination-current count-passed">1</span>
+                                    /
+                                    <span class="swiper-pagination-total count-total">3</span>
+                                </p>
+                            </div>
+                            <div class="slider-arrows">
+                                <button class="slider-btn nav-prev" type=button title="Slide précédent">
+                                    <i class="icon-left-1"></i>
+                                    <span class="sr-only">Précédent</span>
+                                </button>
+                                <button class="slider-btn nav-next" type="button" title="Slide suivant">
+                                    <i class="icon-right-1"></i>
+                                    <span class="sr-only">Suivant</span>
+                                </button>
                             </div>
                         </div>
                         <div class="block-content clearfix">
@@ -610,6 +623,9 @@
 
     <!--TweenMax CDN-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+
+    <!--Swiper slider-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>    
 
     <!--Liamone script-->
     <script src="js/script.js"></script>

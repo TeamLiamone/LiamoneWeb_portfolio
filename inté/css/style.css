@@ -204,12 +204,12 @@ aside {
   clear: both;
 }
 
-.block-card .card-caption, .actu-card figcaption, .content-slider, .content-slider .slider-img, .menu-header, .menu-toggle, header .nav-item .item-link, .nav-item .item-link, .hero-project, .cta-scroll > i, .block-title h2, .block-content, .block-formation .content-titles a, .projects .projects-wrap, .projects-list .project-item,
+.block-card .card-caption, .actu-card figcaption, .slider-nav, .slider-nav .slider-count, .menu-header, .menu-toggle, header .nav-item .item-link, .nav-item .item-link, .hero-project, .cta-scroll > i, .block-title h2, .block-content, .block-formation .content-titles a, .projects .projects-wrap, .projects-list .project-item,
 .project-focus .project-item {
   position: relative;
 }
 
-.sr-only, .block-card .card-caption:after, .content-slider .slider-nav, .content-slider .slider-block, .content-slider .slider-arrows a:first-of-type, .content-slider .slider-arrows a:last-of-type, .content-slider .slider-count p, .menu-top, .nav-item .item-link:before, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form, .block-formation .content-titles a:before, .projects-list .project-link,
+.sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item .item-link:before, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form, .block-formation .content-titles a:before, .projects-list .project-link,
 .project-focus .project-link, .project-cover, .project-cover .mask, .project-cover .mask > .project-img, .project-nav .btn-ico {
   position: absolute;
 }
@@ -226,7 +226,7 @@ p:not(.big-number) {
   font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .content-slider .slider-count .count-passed, .menu-home a:not(.menu-brand), .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p, .services .hero-img a, .services section, .contact .find-us li, .training header select, .block-formation .item-title, .project-focus .project-link .project-url, .project-nav .project-name {
+h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .slider-nav .slider-count .swiper-pagination-current, .menu-home a:not(.menu-brand), .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p, .services .hero-img a, .services section, .contact .find-us li, .training header select, .block-formation .item-title, .project-focus .project-link .project-url, .project-nav .project-name {
   font-weight: 700 !important;
 }
 
@@ -1123,6 +1123,11 @@ Components
   color: #ffc900;
 }
 
+.slider-btn {
+  background: none;
+  border: none;
+}
+
 /*End Buttons*/
 /*Card*/
 .block-card {
@@ -1230,51 +1235,43 @@ Components
   margin-bottom: 2em;
 }
 
-.content-slider .slider-img {
-  width: 100%;
-  height: 517px;
-  overflow: hidden;
-  max-width: 1140px;
-  margin: auto;
-}
-
-.content-slider .slider-nav {
+.slider-nav {
   width: 140px;
   height: 64px;
-  right: 0;
-  top: 75%;
+  left: 55%;
+  top: -5em;
+  z-index: 2;
 }
 
-.content-slider .slider-block {
-  top: 0;
-  left: 0;
-}
-
-.content-slider .slider-arrows a {
+.slider-nav .slider-arrows button {
   top: 40%;
 }
 
-.content-slider .slider-arrows a:first-of-type {
+.slider-nav .slider-arrows button:first-of-type {
   margin-left: 1em;
   left: 0;
 }
 
-.content-slider .slider-arrows a:last-of-type {
+.slider-nav .slider-arrows button:last-of-type {
   margin-right: 1em;
   right: 0;
 }
 
-.content-slider .slider-arrows a i {
+.slider-nav .slider-arrows button i {
   font-size: 125%;
 }
 
-.content-slider .slider-count p {
+.slider-nav .slider-count {
+  top: 35%;
+}
+
+.slider-nav .slider-count p {
   top: 36%;
-  left: 37%;
+  left: 0;
   font-size: 0.875rem;
 }
 
-.content-slider .slider-count .count-total {
+.slider-nav .slider-count .swiper-pagination-total {
   color: #999999;
 }
 
@@ -1994,7 +1991,8 @@ Pages
 
 .contact .contact-form {
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
   z-index: 5;
   top: 15vh;
   left: 0;
@@ -2004,6 +2002,10 @@ Pages
 
 .contact .contact-form .btn {
   margin-top: 2em;
+}
+
+.contact .contact-form .form-group:last-of-type {
+  margin-top: 8em;
 }
 
 .training header .btn {
@@ -2019,6 +2021,10 @@ Pages
 .training .filter-btn,
 .training .block-logo {
   display: none;
+}
+
+.block-formation .container, .block-formation .project-focus .project-link, .project-focus .block-formation .project-link {
+  overflow: hidden;
 }
 
 .block-formation .row {
@@ -2620,6 +2626,11 @@ Media-queries
     float: left;
   }
   /*End Home*/
+  /*Service slider*/
+  .content-slider .slider-img {
+    height: 280px;
+  }
+  /*End Service slider*/
 }
 
 @media screen and (min-width: 768px) {
@@ -3024,9 +3035,8 @@ Media-queries
     width: auto;
   }
   /*Content slider*/
-  .content-slider .slider-nav {
-    top: 88%;
-    right: -2%;
+  .slider-nav {
+    left: 82%;
   }
   /*End Content slider*/
   /*Training*/
@@ -3481,19 +3491,20 @@ Media-queries
   }
   /*End Services*/
   /*Slider*/
-  .content-slider .slider-nav {
+  .slider-nav {
     height: 140px;
-    top: 85%;
+    top: -7em;
+    left: 87%;
   }
-  .content-slider .slider-arrows {
+  .slider-nav .slider-arrows {
     position: relative;
     top: 60%;
   }
-  .content-slider .slider-arrows a:first-of-type {
-    left: 2em;
+  .slider-nav .slider-arrows button:first-of-type {
+    left: 1em;
   }
-  .content-slider .slider-arrows a:last-of-type {
-    right: 2em;
+  .slider-nav .slider-arrows button:last-of-type {
+    right: 1em;
   }
   /*End Slider*/
   /*Contact*/
@@ -3878,6 +3889,11 @@ Media-queries
     margin: 1em;
   }
   /*End Training*/
+  /*Slider*/
+  .slider-nav {
+    left: 90%;
+  }
+  /*End Slider*/
   /*Projects*/
   .projects-list .project-item {
     min-height: 520px;

@@ -1,31 +1,18 @@
 .content-slider  {
-	@extend %pos-relative;
 	margin-bottom: 2em;
 
-	.slider-img  {
-		@extend %pos-relative;
-		@include dimension(100%, 517px);
-		overflow: hidden;
-		max-width: 1140px;
-		margin: auto;
-	}
+}
 
-	.slider-nav  {
-		@include dimension(140px, 64px);
-		@extend %pos-absolute;
-		right: 0;
-		top: 75%;
-	}
-
-	.slider-block  {
-		@extend %pos-absolute;
-		top: 0;
-		left: 0;
-	}
+.slider-nav  {
+	@include dimension(140px, 64px);
+	@extend %pos-relative;
+	left: 55%;
+	top: -5em;
+	z-index: 2;
 
 	.slider-arrows  {
 
-		a  {
+		button  {
 			top: 40%;
 
 			&:first-of-type  {
@@ -47,19 +34,21 @@
 	}
 
 	.slider-count  {
+		@extend %pos-relative;
+		top: 35%;
 
 		p  {
 			@extend %pos-absolute;
 			top: 36%;
-			left: 37%;
+			left: 0;
 			font-size: $font-14
 		}
 
-		.count-passed  {
+		.swiper-pagination-current  {
 			@extend %font-bold;
 		}
 
-		.count-total  {
+		.swiper-pagination-total  {
 			color: $greySlider-color;
 		}
 	}

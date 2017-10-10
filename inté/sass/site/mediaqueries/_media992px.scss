@@ -138,24 +138,22 @@
 	/*End Services*/
 
 	/*Slider*/
-	.content-slider  {
-
-		.slider-nav  {
-			height: 140px;
-			top: 85%;
-		}
+	.slider-nav  {
+		height: 140px;
+		top: -7em;
+		left: 87%;
 
 		.slider-arrows  {
 			position: relative;
 			top: 60%;
 
-			a  {
+			button  {
 
 				&:first-of-type  {
-					left: 2em;
+					left: 1em;
 				}
 				&:last-of-type  {
-					right: 2em;
+					right: 1em;
 				}
 			}
 		}

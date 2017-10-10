@@ -33,8 +33,9 @@
 	}
 
 	.contact-form  {
-		@include dimension(100%, 100%);
+		@include dimension(100%, auto);
 		@extend %pos-absolute;
+		min-height: 100vh;
 		z-index: 5;
 		top: 15vh;
 		left: 0;
@@ -43,6 +44,10 @@
 
 		.btn  {
 			margin-top: 2em;
+		}
+
+		.form-group:last-of-type  {
+			margin-top: 8em;
 		}
 	}
 }
