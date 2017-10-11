@@ -15,7 +15,7 @@
  * @version 1.0
  */
 
-get_header(); ?>
+get_header(home); ?>
 
     <!--Liamone page container-->
     <main class="home page-container fluid-container">

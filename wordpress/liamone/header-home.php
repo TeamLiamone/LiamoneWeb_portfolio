@@ -59,11 +59,11 @@
 <body <?php body_class(); ?>>
 
     <!--Liamone menu-->
-	<header class="menu-top fluid-container">
+	<header class="menu-top menu-home fluid-container">
         <div class="container">
             <div class="row">
 
-				<?php get_template_part( 'template-parts/header/header', 'image-home' ); ?>
+				<?php get_template_part( 'template-parts/header/header', 'image' ); ?>
 
 				<?php if ( has_nav_menu( 'top' ) ) : ?>
 					<?php get_template_part( 'template-parts/navigation/navigation', 'top' ); ?>

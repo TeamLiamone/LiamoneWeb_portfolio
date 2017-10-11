@@ -55,18 +55,18 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="block-filter filter-btn col-xxsm-12">
-                        <button class="btn bordered" type="button">Développement <i class="icon-right"></i></button>
-                        <button class="btn bordered" type="button">Graphisme <i class="icon-right"></i></button>
-                        <button class="btn bordered" type="button">E-marketing <i class="icon-right"></i></button>
-                        <button class="btn bordered" type="button">Solutions open source <i class="icon-right"></i></button>
+                        <button class="btn bordered filter-cta" type="button" data-filter="dev">Développement <i class="icon-right"></i></button>
+                        <button class="btn bordered filter-cta" type="button" data-filter="graphisme">Graphisme <i class="icon-right"></i></button>
+                        <button class="btn bordered filter-cta" type="button" data-filter="eMarketing">E-marketing <i class="icon-right"></i></button>
+                        <button class="btn bordered filter-cta" type="button" data-filter="openSource">Solutions open source <i class="icon-right"></i></button>
                     </div>
 
                     <div class="block-filter filter-select col-xxsm-12">
-                        <select id="" class="form-field" name="sort-training" aria-required="false">
+                        <select id="" class="form-field filter-field" name="sort-training" aria-required="false">
                             <option disabled="true" selected="true">Trier par</option>
                             <option value="dev">Développement</option>
-                            <option value="graph">Graphisme</option>
-                            <option value="emark">E-marketing</option>
+                            <option value="graphisme">Graphisme</option>
+                            <option value="eMarketing">E-marketing</option>
                             <option value="openSource">Solutions open source</option>
                         </select>
                     </div>
