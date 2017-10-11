@@ -156,7 +156,14 @@ $(document).ready(function() {
 	'use strict';
 
 	var demandType;
+
+
+	controller.scrollTo( function(newpos){
+
+		TweenMax.to(window, 1, {scrollTo: {y: newpos}, ease: Power4.easeInOut } );
 	
+	});
+
 	//Burger Btn
 	$('.menu-toggle').on('click', function(e) {
 
@@ -189,7 +196,18 @@ $(document).ready(function() {
 	}
 
 	//Show-Hide Training tabs
-	if( $('main').hasClass('training') ) {
+	if( $('main').hasClass('home') ) {
+
+		$('.cta-scroll').on('click', function(e) {
+
+			e.preventDefault();
+
+			controller.scrollTo('.liamone');
+		});
+
+	}
+	//Training page tabs & filter
+	else if( $('main').hasClass('training') ) {
 
 		//Tabs toggle for each div
 		var blockFormation  = $ ('.block-formation .row');
@@ -253,6 +271,7 @@ $(document).ready(function() {
 		});
 
 	}
+	//Services slider with swiper.js
 	else if( $('main').hasClass('services') ) {
 
 		var swiper = new Swiper ('.swiper-container', {
@@ -268,7 +287,31 @@ $(document).ready(function() {
 		});
 
 	}
+	//Contact form reveal & input hide/show
 	else if( $('main').hasClass('contact') ) {
+
+		function demandIsType(type) {
+
+			if( type === 'project' ) {
+
+				$('#is-project, #is-company').fadeIn(500);
+				$('#is-training, #is-contact').hide();
+
+			}
+			else if( type === 'training' ) {
+
+				$('#is-training').fadeIn(500);
+				$('#is-project, #is-contact, #is-company').hide();
+
+			}
+			else if( type === 'contact' ) {
+
+				$('#is-contact').fadeIn(500);
+				$('#is-project, #is-training, #is-company').hide();
+
+			}
+
+		};
 
 		$('.demand-type > .btn').on('click', function(e) {
 
@@ -276,31 +319,37 @@ $(document).ready(function() {
 
 			demandType = $(this).data('type');
 
-			console.log(demandType);
-			$('#form-contactUs').fadeIn(250);
+			var formOpenTl = new TimelineMax();
 
-			if( demandType === 'project' ) {
+			CustomEase.create('cubicAnim', '1, 0, 0.5, 1');
 
-				$('#is-project, #is-company').show();
-				$('#is-training, #is-contact').hide();
+			demandIsType(demandType);
 
+			if( !$('#form-contactUs').hasClass('form-open') ) {
+
+				formOpenTl
+					.set( $('.reveal-form'), {transformOrigin: '0 50%', scaleX: '0'} )
+					.set( $('#form-contactUs'), {className: '+=form-open', autoAlpha: 1} )
+					.to( $('.reveal-form'), 0.5, {scaleX: '1', ease: 'cubicAnim'} )
+					.set( $('.reveal-form'), {transformOrigin: '100% 50%'} )
+					.to( $('.reveal-form'), 0.5, {scaleX: '0', delay: 0.2, ease: Power3.easeOut} )
+					.fromTo( $('#form-contactUs .form-group'), 0.3, {autoAlpha: 0}, {autoAlpha: 1, ease: Linear.easeNone}, '-=0.25' );
 			}
-			else if( demandType === 'training' ) {
 
-				$('#is-training').show();
-				$('#is-project, #is-contact, #is-company').hide();
+			controller.scrollTo('.demand-type');
 
-			}
-			else if( demandType === 'contact' ) {
+		});
 
-				$('#is-contact').show();
-				$('#is-project, #is-training, #is-company').hide();
+		$('#close-contactUs').on('click', function(e) {
 
-			}
+			e.preventDefault();
+
+			TweenMax.to( $('#form-contactUs'), 0.5, {autoAlpha: 0, className: '-=form-open'} );
+
+			controller.scrollTo('header.menu-top');
 
 		});
 
 	}
 
 });
-

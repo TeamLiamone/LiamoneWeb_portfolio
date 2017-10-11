@@ -204,12 +204,12 @@ aside {
   clear: both;
 }
 
-.block-card .card-caption, .actu-card figcaption, .slider-nav, .slider-nav .slider-count, .menu-header, .menu-toggle, header .nav-item .item-link, .nav-item .item-link, .hero-project, .cta-scroll > i, .block-title h2, .block-content, .block-formation .content-titles a, .projects .projects-wrap, .projects-list .project-item,
+.block-card .card-caption, .actu-card figcaption, .slider-nav, .slider-nav .slider-count, .menu-header, .menu-toggle, header .nav-item .item-link, .nav-item .item-link, .hero-project, .cta-scroll > i, .block-title h2, .block-content, .contact .contact-form, .block-formation .content-titles a, .projects .projects-wrap, .projects-list .project-item,
 .project-focus .project-item {
   position: relative;
 }
 
-.sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item .item-link:before, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form, .block-formation .content-titles a:before, .projects-list .project-link,
+.sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item .item-link:before, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form .reveal-form, .contact .contact-form .close-form, .block-formation .content-titles a:before, .projects-list .project-link,
 .project-focus .project-link, .project-cover, .project-cover .mask, .project-cover .mask > .project-img, .project-nav .btn-ico {
   position: absolute;
 }
@@ -1992,12 +1992,15 @@ Pages
 .contact .contact-form {
   width: 100%;
   height: auto;
+  padding-top: 5em;
   min-height: 100vh;
   z-index: 5;
-  top: 15vh;
-  left: 0;
   background: white;
   display: none;
+}
+
+.contact .contact-form.form-open {
+  display: block;
 }
 
 .contact .contact-form .btn {
@@ -2006,6 +2009,22 @@ Pages
 
 .contact .contact-form .form-group:last-of-type {
   margin-top: 8em;
+}
+
+.contact .contact-form .reveal-form {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #dc9227;
+}
+
+.contact .contact-form .close-form {
+  font-size: 1.5rem;
+  right: 2em;
+  top: 4em;
+  background: none;
+  border: none;
 }
 
 .training header .btn {

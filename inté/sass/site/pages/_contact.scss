@@ -34,13 +34,16 @@
 
 	.contact-form  {
 		@include dimension(100%, auto);
-		@extend %pos-absolute;
+		@extend %pos-relative;
+		padding-top: 5em;
 		min-height: 100vh;
 		z-index: 5;
-		top: 15vh;
-		left: 0;
 		background: $white-color;
 		display: none;
+
+		&.form-open  {
+			display: block;
+		}
 
 		.btn  {
 			margin-top: 2em;
@@ -48,6 +51,23 @@
 
 		.form-group:last-of-type  {
 			margin-top: 8em;
+		}
+
+		.reveal-form  {
+			@include dimension(100%, 100%);
+			@extend %pos-absolute;
+			top: 0;
+			left: 0;
+			background-color: $yellowHr-color;
+		}
+
+		.close-form  {
+			@extend %pos-absolute;
+			font-size: $font-24;
+			right: 2em;
+			top: 4em;
+			background: none;
+			border: none;
 		}
 	}
 }

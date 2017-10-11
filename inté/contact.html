@@ -233,8 +233,11 @@
         </header>
 
         <form id="form-contactUs" class="contact-form natural-language" method="post">
+            <div class="block-reveal reveal-form"></div>
             <div class="container">
                 <div class="padded-block row">
+                    <button id="close-contactUs" class="close-form" type="button">&#x2716</button>
+
                     <!--Name (first or last)-->
                     <div class="form-group">
                         <label for="input-name" aria-label="Votre nom">
@@ -395,6 +398,8 @@
 
     <!--TweenMax CDN-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/ScrollToPlugin.min.js"></script>
+    <script src="js/plugins/CustomEase.min.js"></script>
 
     <!--Liamone script-->
     <script src="js/script.js"></script>
