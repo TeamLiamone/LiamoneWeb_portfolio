@@ -53,7 +53,7 @@
 
     <!--Swiper slider-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">    
-<?php wp_head(); ?>
+<?php wp_head(); ?>o
 </head>
 
 <body <?php body_class(); ?>>
@@ -68,7 +68,9 @@
 				<?php if ( has_nav_menu( 'top' ) ) : ?>
 					<?php get_template_part( 'template-parts/navigation/navigation', 'top' ); ?>
 				<?php endif; ?>
-
+                
+            </div>
+        </div>
 	</header>
     <!--./Liamone menu-->
 

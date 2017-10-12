@@ -1460,6 +1460,7 @@ header .nav-item.activ-page > a:before {
 }
 
 .nav-item > a:before {
+  display: none;
   width: 100%;
   height: 6px;
   top: 41%;
@@ -1703,7 +1704,44 @@ Pages
 }
 
 .parallax-geometry {
-  display: none;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  z-index: -1;
+}
+
+.parallax-geometry > .shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.parallax-geometry > .shape.losange  {
+  top: 90%;
+  left: 27%;
+}
+.parallax-geometry > .shape.triangle  {
+  top: 15%;
+  left: 55%;
+}
+.parallax-geometry > .shape.hexagon  {
+  top: 72%;
+  left: 82%;
+}
+.parallax-geometry > .shape.plus  {
+  top: 37%;
+  left: 68%;
+}
+.parallax-geometry > .shape.distort  {
+  top: 99%;
+  left: 12%;
+}
+.parallax-geometry > .shape.wave  {
+  top: 45%;
+  left: 17%;
 }
 
 .liamone .block-title h2 {
@@ -3802,6 +3840,9 @@ Media-queries
     opacity: 1;
     -webkit-transform: translateY(0);
             transform: translateY(0);
+  }
+  .menu-container .nav-item > a:before {
+    display: block;
   }
   .nav-item > a:hover:before {
     -webkit-transform: translateX(0);

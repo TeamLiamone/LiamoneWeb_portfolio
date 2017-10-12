@@ -27,4 +27,5 @@
 		'container'		 => 'false'
 	) ); ?>
 
-</nav><!-- #site-navigation -->
+</nav>
+<!-- #site-navigation -->
