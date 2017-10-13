@@ -9,11 +9,6 @@ get_header(); ?>
     <!--Liamone page container-->
     <main class="jobs page-container fluid-container">
 
-        <!--Geo layer-->
-        <div id="geo-layer" class="parallax-geometry">
-        </div>
-        <!--./Geo layer-->
-
         <header class="hero-grey">
             <div class="container">
                 <div class="padded-block row">

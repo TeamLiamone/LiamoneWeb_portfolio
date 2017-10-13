@@ -1,11 +1,9 @@
-
-
 /*Document*/
 jQuery(document).ready(function($) {
 
 	'use strict';
 
-	/*Timeline Max + Scroll magic*/
+	//Timeline Max + Scroll magic
 	var controller = new ScrollMagic.Controller({addIndicators: true}),
 		masterTl = new TimelineMax({paused: true});
 
@@ -160,7 +158,6 @@ jQuery(document).ready(function($) {
 	var demandType,
 		wH = $(window).height(),
 		wW = $(window).width();
-
 
 	controller.scrollTo( function(newpos){
 
@@ -362,38 +359,145 @@ jQuery(document).ready(function($) {
 
 	//Geo-layers shapes floating
 	var lastScrollTop = 0;
+	
+	//Get a random value between min & max
+	function getRandomInt(min, max) {
 
-	var layerGeo = TweenMax.fromTo( $('#geo-layer'), 10, {y: '0'}, {y: '-=20%', ease: Power2.easeInOut, yoyo:true, repeat:-1} );
-	var scrolledGeo = TweenMax.to( $('#geo-layer'), 2, {y: '+=20%', ease: Power2.easeInOut} );
+		return Math.floor( Math.random() * (max - min) ) + min;
+	
+	}
 
-	scrolledGeo.pause();
-	layerGeo.play();
-
+	//Animate yPos of #geo-layer on scroll (+10/-10) and get back to initial yPos(0)
 	$(window).scroll(function(e) {
 
 		var currentSt = $(this).scrollTop();
 
+		var geoTl = new TimelineMax({yoyo:true});
+
 		if( currentSt > lastScrollTop ) {
 
-			layerGeo.pause();
-			scrolledGeo.play();
+			geoTl.staggerTo( $('#geo-layer'), 5, {y: '10%', ease: Power4.easeOut, onComplete: function(){
 
+					geoTl.staggerTo( $('#geo-layer'), 3, {y: '-=10%', ease: Power4.easeIn} );
+				
+				}
+
+			} );
+		
 		}
-		else {
+		else if( lastScrollTop > currentSt ) {
 
-			layerGeo.play();
-			scrolledGeo.pause();
+			geoTl.staggerTo( $('#geo-layer'), 5, {y: '-10%', ease: Power4.easeOut, onComplete: function() {
+
+					geoTl.staggerTo( $('#geo-layer'), 3, {y: '+=10%', ease: Power4.easeIn} );
+
+				}
+
+			} );
+
 		}
 
 		lastScrollTop = currentSt;
 
 	});
 
+	//Animate each geometry shape (random yPos value and duration value)
 	$('.geometry-layer > .shape').each(function() {
 
-		TweenMax.to( $(this), 10, {rotation:360, ease: Linear.easeNone, repeat:-1} );
-		TweenMax.fromTo( $(this), 6, {y: '0'}, {y: '+=100%', ease: Power3.easeInOut, yoyo:true, repeat:-1} );
+		var randomPos = getRandomInt(150, 250);
+		var randomTimer = getRandomInt(5, 10);
+
+		TweenMax.to( $(this), 10, {rotation: 360, ease: Linear.easeNone, repeat:-1} );
+		TweenMax.fromTo( $(this), 6, {y: '0'}, {y: '+='+randomPos+'%', ease: Sine.easeInOut, yoyo:true, repeat:-1} );
 
 	});
+
+
+	/*Ajax TEST*/
+	var currentItem = '',
+		scrollToTop
+		itemClone;
+
+	var tlProjects,
+		tlProject;
+
+	var init = {
+
+		/*HOME*/
+		home: function() {
+
+		},
+		/*PROJECTS*/
+		projects: function() {
+
+			$('.projects-list .project-item').on('click', '.link-toProject', function(e) {
+
+				e.preventDefault();
+				currentItem = $(this).parent().parent();
+				//itemClone = currentItem.clone();
+
+				var singleUrl = currentItem.find('.btn').attr('href');
+
+				console.log(currentItem);
+				console.log("Item cliquer :"+currentItem+ "url cible :"+singleUrl );
+
+				$('body').addClass('load-project');
+
+				$.ajax({
+					type: "GET",
+					url: singleUrl,
+					success: function(data) {
+
+						console.log('Projet chargé !');
+						var dataProject = $(data).find('.project-focus');
+
+						//console.log(dataProject);
+
+					},
+					error: function(data) {
+
+						console.log('Et merde...');
+						//console.log(data);
+					}
+
+
+				});
+
+			});
+
+		},
+		/*PROJECT*/
+		project: function() {
+
+		},
+		/*SERVICES*/
+		services: function() {
+
+		},
+		/*TRAINING*/
+		training: function() {
+
+		},
+		/*JOBS*/
+		jobs: function() {
+
+		},
+		/*TEAM*/
+		team: function() {
+
+		},
+		/*CONTACT*/
+		contact: function() {
+
+		},
+
+	};
+
+	init.projects();
+
+	/*BUILD*/
+	var build = function() {
+
+	};
 
 });

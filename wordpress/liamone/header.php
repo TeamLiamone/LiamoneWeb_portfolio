@@ -53,7 +53,8 @@
 
     <!--Swiper slider-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">    
-<?php wp_head(); ?>o
+    
+<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -73,6 +74,30 @@
         </div>
 	</header>
     <!--./Liamone menu-->
+
+    <!--Geo layer-->
+    <div id="geo-layer" class="geometry-layer parallax-geometry">
+        <svg version="1.1" id="geo-losange" class="shape losange" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 77 77" enable-background="new 0 0 77 77" xml:space="preserve" width="77" height="77">
+            <polygon fill="none" stroke="#FFC200" stroke-width="1.5102" stroke-miterlimit="10" points="75.9,38.5 38.5,76.1 1,38.5 38.5,0.9"/>
+        </svg>
+        <svg version="1.1" id="geo-triangle" class="shape triangle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 77 77" enable-background="new 0 0 77 77" xml:space="preserve" width="77" height="77">
+            <polygon fill="none" stroke="#FFC200" stroke-width="1.5102" stroke-miterlimit="10" points="75.4,76 1.9,76 38.5,1.8"/>
+        </svg> 
+        <svg version="1.1" id="geo-hexagon" class="shape hexagon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 77 77" enable-background="new 0 0 77 77" xml:space="preserve" width="77" height="77">
+            <polygon fill="none" stroke="#FFC200" stroke-width="2" stroke-miterlimit="10" points="6,19.9 38.5,1.4 71,19.9 71,57.1 38.5,75.6 6,57.1 "/>
+        </svg>            
+        <svg version="1.1" id="geo-plus" class="shape plus" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 77 77" enable-background="new 0 0 77 77" xml:space="preserve" width="77" height="77">
+            <polygon fill="#FFC200" points="77,35 42.5,35 42.5,0 34.5,0 34.5,35 0,35 0,43 34.5,43 34.5,77 42.5,77 42.5,43 77,43"/>
+        </svg> 
+        <svg version="1.1" id="geo-distort" class="shape distort" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 77 77" enable-background="new 0 0 77 77" xml:space="preserve" width="77" height="77">
+            <polygon fill="#FFC200" points="0,76.9 66.5,0 77,0 11.6,76.9"/>
+        </svg>  
+        <svg version="1.1" id="geo-wave" class="shape wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 77 77" enable-background="new 0 0 77 77" xml:space="preserve" width="77" height="77">
+            <path fill="#FFC200" enable-background="new" d="M55.5,45.4c-1.5,0-5.3-0.5-8.5-5.3l0,0c0-0.1,0-0.1,0-0.1c-0.7-1.1-2-2.3-2.9-2.3c-0.7,0-1.6,0.7-2.4,1.8l-0.2,0.4c-0.3,0.6-3.4,5.6-8.5,5.6c-1.5,0-5.3-0.5-8.5-5.3l0,0c0-0.1,0-0.1,0-0.1c-0.7-1.1-2-2.3-2.9-2.3c-0.9,0-2,1.1-2.8,2.2l0,0c-0.5,0.9-3.5,5.5-8.4,5.5c-1.5,0-5.2-0.5-8.4-5.3l-1.7-2.4l5.5-3.5L7,35.6C7.2,35.8,7.3,36,7.4,36c0.7,1.1,2,2.3,2.9,2.3c0.9,0,2-1.1,2.8-2.2c0-0.1,0-0.1,0.1-0.2c1-1.7,3.9-5.4,8.3-5.4c1.5,0,5.3,0.5,8.5,5.3l0,0c0,0,0,0.1,0,0.1c0.7,1.1,2,2.3,2.9,2.3c0.7,0,1.6-0.7,2.4-1.8l0.2-0.4c0.3-0.6,3.4-5.6,8.5-5.6c1.5,0,5.3,0.5,8.5,5.3l0,0c0,0.1,0,0.1,0,0.1c0.7,1.1,2,2.3,2.9,2.3c0.9,0,2-1.1,2.8-2.2l0,0c0.5-0.9,3.5-5.5,8.4-5.5c1.5,0,5.3,0.5,8.5,5.3l1.7,2.4l-5.5,3.5l-1.5-1.5c-0.1-0.2-0.3-0.4-0.3-0.4c-0.7-1.1-2-2.3-2.9-2.3c-0.9,0-2,1.1-2.8,2.2c0,0,0,0.1,0,0.1C63.2,41.2,60.2,45.4,55.5,45.4z"/>
+        </svg>        
+    </div>
+    <!--./Geo layer-->
 
 	<?php
 

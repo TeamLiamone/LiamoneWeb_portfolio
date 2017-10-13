@@ -8,10 +8,6 @@ get_header(); ?>
 
     <!--Liamone page container-->
     <main class="training page-container fluid-container">
-        <!--Geo layer-->
-        <div id="geo-layer" class="parallax-geometry">
-        </div>
-        <!--./Geo layer-->
 
         <header class="hero-grey">
             <div class="container">
