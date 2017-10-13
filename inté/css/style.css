@@ -209,12 +209,12 @@ aside {
   position: relative;
 }
 
-.sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item .item-link:before, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form .reveal-form, .contact .contact-form .close-form, .block-formation .content-titles a:before, .projects-list .project-link,
+.sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item .item-link:before, .cta-scroll, .big-number, .parallax-geometry > .shape, .skewed-bg, .contact .contact-form .reveal-form, .contact .contact-form .close-form, .block-formation .content-titles a:before, .projects-list .project-link,
 .project-focus .project-link, .project-cover, .project-cover .mask, .project-cover .mask > .project-img, .project-nav .btn-ico {
   position: absolute;
 }
 
-.menu-top.is-visible, .menu-container {
+.menu-top.is-visible, .menu-container, .parallax-geometry {
   position: fixed;
 }
 
@@ -1703,7 +1703,54 @@ Pages
 }
 
 .parallax-geometry {
-  display: none;
+  width: 100%;
+  height: 105%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.parallax-geometry > .shape {
+  top: 0;
+  left: 0;
+}
+
+.parallax-geometry > .shape.losange {
+  top: 15%;
+  left: 2%;
+  -webkit-transform: scale(1.5, 1.5);
+          transform: scale(1.5, 1.5);
+}
+
+.parallax-geometry > .shape.triangle {
+  top: 5%;
+  left: 60%;
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+}
+
+.parallax-geometry > .shape.hexagon {
+  top: 88%;
+  left: 25%;
+}
+
+.parallax-geometry > .shape.plus {
+  top: 25%;
+  left: 90%;
+}
+
+.parallax-geometry > .shape.distort {
+  top: 50%;
+  left: 15%;
+  -webkit-transform: scale(0.8, 0.8);
+          transform: scale(0.8, 0.8);
+}
+
+.parallax-geometry > .shape.wave {
+  top: 80%;
+  left: 70%;
+  -webkit-transform: scale(0.6, 0.6);
+          transform: scale(0.6, 0.6);
 }
 
 .liamone .block-title h2 {
@@ -2646,8 +2693,8 @@ Media-queries
   }
   /*End Home*/
   /*Service slider*/
-  .content-slider .slider-img {
-    height: 280px;
+  .slider-nav {
+    left: 78%;
   }
   /*End Service slider*/
 }
@@ -3000,7 +3047,6 @@ Media-queries
   }
   /*End Job detail*/
   /*Services*/
-  /*End Services*/
   .services .hero-img .block-content .left-block {
     width: 65%;
   }
@@ -3046,6 +3092,7 @@ Media-queries
     display: inline-block;
     float: left;
   }
+  /*End Services*/
   .branding img {
     left: -50%;
   }
@@ -3924,7 +3971,7 @@ Media-queries
     margin-top: 3.5em;
   }
   .project-cover .mask > .project-img {
-    width: 1140px;
+    width: 1108px;
   }
   .project-focus .project-cover .mask > .project-img {
     background-position: 50vw bottom, right bottom;

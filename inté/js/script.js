@@ -1,162 +1,163 @@
+/*Document*/
+jQuery(document).ready(function($) {
 
-/*Timeline Max + Scroll magic*/
-var controller = new ScrollMagic.Controller({addIndicators: true}),
-	masterTl = new TimelineMax({paused: true});
+	'use strict';
 
-
-//Functions utilities
-var animation = {
-
-	animateElements: function(el) {
-
-		el.each(function() {
-
-			var div = $(this),
-				anim = div.attr('data-anim'),
-				delay = div.attr('data-delay'),
-				trigger = div.attr('data-trigger'),
-				aDelay,
-				aTrigger;
-
-			aDelay = delay ? delay : 1;
-			aTrigger = trigger ? trigger : div;
+	/*Timeline Max + Scroll magic*/
+	var controller = new ScrollMagic.Controller({addIndicators: true}),
+		masterTl = new TimelineMax({paused: true});
 
 
-			div.css({
-			    '-webkit-animation-delay':  aDelay + 's',
-			    '-moz-animation-delay':     aDelay + 's',
-			    'animation-delay':          aDelay + 's'
-			});
+	//Functions utilities
+	var animation = {
 
-			div.addClass('animated');
+		animateElements: function(el) {
 
-			var animScene = new ScrollMagic.Scene({
+			el.each(function() {
 
-				triggerElement: aTrigger,
-				offset: -100,
-				triggerHook: 0,
-				reverse: false,
-				duration: '100%'
+				var div = $(this),
+					anim = div.attr('data-anim'),
+					delay = div.attr('data-delay'),
+					trigger = div.attr('data-trigger'),
+					aDelay,
+					aTrigger;
 
-			})
-			.setTween( TweenMax.fromTo( this, 1, {autoAlpha: 0}, {autoAlpha: 1, ease: Power1.EaseInOut}))
-			.setClassToggle(this, anim)
-			.addTo(controller);
-
-		});
-
-	}
-};
-
-var toggleTab = {
-
-	getTab: function(content, target) {
-
-		content.each( function() {
-
-			if( $(this).attr('id') === target ) {
-
-				$(this).addClass('content-activ');
-				TweenMax.to( $(this), 0.5, {autoAlpha: 1, ease: Power1.easeInOut});
-			
-			}
-			else {
-
-				TweenMax.to( $(this), 0.5, {autoAlpha: 0, ease: Power1.easeInOut});
-				$(this).removeClass('content-activ');
-
-			}
-
-		});
-
-	},
-	clickTab: function(content, el) {
-
-		var ref = el.attr('data-tab');
-
-		toggleTab.getTab(content, ref);
-
-	},
-	closeTab: function(content, el) {
-
-		el.removeClass('item-activ');
-		TweenMax.to( content, 0.5, {autoAlpha: 0, ease: Power1.easeInOut} );
-		content.removeClass('content-activ');
-
-	}
-
-};
-
-var filterAndSort = {
-
-	callFilter: function(element, event) {
-
-		element.on(event, function(e) {
-
-			e.preventDefault();
-
-			filterVal = $(this).data('filter') || $(this).val();
-			filterAndSort.filter(filterVal);
-
-		});
-		
-	},
-	filter: function(value) {
-
-		var listToFilter = $('.block-formation .row'),
-			itemToShow = $('.block-formation').find('div[data-category*='+value+']');
-
-		var hideItemTl = new TimelineMax({paused: true}),
-			showItemTl = new TimelineMax({paused: true});
-
-		hideItemTl
-			.set(listToFilter, {x: '0', autoAlpha: 1} )
-			.to(listToFilter, 0.5, {x: '+=10%', autoAlpha: 0, ease: Power3.easeOut, onComplete: function() {
-
-					listToFilter.css('display', 'none');
-					showItemTl.play();
-
-				}
-
-			});
-
-		hideItemTl.play().timeScale(1);
-
-		showItemTl
-			.set(itemToShow, {x: '-10%', autoAlpha: 0})
-			.to(itemToShow, 0.5, {x: '+=10%', autoAlpha: 1, ease: Power3.easeIn, onComplete: function() {
-
-					itemToShow.css('display', 'block');
-
-				}
-
-			})
-			.set(itemToShow, {x: '0', autoAlpha: 1});
+				aDelay = delay ? delay : 1;
+				aTrigger = trigger ? trigger : div;
 
 
-		if( value === '' ) {
+				div.css({
+				    '-webkit-animation-delay':  aDelay + 's',
+				    '-moz-animation-delay':     aDelay + 's',
+				    'animation-delay':          aDelay + 's'
+				});
 
-			TweenMax.set(listToFilter, {x: '0', autoAlpha: 1, onComplete: function() {
+				div.addClass('animated');
 
-					listToFilter.css('display', 'block');
+				var animScene = new ScrollMagic.Scene({
 
-				}
+					triggerElement: aTrigger,
+					offset: -100,
+					triggerHook: 0,
+					reverse: false,
+					duration: '100%'
+
+				})
+				.setTween( TweenMax.fromTo( this, 1, {autoAlpha: 0}, {autoAlpha: 1, ease: Power1.EaseInOut}))
+				.setClassToggle(this, anim)
+				.addTo(controller);
 
 			});
 
 		}
+	};
 
-	}
+	var toggleTab = {
 
-};
+		getTab: function(content, target) {
 
-/*Document*/
-$(document).ready(function() {
+			content.each( function() {
 
-	'use strict';
+				if( $(this).attr('id') === target ) {
 
-	var demandType;
+					$(this).addClass('content-activ');
+					TweenMax.to( $(this), 0.5, {autoAlpha: 1, ease: Power1.easeInOut});
+				
+				}
+				else {
 
+					TweenMax.to( $(this), 0.5, {autoAlpha: 0, ease: Power1.easeInOut});
+					$(this).removeClass('content-activ');
+
+				}
+
+			});
+
+		},
+		clickTab: function(content, el) {
+
+			var ref = el.attr('data-tab');
+
+			toggleTab.getTab(content, ref);
+
+		},
+		closeTab: function(content, el) {
+
+			el.removeClass('item-activ');
+			TweenMax.to( content, 0.5, {autoAlpha: 0, ease: Power1.easeInOut} );
+			content.removeClass('content-activ');
+
+		}
+
+	};
+
+	var filterAndSort = {
+
+		callFilter: function(element, event) {
+
+			element.on(event, function(e) {
+
+				e.preventDefault();
+
+				filterVal = $(this).data('filter') || $(this).val();
+				filterAndSort.filter(filterVal);
+
+			});
+			
+		},
+		filter: function(value) {
+
+			var listToFilter = $('.block-formation .row'),
+				itemToShow = $('.block-formation').find('div[data-category*='+value+']');
+
+			var hideItemTl = new TimelineMax({paused: true}),
+				showItemTl = new TimelineMax({paused: true});
+
+			hideItemTl
+				.set(listToFilter, {x: '0', autoAlpha: 1} )
+				.to(listToFilter, 0.5, {x: '+=10%', autoAlpha: 0, ease: Power3.easeOut, onComplete: function() {
+
+						listToFilter.css('display', 'none');
+						showItemTl.play();
+
+					}
+
+				});
+
+			hideItemTl.play().timeScale(1);
+
+			showItemTl
+				.set(itemToShow, {x: '-10%', autoAlpha: 0})
+				.to(itemToShow, 0.5, {x: '+=10%', autoAlpha: 1, ease: Power3.easeIn, onComplete: function() {
+
+						itemToShow.css('display', 'block');
+
+					}
+
+				})
+				.set(itemToShow, {x: '0', autoAlpha: 1});
+
+
+			if( value === '' ) {
+
+				TweenMax.set(listToFilter, {x: '0', autoAlpha: 1, onComplete: function() {
+
+						listToFilter.css('display', 'block');
+
+					}
+
+				});
+
+			}
+
+		}
+
+	};
+
+	//Variables
+	var demandType,
+		wH = $(window).height(),
+		wW = $(window).width();
 
 	controller.scrollTo( function(newpos){
 
@@ -351,5 +352,81 @@ $(document).ready(function() {
 		});
 
 	}
+	//Projects to projects details request & transition
+	else if( $('main').hasClass('projects') ) {
+
+	}
+
+	//Geo-layers shapes floating
+	var lastScrollTop = 0;
+	
+	//Get a random value between min & max
+	function getRandomInt(min, max) {
+
+		return Math.floor( Math.random() * (max - min) ) + min;
+	
+	}
+
+	//Animate yPos of #geo-layer on scroll (+10/-10) and get back to initial yPos(0)
+	$(window).scroll(function(e) {
+
+		var currentSt = $(this).scrollTop();
+
+		var geoTl = new TimelineMax({yoyo:true});
+
+		if( currentSt > lastScrollTop ) {
+
+			geoTl.staggerTo( $('#geo-layer'), 5, {y: '10%', ease: Power4.easeOut, onComplete: function(){
+
+					geoTl.staggerTo( $('#geo-layer'), 3, {y: '-=10%', ease: Power4.easeIn} );
+				
+				}
+
+			} );
+		
+		}
+		else if( lastScrollTop > currentSt ) {
+
+			geoTl.staggerTo( $('#geo-layer'), 5, {y: '-10%', ease: Power4.easeOut, onComplete: function() {
+
+					geoTl.staggerTo( $('#geo-layer'), 3, {y: '+=10%', ease: Power4.easeIn} );
+
+				}
+
+			} );
+
+		}
+
+		lastScrollTop = currentSt;
+
+	});
+
+	//Animate each geometry shape (random yPos value and duration value)
+	$('.geometry-layer > .shape').each(function() {
+
+		var randomPos = getRandomInt(150, 250);
+		var randomTimer = getRandomInt(5, 10);
+
+		TweenMax.to( $(this), 10, {rotation:360, ease: Linear.easeNone, repeat:-1} );
+		TweenMax.fromTo( $(this), 6, {y: '0'}, {y: '+='+randomPos+'%', ease: Sine.easeInOut, yoyo:true, repeat:-1} );
+
+	});
+
+/*
+	function currentYpercent(element) {
+
+		return element.target._gsTransform.yPercent;
+
+	}
+
+	function originYPos() {
+
+		var yVal = this.target._gsTransform.yPercent;
+		console.log(yVal);
+
+		TweenMax.staggerTo(this, 3, {y: '-='+yVal+'%', ease: Power4.easeIn} );
+
+	}
+*/
 
 });

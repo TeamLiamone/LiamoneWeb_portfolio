@@ -15,7 +15,6 @@
 	li  {
 		font-size: $font-14;
 	}
-
 }
 
 .block-title,
@@ -62,7 +61,46 @@
 }
 
 .parallax-geometry  {
-	display: none;
+	@extend %pos-fixed;
+	@include dimension(100%, 105%);
+	top: 0;
+	left: 0;
+	z-index: -1;
+
+	& > .shape  {
+		@extend %pos-absolute;
+		top: 0;
+		left: 0;
+
+		&.losange  {
+			top: 15%;
+			left: 2%;
+			transform: scale(1.5, 1.5);
+		}
+		&.triangle  {
+			top: 5%;
+			left: 60%;
+			transform: scale(1.1, 1.1);
+		}
+		&.hexagon  {
+			top: 88%;
+			left: 25%;
+		}
+		&.plus  {
+			top: 25%;
+			left: 90%;
+		}
+		&.distort  {
+			top: 50%;
+			left: 15%;
+			transform: scale(0.8, 0.8);
+		}
+		&.wave  {
+			top: 80%;
+			left: 70%;
+			transform: scale(0.6, 0.6);
+		}
+	}
 }
 
 .liamone  {
@@ -86,9 +124,6 @@
 	background: -webkit-linear-gradient(top, $greyNumber-color 0%, $greyNumber-color 45%, $gradient-color1 45%, $gradient-color2 100%);
 	background: linear-gradient(to bottom, $greyNumber-color 0%, $greyNumber-color 45%, $gradient-color1 45%, $gradient-color2 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e82d3c', endColorstr='#e70774',GradientType=1 );
-
-	.left-block  {
-	}
 
 	.right-block  {
 		padding-top: 2.5em;
@@ -225,7 +260,6 @@
 			@extend %font-uppercase;
 			color: $white-color;
 			font-size: $font-24;
-
 		}
 	}
 
