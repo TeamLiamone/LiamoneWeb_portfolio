@@ -79,6 +79,20 @@
 	}
 }
 
+.project-clone  {
+
+	.project-cover  {
+
+		.mask  {
+			width: 100% !important; 
+		
+			& > .project-img  {
+				width: 100% !important;
+			}
+		}
+	}
+}
+
 /*Listed project*/
 .sponsoblog  {
 

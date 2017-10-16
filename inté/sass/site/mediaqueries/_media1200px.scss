@@ -235,16 +235,6 @@
 
 	.project-focus  {
 
-		.project-cover  {
-
-			.mask  {
-
-				& > .project-img  {
-					background-position: 50vw bottom, right bottom;
-				}
-			}
-		}		
-
 		.project-link  {
 
 			.project-tags  {
@@ -264,6 +254,20 @@
 		}
 	}
 
+	.project-focus, 
+	.project-clone  {
+
+		.project-cover  {
+
+			.mask  {
+
+				& > .project-img  {
+					background-position: 50vw bottom, right bottom;
+				}
+			}
+		}
+	}
+	
 	.project-context  {
 		padding: 2.5em 0;
 	}
