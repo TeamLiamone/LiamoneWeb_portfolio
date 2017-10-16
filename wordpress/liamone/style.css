@@ -209,12 +209,12 @@ aside {
   position: relative;
 }
 
-.sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item > a:before, .cta-scroll, .big-number, .skewed-bg, .contact .contact-form .reveal-form, .contact .contact-form .close-form, .block-formation .content-titles a:before, .projects-list .project-link,
+.loader .loader-icon, .sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item > a:before, .cta-scroll, .big-number, .parallax-geometry > .shape, .skewed-bg, .contact .contact-form .reveal-form, .contact .contact-form .close-form, .block-formation .content-titles a:before, .projects-list .project-link,
 .project-focus .project-link, .project-cover, .project-cover .mask, .project-cover .mask > .project-img, .project-nav .btn-ico {
   position: absolute;
 }
 
-.menu-top.is-visible, .menu-container {
+.loader, .menu-top.is-visible, .menu-container, .parallax-geometry {
   position: fixed;
 }
 
@@ -284,6 +284,39 @@ Base
 .center {
   display: block;
   margin: 0 auto;
+}
+
+.loader {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  opacity: 1;
+  background-color: #1b1f1f;
+  visibility: hidden;
+  -webkit-transform: translateY(-100vh);
+          transform: translateY(-100vh);
+  -webkit-transition: opacity 0.3s cubic-bezier(1, 0, 0, 1), visibility 0.8s cubic-bezier(1, 0, 0, 1), -webkit-transform 0.8s cubic-bezier(1, 0, 0, 1);
+  transition: opacity 0.3s cubic-bezier(1, 0, 0, 1), visibility 0.8s cubic-bezier(1, 0, 0, 1), -webkit-transform 0.8s cubic-bezier(1, 0, 0, 1);
+  transition: transform 0.8s cubic-bezier(1, 0, 0, 1), opacity 0.3s cubic-bezier(1, 0, 0, 1), visibility 0.8s cubic-bezier(1, 0, 0, 1);
+  transition: transform 0.8s cubic-bezier(1, 0, 0, 1), opacity 0.3s cubic-bezier(1, 0, 0, 1), visibility 0.8s cubic-bezier(1, 0, 0, 1), -webkit-transform 0.8s cubic-bezier(1, 0, 0, 1);
+}
+
+.loader .loader-icon {
+  top: 50%;
+  left: 50%;
+}
+
+body.loading {
+  pointer-events: none;
+}
+
+body.loading .loader {
+  opacity: 1;
+  visibility: visible !important;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .clearfix::before, .clearfix::after {
@@ -725,7 +758,7 @@ Fontello
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?84780854#fontello') format('svg');
+    src: url('http://www.liamoneweb.fr/wp-content/themes/liamone/assets/font/fontello.svg?84780854#fontello') format('svg');
   }
 }
 */
@@ -1460,7 +1493,6 @@ header .nav-item.activ-page > a:before {
 }
 
 .nav-item > a:before {
-  display: none;
   width: 100%;
   height: 6px;
   top: 41%;
@@ -1704,49 +1736,54 @@ Pages
 }
 
 .parallax-geometry {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 105%;
+  top: 0;
+  left: 0;
   z-index: -1;
 }
 
 .parallax-geometry > .shape {
-  position: absolute;
   top: 0;
   left: 0;
 }
 
-.parallax-geometry > .shape.losange  {
+.parallax-geometry > .shape.losange {
   top: 15%;
   left: 2%;
-  transform: scale(0.6, 0.6);
+  -webkit-transform: scale(1.5, 1.5);
+          transform: scale(1.5, 1.5);
 }
-.parallax-geometry > .shape.triangle  {
+
+.parallax-geometry > .shape.triangle {
   top: 5%;
   left: 60%;
-  transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
 }
-.parallax-geometry > .shape.hexagon  {
+
+.parallax-geometry > .shape.hexagon {
   top: 88%;
   left: 25%;
 }
-.parallax-geometry > .shape.plus  {
+
+.parallax-geometry > .shape.plus {
   top: 25%;
   left: 90%;
-  transform: scale(0.5, 0.5);
 }
-.parallax-geometry > .shape.distort  {
+
+.parallax-geometry > .shape.distort {
   top: 50%;
   left: 15%;
-  transform: scale(0.8, 0.8);
+  -webkit-transform: scale(0.8, 0.8);
+          transform: scale(0.8, 0.8);
 }
-.parallax-geometry > .shape.wave  {
+
+.parallax-geometry > .shape.wave {
   top: 80%;
   left: 70%;
-  transform: scale(0.6, 0.6);
+  -webkit-transform: scale(0.6, 0.6);
+          transform: scale(0.6, 0.6);
 }
 
 .liamone .block-title h2 {
@@ -2289,6 +2326,14 @@ Pages
   background-size: auto 100%, 100%;
   background-repeat: no-repeat;
   background-position: right bottom;
+}
+
+.project-clone .project-cover .mask {
+  width: 100% !important;
+}
+
+.project-clone .project-cover .mask > .project-img {
+  width: 100% !important;
 }
 
 /*Listed project*/
@@ -3200,9 +3245,6 @@ Media-queries
   .project-cover .mask > .project-img {
     width: 720px;
   }
-  .project-focus .project-cover .mask > .project-img {
-    background-position: 40vw bottom, right bottom;
-  }
   .project-focus .project-link p {
     font-size: 2.5rem;
   }
@@ -3223,6 +3265,10 @@ Media-queries
   }
   .project-focus .project-brand .site-presentation {
     margin: 5em auto;
+  }
+  .project-focus .project-cover .mask > .project-img,
+  .project-clone .project-cover .mask > .project-img {
+    background-position: 40vw bottom, right bottom;
   }
   .project-nav {
     margin-bottom: 3em;
@@ -3846,9 +3892,6 @@ Media-queries
     -webkit-transform: translateY(0);
             transform: translateY(0);
   }
-  .menu-container .nav-item > a:before {
-    display: block;
-  }
   .nav-item > a:hover:before {
     -webkit-transform: translateX(0);
             transform: translateX(0);
@@ -3972,9 +4015,6 @@ Media-queries
   .project-cover .mask > .project-img {
     width: 1108px;
   }
-  .project-focus .project-cover .mask > .project-img {
-    background-position: 50vw bottom, right bottom;
-  }
   .project-focus .project-link .project-tags {
     width: 80%;
   }
@@ -3983,6 +4023,10 @@ Media-queries
   }
   .project-focus .project-context h2 {
     font-size: 1.875rem;
+  }
+  .project-focus .project-cover .mask > .project-img,
+  .project-clone .project-cover .mask > .project-img {
+    background-position: 50vw bottom, right bottom;
   }
   .project-context {
     padding: 2.5em 0;

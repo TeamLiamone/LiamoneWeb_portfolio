@@ -7,7 +7,7 @@
 get_header(); ?>
 
     <!--Liamone page container-->
-    <main class="legal-notice fluid-container sponsoblog">
+    <main class="legal-notice fluid-container" data-page-title="Mentions-Légales" data-page-class="legalNotice">
 
         <header class="hero-grey">
             <div class="container">

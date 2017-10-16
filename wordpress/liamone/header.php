@@ -75,6 +75,12 @@
 	</header>
     <!--./Liamone menu-->
 
+    <!--Loader-->
+    <div class="loader">
+        <span class="loader-icon"></span>
+    </div>
+    <!--./Loader-->
+
     <!--Geo layer-->
     <div id="geo-layer" class="geometry-layer parallax-geometry">
         <svg version="1.1" id="geo-losange" class="shape losange" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 77 77" enable-background="new 0 0 77 77" xml:space="preserve" width="77" height="77">
@@ -99,6 +105,9 @@
     </div>
     <!--./Geo layer-->
 
+    <!--Page content-->
+    <div class="content-container">
+    
 	<?php
 
 	/*

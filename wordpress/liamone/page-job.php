@@ -7,7 +7,7 @@
 get_header(); ?>
 
     <!--Liamone page container-->
-    <main class="jobs page-container fluid-container">
+    <main class="jobs page-container fluid-container" data-page-title="Job" data-page-class="job">
 
         <header class="hero-grey">
             <div class="container">

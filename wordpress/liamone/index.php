@@ -18,7 +18,7 @@
 get_header(home); ?>
 
     <!--Liamone page container-->
-    <main class="home page-container fluid-container">
+    <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page">
         
         <!--Hero-->
         <header class="hero-header row">

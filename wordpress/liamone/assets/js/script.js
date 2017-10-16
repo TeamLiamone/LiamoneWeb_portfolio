@@ -1,3 +1,6 @@
+/*
+http://www.liamoneweb.fr/wp-content/themes/liamone/assets/
+*/
 /*Document*/
 jQuery(document).ready(function($) {
 
@@ -9,6 +12,11 @@ jQuery(document).ready(function($) {
 
 
 	//Functions utilities
+	var liamoneBase = {
+
+
+	}
+
 	var animation = {
 
 		animateElements: function(el) {
@@ -50,6 +58,7 @@ jQuery(document).ready(function($) {
 			});
 
 		}
+
 	};
 
 	var toggleTab = {
@@ -202,8 +211,8 @@ jQuery(document).ready(function($) {
 		$('.cta-scroll').on('click', function(e) {
 
 			e.preventDefault();
-
 			controller.scrollTo('.liamone');
+
 		});
 
 	}
@@ -246,6 +255,7 @@ jQuery(document).ready(function($) {
 			filterAndSort.callFilter(filterContent, 'click');
 
 		}
+
 	}
 	//Projects thumbs reveal
 	else if( $('main').hasClass('projects') && window.matchMedia(' (min-width: 768px)').matches ) {
@@ -314,7 +324,7 @@ jQuery(document).ready(function($) {
 
 		};
 
-		$('.demand-type > .btn').on('click', function(e) {
+		$('.demand-type').on('click', '.btn', function(e) {
 
 			e.preventDefault();
 
@@ -341,7 +351,7 @@ jQuery(document).ready(function($) {
 
 		});
 
-		$('#close-contactUs').on('click', function(e) {
+		$('.contact-form').on('click','#close-contactUs', function(e) {
 
 			e.preventDefault();
 
@@ -415,51 +425,165 @@ jQuery(document).ready(function($) {
 
 	/*Ajax TEST*/
 	var currentItem = '',
-		scrollToTop
+		itemScrollTop,
+		itemScrollLeft,
 		itemClone;
 
-	var tlProjects,
-		tlProject;
+	var currentPage,
+		currentPageClass,
+		currentProjectClass,
+		targetPage;
+
+	var activLi = $('#top-menu').find('.nav-item');
+
+	var tlProjects = new TimelineMax({paused: true}),
+		tlProject = new TimelineMax({paused: true});
+
+	var scrollTop;
 
 	var init = {
 
 		/*HOME*/
+		headerfooter: function() {
+
+			console.log('Header & Footer chargé');
+
+			$('.menu-top a, .menu-bottom a').on('click', function(e) {
+
+				var rel = $(this).prop('rel');
+
+				if( rel === 'external')  {
+
+					console.log('Lien externe');
+					return;
+				}
+
+				e.preventDefault();
+
+				var target = $(this),
+					targetUrl = target.attr('href');
+
+				if( $('body').hasClass('menu-open') ) {
+
+					$('.menu-toggle').trigger('click').delay(150).queue(function() {
+
+						loadPage(targetUrl);
+						history.pushState({page:targetUrl}, null, targetUrl);
+						$(this).dequeue();
+
+					});
+
+				}
+				else {
+
+					loadPage(targetUrl);
+					history.pushState({page:targetUrl}, null, targetUrl);
+
+				}
+
+				controller.scrollTo(0);
+
+			});
+
+		},
 		home: function() {
+
+			console.log('Accueil chargé');
+
+			$('.cta-scroll').on('click', function(e) {
+
+				e.preventDefault();
+				controller.scrollTo('.liamone');
+
+				console.log('je click');
+			
+			});
 
 		},
 		/*PROJECTS*/
 		projects: function() {
 
+			console.log('Projets chargé');
+
+			scrollTop = $(window).scrollTop();
+
 			$('.projects-list .project-item').on('click', '.link-toProject', function(e) {
 
 				e.preventDefault();
-				currentItem = $(this).parent().parent();
-				//itemClone = currentItem.clone();
+				currentItem = $(this).parent().parent(),
+				itemScrollTop = currentItem.offset().top,
+				itemScrollLeft = currentItem.offset().left,
+				itemClone = currentItem.clone();
 
 				var singleUrl = currentItem.find('.btn').attr('href');
+				history.pushState({page:singleUrl}, null, singleUrl);
 
-				console.log(currentItem);
-				console.log("Item cliquer :"+currentItem+ "url cible :"+singleUrl );
+				TweenMax.to(currentItem.find('.project-link'), 0.3, {autoAlpha: 0, ease: Linear.easeNone, onComplete: function() {
+
+						itemClone.addClass('project-clone').css({
+
+							position: 'fixed',
+							height: currentItem.outerHeight(),
+							zIndex: 800
+
+						});
+
+						TweenMax.set(itemClone, {left: itemScrollLeft, top: itemScrollTop} );
+						TweenMax.to(itemClone, 0.5, { left: 0, top: 0, width: '100%', height: '100%', ease: Linear.easeNone} );
+					
+					} 
+
+				} );
+
 
 				$('body').addClass('load-project');
 
-				$.ajax({
-					type: "GET",
-					url: singleUrl,
-					success: function(data) {
+				itemClone.appendTo('body').delay(20).queue(function() {
 
-						console.log('Projet chargé !');
-						var dataProject = $(data).find('.project-focus');
+					$(this).addClass('is-active').delay(900).queue(function(){
 
-						//console.log(dataProject);
+						$.ajax({
 
-					},
-					error: function(data) {
+							type: "GET",
+							url: singleUrl,
+							success: function(data) {
 
-						console.log('Et merde...');
-						//console.log(data);
-					}
+								console.log('Projet chargé !');
+								var dataProject = $(data).find('.project-focus');
 
+								TweenMax.set(window, {scrollTo: {y: 0, autoKill: false} } );
+
+								var newTitle = dataProject.data('project');
+								document.title = 'Liamone - '+ newTitle;
+
+								currentProjectClass = newTitle;
+
+								console.log(newTitle);
+
+								$('.content-container').append(dataProject).delay(30).queue(function() {
+
+									$('.content-container > main').not('.project-focus').remove();
+									itemClone.hide();
+									$('body').addClass('project-added').removeClass('load-project');
+									init.projectFocus();
+									$(this).dequeue();
+
+								});
+
+							},
+							error: function(data) {
+
+								console.log('Et merde...');
+								//console.log(data);
+							}
+
+						});
+
+						$(this).dequeue();
+
+					});
+
+					$(this).dequeue();
 
 				});
 
@@ -467,36 +591,209 @@ jQuery(document).ready(function($) {
 
 		},
 		/*PROJECT*/
-		project: function() {
+		projectFocus: function() {
 
+			console.log('Projet chargé');
 		},
 		/*SERVICES*/
 		services: function() {
 
+			console.log('Services chargé');
+			
 		},
 		/*TRAINING*/
-		training: function() {
+		training: function() {	
 
+			console.log('Formations chargé');
 		},
 		/*JOBS*/
 		jobs: function() {
 
+			console.log('Jobs chargé');
+		},
+		/*JOB*/
+		jobDetail: function() {
+
+			console.log('Offre chargé');
 		},
 		/*TEAM*/
 		team: function() {
 
+			console.log('Equipe chargé');
 		},
 		/*CONTACT*/
 		contact: function() {
 
+			console.log('Contact chargé');
 		},
 
 	};
 
-	init.projects();
-
 	/*BUILD*/
 	var build = function() {
+
+		//var targetUrl = $('main').data('href');
+
+
+		$(window).on('popstate', function(e) {
+
+			var state = event.originalEvent.state;
+
+			if( state ) {
+
+				loadPage(location.href);
+				controller.scrollTo(0);
+
+			}
+
+		});
+
+		init.headerfooter();
+
+	};
+
+	build();
+
+	function loadPage(url) {
+
+		$('body').removeClass('loaded load-project').addClass('loading').delay(900).queue(function() {
+
+			$.ajax({
+
+				type: 'GET',
+				url: url,
+				success: function(data) {
+
+					var pageData =  $(data).find('main'),
+						newTitle = pageData.data('page-title'),
+						targetPageClass = pageData.data('page-class');
+
+					document.title = "Liamone - "+ newTitle;
+
+					//Delete last page
+					$('.content-container > main').remove();
+
+					//Insert new page
+					$('.content-container').prepend(pageData);
+
+					currentPage = $('main');
+
+					if( currentProjectClass ) {
+
+						$('body').removeClass(currentProjectClass);
+					}
+
+					currentProjectClass = currentPage.data('project');
+
+					if( currentProjectClass ) {
+
+						$('body').addClas(currentProjectClass);
+
+					}
+
+					controller.scrollTo(0);
+
+					$('body').removeClass(currentPageClass)
+							.addClass(targetPageClass)
+							.delay(500).queue(function() {
+
+						$(this).removeClass('loading').delay(300).queue(function() {
+
+							$(this).addClass('loaded');
+							$(this).dequeue();
+
+						});
+
+						initPage(targetPageClass);
+						$(this).dequeue();
+
+					});
+
+					currentPageClass = targetPageClass;
+
+				}
+
+			});
+
+			$(this).dequeue();
+
+		});
+	
+	};
+
+	function initPage(pageClass) {
+
+		if( $('body').hasClass('home-page') ) {
+
+			$('header.menu-top').addClass('menu-home');
+
+		}
+		else  {
+
+			$('header.menu-top').removeClass('menu-home');
+		}
+
+		$('header.menu-top .activ-page').removeClass('activ-page');
+
+		$('main a').on('click', function(e) {
+
+			var rel = $(this).prop('rel');
+
+			if( rel === 'external' ) {
+
+				console.log('Lien externe');
+				return;
+
+			}
+
+			if( $(this).hasClass('item-title') ) {
+
+				console.log('Formation, tab');
+				return;
+
+			}
+
+			e.preventDefault();
+			var target = $(this),
+				targetUrl = target.attr('href');
+
+			loadPage(targetUrl);
+			history.pushState({page:targetUrl}, null, targetUrl);	
+
+		});
+
+		console.log(pageClass);
+
+		switch(pageClass) {
+
+			case 'home-page':
+				init.home();
+				break;
+			case 'projects':
+				init.projects();
+				break;
+			case 'projectFocus':
+				init.projectFocus();
+				break;
+			case 'services':
+				init.services();
+				break;
+			case 'training':
+				init.training();
+				break;
+			case 'jobs':
+				init.jobs();
+				break;
+			case 'team':
+				init.team();
+				break;
+			case 'contact':
+				init.contact();
+				break;
+			default:
+				return;
+
+		}
 
 	};
 

@@ -14,6 +14,9 @@
 
 ?>
 
+    </div>
+    <!--./Page content-->
+
     <!--Liamone footer-->
     <footer class="menu-bottom container">
         <div class="row">
@@ -23,16 +26,16 @@
                     <br>
                     <span class="big-title yellow-title">Ensemble <i class="dot">.</i></span>
                 </h2>
-                <a class="cta-mail big-link" href="mailto:contact@liamoneweb.com" title="Nous contacter par mail">Contact@liamoneweb.com</a>
+                <a class="cta-mail big-link" href="mailto:contact@liamoneweb.com" rel="external" title="Nous contacter par mail">Contact@liamoneweb.com</a>
             </nav>
             <nav class="col-xxsm-12 col-sm-3">
                 <h2>Adresse</h2>
                 <ul class="footer-nav">
                     <li class="nav-item">
-                        <a class="item-link" target="_blank" href="https://goo.gl/maps/69xfWGafxZw" title="Venir nous voir (Ouvre un nouvel onglet)">93 rue des chantiers <br> Versailles</a>
+                        <a class="item-link" target="_blank" href="https://goo.gl/maps/69xfWGafxZw" rel="external" title="Venir nous voir (Ouvre un nouvel onglet)">93 rue des chantiers <br> Versailles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="item-link" href="tel:+33139630078" title="Nous contacter par téléphone">+33 1 39 63 00 78</a>
+                        <a class="item-link" href="tel:+33139630078" rel="external" title="Nous contacter par téléphone">+33 1 39 63 00 78</a>
                     </li>
                 </ul>
             </nav>
@@ -40,13 +43,13 @@
                 <h2>Réseaux</h2>
                 <ul class="footer-nav">
                     <li class="nav-item">
-                        <a class="item-link" href="https://www.facebook.com/LiamoneWeb" title="Nous suivre sur facebook">Facebook</a>
+                        <a class="item-link" href="https://www.facebook.com/LiamoneWeb" rel="external" title="Nous suivre sur facebook">Facebook</a>
                     </li>
                     <li class="nav-item">
-                        <a class="item-link" href="https://www.linkedin.com/company/liamone-web---agence-web-digitale-technologique" title="Nous suivre sur LinkedIn">LinkedIn</a>
+                        <a class="item-link" href="https://www.linkedin.com/company/liamone-web---agence-web-digitale-technologique" rel="external" title="Nous suivre sur LinkedIn">LinkedIn</a>
                     </li>
                     <li class="nav-item">
-                        <a class="item-link" href="" title="Nous suivre sur instagram">Instagram</a>
+                        <a class="item-link" href="#" rel="external" title="Nous suivre sur instagram">Instagram</a>
                     </li>
                 </ul>
             </nav>
