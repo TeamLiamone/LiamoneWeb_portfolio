@@ -1165,6 +1165,7 @@ Components
 /*Card*/
 .block-card {
   padding: 1em 0;
+  overflow: hidden;
 }
 
 .block-card:before {
@@ -1712,6 +1713,10 @@ Pages
   padding-bottom: 1em;
 }
 
+.block-title {
+  overflow: hidden;
+}
+
 .block-title h2 {
   z-index: 2;
 }
@@ -1727,8 +1732,12 @@ Pages
   left: 0.25em;
 }
 
+.home .big-title:not(.hero-title), .jobs .big-title:not(.hero-title), .home .dot:not(.hero-title), .jobs .dot:not(.hero-title), .home .hero-header .hero-title:not(.hero-title), .hero-header .home .hero-title:not(.hero-title), .jobs .hero-header .hero-title:not(.hero-title), .hero-header .jobs .hero-title:not(.hero-title) {
+  display: inline-block;
+}
+
 .home .block-title, .jobs .block-title {
-  min-height: 230px;
+  min-height: 250px;
 }
 
 .home .block-title h2, .jobs .block-title h2 {
@@ -4257,6 +4266,13 @@ Media-queries
     left: 100%;
   }
   /*Home*/
+  /*.home  {
+
+		section {
+			padding: 20vh 0;
+		}
+
+	}*/
   .projet .block-content {
     max-height: 730px;
   }

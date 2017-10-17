@@ -1,6 +1,9 @@
 /*
 http://www.liamoneweb.fr/wp-content/themes/liamone/assets/
 */
+/*
+ data-ae-anim="" data-ae-delay="" data-ae-trigger=""
+*/
 /*Document*/
 jQuery(document).ready(function($) {
 
@@ -14,19 +17,22 @@ jQuery(document).ready(function($) {
 	//Functions utilities
 	var liamoneBase = {
 
+	};
 
-	}
+	var liamoneAjax = {
+
+	};
 
 	var animation = {
 
-		animateElements: function(el) {
+		animateElements: function(element) {
 
-			el.each(function() {
+			element.each(function() {
 
 				var div = $(this),
-					anim = div.attr('data-anim'),
-					delay = div.attr('data-delay'),
-					trigger = div.attr('data-trigger'),
+					anim = div.data('ae-anim'),
+					delay = div.data('ae-delay'),
+					trigger = div.data('ae-trigger'),
 					aDelay,
 					aTrigger;
 
@@ -35,9 +41,9 @@ jQuery(document).ready(function($) {
 
 
 				div.css({
-				    '-webkit-animation-delay':  aDelay + 's',
-				    '-moz-animation-delay':     aDelay + 's',
-				    'animation-delay':          aDelay + 's'
+				    '-webkit-animation-delay': aDelay +'s',
+				    '-moz-animation-delay': aDelay +'s',
+				    'animation-delay': aDelay +'s'
 				});
 
 				div.addClass('animated');
@@ -436,8 +442,28 @@ jQuery(document).ready(function($) {
 
 	var activLi = $('#top-menu').find('.nav-item');
 
-	var tlProjects = new TimelineMax({paused: true}),
-		tlProject = new TimelineMax({paused: true});
+		//Projets timelines
+	var tlProjects,
+		tlProject,
+		//Home timelines
+		tlHero,
+		tlLiamone,
+		tlObjectifs,
+		tlProjets,
+		tlExpertises,
+		tlCompetences,
+		tlClients,
+		tlActus,
+		//Services timelines
+		tlServices,
+		//Formations timelines
+		tlTraining,
+		//Jobs timelines
+		tlJobs,
+		//Equipe timelines
+		tlTeam,
+		//Contact timelines
+		tlContact;
 
 	var scrollTop;
 
@@ -488,16 +514,231 @@ jQuery(document).ready(function($) {
 		},
 		home: function() {
 
+			CustomEase.create('cubicAnim', '1, 0, 0.5, 1');
+
 			console.log('Accueil chargé');
+
+			tlHero = new TimelineLite({paused: true, delay: 0.2});
+			tlLiamone = new TimelineLite({paused: true, delay: 0.1});
+			tlObjectifs = new TimelineLite({paused: true, delay: 0.2});
+			tlProjets = new TimelineLite({paused: true});
+			tlExpertises = new TimelineLite({paused: true});
+			tlCompetences = new TimelineLite({paused: true});
+			tlClients = new TimelineLite({paused: true});
+			tlActus = new TimelineLite({paused: true});
+
+			//ANIMATION HERO HEADER
+			TweenLite.set( $('.hero-title > span'), {autoAlpha: 0, y: '25%'} )
+			TweenLite.set( $('.hero-title .dot'), {autoAlpha: 0, scaleX: '0', scaleY: '0', transformOrigin: '50% 50%'} )
+			TweenLite.set( $('.cta-scroll'), {autoAlpha: 0, y: '25%'} )
+			
+			tlHero
+				.to( $('.hero-title > span:first-child'), 0.8, {autoAlpha: 1, y:'-=25%', ease: Power2.easeOut}, 0 )
+				.to( $('.hero-title > span:last-child'), 0.8, {autoAlpha: 1, y:'-=25%', ease: Power2.easeOut}, 0.2 )
+				.to( $('.hero-title .dot'), 0.4, {autoAlpha: 1, scaleX: '1', scaleY: '1', ease: Power2.easeIn}, 0.3 )
+				.to( $('.cta-scroll'), 0.5, {y:'-=25%', autoAlpha: 1, ease: Power4.easeOut}, 0.4 );
+
+			tlHero.play().timeScale(1);
+
+			//ANIMATION LIAMONE SECTION
+			TweenLite.set( $('.liamone .yellow-title'), {autoAlpha: 0, x:'-100%'} );
+			TweenLite.set( $('.liamone .big-title > span'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.liamone p'), {autoAlpha: 0} );
+			TweenLite.set( $('.liamone hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.liamone .dot'), {autoAlpha: 0, scaleX: '0', scaleY: '0', transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.liamone .right-block img'), {autoAlpha: 0, transformOrigin: '0 50%', scaleX: '0'} );
+			TweenLite.set( $('.liamone .big-number'), {autoAlpha: 0, y: '40%'} );
+
+			tlLiamone
+				.to( $('.liamone .yellow-title'), 0.8,{autoAlpha: 1, x: '+=100%',ease: Power2.easeOut}, 0 )
+				.to( $('.liamone .big-title > span:first-of-type'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.2 )
+				.to( $('.liamone .big-title > span:nth-of-type(2)'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.3 )
+				.to( $('.liamone .big-title > span:last-of-type'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.4 )
+				.to( $('.liamone .dot'), 0.5, {autoAlpha: 1, scaleX: '1', sclaeY: '1', ease: Power2.easeIn}, 0.45 )
+				.to( $('.liamone hr'), 0.5, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn}, 0.5 )
+				.to( $('.liamone .right-block img'), 0.8, {autoAlpha: 1, scaleX: '1', ease: 'cubicAnim'}, 0.5 )
+				.to( $('.liamone p'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.7 )
+				.to( $('.liamone .big-number'), 0.6, {autoAlpha: 1, y: '-=40%', ease: Power2.easeOut}, 1 );
+
+
+			//ANIMATION OBJECTIFS SECTION
+			TweenLite.set( $('.objectif .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.objectif .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.objectif hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.objectif p, .objectif a'), {autoAlpha: 0} );
+
+			tlObjectifs
+				.to( $('.objectif .big-title'), 0.8, {autoAlpha: 1, x:'+=100%', ease: Power2.easeOut}, 0 )
+				.to( $('.objectif hr'), 0.8, {autoAlpha: 1, x:'+=100%', ease: Power2.easeOut}, 0.2 )
+				.to( $('.objectif p'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.4 )
+				.to( $('.objectif a'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.5 )
+				.to( $('.objectif .big-number'), 0.6, {autoAlpha: 1, y: '-=100%', ease: Power2.easeOut}, 1 );
+
+
+			//ANIMATION PROJETS SECTION
+			TweenLite.set( $('.projet .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.projet .dot'), {autoAlpha: 0, scale: '0', transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.projet hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.projet .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.projet .block-card img'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.projet .card-caption'), {autoAlpha: 0, x: '5%'} );
+			TweenLite.set( [$('.projet .card-caption h3'), $('.projet .card-caption p'), $('.projet .card-caption a')], {autoAlpha: 0} );
+
+
+			tlProjets
+				.to( $('.projet .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
+				.to( $('.projet .dot'), 0.5, {autoAlpha: 1, scale: '1', ease: Power2.easeIn}, 0.2)
+				.to( $('.projet hr'), 0.4, {autoAlpha: 1, x: '+=100%'}, 0.3 )
+				//1st project card
+				.to( $('.projet .block-card:first-of-type img'), 0.6, {autoAlpha: 1, x: '+=100%', ease: 'cubicAnim'}, 0.5 )
+				.to( $('.projet .block-card:first-of-type .card-caption'), 0.4, {autoAlpha: 1, x: '-=5%', ease: 'cubicAnim'}, 0.7 )
+				.to( $('.projet .block-card:first-of-type h3'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 0.8 )
+				.to( $('.projet .block-card:first-of-type p'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 1 )
+				.to( $('.projet .block-card:first-of-type a'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 1.05 )
+				//2nd project card
+				.to( $('.projet .block-card:nth-of-type(2) img'), 0.6, {autoAlpha: 1, x: '+=100%', ease: 'cubicAnim'}, 0.6 )
+				.to( $('.projet .block-card:nth-of-type(2) .card-caption'), 0.4, {autoAlpha: 1, x: '-=5%', ease: 'cubicAnim'}, 0.8 )
+				.to( $('.projet .block-card:nth-of-type(2) h3'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 0.9 )
+				.to( $('.projet .block-card:nth-of-type(2) p'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 1.1 )
+				.to( $('.projet .block-card:nth-of-type(2) a'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 1.15 )
+				//3rd project card
+				.to( $('.projet .block-card:nth-of-type(3) img'), 0.6, {autoAlpha: 1, x: '+=100%', ease: 'cubicAnim'}, 0.7 )
+				.to( $('.projet .block-card:nth-of-type(3) .card-caption'), 0.4, {autoAlpha: 1, x: '-=5%', ease: 'cubicAnim'}, 0.9 )
+				.to( $('.projet .block-card:nth-of-type(3) h3'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 1 )
+				.to( $('.projet .block-card:nth-of-type(3) p'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 1.2 )
+				.to( $('.projet .block-card:nth-of-type(3) a'), 0.2, {autoAlpha: 1, ease: Linear.easeNone}, 1.25 )
+				.to( $('.projet .big-number'), 0.6, {autoAlpha: 1, y: '-=100%', ease: Power2.easeOut}, 1); 
+
+
+			//ANIMATION EXPERTISES SECTION
+			TweenLite.set( $('.expertises .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.expertises .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.expertises hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.expertises .dot'), {autoAlpha: 0, scale: '0', transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.expertises p'), {autoAlpha: 0} );
+			TweenLite.set( $('.expertises .content-list'), {autoAlpha: 0, y: '5%'} );
+
+			tlExpertises
+				.to( $('.expertises .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
+				.to( $('.expertises .dot'), 0.5, {autoAlpha: 1, scale: '1', ease: Power2.easeIn}, 0.2)
+				.to( $('.expertises hr'), 0.4, {autoAlpha: 1, x: '+=100%'}, 0.3 )
+				.to( $('.expertises .block-left p:first-of-type'), 0.4, {autoAlpha: 1}, 0.5 )
+				.to( $('.expertises .block-left p:last-of-type'), 0.4, {autoAlpha: 1}, 0.6 )
+				.to( $('.expertises .content-list:first-of-type'), 0.4, {autoAlpha: 1, y: '-=5%'}, 0.7 )
+				.to( $('.expertises .content-list:nth-of-type(2)'), 0.4, {autoAlpha: 1, y: '-=5%'}, 0.8 )
+				.to( $('.expertises .content-list:nth-of-type(3)'), 0.4, {autoAlpha: 1, y: '-=5%'}, 0.9 )
+				.to( $('.expertises .content-list:last-of-type'), 0.4, {autoAlpha: 1, y: '-=5%'}, 1 )
+				.to( $('.expertises .big-number'), 0.6, {autoAlpha: 1, y: '-=100%'}, 1 );
+
+
+			//ANIMATION COMPETENCES SECTION
+
+
+			//ANIMATION CLIENTS SECTION
+
+
+			//ANIMATION ACTUS SECTION
 
 			$('.cta-scroll').on('click', function(e) {
 
 				e.preventDefault();
 				controller.scrollTo('.liamone');
-
-				console.log('je click');
 			
 			});
+
+			$('.toAnimate').viewportChecker({
+				repeat: false,
+				offset: 20,
+				callbackFunction: function(elem, action) {
+
+					//Section LIAMONE
+					if( elem.hasClass('liamone') ) {
+						
+						if( elem.hasClass('visible') && action == "add" && !elem.hasClass('isAnimated') ) {
+
+							elem.addClass('isAnimated');
+							tlLiamone.play().timeScale(1);
+						
+						}
+						
+					}
+
+					//Section OBJECTIF
+					if( elem.hasClass('objectif') ) {
+						
+						if( elem.hasClass('visible') && action == "add" && !elem.hasClass('isAnimated') ) {
+
+							elem.addClass('isAnimated');
+							tlObjectifs.play().timeScale(1);
+						
+						}
+						
+					}
+
+					//Section PROJET
+					if( elem.hasClass('projet') ) {
+						
+						if( elem.hasClass('visible') && action == "add" && !elem.hasClass('isAnimated') ) {
+
+							elem.addClass('isAnimated');
+							tlProjets.play().timeScale(1);
+						
+						}
+						
+					}
+
+					//Section EXPERTISES
+					if( elem.hasClass('expertises') ) {
+						
+						if( elem.hasClass('visible') && action == "add" && !elem.hasClass('isAnimated') ) {
+
+							elem.addClass('isAnimated');
+							tlExpertises.play().timeScale(1);
+						
+						}
+						
+					}
+
+					//Section COMPETENCES
+					if( elem.hasClass('competences') ) {
+						
+						if( elem.hasClass('visible') && action == "add" && !elem.hasClass('isAnimated') ) {
+
+							elem.addClass('isAnimated');
+							tlCompetences.play().timeScale(1);
+						
+						}
+						
+					}
+
+					//Section CLIENTS
+					if( elem.hasClass('clients') ) {
+						
+						if( elem.hasClass('visible') && action == "add" && !elem.hasClass('isAnimated') ) {
+
+							elem.addClass('isAnimated');
+							tlClients.play().timeScale(1);
+						
+						}
+						
+					}
+
+					//Section CLIENTS
+					if( elem.hasClass('actus') ) {
+						
+						if( elem.hasClass('visible') && action == "add" && !elem.hasClass('isAnimated') ) {
+
+							elem.addClass('isAnimated');
+							tlActus.play().timeScale(1);
+						
+						}
+						
+					}
+
+				}
+
+			});
+
 
 		},
 		/*PROJECTS*/
@@ -632,7 +873,28 @@ jQuery(document).ready(function($) {
 	/*BUILD*/
 	var build = function() {
 
-		//var targetUrl = $('main').data('href');
+		init.headerfooter();
+
+
+		currentPage = $('main');
+		var targetPageClass = currentPage.data('page-class');
+		currentProjectClass = currentPage.data('project');
+
+		$('body').addClass(targetPageClass).addClass(currentProjectClass).delay(800).queue(function(){
+
+			controller.scrollTo(0);
+			initPage(targetPageClass);
+
+			$(this).removeClass('loading').delay(800).queue(function() {
+
+				$(this).addClass('loaded');
+				$(this).dequeue();
+
+			}).dequeue();
+
+		});
+
+		currentPageClass == targetPageClass;
 
 
 		$(window).on('popstate', function(e) {
@@ -648,14 +910,13 @@ jQuery(document).ready(function($) {
 
 		});
 
-		init.headerfooter();
-
 	};
 
 	build();
 
 	function loadPage(url) {
 
+		//Load content, add loading class to body, remove loaded/load-project, add delay
 		$('body').removeClass('loaded load-project').addClass('loading').delay(900).queue(function() {
 
 			$.ajax({
@@ -741,14 +1002,14 @@ jQuery(document).ready(function($) {
 
 			if( rel === 'external' ) {
 
-				console.log('Lien externe');
+				//console.log('Lien externe');
 				return;
 
 			}
 
 			if( $(this).hasClass('item-title') ) {
 
-				console.log('Formation, tab');
+				//console.log('Formation, tab');
 				return;
 
 			}

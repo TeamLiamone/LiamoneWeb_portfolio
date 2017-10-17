@@ -32,7 +32,7 @@ get_header(home); ?>
         <!--./Hero-->
 
         <!--1st section-->
-        <section class="liamone">
+        <section class="liamone toAnimate">
             <div class="container">
                 <div class="padded-block row">
                     <div class="left-block col-xxsm-12 col-sm-5">
@@ -40,7 +40,11 @@ get_header(home); ?>
                             <h2>
                                 <span class="yellow-title little-title">Agence digitale</span>
                                 <br>
-                                <span class="big-title">Bonjour, <br> Nous sommes <br> Liamone<i class="dot">.</i></span>
+                                <span class="big-title">
+                                    <span>Bonjour, </span><br> 
+                                    <span>Nous sommes </span><br> 
+                                    <span>Liamone</span><i class="dot">.</i>
+                                </span>
                             </h2>
                             <hr class="separator">
                             <p class="big-number pulled-right">01</p>
@@ -62,7 +66,7 @@ get_header(home); ?>
         <!--./1st section-->
 
         <!--2nd section-->
-        <section class="objectif">
+        <section class="objectif toAnimate">
             <div class="container">
                 <div class="padded-block row">
                     <div class="left-block col-xxsm-12 col-sm-6">
@@ -77,7 +81,7 @@ get_header(home); ?>
                     <div class="right-block col-xxsm-12 col-sm-6">
                         <div class="block-content">
                             <p><span class="black-text">Accompagner nos clients dans leur stratégie,</span><br>les aider à définir leur identité visuelle en fonction des échanges et des idées et ainsi leur permettre de développer leur activité.</p>
-                            <a class="btn white" href="contact.html" title="Nous contacter">Contactez-nous<i class="icon-right"></i></a>
+                            <a class="btn white" href="http://www.liamoneweb.fr/?page_id=141" title="Nous contacter">Contactez-nous<i class="icon-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -86,7 +90,7 @@ get_header(home); ?>
         <!--./2nd section-->
 
         <!--3rd section-->
-        <section class="projet">
+        <section class="projet toAnimate">
             <div class="container">
                 <div class="padded-block row">
                     <div class="block-title col-xxsm-12 col-sm-6 col-sm-offset-6">
@@ -144,7 +148,7 @@ get_header(home); ?>
         <!--./Aside-->
 
         <!--4th section-->
-        <section class="expertises">
+        <section class="expertises toAnimate">
             <div class="container">
                 <div class="padded-block row">
                     <div class="left-block col-xxsm-12 col-sm-6">
@@ -202,21 +206,21 @@ get_header(home); ?>
         <!--./4th section-->
 
         <!--5th section-->
-        <section class="competences">
+        <section class="competences toAnimate">
             <div class="skewed-bg shape-left">
             </div>
             <div class="skewed-bg shape-right">
             </div>
             <div class="container">
                 <div class="padded-block row">
-                    <div class="block-title col-xxsm-12 col-sm-4">
+                    <div class="block-title col-xxsm-12 col-sm-5">
                         <h2>
                             <span class="big-title">Compé<br>tences<i class="dot">.</i></span>
                         </h2>
                         <hr class="separator">
                         <p class="big-number under-title">05</p>
                     </div>
-                    <div class="block-content col-xxsm-12 col-sm-7 col-sm-offset-1">
+                    <div class="block-content col-xxsm-12 col-sm-6 col-sm-offset-1">
                         <div class="content-caption">
                             <svg version="1.1" id="phare-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve" width="40" height="40">
                                 <title>Project manager</title>
@@ -346,7 +350,7 @@ get_header(home); ?>
         <!--./5th section-->
 
         <!--6th section-->
-        <section class="clients">
+        <section class="clients toAnimate">
             <div class="container">
                 <div class="padded-block row">
                     <div class="block-title col-xxsm-12">
@@ -379,7 +383,7 @@ get_header(home); ?>
         <!--./6th section-->
 
         <!--7th section-->
-        <section class="actus">
+        <section class="actus toAnimate">
             <div class="container">
                 <div class="padded-block row">
                     <div class="block-title col-xxsm-12">
