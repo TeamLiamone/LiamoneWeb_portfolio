@@ -15,11 +15,13 @@ get_header(); ?>
                     <div class="left-block col-xxsm-12">
                         <div class="block-title">
                             <h1 class="hero-title">
-                                <span>Formations <br> web <i class="dot">.</i></span>
+                                <span>Formations</span> 
+                                <br> 
+                                <span>web <i class="dot">.</i></span>
                             </h1>
                             <hr class="separator">
                         </div>
-                        <div class="block-content">
+                        <div class="block-content clearfix">
                             <div class="left-block">                                
                                 <p>Il y a en entreprise un réel besoin d’accroitre ses compétences dans le domaine du web, c’est pourquoi nous proposons de nombreuses formations dédiées aux technologies web et au web marketing.</p>
                             </div>

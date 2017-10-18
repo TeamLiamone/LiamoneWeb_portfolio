@@ -24,7 +24,8 @@
 	<meta name="description" content="Liamone est une agence digitale spécialisée dans la conception / refonte de site internet, la création d'application mobile, le référencement et la création de contenu digital.">
     <meta name="keywords" content="Agence Web, Digital, Communication, Web, Site internet, Direction artsitique, UX, UI, User experience, User Interface, Creation, Site, Stratégie, Publicité, Site événementiel, Design, Web design, Design mobile, Application,Responsive, Développement, Wordpress,Javascript, Versailles, Paris, France">
     <meta name="author" content="LIAMONE">
-    <link rel="canonical" href="http://www.liamoneweb.com/"/>
+    <link rel="canonical" href="http://www.liamoneweb.fr/"/>
+    <link rel="alternate" href="http://www.liamoneweb.fr"
 
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,400i,700,700i" rel="stylesheet">
@@ -114,10 +115,10 @@
 	 * If a regular post or page, and not the front page, show the featured image.
 	 * Using get_queried_object_id() here since the $post global may not be set before a call to the_post().
 	 */
-	if ( ( is_single() || ( is_page() && ! twentyseventeen_is_frontpage() ) ) && has_post_thumbnail( get_queried_object_id() ) ) :
+	/*if ( ( is_single() || ( is_page() && ! twentyseventeen_is_frontpage() ) ) && has_post_thumbnail( get_queried_object_id() ) ) :
 		echo '<div class="single-featured-image-header">';
 		echo get_the_post_thumbnail( get_queried_object_id(), 'twentyseventeen-featured-image' );
 		echo '</div><!-- .single-featured-image-header -->';
-	endif;
+	endif;*/
 	?>
 

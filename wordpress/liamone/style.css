@@ -1507,6 +1507,7 @@ header .nav-item.activ-page > a:before {
   transition: -webkit-transform 0.45s cubic-bezier(1, 0, 0, 1) 0.5s;
   transition: transform 0.45s cubic-bezier(1, 0, 0, 1) 0.5s;
   transition: transform 0.45s cubic-bezier(1, 0, 0, 1) 0.5s, -webkit-transform 0.45s cubic-bezier(1, 0, 0, 1) 0.5s;
+  display: none;
 }
 
 .menu-nav {
@@ -1656,6 +1657,12 @@ form .btn {
 
 .hero-project .project-cover .mask > .project-img {
   width: 100vw;
+}
+
+.hero-header .hero-title > span,
+.hero-grey .hero-title > span,
+.hero-img .hero-title > span {
+  display: inline-block;
 }
 
 .cta-scroll {
@@ -1901,6 +1908,7 @@ Pages
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
+  background-color: white;
 }
 
 .clients .client-1 {
@@ -2004,7 +2012,7 @@ Pages
   background-image: url("http://www.liamoneweb.fr/wp-content/themes/liamone/assets/img/background/service-headerBg.jpg");
   background-position: top left;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: auto;
   background-color: white;
   min-height: 510px;
   padding-bottom: 2em;
@@ -2018,6 +2026,14 @@ Pages
 .services .hero-img address,
 .services .hero-img a {
   font-size: 0.875rem;
+}
+
+.services .hero-img .block-content:not(.content-slider) {
+  top: -5em;
+}
+
+.services .hero-img .block-title {
+  min-height: 144px;
 }
 
 .services .block-list ol {
@@ -2742,6 +2758,8 @@ Media-queries
     float: left;
   }
   /*End Home*/
+  /*Service*/
+  /*End Service*/
   /*Service slider*/
   .slider-nav {
     left: 78%;
@@ -3900,6 +3918,9 @@ Media-queries
     opacity: 1;
     -webkit-transform: translateY(0);
             transform: translateY(0);
+  }
+  .nav-item > a:before {
+    display: block;
   }
   .nav-item > a:hover:before {
     -webkit-transform: translateX(0);

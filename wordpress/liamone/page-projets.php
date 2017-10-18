@@ -15,7 +15,10 @@ get_header(); ?>
                     <div class="left-block col-xxsm-12">
                         <div class="block-title">
                             <h1 class="hero-title">
-                                <span>Selection <br> de projets <i class="dot">.</i></span>
+                                    <span>Selection</span> 
+                                    <br> 
+                                    <span>de projets</span>
+                                    <i class="dot">.</i>
                             </h1>
                             <hr class="separator">
                         </div>
