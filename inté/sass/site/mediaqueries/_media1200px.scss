@@ -29,7 +29,7 @@
 		.nav-item  {
 			display: inline-block;
 
-			.item-link  {
+			& > a  {
 				font-size: $font-16;
 				padding: 0 1em;
 				opacity: 1;
@@ -40,7 +40,11 @@
 
 	.nav-item  {
 
-		.item-link  {
+		& > a  {
+
+			&:before  {
+				display: block;
+			}
 
 			&:hover  {
 

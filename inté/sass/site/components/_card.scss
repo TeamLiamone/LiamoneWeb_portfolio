@@ -2,6 +2,7 @@
 .block-card  {
 	@extend %clearfix;
 	padding: 1em 0;
+	overflow: hidden;
 
 	&:before  {
 		@extend %font-bold;

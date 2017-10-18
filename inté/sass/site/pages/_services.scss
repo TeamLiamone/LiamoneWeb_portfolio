@@ -2,7 +2,7 @@
 	overflow-x: hidden;
 
 	.hero-img  {
-		@include backgroundImg('../img/background/service-headerBg.jpg', top left, no-repeat, contain, $white-color);
+		@include backgroundImg('../img/background/service-headerBg.jpg', top left, no-repeat, auto, $white-color);
 		min-height: 510px;
 		padding-bottom: 2em;
 
@@ -19,6 +19,14 @@
 
 		a  {
 			@extend %font-bold;
+		}
+
+		.block-content:not(.content-slider)  {
+			top: -5em;
+		}
+
+		.block-title  {
+			min-height: 144px;
 		}
 	}
 

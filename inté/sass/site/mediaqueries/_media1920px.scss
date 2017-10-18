@@ -4,11 +4,15 @@
 	@include responsive-columns('xlg');
 	
 	/*Home*/
-	.projet  {
+	/*.home  {
 
-		.block-card  {
-			//margin-right: 35vw;
+		section {
+			padding: 20vh 0;
 		}
+
+	}*/
+
+	.projet  {
 
 		.block-content  {
 			max-height: 730px;

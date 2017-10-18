@@ -21,7 +21,6 @@
 	padding: 15vh 0 0;
 	height: 100%;
 
-
 	&.full  {
 		background: $greyNumber-color;
 		padding: 15vh 0 5vh;
@@ -64,6 +63,18 @@
 			& > .project-img  {
 				width: 100vw;
 			}
+		}
+	}
+}
+
+.hero-header,
+.hero-grey,
+.hero-img  {
+
+	.hero-title  {
+		
+		& > span  {
+			display: inline-block;
 		}
 	}
 }

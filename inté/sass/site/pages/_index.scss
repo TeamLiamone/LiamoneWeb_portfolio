@@ -24,6 +24,7 @@
 }
 
 .block-title  {
+	overflow: hidden;
 
 	h2  {
 		@extend %pos-relative;
@@ -48,11 +49,12 @@
 
 	.big-title:not(.hero-title)  {
 		@extend %font-uppercase;
+		display: inline-block;
 	}
 
 	.block-title  {
 		@extend %clearfix;
-		min-height: 230px;
+		min-height: 250px;
 
 		h2  {
 			margin-top: 2em;
@@ -230,6 +232,7 @@
 		background-repeat: no-repeat;
 		background-size: auto;
 		background-position: center;
+		background-color: $white-color;
 
 	}
 
