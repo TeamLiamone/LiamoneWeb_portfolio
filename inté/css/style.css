@@ -204,7 +204,9 @@ aside {
   clear: both;
 }
 
-.block-card .card-caption, .actu-card figcaption, .slider-nav, .slider-nav .slider-count, .menu-header, .menu-toggle, header .nav-item > a, .nav-item > a, .hero-project, .cta-scroll > i, .block-title h2, .block-content, .contact .contact-form, .block-formation .content-titles a, .projects .projects-wrap, .projects-list .project-item,
+.block-card .card-caption, .actu-card figcaption, .slider-nav, .slider-nav .slider-count, .menu-header, .menu-toggle, header .nav-item > a, .nav-item > a, .hero-project, .hero-header,
+.hero-grey,
+.hero-img, .cta-scroll > i, .block-title h2, .block-content, .contact .contact-form, .block-formation .content-titles a, .projects .projects-wrap, .projects-list .project-item,
 .project-focus .project-item {
   position: relative;
 }
@@ -1659,6 +1661,12 @@ form .btn {
   width: 100vw;
 }
 
+.hero-header,
+.hero-grey,
+.hero-img {
+  z-index: 1;
+}
+
 .hero-header .hero-title > span,
 .hero-grey .hero-title > span,
 .hero-img .hero-title > span {
@@ -2292,6 +2300,7 @@ Pages
   width: 100%;
   min-height: 320px;
   background: transparent;
+  z-index: 2;
 }
 
 .projects-list .project-link,
@@ -3988,6 +3997,9 @@ Media-queries
   }
   /*End Footer*/
   /*Services*/
+  .services .hero-img {
+    background-size: contain;
+  }
   .services .hero-img .block-content .left-block {
     width: 50%;
   }
