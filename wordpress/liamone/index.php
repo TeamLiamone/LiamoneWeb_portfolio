@@ -18,7 +18,7 @@
 get_header(home); ?>
 
     <!--Liamone page container-->
-    <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page" data-page-href="www.liamoneweb.fr">
+    <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page" data-page-href="index.php">
         
         <!--Hero-->
         <header class="hero-header row">
@@ -140,7 +140,7 @@ get_header(home); ?>
                         <p>Quel que soit votre projet: identité graphique, refonte en responsive design ou lorem ispeum sic dolor amet et fili et spiriti</p>
                     </div>
                     <div class="right-block col-xxsm-12 col-sm-4 col-sm-offset-1 col-lg-offset-2">
-                        <a class="btn white" href="contact.html" title="Nous contacter">Contactez-nous<i class="icon-right"></i></a>
+                        <a class="btn white" href="http://www.liamoneweb.fr/?page_id=141" title="Nous contacter">Contactez-nous<i class="icon-right"></i></a>
                     </div>
                 </div>
             </div>

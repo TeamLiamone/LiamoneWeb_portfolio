@@ -7,12 +7,12 @@
 get_header(); ?>
 
     <!--Liamone page container-->
-    <main class="legal-notice fluid-container" data-page-title="Mentions-Légales" data-page-class="legalNotice">
+    <main class="legal-notice fluid-container" data-page-title="Mentions-Légales" data-page-class="legalNotice-page">
 
         <header class="hero-grey">
             <div class="container">
                 <div class="padded-block row">
-                    <div class="left-block col-xxsm-12 col-sm-3">
+                    <div class="left-block col-xxsm-12 col-sm-4">
                         <div class="block-title">
                             <h1 class="hero-title">
                                 <span>Mentions <br> légales<i class="dot">.</i></span>
