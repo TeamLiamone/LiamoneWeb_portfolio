@@ -3966,6 +3966,12 @@ Media-queries
     top: -0.3em;
   }
   /*Hero*/
+  #backgroundTHREE canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
   .hero-header .hero-title {
     font-size: 5.625rem;
   }
@@ -3979,7 +3985,7 @@ Media-queries
     padding: 0;
   }
   .projet .block-content {
-    max-height: 1020px;
+    max-height: 970px;
   }
   .skewed-bg.shape-right {
     -webkit-transform: skew(0deg, -25deg);

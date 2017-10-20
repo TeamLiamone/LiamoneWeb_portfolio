@@ -21,7 +21,7 @@ get_header(home); ?>
     <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page" data-page-href="index.php">
         
         <!--Hero-->
-        <header class="hero-header row">
+        <header id="backgroundTHREE" class="hero-header row">
             <h1 class="hero-title">
                 <span>Nous sommes</span>
                 <br>
@@ -101,30 +101,43 @@ get_header(home); ?>
                         <p class="big-number under-title">03</p>
                     </div>
                     <div class="block-content col-xxsm-12">
-                        <figure class="block-card project-kleyver">
-                            <img src="http://www.liamoneweb.fr/wp-content/themes/liamone/assets/img/illustration/kleyver-thumb.jpg" alt="Kleyver, Trouvez facilement des missions pour vos consultants en inter-contrats !" width="571" height="370"/>
-                            <figcaption class="card-caption">
-                                <h3>Kleyver</h3>
-                                <p>Algorithme de matching pour ENS - jobboard <br> #Design - SEO - UX</p>
-                                <a class="btn bordered" href="#" title="Accéder au détail du projet">Voir le projet<i class="icon-right"></i></a>
-                            </figcaption>
-                        </figure>
-                        <figure class="block-card project-mailuneed">
-                            <img class="img-fluid" src="http://www.liamoneweb.fr/wp-content/themes/liamone/assets/img/illustration/mailuneed-thumb.jpg" alt="Mail U Need, Achat de fichier de prospection qualifiés" width="371" height="402"/>
-                            <figcaption class="card-caption">
-                                <h3>MailUNeed</h3>
-                                <p>Webmarketing - lead reacher <br> #Big data - Dev - Design</p>
-                                <a class="btn bordered" href="#" title="Accéder au détail du projet">Voir le projet<i class="icon-right"></i></a>
-                            </figcaption>
-                        </figure>
-                        <figure class="block-card project-styleparis">
-                            <img src="http://www.liamoneweb.fr/wp-content/themes/liamone/assets/img/illustration/styleparis-thumb.jpg" alt="Style.Paris, L'aide d'un styliste en quelques clics !" width="571" height="370"/>
-                            <figcaption class="card-caption">
-                                <h3>Style.Paris</h3>
-                                <p>MarketPlace - Mode - Relooking <br> #Direction artistique - UX</p>
-                                <a class="btn bordered" href="#" title="Accéder au détail du projet">Voir le projet<i class="icon-right"></i></a>
-                            </figcaption>
-                        </figure>
+                       <?php 
+                            $args = array(
+                                            'posts_per_page' => 3,
+                                            'category' => 8,
+                                            'order' => 'DESC',
+                                            'orderby' => 'date'
+                                );
+                            $lastProjects = new WP_Query( $args ); ?>
+                            <?php if ( $lastProjects->have_posts() ) : ?>
+
+                                <!-- the loop -->
+                                <?php while ( $lastProjects->have_posts() ) : $lastProjects->the_post(); ?>
+                                    
+                                    <figure id="projet-<?php the_title(); ?>" class="block-card">
+                                        <?php if ( has_post_thumbnail() ) : ?>
+        
+                                         <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
+
+                                        <?php endif; ?>
+                                        <figcaption class="card-caption">
+                                            <h3><?php the_title(); ?></h3>
+                                            <p><?php the_tags( '#', ', #'); ?></p>
+                                            <a class="btn bordered" href="<?php the_permalink(); ?>" title="Découvrir le projet <?php the_title(); ?>">
+                                                Voir le projet
+                                                <i class="icon-right"></i>
+                                            </a>
+                                        </figcaption>
+                                    </figure>
+                                <?php endwhile; ?>
+                                <!-- end of the loop -->
+
+                                <?php wp_reset_postdata(); ?>
+
+                            <?php else : ?>
+                                <!--No content-->
+                                <!--./No content-->
+                            <?php endif; ?>                   
                     </div>
                 </div>
             </div>
@@ -442,6 +455,110 @@ get_header(home); ?>
                             <figcaption>
                                 <span class="rounded">
                                     <i class="icon-facebook"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-twitter"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-instagram"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-facebook"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-twitter"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-instagram"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-instagram"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-facebook"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-twitter"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-instagram"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-instagram"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-facebook"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-twitter"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-instagram"></i>
                                 </span>
                             </figcaption>
                         </figure>

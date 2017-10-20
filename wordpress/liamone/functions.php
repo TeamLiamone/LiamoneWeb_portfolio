@@ -611,6 +611,7 @@ function liamoneJs_scripts() {
 	wp_register_script('scrollTo', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/ScrollToPlugin.min.js', array(),'1.20.3', true);
 	wp_register_script('swiperJs', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js', array(),'3.4.2', true);
 	wp_register_script('viewportChecker', 'https://cdnjs.cloudflare.com/ajax/libs/jQuery-viewport-checker/1.8.8/jquery.viewportchecker.min.js', array(),'1.8.8', true);
+	wp_register_script('threeJs', 'https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.min.js', array(),'r87', true);
 	wp_register_script('CustomEase', get_theme_file_uri('/assets/js/plugins/CustomEase.min.js'), array(),'1.0', true);
 	wp_register_script('liamoneScript', get_theme_file_uri('/assets/js/script.js'), array(),'1.0', true);
 
@@ -622,7 +623,9 @@ function liamoneJs_scripts() {
 	wp_enqueue_script('CustomEase');
 	wp_enqueue_script('swiperJs');
 	wp_enqueue_script('viewportChecker');
+	wp_enqueue_script('threeJs');
 	wp_enqueue_script('liamoneScript');
+	
 }
 
 add_action('wp_enqueue_scripts', 'liamoneJs_scripts');

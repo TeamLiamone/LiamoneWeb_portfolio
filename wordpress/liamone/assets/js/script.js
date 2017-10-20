@@ -381,14 +381,12 @@ jQuery(document).ready(function($) {
 	//Menu-top position fixed after hero header is out of screen
 	if( !$('.menu-top').hasClass('is-visible') ) {
 
-		var wHeight = $(window).height();
-
 		$('.menu-top').each(function() {
 
 			var togglePosition = new ScrollMagic.Scene({
 
 				triggerElement: $('main > header'),
-				offset: wHeight - 100,
+				offset: wH - 100,
 				triggerHook: 1,
 				reverse: true
 
@@ -431,6 +429,38 @@ jQuery(document).ready(function($) {
 
 		initFunctions.contactFormcontrols();
 
+	}
+	else if( $('main').hasClass('home') ) {
+
+		var actuCard = $('.actus').find('figure.actu-card');
+
+		if (actuCard.length > 7 )  {
+
+			actuCard.slice(7).hide();
+
+			$('.actus').on('click', '.btn', function(e) {
+
+				e.preventDefault();
+
+				$(this).toggleClass('show-more');
+
+				if( $(this).is('.show-more') ) {
+
+					$(this).html('En voir plus');
+					actuCard.slice(7).hide();
+
+				}
+				else {
+
+					$(this).html('En voir moins');
+					actuCard.slice(7).show();
+
+				}
+
+			});
+
+		}
+
 	};
 	
 	$(window).scroll(function(e) {
@@ -442,6 +472,126 @@ jQuery(document).ready(function($) {
 		lastSTop = currentSTop;
 
 	});
+
+	/*
+	THREE.JS
+	*/	
+	var windowHalfX,
+		windowHalfY,
+		windowWidth,
+		windowHeight,
+		mousePos,
+		container,
+		renderer, scene, camera, light,
+		FOV, aspectRatio, nearPlane, farPlane;
+
+	var Scene3D = {
+
+		init: function() {
+
+			scene = new THREE.Scene();
+
+			windowHalfX = window.innerWidth / 2,
+			windowHalfY = window.innerHeight / 2,
+			windowWidth = window.innerWidth,
+			windowHeight = window.innerHeight,
+			mousePos = {x:0, y: 0},
+			container = document.getElementById('backgroundTHREE'),
+			FOV = 45,
+			aspectRatio = windowWidth / windowHeight, 
+			nearPlane = 0.1, 
+			farPlane = 5000;
+
+			camera = new THREE.PerspectiveCamera(FOV, aspectRatio, nearPlane, farPlane);
+			camera.position.z = 1300;
+			scene.add(camera);
+
+			light = new THREE.AmbientLight(0xffffff);
+			scene.add(light);
+
+			renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+			renderer.setSize(windowWidth, windowHeight);
+			//renderer.setClearColor(0x1b1f1f);
+			container.appendChild(renderer.domElement);
+
+			document.addEventListener('mousemove', onMouseMove, false);
+			window.addEventListener('resize', onWindowResize, false);
+
+		},
+		createGeometry: function() {
+
+			var geometry, material, mesh;
+			var posX, posY, posZ;
+			var cubeWidth, randomZ;
+
+			//console.log(randomZ);
+			//console.log(cubeWidth);
+
+			for( var i = 0; i < 16; i++ ) {
+
+				randomZ = Math.random() * (0.85 - 0.2) + 0.2;
+				cubeWidth = initFunctions.getRandomInt(160, 400);
+
+				posX = initFunctions.getRandomInt(-900, 900);
+				posY = initFunctions.getRandomInt(-480, 480);
+				posZ = initFunctions.getRandomInt(-500, 500);
+
+
+				geometry = new THREE.CubeGeometry(cubeWidth, 20, 20, 1, 1, 1);
+				material = new THREE.MeshBasicMaterial({color: 0xffc900});
+				mesh = new THREE.Mesh(geometry, material);
+
+				mesh.rotation.z = 0.+randomZ * Math.PI;
+				mesh.position.set(posX, posY, posZ);
+				scene.add(mesh);
+
+			}
+
+		},
+		render: function() {
+
+			camera.position.x += ( - mousePos.x - camera.position.x ) * 0.1;
+			camera.position.y += ( mousePos.y - camera.position.y ) * 0.1;
+			camera.lookAt(scene.position);
+
+			renderer.render(scene, camera);
+
+		},
+		build: function() {
+
+			Scene3D.render();
+			requestAnimationFrame(Scene3D.build);
+
+		}
+
+	};
+
+	function onMouseMove(event) {
+
+		mousePos.x = (event.clientX - windowHalfX);
+		mousePos.y = (event.clientY - windowHalfY);
+
+	};
+	function onWindowResize() {
+
+		windowWidth = window.innerWidth;
+		windowHeight = window.innerHeight;
+		windowHalfX = window.innerWidth / 2;
+		windowHalfY = window.innerHeight / 2;
+
+		renderer.setSize(windowWidth, windowHeight);
+		camera.aspect = windowWidth / windowHeight;
+		camera.updateProjectionMatrix();
+
+	};
+	function init3DScene() {
+
+		Scene3D.init();
+		Scene3D.createGeometry();
+		Scene3D.build();
+
+	};
+	//init3DScene();
 
 	/*
 	AJAX NAVIGATION
@@ -557,6 +707,7 @@ jQuery(document).ready(function($) {
 				.to( $('.cta-scroll'), 0.5, {y:'-=25%', autoAlpha: 1, ease: Power4.easeOut}, 0.4 );
 
 			tlHero.play().timeScale(1);
+			init3DScene();
 
 			//ANIMATION LIAMONE SECTION
 			TweenLite.set( $('.liamone .yellow-title'), {autoAlpha: 0, x:'-100%'} );
@@ -899,7 +1050,12 @@ jQuery(document).ready(function($) {
 				.to( $('.projects hr'), 0.4, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn}, 0.4 );
 
 			tlProjects.play().timeScale(1);
-			initFunctions.projectMask();
+
+			if( window.matchMedia('(min-width: 768px)').matches ) {
+
+				initFunctions.projectMask();
+			
+			}
 
 		},
 		/*PROJECT*/
