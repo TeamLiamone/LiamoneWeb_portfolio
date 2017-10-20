@@ -211,7 +211,7 @@ aside {
   position: relative;
 }
 
-.loader .loader-icon, .sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item > a:before, .cta-scroll, .big-number, .parallax-geometry > .shape, .skewed-bg, .contact .contact-form .reveal-form, .contact .contact-form .close-form, .block-formation .content-titles a:before, .projects-list .project-link,
+.loader .loader-icon, .sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item > a:before, #backgroundTHREE canvas, .cta-scroll, .big-number, .parallax-geometry > .shape, .skewed-bg, .contact .contact-form .reveal-form, .contact .contact-form .close-form, .block-formation .content-titles a:before, .projects-list .project-link,
 .project-focus .project-link, .project-cover, .project-cover .mask, .project-cover .mask > .project-img, .project-nav .btn-ico {
   position: absolute;
 }
@@ -1599,6 +1599,12 @@ form .btn {
 
 /*End Menu bottom*/
 /*Hero*/
+#backgroundTHREE canvas {
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
 .hero-header {
   background-color: #1b1f1f;
   height: 100vh;
