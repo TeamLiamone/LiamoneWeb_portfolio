@@ -27,7 +27,9 @@ jQuery(document).ready(function($) {
 	var demandType,
 		lastSTop = 0,
 		wH = $(window).height(),
-		wW = $(window).width();
+		wW = $(window).width(),
+		actuCard = $('.actus').find('figure.actu-card');
+
 
 	controller.scrollTo( function(newpos){
 
@@ -38,6 +40,20 @@ jQuery(document).ready(function($) {
 	//Functions utilities
 	var initFunctions = {
 
+
+		loading: function() {
+
+			if($('body').hasClass('first')) {
+
+				$('body').delay(250).queue(function(){
+
+					$(this).removeClass('first').dequeue();
+
+				});
+
+			}
+
+		},
 		animateElements: function(element) {
 
 			element.each(function() {
@@ -171,24 +187,28 @@ jQuery(document).ready(function($) {
 
 			var projectMask = $('.projects-list').find('.project-item');
 
-			projectMask.each( function() {
+			if( window.matchMedia(' (min-width: 768px)').matches ) {
 
-				var textToExpand = $(this).find('.visible-text');
+				projectMask.each( function() {
 
-				var expandMask = new ScrollMagic.Scene({
+					var textToExpand = $(this).find('.visible-text');
 
-					triggerElement: this,
-					offset: -100,
-					triggerHook: 0.8,
-					reverse: true,
-					duration: '100%'
+					var expandMask = new ScrollMagic.Scene({
 
-				})
-				//.setTween(TweenMax.fromTo(textToExpand, 1, {autoAlpha: 0}, {autoAlpha: 1, ease: Power1.EaseInOut} ) )
-				.setClassToggle(this, 'is-inView')
-				.addTo(controller);
+						triggerElement: this,
+						offset: -100,
+						triggerHook: 0.8,
+						reverse: true,
+						duration: '100%'
 
-			});
+					})
+					//.setTween(TweenMax.fromTo(textToExpand, 1, {autoAlpha: 0}, {autoAlpha: 1, ease: Power1.EaseInOut} ) )
+					.setClassToggle(this, 'is-inView')
+					.addTo(controller);
+
+				});
+
+			}
 
 		},
 		serviceSwiper: function() {
@@ -363,251 +383,54 @@ jQuery(document).ready(function($) {
 			});
 
 		},
-
-	};
-
-	//Init geo-layer shapes animation
-	initFunctions.geoLayerShapes();
-
-	//Burger Btn
-	$('.menu-toggle').on('click', function(e) {
-
-		e.preventDefault();
-		$('body').toggleClass('menu-open');
-		$(this).toggleClass('toggle-open');
-
-	});
-
-	//Menu-top position fixed after hero header is out of screen
-	if( !$('.menu-top').hasClass('is-visible') ) {
-
-		$('.menu-top').each(function() {
-
-			var togglePosition = new ScrollMagic.Scene({
-
-				triggerElement: $('main > header'),
-				offset: wH - 100,
-				triggerHook: 1,
-				reverse: true
-
-			})
-			.setClassToggle(this, 'is-visible')
-			.addTo(controller);
-
-		});
-
-	}
-
-	//Cta-scroll function
-	$('main.home .cta-scroll').on('click', function(e) {
-
-		e.preventDefault();
-		controller.scrollTo('.liamone');
-
-	});
-
-	//Training page tabs & filter
-	if( $('main').hasClass('training') ) {
-
-		initFunctions.trainingTabs();
-
-	}
-	//Projects thumbs reveal
-	else if( $('main').hasClass('projects') && window.matchMedia(' (min-width: 768px)').matches ) {
-		
-		initFunctions.projectMask();
-
-	}
-	//Services slider with swiper.js
-	else if( $('main').hasClass('services') ) {
-
-		initFunctions.serviceSwiper();
-
-	}
-	//Contact form reveal & input hide/show
-	else if( $('main').hasClass('contact') ) {
-
-		initFunctions.contactFormcontrols();
-
-	}
-	else if( $('main').hasClass('home') ) {
-
-		var actuCard = $('.actus').find('figure.actu-card');
-
-		if (actuCard.length > 7 )  {
-
-			actuCard.slice(7).hide();
+		toggleActus: function(card) {
 
 			$('.actus').on('click', '.btn', function(e) {
 
 				e.preventDefault();
 
-				$(this).toggleClass('show-more');
+				$(this).toggleClass('show-more')
 
-				if( $(this).is('.show-more') ) {
+				if( !$(this).hasClass('show-more') ) {
 
-					$(this).html('En voir plus');
-					actuCard.slice(7).hide();
+					$(this).html('En voir plus');	
+					card.slice(7).hide();
 
 				}
 				else {
 
 					$(this).html('En voir moins');
-					actuCard.slice(7).show();
+					card.slice(7).show();
 
 				}
 
 			});
 
-		}
+		},
+		calculatePosition(element) {
+
+			var rect = element.getBoundingClientRect();
+
+			var scrollTop = window.pageYOffset || root.scrollTop || body.scrollTop || 0;
+			var scrollLeft = window.pageXOffset || root.scrollLeft || body.scrollLeft || 0;
+
+			var clientTop = root.clientTop || body.clientTop || 0;
+			var clientLeft = root.clientLeft || body.clientLeft || 0;
+
+			return {
+				top: Math.round(rect.top + scrollTop - clientTop),
+				left: Math.round(rect.left + scrollLeft - clientLeft),
+				height: rect.height,
+				width: rect.width
+			};
+
+		},
 
 	};
 	
-	$(window).scroll(function(e) {
-
-		var currentSTop = $(this).scrollTop();
-
-		//Init geo-layer div animation when scrolling
-		initFunctions.geoLayer(currentSTop, lastSTop);
-		lastSTop = currentSTop;
-
-	});
-
 	/*
-	THREE.JS
-	*/	
-	var windowHalfX,
-		windowHalfY,
-		windowWidth,
-		windowHeight,
-		mousePos,
-		container,
-		renderer, scene, camera, light,
-		FOV, aspectRatio, nearPlane, farPlane;
-
-	var Scene3D = {
-
-		init: function() {
-
-			scene = new THREE.Scene();
-
-			windowHalfX = window.innerWidth / 2,
-			windowHalfY = window.innerHeight / 2,
-			windowWidth = window.innerWidth,
-			windowHeight = window.innerHeight,
-			mousePos = {x:0, y: 0},
-			container = document.getElementById('backgroundTHREE'),
-			FOV = 45,
-			aspectRatio = windowWidth / windowHeight, 
-			nearPlane = 0.1, 
-			farPlane = 5000;
-
-			camera = new THREE.PerspectiveCamera(FOV, aspectRatio, nearPlane, farPlane);
-			camera.position.z = 1300;
-			scene.add(camera);
-
-			light = new THREE.AmbientLight(0xffffff);
-			scene.add(light);
-
-			renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
-			renderer.setSize(windowWidth, windowHeight);
-			//renderer.setClearColor(0x1b1f1f);
-			container.appendChild(renderer.domElement);
-
-			document.addEventListener('mousemove', onMouseMove, false);
-			window.addEventListener('resize', onWindowResize, false);
-
-		},
-		createGeometry: function() {
-
-			var geometry, material, mesh;
-			var posX, posY, posZ;
-			var cubeWidth, randomZ;
-
-			//console.log(randomZ);
-			//console.log(cubeWidth);
-
-			for( var i = 0; i < 16; i++ ) {
-
-				randomZ = Math.random() * (0.85 - 0.2) + 0.2;
-				cubeWidth = initFunctions.getRandomInt(160, 400);
-
-				posX = initFunctions.getRandomInt(-900, 900);
-				posY = initFunctions.getRandomInt(-480, 480);
-				posZ = initFunctions.getRandomInt(-500, 500);
-
-
-				geometry = new THREE.CubeGeometry(cubeWidth, 20, 20, 1, 1, 1);
-				material = new THREE.MeshBasicMaterial({color: 0xffc900});
-				mesh = new THREE.Mesh(geometry, material);
-
-				mesh.rotation.z = 0.+randomZ * Math.PI;
-				mesh.position.set(posX, posY, posZ);
-				scene.add(mesh);
-
-			}
-
-		},
-		render: function() {
-
-			camera.position.x += ( - mousePos.x - camera.position.x ) * 0.1;
-			camera.position.y += ( mousePos.y - camera.position.y ) * 0.1;
-			camera.lookAt(scene.position);
-
-			renderer.render(scene, camera);
-
-		},
-		build: function() {
-
-			Scene3D.render();
-			requestAnimationFrame(Scene3D.build);
-
-		}
-
-	};
-
-	function onMouseMove(event) {
-
-		mousePos.x = (event.clientX - windowHalfX);
-		mousePos.y = (event.clientY - windowHalfY);
-
-	};
-	function onWindowResize() {
-
-		windowWidth = window.innerWidth;
-		windowHeight = window.innerHeight;
-		windowHalfX = window.innerWidth / 2;
-		windowHalfY = window.innerHeight / 2;
-
-		renderer.setSize(windowWidth, windowHeight);
-		camera.aspect = windowWidth / windowHeight;
-		camera.updateProjectionMatrix();
-
-	};
-	function init3DScene() {
-
-		Scene3D.init();
-		Scene3D.createGeometry();
-		Scene3D.build();
-
-	};
-	//init3DScene();
-
-	/*
-	AJAX NAVIGATION
+	ANIMATION
 	*/
-	var currentItem = '',
-		currentType = undefined,
-		itemScrollTop,
-		itemScrollLeft,
-		itemClone;
-
-	var currentPage,
-		currentPageClass,
-		currentProjectClass,
-		targetPage;
-
-		//Projets timelines
 	var tlProjects,
 		tlProject,
 		//Home timelines
@@ -630,61 +453,11 @@ jQuery(document).ready(function($) {
 		//Contact timelines
 		tlContact;
 
-	var scrollTop;
-
-	var logo = {
-
-		liamoneLogo: '<svg version="1.1" id="liamone-logoBlack" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96 36" enable-background="new 0 0 96 36" xml:space="preserve" width="96" height="36"> <title>Liamone, agence digitale</title> <g id="liamone"> <g> <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-148.8634" y1="-64.4275" x2="-137.6216" y2="-64.4275" gradientTransform="matrix(1.1878 0 0 1.1878 231.1475 92.702)"> <stop  offset="0" style="stop-color:#FFD300"/> <stop  offset="1" style="stop-color:#F39200"/> </linearGradient> <path fill="url(#SVGID_1_)" d="M54.7,17.6c0.6,1.3,1.5,2.5,2.7,3c1.2,0.6,2.5,0.6,3.7,0.2s2.3-1.1,2.8-2.1 c0.3-0.5,0.5-0.9,0.5-1.3c0-0.2,0-0.4-0.1-0.6c-0.1-0.3-0.2-0.5-0.3-0.7c-0.4-0.9-1.2-1.5-2.2-1.8c-0.9-0.3-1.9-0.2-2.3-0.1 c-0.2,0.1-0.3,0-0.4,0.2c-0.2,0.2-0.2,0.6-0.2,1.1c0.2,0.9,0.8,1.9,2.4,2l0.2,0.4C61,18.5,60,18.8,59,18.7c-1-0.2-2-0.8-2.6-1.7 c-0.6-0.8-1-2-1-3.2c0.1-0.6,0.3-1.3,0.6-1.9c0.4-0.6,0.9-1.1,1.4-1.4c0.3-0.2,0.5-0.3,0.9-0.5c0.2-0.1,0.2-0.1,0.4-0.2 c0.2-0.1,0.3-0.1,0.4-0.1c0.6-0.2,1.1-0.2,1.7-0.2c1.1,0,2.1,0.3,3,0.8c1.8,0.9,3.2,2.6,3.8,4.5c0.2,0.5,0.2,1,0.3,1.4 c0.1,0.5,0,1.1-0.1,1.6c-0.2,1-0.7,2-1.4,2.6c-1.3,1.4-3,2.1-4.7,2.4c-1.7,0.2-3.5-0.2-4.8-1.2s-2.1-2.6-2.4-4H54.7z"/> <g> <g> <path fill="#628C2E" d="M61.9,4.2c-1.2,1.9-0.9,4.3-0.8,5l0,0c0.1-0.1,0.1-0.2,0.1-0.3s0.1-0.2,0.1-0.3s0.1-0.2,0.2-0.3 c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0.2-0.3C62,7.6,62,7.5,62.1,7.4c0.1-0.1,0.1-0.2,0.2-0.3c0.2-0.2,0.3-0.4,0.4-0.6 c0.2-0.2,0.3-0.4,0.4-0.6c0.2-0.2,0.3-0.4,0.4-0.6c0.2-0.2,0.3-0.4,0.4-0.5c0.2-0.2,0.3-0.3,0.4-0.5c0.1-0.1,0.1-0.2,0.2-0.2 C64.6,4,64.6,4,64.7,3.9c0.1-0.1,0.2-0.2,0.3-0.3c0,0,0-0.1,0-0.1s-0.1,0.1-0.2,0.3c-0.1,0.1-0.2,0.2-0.3,0.3 c-0.1,0.1-0.1,0.1-0.2,0.2s-0.1,0.2-0.2,0.2C64,4.7,63.8,4.8,63.7,5c-0.2,0.2-0.3,0.4-0.4,0.5c0,0.1-0.1,0.3-0.3,0.5 s-0.3,0.4-0.4,0.6c-0.2,0.2-0.3,0.4-0.4,0.6c-0.1,0.1-0.1,0.2-0.2,0.3c0.1,0.1,0,0.2,0,0.4c-0.1,0.1-0.1,0.2-0.2,0.3 c-0.1,0.1-0.1,0.2-0.2,0.3c-0.1,0.1-0.1,0.2-0.1,0.3c-0.1,0.1-0.1,0.2-0.1,0.3c-0.1,0.1-0.1,0.2-0.1,0.3v0.1 c0.7-0.2,3-0.9,4.2-2.7c1.4-2.2,0.8-5.2,0.8-5.2S63.3,2.1,61.9,4.2z"/> <path fill="#9BBD1E" d="M60,5.5c0.8,1.4,0.5,3.3,0.4,3.8c0,0,0,0,0-0.1S60.3,9.1,60.3,9c0-0.1-0.1-0.2-0.1-0.2 c-0.1-0.1-0.1-0.2-0.1-0.2s0-0.1-0.1-0.2c0-0.1,0-0.1-0.1-0.2S59.8,8,59.8,7.9c-0.1-0.1-0.1-0.2-0.1-0.3 c-0.1-0.2-0.2-0.3-0.3-0.5s-0.2-0.3-0.3-0.5s-0.2-0.3-0.3-0.5s-0.2-0.3-0.3-0.4s-0.2-0.3-0.3-0.4s-0.1-0.1-0.1-0.2 c0,0.2-0.1,0.1-0.1,0.1C58,5.1,57.9,5,57.8,5c-0.1-0.1-0.2-0.2-0.2-0.2s0.1,0.1,0.2,0.2c0.1,0,0.1,0.1,0.2,0.2 c0,0.1,0,0.1,0.1,0.2s0.1,0.1,0.1,0.2c0.1,0.1,0.2,0.3,0.3,0.4c0.1,0.2,0.2,0.3,0.3,0.4c0.1,0.2,0.2,0.3,0.3,0.5 s0.2,0.3,0.3,0.5s0.2,0.3,0.3,0.5c0.1,0.1,0.1,0.2,0.1,0.3c0.1,0.1,0.1,0.2,0.1,0.3S60,8.7,60,8.8C60.1,8.9,60.1,9,60.1,9 L60,8.9v0.2l0.1,0.2c0,0,0,0,0,0.1c-0.6-0.2-2.2-0.8-3-2.2c-1-1.7-0.3-3.9-0.3-3.9S59,3.8,60,5.5z"/> </g> </g> </g> <g> <path fill="#1C1B1B" d="M0.2,23V5.4h2.2V21h9.8v2H0.2L0.2,23z"/> <path fill="#1C1B1B" d="M14.4,7.7V5h2.2v2.7H14.4z M14.4,23V10.1h2.2V23H14.4z"/> <path fill="#1C1B1B" d="M23.3,23.3c-0.6,0-1.2-0.1-1.7-0.3c-0.5-0.2-1-0.5-1.4-0.9s-0.7-0.8-0.9-1.3c-0.2-0.5-0.3-1-0.3-1.6 s0.2-1.1,0.4-1.6s0.6-0.9,1.1-1.2c0.5-0.4,1.1-0.6,1.8-0.8c0.7-0.2,1.4-0.3,2.2-0.3c0.6,0,1.2,0.1,1.9,0.2 c0.6,0.1,1.2,0.3,1.7,0.5v-1c0-1-0.3-1.9-0.9-2.5s-1.4-0.9-2.5-0.9c-1.3,0-2.7,0.5-4.1,1.5l-0.7-1.4c1.7-1.1,3.4-1.7,5-1.7 c1.7,0,3,0.5,4,1.3c0.9,0.9,1.4,2.2,1.4,3.8v5.4c0,0.5,0.2,0.8,0.7,0.8V23c-0.2,0.1-0.4,0.1-0.6,0.1s-0.3,0-0.5,0 c-0.4,0-0.8-0.1-1-0.4s-0.4-0.6-0.5-0.9l-0.1-0.9c-0.6,0.8-1.3,1.3-2.2,1.8C25.3,23.1,24.4,23.3,23.3,23.3z M23.9,21.7 c0.8,0,1.5-0.2,2.2-0.4c0.7-0.3,1.2-0.7,1.5-1.1c0.3-0.3,0.5-0.6,0.5-1v-1.9c-1-0.4-2.2-0.6-3.3-0.6c-1.1,0-2,0.2-2.7,0.7 s-1,1.1-1,1.8c0,0.4,0.1,0.7,0.2,1c0.2,0.3,0.4,0.6,0.6,0.8c0.3,0.2,0.6,0.4,0.9,0.6C23.2,21.6,23.5,21.7,23.9,21.7z"/> <path fill="#1C1B1B" d="M53.2,23H51v-7.2c0-1.3-0.2-2.4-0.7-3c-0.4-0.6-1.1-1-2-1s-1.7,0.3-2.4,0.9c-0.7,0.6-1.2,1.4-1.5,2.5V23 h-2.2v-7.2c0-1.4-0.2-2.4-0.6-3c-0.4-0.6-1.1-0.9-1.9-0.9c-0.9,0-1.7,0.3-2.4,0.9c-0.7,0.6-1.2,1.4-1.5,2.5V23h-2.2V10.1h2v2.8 c0.5-1,1.2-1.7,2.1-2.2c0.8-0.5,1.8-0.8,2.8-0.8c1.1,0,2,0.3,2.6,0.9c0.6,0.6,1,1.3,1.2,2.3c1.1-2.1,2.8-3.1,5-3.1 c0.7,0,1.3,0.2,1.9,0.4c0.5,0.3,0.9,0.7,1.2,1.1c0.3,0.5,0.5,1.1,0.6,1.7c0.1,0.6,0.2,1.4,0.2,2.2L53.2,23L53.2,23z"/> <path fill="#1C1B1B" d="M80.4,23h-2.2v-7.2c0-1.4-0.2-2.4-0.6-3c-0.4-0.6-1.1-0.9-1.9-0.9c-0.5,0-0.9,0.1-1.3,0.3 c-0.5,0.2-0.9,0.4-1.2,0.7c-0.4,0.3-0.7,0.7-1,1.1c-0.3,0.4-0.5,0.9-0.7,1.3V23h-2.2V10.1h2v2.8c0.5-0.9,1.2-1.7,2.2-2.2 c1-0.6,2-0.8,3.1-0.8c0.7,0,1.3,0.2,1.9,0.4c0.5,0.3,0.9,0.7,1.2,1.1c0.3,0.5,0.5,1.1,0.6,1.7c0.1,0.6,0.2,1.4,0.2,2.2L80.4,23 L80.4,23z"/> <path fill="#1C1B1B" d="M89.5,23.3c-1,0-1.9-0.2-2.7-0.5c-0.8-0.4-1.5-0.8-2.1-1.4s-1-1.3-1.3-2.2c-0.3-0.8-0.5-1.7-0.5-2.6 s0.2-1.8,0.5-2.6s0.8-1.5,1.3-2.1c0.6-0.6,1.3-1.1,2.1-1.4c0.8-0.4,1.7-0.5,2.7-0.5s1.9,0.2,2.7,0.6s1.5,0.8,2.1,1.4 c0.6,0.6,1,1.3,1.3,2.1s0.5,1.7,0.5,2.5c0,0.2,0,0.4,0,0.5c0,0.2,0,0.3-0.1,0.4H85.3c0.1,0.6,0.2,1.2,0.5,1.8c0.3,0.5,0.6,1,1,1.3 s0.8,0.7,1.3,0.9c0.5,0.2,1,0.3,1.6,0.3c0.4,0,0.8-0.1,1.2-0.2c0.4-0.1,0.7-0.3,1.1-0.4c0.3-0.2,0.6-0.4,0.9-0.7 c0.3-0.3,0.5-0.6,0.6-0.9l1.9,0.5c-0.2,0.5-0.5,0.9-0.9,1.3s-0.8,0.7-1.3,1s-1,0.5-1.6,0.7C90.7,23.2,90.1,23.3,89.5,23.3z M93.9,15.7c-0.1-0.6-0.2-1.2-0.5-1.7s-0.6-1-1-1.3c-0.4-0.4-0.8-0.7-1.3-0.9s-1-0.3-1.7-0.3s-1.1,0.1-1.7,0.3s-1,0.5-1.3,0.9 C86,13,85.7,13.5,85.5,14c-0.3,0.5-0.4,1.1-0.4,1.7H93.9z"/> </g> </g> <g id="agence-digitale"> <path fill="#1C1B1B" d="M4.1,27.9l2.8,6.5h-1l-0.8-2H2l-0.8,2h-1L3,27.9C3,27.9,4.1,27.9,4.1,27.9z M4.7,31.8l-1.2-3l0,0l-1.2,3 H4.7z"/> <path fill="#1C1B1B" d="M12.5,34.3c-0.4,0.2-0.9,0.2-1.3,0.2c-0.6,0-1-0.1-1.5-0.3c-0.4-0.2-0.8-0.4-1.1-0.7s-0.5-0.7-0.7-1.1 c-0.2-0.4-0.3-0.8-0.3-1.2c0-0.5,0.1-0.9,0.2-1.4C8,29.4,8.2,29,8.5,28.7c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.5-0.3 c0.4,0,0.8,0.1,1.1,0.1c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,1h-1c-0.1-0.3-0.2-0.5-0.3-0.7 c-0.2-0.2-0.3-0.3-0.5-0.5c-0.2-0.1-0.4-0.2-0.7-0.3c-0.3-0.1-0.5-0.1-0.8-0.1c-0.5,0-0.8,0.1-1.1,0.3c-0.3,0.2-0.6,0.4-0.8,0.6 c-0.2,0.3-0.4,0.6-0.5,0.9c-0.1,0.4-0.2,0.7-0.2,1s0.1,0.7,0.2,1c0.1,0.3,0.3,0.6,0.5,0.8c0.2,0.3,0.5,0.5,0.8,0.6 c0.3,0.2,0.7,0.2,1.1,0.2c0.4,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.7-0.5c0.2-0.2,0.4-0.4,0.5-0.7s0.2-0.6,0.2-0.8H11v-0.7h3.2v3.4 h-0.6l-0.3-0.8C13.4,34,13,34.2,12.5,34.3z"/> <path fill="#1C1B1B" d="M21.5,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5L21.5,27.9L21.5,27.9z"/> <path fill="#1C1B1B" d="M24.3,27.9l3.8,5.3l0,0v-5.3H29v6.5h-1.1l-3.8-5.2l0,0v5.2h-0.9v-6.5C23.2,27.9,24.3,27.9,24.3,27.9z"/> <path fill="#1C1B1B" d="M35.6,28.9c-0.4-0.3-0.8-0.4-1.3-0.4s-0.8,0.1-1.1,0.2c-0.3,0.2-0.6,0.4-0.8,0.6s-0.4,0.5-0.5,0.9 c-0.1,0.3-0.2,0.7-0.2,1c0,0.4,0.1,0.7,0.2,1.1c0.1,0.4,0.3,0.6,0.5,0.9s0.5,0.5,0.8,0.6c0.3,0.2,0.7,0.2,1.1,0.2 c0.3,0,0.6-0.1,0.9-0.2c0.3-0.1,0.5-0.2,0.7-0.4s0.3-0.4,0.4-0.6c0.1-0.3,0.2-0.5,0.2-0.8h1c-0.1,0.8-0.4,1.5-1,1.9 c-0.6,0.5-1.3,0.7-2.2,0.7c-0.6,0-1.1-0.1-1.5-0.3s-0.8-0.4-1.1-0.7c-0.3-0.3-0.5-0.7-0.6-1.1c-0.2-0.4-0.2-0.9-0.2-1.3 c0-0.5,0.1-0.9,0.2-1.3c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.7c0.4-0.2,0.9-0.3,1.5-0.3c0.4,0,0.8,0.1,1.1,0.2 c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,0.9h-1C36.2,29.4,35.9,29.1,35.6,28.9z"/> <path fill="#1C1B1B" d="M44.2,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5L44.2,27.9L44.2,27.9z"/> <path fill="#1C1B1B" d="M51.8,27.9c1.1,0,2,0.3,2.6,0.8s0.9,1.3,0.9,2.3c0,0.6-0.1,1-0.2,1.5c-0.2,0.4-0.4,0.8-0.6,1.1 c-0.3,0.3-0.7,0.5-1.1,0.7c-0.5,0.2-1,0.3-1.6,0.3h-2.5v-6.5h2.5V27.9z M51.9,33.7c0.1,0,0.3,0,0.4,0s0.4-0.1,0.5-0.1 c0.2-0.1,0.4-0.2,0.6-0.3c0.2-0.1,0.4-0.3,0.5-0.5c0.2-0.2,0.3-0.4,0.4-0.7c0.1-0.3,0.2-0.6,0.2-1s-0.1-0.8-0.2-1.1 c-0.1-0.3-0.2-0.6-0.4-0.8c-0.2-0.2-0.5-0.4-0.8-0.5s-0.7-0.2-1.1-0.2h-1.6v5.1L51.9,33.7L51.9,33.7z"/> <path fill="#1C1B1B" d="M58.1,27.9v6.5h-1v-6.5C57.1,27.9,58.1,27.9,58.1,27.9z"/> <path fill="#1C1B1B" d="M64.7,34.3c-0.4,0.2-0.9,0.2-1.3,0.2c-0.6,0-1-0.1-1.5-0.3s-0.8-0.4-1.1-0.7s-0.5-0.7-0.7-1.1 c-0.2-0.4-0.3-0.8-0.3-1.2c0-0.5,0.1-0.9,0.2-1.4c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.5-0.3 c0.4,0,0.8,0.1,1.1,0.1c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,1h-1c-0.1-0.3-0.2-0.5-0.3-0.7 c-0.2-0.2-0.3-0.3-0.5-0.5c-0.2-0.1-0.4-0.2-0.7-0.3c-0.3-0.1-0.5-0.1-0.8-0.1c-0.5,0-0.8,0.1-1.1,0.3s-0.6,0.4-0.8,0.6 c-0.2,0.3-0.4,0.6-0.5,0.9c-0.1,0.4-0.2,0.7-0.2,1s0.1,0.7,0.2,1c0.1,0.3,0.3,0.6,0.5,0.8c0.2,0.3,0.5,0.5,0.8,0.6 c0.3,0.2,0.7,0.2,1.1,0.2c0.4,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.8-0.5c0.2-0.2,0.4-0.4,0.5-0.7s0.2-0.6,0.2-0.8h-2.3v-0.7h3.2v3.4 H66l-0.3-0.8C65.5,34,65.1,34.2,64.7,34.3z"/> <path fill="#1C1B1B" d="M69.6,27.9v6.5h-1v-6.5C68.6,27.9,69.6,27.9,69.6,27.9z"/> <path fill="#1C1B1B" d="M71.1,28.7V28h5.8v0.7h-2.4v5.8h-1v-5.8H71.1z"/> <path fill="#1C1B1B" d="M80.4,27.9l2.8,6.5h-1.1l-0.8-2h-3l-0.8,2h-1l2.8-6.5C79.3,27.9,80.4,27.9,80.4,27.9z M81,31.8l-1.2-3l0,0 l-1.2,3H81z"/> <path fill="#1C1B1B" d="M85.5,27.9v5.8h3.8v0.7h-4.8v-6.5L85.5,27.9L85.5,27.9z"/> <path fill="#1C1B1B" d="M95.8,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5L95.8,27.9L95.8,27.9z"/> </g> </svg>',
-			liamoneLogoHome: '<svg version="1.1" id="liamone-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96 36" xml:space="preserve" width="96" height="36"> <title>Liamone agence digitale</title> <g id="liamone"> <g> <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-148.8634" y1="100.3365" x2="-137.6216" y2="100.3365" gradientTransform="matrix(1.1878 0 0 -1.1878 231.1475 135.4628)"> <stop  offset="0" style="stop-color:#FFD300"/> <stop  offset="1" style="stop-color:#F39200"/> </linearGradient> <path fill="url(#SVGID_1_)" d="M54.7,17.6c0.6,1.3,1.5,2.5,2.7,3c1.2,0.6,2.5,0.6,3.7,0.2c1.2-0.4,2.3-1.1,2.8-2.1 c0.3-0.5,0.5-0.9,0.5-1.3c0-0.2,0-0.4-0.1-0.6c-0.1-0.3-0.2-0.5-0.3-0.7c-0.4-0.9-1.2-1.5-2.2-1.8c-0.9-0.3-1.9-0.2-2.3-0.1 c-0.2,0.1-0.3,0-0.4,0.2c-0.2,0.2-0.2,0.6-0.2,1.1c0.2,0.9,0.8,1.9,2.4,2l0.2,0.4C61,18.5,60,18.8,59,18.7c-1-0.2-2-0.8-2.6-1.7 c-0.6-0.8-1-2-1-3.2c0.1-0.6,0.3-1.3,0.6-1.9c0.4-0.6,0.9-1.1,1.4-1.4c0.3-0.2,0.5-0.3,0.9-0.5c0.2-0.1,0.2-0.1,0.4-0.2 c0.2-0.1,0.3-0.1,0.4-0.1c0.6-0.2,1.1-0.2,1.7-0.2c1.1,0,2.1,0.3,3,0.8c1.8,0.9,3.2,2.6,3.8,4.5c0.2,0.5,0.2,1,0.3,1.4 c0.1,0.5,0,1.1-0.1,1.6c-0.2,1-0.7,2-1.4,2.6c-1.3,1.4-3,2.1-4.7,2.4c-1.7,0.2-3.5-0.2-4.8-1.2c-1.3-1-2.1-2.6-2.4-4L54.7,17.6z"/> <g> <g> <path fill="#628C2E" d="M61.9,4.2c-1.2,1.9-0.9,4.3-0.8,5V9.2c0.1-0.1,0.1-0.2,0.1-0.3s0.1-0.2,0.1-0.3s0.1-0.2,0.2-0.3 c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0.2-0.3c0.2-0.2,0.3-0.4,0.4-0.6 c0.2-0.2,0.3-0.4,0.4-0.6c0.2-0.2,0.3-0.4,0.4-0.6c0.2-0.2,0.3-0.4,0.4-0.5c0.2-0.2,0.3-0.3,0.4-0.5c0.1-0.1,0.1-0.2,0.2-0.2 c0.1-0.1,0.1-0.1,0.2-0.2c0.1-0.1,0.2-0.2,0.3-0.3C65,3.6,65,3.5,65,3.5s-0.1,0.1-0.2,0.3c-0.1,0.1-0.2,0.2-0.3,0.3 c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0.1-0.1,0.2-0.2,0.2c-0.1,0.2-0.3,0.3-0.4,0.5c-0.2,0.2-0.3,0.4-0.4,0.5C63.3,5.6,63.2,5.8,63,6 c-0.2,0.2-0.3,0.4-0.4,0.6c-0.2,0.2-0.3,0.4-0.4,0.6c-0.1,0.1-0.1,0.2-0.2,0.3C62.1,7.6,62,7.7,62,7.9c-0.1,0.1-0.1,0.2-0.2,0.3 c-0.1,0.1-0.1,0.2-0.2,0.3c-0.1,0.1-0.1,0.2-0.1,0.3c-0.1,0.1-0.1,0.2-0.1,0.3c-0.1,0.1-0.1,0.2-0.1,0.3v0.1 c0.7-0.2,3-0.9,4.2-2.7c1.4-2.2,0.8-5.2,0.8-5.2S63.3,2.1,61.9,4.2z"/> <path fill="#9BBD1E" d="M60,5.5c0.8,1.4,0.5,3.3,0.4,3.8c0,0,0,0,0-0.1c0-0.1-0.1-0.1-0.1-0.2c0-0.1-0.1-0.2-0.1-0.2 c-0.1-0.1-0.1-0.2-0.1-0.2S60.1,8.5,60,8.4C60,8.3,60,8.3,59.9,8.2S59.8,8,59.8,7.9c-0.1-0.1-0.1-0.2-0.1-0.3 c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.2-0.2-0.3-0.3-0.4 c-0.1-0.1-0.2-0.3-0.3-0.4c-0.1-0.1-0.1-0.1-0.1-0.2C58.1,5.3,58,5.2,58,5.2C58,5.1,57.9,5,57.8,5c-0.1-0.1-0.2-0.2-0.2-0.2 s0.1,0.1,0.2,0.2C57.9,5,57.9,5.1,58,5.2C58,5.3,58,5.3,58.1,5.4c0.1,0.1,0.1,0.1,0.1,0.2c0.1,0.1,0.2,0.3,0.3,0.4 c0.1,0.2,0.2,0.3,0.3,0.4c0.1,0.2,0.2,0.3,0.3,0.5c0.1,0.2,0.2,0.3,0.3,0.5c0.1,0.2,0.2,0.3,0.3,0.5c0.1,0.1,0.1,0.2,0.1,0.3 c0.1,0.1,0.1,0.2,0.1,0.3s0.1,0.2,0.1,0.3c0.1,0.1,0.1,0.2,0.1,0.2S60,8.9,60,8.9S60,9.1,60,9.1s0.1,0.2,0.1,0.2c0,0,0,0,0,0.1 c-0.6-0.2-2.2-0.8-3-2.2c-1-1.7-0.3-3.9-0.3-3.9S59,3.8,60,5.5z"/> </g> </g> </g> <g> <path fill="#FFFFFF" d="M0.2,23V5.4h2.2V21h9.8v2L0.2,23L0.2,23z"/> <path fill="#FFFFFF" d="M14.4,7.7V5h2.2v2.7H14.4z M14.4,23V10.1h2.2V23H14.4z"/> <path fill="#FFFFFF" d="M23.3,23.3c-0.6,0-1.2-0.1-1.7-0.3c-0.5-0.2-1-0.5-1.4-0.9c-0.4-0.4-0.7-0.8-0.9-1.3 c-0.2-0.5-0.3-1-0.3-1.6c0-0.6,0.2-1.1,0.4-1.6s0.6-0.9,1.1-1.2c0.5-0.4,1.1-0.6,1.8-0.8c0.7-0.2,1.4-0.3,2.2-0.3 c0.6,0,1.2,0.1,1.9,0.2c0.6,0.1,1.2,0.3,1.7,0.5v-1c0-1-0.3-1.9-0.9-2.5c-0.6-0.6-1.4-0.9-2.5-0.9c-1.3,0-2.7,0.5-4.1,1.5 l-0.7-1.4c1.7-1.1,3.4-1.7,5-1.7c1.7,0,3,0.5,4,1.3c0.9,0.9,1.4,2.2,1.4,3.8v5.4c0,0.5,0.2,0.8,0.7,0.8V23 c-0.2,0.1-0.4,0.1-0.6,0.1c-0.2,0-0.3,0-0.5,0c-0.4,0-0.8-0.1-1-0.4s-0.4-0.6-0.5-0.9l-0.1-0.9c-0.6,0.8-1.3,1.3-2.2,1.8 C25.3,23.1,24.4,23.3,23.3,23.3z M23.9,21.7c0.8,0,1.5-0.2,2.2-0.4c0.7-0.3,1.2-0.7,1.5-1.1c0.3-0.3,0.5-0.6,0.5-1v-1.9 c-1-0.4-2.2-0.6-3.3-0.6c-1.1,0-2,0.2-2.7,0.7c-0.7,0.5-1,1.1-1,1.8c0,0.4,0.1,0.7,0.2,1c0.2,0.3,0.4,0.6,0.6,0.8 c0.3,0.2,0.6,0.4,0.9,0.6C23.2,21.6,23.5,21.7,23.9,21.7z"/> <path fill="#FFFFFF" d="M53.2,23h-2.2v-7.2c0-1.3-0.2-2.4-0.7-3c-0.4-0.6-1.1-1-2-1c-0.9,0-1.7,0.3-2.4,0.9 c-0.7,0.6-1.2,1.4-1.5,2.5V23h-2.2v-7.2c0-1.4-0.2-2.4-0.6-3c-0.4-0.6-1.1-0.9-1.9-0.9c-0.9,0-1.7,0.3-2.4,0.9 c-0.7,0.6-1.2,1.4-1.5,2.5V23h-2.2V10.1h2v2.8c0.5-1,1.2-1.7,2.1-2.2c0.8-0.5,1.8-0.8,2.8-0.8c1.1,0,2,0.3,2.6,0.9 c0.6,0.6,1,1.3,1.2,2.3c1.1-2.1,2.8-3.1,5-3.1c0.7,0,1.3,0.2,1.9,0.4c0.5,0.3,0.9,0.7,1.2,1.1c0.3,0.5,0.5,1.1,0.6,1.7 c0.1,0.6,0.2,1.4,0.2,2.2L53.2,23L53.2,23z"/> <path fill="#FFFFFF" d="M80.4,23h-2.2v-7.2c0-1.4-0.2-2.4-0.6-3c-0.4-0.6-1.1-0.9-1.9-0.9c-0.5,0-0.9,0.1-1.3,0.3 c-0.5,0.2-0.9,0.4-1.2,0.7c-0.4,0.3-0.7,0.7-1,1.1c-0.3,0.4-0.5,0.9-0.7,1.3V23h-2.2V10.1h2v2.8c0.5-0.9,1.2-1.7,2.2-2.2 c1-0.6,2-0.8,3.1-0.8c0.7,0,1.3,0.2,1.9,0.4c0.5,0.3,0.9,0.7,1.2,1.1c0.3,0.5,0.5,1.1,0.6,1.7c0.1,0.6,0.2,1.4,0.2,2.2L80.4,23 L80.4,23z"/> <path fill="#FFFFFF" d="M89.5,23.3c-1,0-1.9-0.2-2.7-0.5c-0.8-0.4-1.5-0.8-2.1-1.4s-1-1.3-1.3-2.2c-0.3-0.8-0.5-1.7-0.5-2.6 c0-0.9,0.2-1.8,0.5-2.6c0.3-0.8,0.8-1.5,1.3-2.1c0.6-0.6,1.3-1.1,2.1-1.4c0.8-0.4,1.7-0.5,2.7-0.5c1,0,1.9,0.2,2.7,0.6 s1.5,0.8,2.1,1.4c0.6,0.6,1,1.3,1.3,2.1c0.3,0.8,0.5,1.7,0.5,2.5c0,0.2,0,0.4,0,0.5c0,0.2,0,0.3-0.1,0.4H85.3 c0.1,0.6,0.2,1.2,0.5,1.8c0.3,0.5,0.6,1,1,1.3s0.8,0.7,1.3,0.9c0.5,0.2,1,0.3,1.6,0.3c0.4,0,0.8-0.1,1.2-0.2 c0.4-0.1,0.7-0.3,1.1-0.4c0.3-0.2,0.6-0.4,0.9-0.7c0.3-0.3,0.5-0.6,0.6-0.9l1.9,0.5c-0.2,0.5-0.5,0.9-0.9,1.3 c-0.4,0.4-0.8,0.7-1.3,1c-0.5,0.3-1,0.5-1.6,0.7C90.7,23.2,90.1,23.3,89.5,23.3z M93.9,15.7c-0.1-0.6-0.2-1.2-0.5-1.7 c-0.3-0.5-0.6-1-1-1.3c-0.4-0.4-0.8-0.7-1.3-0.9c-0.5-0.2-1-0.3-1.7-0.3s-1.1,0.1-1.7,0.3s-1,0.5-1.3,0.9C86,13,85.7,13.5,85.5,14 c-0.3,0.5-0.4,1.1-0.4,1.7H93.9z"/> </g> </g> <g id="agence-digitale"> <path fill="#FFFFFF" d="M4.1,27.9l2.8,6.5H5.9l-0.8-2H2l-0.8,2h-1l2.8-6.5H4.1z M4.7,31.8l-1.2-3l0,0l-1.2,3H4.7z"/> <path fill="#FFFFFF" d="M12.5,34.3c-0.4,0.2-0.9,0.2-1.3,0.2c-0.6,0-1-0.1-1.5-0.3c-0.4-0.2-0.8-0.4-1.1-0.7 c-0.3-0.3-0.5-0.7-0.7-1.1c-0.2-0.4-0.3-0.8-0.3-1.2c0-0.5,0.1-0.9,0.2-1.4c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.8 c0.4-0.2,0.9-0.3,1.5-0.3c0.4,0,0.8,0.1,1.1,0.1c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,1h-1 c-0.1-0.3-0.2-0.5-0.3-0.7c-0.2-0.2-0.3-0.3-0.5-0.5c-0.2-0.1-0.4-0.2-0.7-0.3c-0.3-0.1-0.5-0.1-0.8-0.1c-0.5,0-0.8,0.1-1.1,0.3 c-0.3,0.2-0.6,0.4-0.8,0.6c-0.2,0.3-0.4,0.6-0.5,0.9c-0.1,0.4-0.2,0.7-0.2,1s0.1,0.7,0.2,1c0.1,0.3,0.3,0.6,0.5,0.8 c0.2,0.3,0.5,0.5,0.8,0.6c0.3,0.2,0.7,0.2,1.1,0.2c0.4,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.7-0.5c0.2-0.2,0.4-0.4,0.5-0.7 c0.1-0.3,0.2-0.6,0.2-0.8h-2.3v-0.7h3.2v3.4h-0.6l-0.3-0.8C13.4,34,13,34.2,12.5,34.3z"/> <path fill="#FFFFFF" d="M21.5,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5h5V27.9z"/> <path fill="#FFFFFF" d="M24.3,27.9l3.8,5.3l0,0v-5.3H29v6.5h-1.1l-3.8-5.2l0,0v5.2h-0.9v-6.5H24.3z"/> <path fill="#FFFFFF" d="M35.6,28.9c-0.4-0.3-0.8-0.4-1.3-0.4c-0.5,0-0.8,0.1-1.1,0.2c-0.3,0.2-0.6,0.4-0.8,0.6s-0.4,0.5-0.5,0.9 c-0.1,0.3-0.2,0.7-0.2,1c0,0.4,0.1,0.7,0.2,1.1c0.1,0.4,0.3,0.6,0.5,0.9s0.5,0.5,0.8,0.6c0.3,0.2,0.7,0.2,1.1,0.2 c0.3,0,0.6-0.1,0.9-0.2c0.3-0.1,0.5-0.2,0.7-0.4c0.2-0.2,0.3-0.4,0.4-0.6c0.1-0.3,0.2-0.5,0.2-0.8h1c-0.1,0.8-0.4,1.5-1,1.9 c-0.6,0.5-1.3,0.7-2.2,0.7c-0.6,0-1.1-0.1-1.5-0.3c-0.4-0.2-0.8-0.4-1.1-0.7c-0.3-0.3-0.5-0.7-0.6-1.1c-0.2-0.4-0.2-0.9-0.2-1.3 c0-0.5,0.1-0.9,0.2-1.3c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.7c0.4-0.2,0.9-0.3,1.5-0.3c0.4,0,0.8,0.1,1.1,0.2 c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,0.9h-1C36.2,29.4,35.9,29.1,35.6,28.9z"/> <path fill="#FFFFFF" d="M44.2,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5h5V27.9z"/> <path fill="#FFFFFF" d="M51.8,27.9c1.1,0,2,0.3,2.6,0.8c0.6,0.5,0.9,1.3,0.9,2.3c0,0.6-0.1,1-0.2,1.5c-0.2,0.4-0.4,0.8-0.6,1.1 c-0.3,0.3-0.7,0.5-1.1,0.7c-0.5,0.2-1,0.3-1.6,0.3h-2.5v-6.5H51.8z M51.9,33.7c0.1,0,0.3,0,0.4,0s0.4-0.1,0.5-0.1 c0.2-0.1,0.4-0.2,0.6-0.3c0.2-0.1,0.4-0.3,0.5-0.5c0.2-0.2,0.3-0.4,0.4-0.7c0.1-0.3,0.2-0.6,0.2-1c0-0.4-0.1-0.8-0.2-1.1 c-0.1-0.3-0.2-0.6-0.4-0.8c-0.2-0.2-0.5-0.4-0.8-0.5c-0.3-0.1-0.7-0.2-1.1-0.2h-1.6v5.1L51.9,33.7L51.9,33.7z"/> <path fill="#FFFFFF" d="M58.1,27.9v6.5h-1v-6.5H58.1z"/> <path fill="#FFFFFF" d="M64.7,34.3c-0.4,0.2-0.9,0.2-1.3,0.2c-0.6,0-1-0.1-1.5-0.3s-0.8-0.4-1.1-0.7c-0.3-0.3-0.5-0.7-0.7-1.1 c-0.2-0.4-0.3-0.8-0.3-1.2c0-0.5,0.1-0.9,0.2-1.4c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.5-0.3 c0.4,0,0.8,0.1,1.1,0.1c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,1h-1c-0.1-0.3-0.2-0.5-0.3-0.7 c-0.2-0.2-0.3-0.3-0.5-0.5c-0.2-0.1-0.4-0.2-0.7-0.3c-0.3-0.1-0.5-0.1-0.8-0.1c-0.5,0-0.8,0.1-1.1,0.3s-0.6,0.4-0.8,0.6 c-0.2,0.3-0.4,0.6-0.5,0.9c-0.1,0.4-0.2,0.7-0.2,1s0.1,0.7,0.2,1c0.1,0.3,0.3,0.6,0.5,0.8c0.2,0.3,0.5,0.5,0.8,0.6 c0.3,0.2,0.7,0.2,1.1,0.2c0.4,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.8-0.5c0.2-0.2,0.4-0.4,0.5-0.7c0.1-0.3,0.2-0.6,0.2-0.8h-2.3v-0.7 h3.2v3.4H66l-0.3-0.8C65.5,34,65.1,34.2,64.7,34.3z"/> <path fill="#FFFFFF" d="M69.6,27.9v6.5h-1v-6.5H69.6z"/> <path fill="#FFFFFF" d="M71.1,28.7V28h5.8v0.7h-2.4v5.8h-1v-5.8H71.1z"/> <path fill="#FFFFFF" d="M80.4,27.9l2.8,6.5h-1.1l-0.8-2h-3l-0.8,2h-1l2.8-6.5H80.4z M81,31.8l-1.2-3l0,0l-1.2,3H81z"/> <path fill="#FFFFFF" d="M85.5,27.9v5.8h3.8v0.7h-4.8v-6.5L85.5,27.9L85.5,27.9z"/> <path fill="#FFFFFF" d="M95.8,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5h5V27.9z"/> </g> </svg>'
+	var pageAnimation = {
 	
-	};
-
-	var init = {
-
-		/*HOME*/
-		headerfooter: function() {
-
-			console.log('Header & Footer chargé');
-
-			$('.menu-top a, .menu-bottom a').on('click', function(e) {
-
-				var rel = $(this).prop('rel');
-
-				if( rel === 'external')  {return;}
-
-				e.preventDefault();
-
-				var target = $(this),
-					targetUrl = target.attr('href');
-
-				if( $('body').hasClass('menu-open') ) {
-
-					$('.menu-toggle').trigger('click').delay(150).queue(function() {
-
-						ajaxNav.loadPage(targetUrl);
-						history.pushState({page:targetUrl}, null, targetUrl);
-						$(this).dequeue();
-
-					});
-
-				}
-				else {
-
-					ajaxNav.loadPage(targetUrl);
-					history.pushState({page:targetUrl}, null, targetUrl);
-
-				}
-
-				controller.scrollTo(0);
-
-			});
-
-		},
 		home: function() {
 
 			CustomEase.create('cubicAnim', '1, 0, 0.5, 1');
-
-			console.log('Accueil');
 
 			tlHero = new TimelineLite({paused: true, delay: 0.2});
 			tlLiamone = new TimelineLite({paused: true, delay: 0.1});
@@ -707,7 +480,6 @@ jQuery(document).ready(function($) {
 				.to( $('.cta-scroll'), 0.5, {y:'-=25%', autoAlpha: 1, ease: Power4.easeOut}, 0.4 );
 
 			tlHero.play().timeScale(1);
-			init3DScene();
 
 			//ANIMATION LIAMONE SECTION
 			TweenLite.set( $('.liamone .yellow-title'), {autoAlpha: 0, x:'-100%'} );
@@ -752,7 +524,6 @@ jQuery(document).ready(function($) {
 			TweenLite.set( $('.projet .block-card img'), {autoAlpha: 0, x: '-100%'} );
 			TweenLite.set( $('.projet .card-caption'), {autoAlpha: 0, x: '5%'} );
 			TweenLite.set( [$('.projet .card-caption h3'), $('.projet .card-caption p'), $('.projet .card-caption a')], {autoAlpha: 0} );
-
 
 			tlProjets
 				.to( $('.projet .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
@@ -853,14 +624,6 @@ jQuery(document).ready(function($) {
 				.to( $('.actus .actu-card:not(.actualite)'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.7 )
 				.to( $('.actus .big-number'), 0.6, {autoAlpha: 1, y: '-=100%', ease: Power2.easeOut}, 1);
 
-			//HOMEPAGE FUNCTIONS
-			$('main.home .cta-scroll').on('click', function(e) {
-
-				e.preventDefault();
-				controller.scrollTo('.liamone');
-			
-			});
-
 			//Check if in viewport
 			$('.toAnimate').viewportChecker({
 				repeat: false,
@@ -954,90 +717,11 @@ jQuery(document).ready(function($) {
 				}
 
 			});
-
+			
 		},
-		/*PROJECTS*/
 		projects: function() {
 
-			console.log('Page Projets');
-
-			$('#top-menu li:first-of-type').addClass('activ-page');
-
 			tlProjects = new TimelineLite({paused: true, delay: 0.2});
-			scrollTop = $(window).scrollTop();
-
-			$('.projects-list .project-item').on('click', '.link-toProject', function(e) {
-
-				e.preventDefault();
-				currentItem = $(this).parent().parent(),
-				itemScrollTop = currentItem.offset().top,
-				itemScrollLeft = currentItem.offset().left,
-				itemClone = currentItem.clone();
-
-				var singleUrl = currentItem.find('.btn').attr('href');
-				history.pushState({page:singleUrl}, null, singleUrl);
-
-				TweenMax.to(currentItem.find('.project-link'), 0.3, {autoAlpha: 0, ease: Linear.easeNone, onComplete: function() {
-
-						itemClone.addClass('project-clone').css({
-
-							position: 'fixed',
-							height: currentItem.outerHeight(),
-							zIndex: 800
-
-						});
-
-						TweenMax.set(itemClone, {left: itemScrollLeft, top: itemScrollTop} );
-						TweenMax.to(itemClone, 0.5, { left: 0, top: 0, width: '100%', height: '100%', ease: Linear.easeNone} );
-					
-					} 
-
-				} );
-
-
-				$('body').addClass('load-project');
-
-				itemClone.appendTo('body').delay(20).queue(function() {
-
-					$(this).addClass('is-active').delay(900).queue(function(){
-
-						$.ajax({
-
-							type: "GET",
-							url: singleUrl,
-							success: function(data) {
-
-								var dataProject = $(data).find('.project-focus');
-								controller.scrollTo(0);
-								var newTitle = dataProject.data('project');
-								document.title = 'Liamone - '+ newTitle;
-								currentProjectClass = newTitle;
-
-								console.log(newTitle);
-
-								$('.content-container').append(dataProject).delay(30).queue(function() {
-
-									$('.content-container > main').not('.project-focus').remove();
-									itemClone.hide();
-									$('body').addClass('project-added').removeClass('load-project');
-									init.projectFocus();
-									$(this).dequeue();
-
-								});
-
-							}
-
-						});
-
-						$(this).dequeue();
-
-					});
-
-					$(this).dequeue();
-
-				});
-
-			});
 
 			TweenLite.set( $('.projects .hero-title > span'), {autoAlpha: 0, x: '-100%'} );
 			TweenLite.set( $('.projects .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
@@ -1051,17 +735,8 @@ jQuery(document).ready(function($) {
 
 			tlProjects.play().timeScale(1);
 
-			if( window.matchMedia('(min-width: 768px)').matches ) {
-
-				initFunctions.projectMask();
-			
-			}
-
 		},
-		/*PROJECT*/
 		projectFocus: function() {
-
-			console.log('Détail du projet');
 
 			tlProject = new TimelineLite({paused:true, delay: 0.2});
 
@@ -1122,14 +797,7 @@ jQuery(document).ready(function($) {
 				.to( $('.project-design hr'), 0.4, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn}, 0.3 )
 				.to( $('.project-design p'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.5 )
 				.to( $('.project-design img'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.6 );
-
-			$('.project-focus .cta-scroll').on('click', function(e) {
-
-				e.preventDefault();
-				controller.scrollTo('.project-context');
 			
-			});
-
 			$('.project-focus > section').each(function() {
 
 				var scrollTween;
@@ -1165,11 +833,7 @@ jQuery(document).ready(function($) {
 			});
 
 		},
-		/*SERVICES*/
 		services: function() {
-
-			console.log('Page Services');
-			$('#top-menu li:nth-of-type(2)').addClass('activ-page');
 
 			tlServices = new TimelineLite({paused: true, delay: 0.2});
 
@@ -1187,6 +851,526 @@ jQuery(document).ready(function($) {
 				.to( $('.services .slider-nav'), 0.6, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.7 );
 
 			tlServices.play().timeScale(1);	
+
+		},
+		training: function() {
+
+			tlTraining = new TimelineLite({paused: true, delay: 0.3});
+
+			TweenLite.set( $('.training h1 > span'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.training h1 .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.training hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.training .hero-grey p'), {autoAlpha: 0} );
+			TweenLite.set( $('.training .block-img'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.training .filter-cta'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.training .block-formation .row'), {autoAlpha: 0, y: '5%'} );
+
+			tlTraining
+				.to( $('.training h1 > span'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
+				.to( $('.training h1 .dot'), 0.4, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2 )
+				.to( $('.training hr'), 0.5, {autoAlpha: 1, x: '+100%', ease: Power2.easeOut}, 0.3 )
+				.to( $('.training .hero-grey p'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.5 )
+				.to( $('.training .block-img'), 0.5, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.7 )
+				.to( $('.training .filter-cta'), 0.5, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.9 )
+				.to( $('.training .block-formation .row'), 0.9, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 1.2 );
+
+			tlTraining.play().timeScale(1);
+
+		},
+		jobs: function() {
+
+			tlJobs = new TimelineLite({paused: true, delay: 0.3});
+			
+			TweenLite.set( $('.jobs h1 > span'), {autoAlpha: 0, x: '-100%' } );
+			TweenLite.set( $('.jobs h1 .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.jobs .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.jobs .hero-grey p'), {autoAlpha: 0} );
+			TweenLite.set( $('.jobs .hero-grey img'), {autoAlpha: 0} );
+			TweenLite.set( $('.jobs .block-job'), {autoAlpha: 0, y: '5%'} );
+
+			tlJobs
+				.to( $('.jobs h1 > span'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
+				.to( $('.jobs h1 .dot'), 0.6, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2 )
+				.to( $('.jobs .hero-grey hr'), 0.6, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.3 )
+				.to( $('.jobs .hero-grey p'), 0.4, {autoAlpha: 1, ease: Linear.easeNone}, 0.5 )
+				.to( $('.jobs .hero-grey img'), 0.6, {autoAlpha: 1, ease: Linear.easeNone}, 0.7 )
+				.to( $('.jobs .block-job'), 0.5, {autoAlpha: 1, y: '-=5%', ease: Power2.easeIn}, 1);
+
+			tlJobs.play().timeScale(1);
+
+		}, 
+		team: function() {
+
+		},
+		contact: function() {
+
+			tlContact = new TimelineLite({paused: true, delay: 0.3});
+
+			TweenLite.set( $('.contact h1 > span'), {autoAlpha: 0} );
+			TweenLite.set( $('.contact h1 .dot'), {autoAlpha: 0} );
+			TweenLite.set( $('.contact .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.contact .demand-type .btn'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.contact .find-us'), {autoAlpha: 0} );
+
+			tlContact
+				.to( $('.contact h1 > span'), 0.8, {autoAlpha: 1, ease: Linear.easeNone}, 0 )
+				.to( $('.contact h1 .dot'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.2)
+				.to( $('.contact .hero-grey hr'), 0.5, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.4 )
+				.to( $('.contact .demand-type .btn:first-of-type'), 0.4, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.6 )
+				.to( $('.contact .demand-type .btn:nth-of-type(2)'), 0.4, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.7 )
+				.to( $('.contact .demand-type .btn:last-of-type'), 0.4, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.8 )
+				.to( $('.contact .find-us'), 0.8, {autoAlpha: 1, ease: Linear.easeNone}, 1 );
+
+			tlContact.play().timeScale(1);
+
+		}
+
+	};
+	/*
+	THREE.JS
+	*/	
+	var windowHalfX,
+		windowHalfY,
+		windowWidth,
+		windowHeight,
+		mousePos,
+		container,
+		renderer, scene, camera, light, hemiLight,
+		FOV, aspectRatio, nearPlane, farPlane;
+
+	var Colors = {
+
+		white: 0xffffff,
+		yellowL: 0xffcb00,
+		yellowD: 0xff9800,
+		blackA: 0x232828,
+		blackB: 0x1a1d1d,
+		yellowA: 0xffff34,
+		yellowB: 0xd09e18,
+
+	};
+
+	var Scene3D = {
+
+		init: function() {
+
+			scene = new THREE.Scene();
+
+			windowHalfX = window.innerWidth / 2,
+			windowHalfY = window.innerHeight / 2,
+			windowWidth = window.innerWidth,
+			windowHeight = window.innerHeight,
+			mousePos = {x:0, y: 0},
+			container = document.getElementById('backgroundTHREE'),
+			FOV = 45,
+			aspectRatio = windowWidth / windowHeight, 
+			nearPlane = 0.1, 
+			farPlane = 5000;
+
+			camera = new THREE.PerspectiveCamera(FOV, aspectRatio, nearPlane, farPlane);
+			camera.position.z = 1300;
+			scene.add(camera);
+
+			light = new THREE.AmbientLight(0xffffff);
+			hemiLight = new THREE.HemisphereLight(Colors.blackA, Colors.blackB);
+			//hemiLight = new THREE.HemisphereLight(Colors.yellowA, Colors.yellowB);
+			//hemiLight = new THREE.HemisphereLight(Colors.yellowL, Colors.yellowD);
+			scene.add(hemiLight);
+
+			renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+			renderer.setSize(windowWidth, windowHeight);
+			container.appendChild(renderer.domElement);
+
+			document.addEventListener('mousemove', onMouseMove, false);
+			window.addEventListener('resize', onWindowResize, false);
+
+		},
+		createGeometry: function() {
+
+			var geometry, material, mesh;
+			var posX, posY, posZ;
+			var cubeWidth, cubeHeight, cubeLength, 
+				randomX, randomY, randomZ;
+
+			for( var i = 0; i < 16; i++ ) {
+
+				randomZ = Math.random() * (0.95 - 0.1) + 0.1;
+				randomX = Math.random() * (0.75 - 0.2) + 0.2;
+				randomY = Math.random() * (0.5 - 0.05) + 0.05;
+				cubeWidth = initFunctions.getRandomInt(160, 400);
+				//cubeHeight = initFunctions.getRandomInt(20, 30);
+				//cubeLength = initFunctions.getRandomInt(10, 20);
+
+				posX = initFunctions.getRandomInt(-900, 900);
+				posY = initFunctions.getRandomInt(-480, 480);
+				posZ = initFunctions.getRandomInt(-500, 500);
+
+				geometry = new THREE.CubeGeometry(cubeWidth, 20, 20, 1, 1, 1);
+				material = new THREE.MeshPhongMaterial({
+					color: Colors.white,
+					flatShading: true,
+					shininess: 90,
+					transparent: true,
+					opacity: 0.99,
+				});
+				mesh = new THREE.Mesh(geometry, material);
+
+				mesh.rotation.x = randomX * Math.PI;
+				mesh.rotation.y = randomY * Math.PI;
+				mesh.rotation.z = randomZ * Math.PI;
+				mesh.position.set(posX, posY, posZ);
+				mesh.receiveShadow = true;
+				scene.add(mesh);
+
+			}
+
+		},
+		animateGeometry: function() {
+
+		},
+		render: function() {
+
+			camera.position.x += ( - mousePos.x - camera.position.x ) * 0.1;
+			camera.position.y += ( mousePos.y - camera.position.y ) * 0.1;
+			camera.lookAt(scene.position);
+
+			renderer.render(scene, camera);
+
+		},
+		build: function() {
+
+			Scene3D.render();
+			requestAnimationFrame(Scene3D.build);
+
+		}
+
+	};
+
+	function onMouseMove(event) {
+
+		mousePos.x = (event.clientX - windowHalfX);
+		mousePos.y = (event.clientY - windowHalfY);
+
+	};
+	function onWindowResize() {
+
+		windowWidth = window.innerWidth;
+		windowHeight = window.innerHeight;
+		windowHalfX = window.innerWidth / 2;
+		windowHalfY = window.innerHeight / 2;
+
+		renderer.setSize(windowWidth, windowHeight);
+		camera.aspect = windowWidth / windowHeight;
+		camera.updateProjectionMatrix();
+
+	};
+	function init3DScene() {
+
+		Scene3D.init();
+		Scene3D.createGeometry();
+		Scene3D.build();
+
+	};
+
+	/*
+	BASIC SITE FUNCTIONS
+	*/
+	//Burger Btn
+	$('.menu-toggle').on('click', function(e) {
+
+		e.preventDefault();
+		$('body').toggleClass('menu-open');
+		$(this).toggleClass('toggle-open');
+
+	});
+
+	//Menu-top position fixed after hero header is out of screen
+	if( !$('.menu-top').hasClass('is-visible') ) {
+
+		$('.menu-top').each(function() {
+
+			var togglePosition = new ScrollMagic.Scene({
+
+				triggerElement: $('main > header'),
+				offset: wH - 100,
+				triggerHook: 1,
+				reverse: true
+
+			})
+			.setClassToggle(this, 'is-visible')
+			.addTo(controller);
+
+		});
+
+	}
+
+	/*
+	NO-AJAX
+	*/
+	function siteNav() {
+
+		var pageClass = $('main').data('page-class');
+
+			switch(pageClass) {
+
+				case 'home-page':
+
+					initFunctions.loading();
+					pageAnimation.home();
+					init3DScene();
+
+					$('main.home .cta-scroll').on('click', function(e) {
+
+						e.preventDefault();
+						controller.scrollTo('.liamone');
+
+					});
+
+					if (actuCard.length > 7 )  {
+
+						actuCard.slice(7).hide();
+						initFunctions.toggleActus(actuCard);
+					};
+					break;
+				case 'projects-page':
+					pageAnimation.projects();
+					initFunctions.projectMask();
+					break;
+				case 'projectFocus':
+					pageAnimation.projectFocus();
+					break;
+				case 'services-page':
+					pageAnimation.services();
+					initFunctions.serviceSwiper();
+					break;
+				case 'training-page':
+					pageAnimation.training();
+					initFunctions.trainingTabs();
+					break;
+				case 'job-page':
+					pageAnimation.jobs();
+					break;
+				case 'team-page':
+					break;
+				case 'contact-page':
+					pageAnimation.contact();
+					initFunctions.contactFormcontrols();
+					break;
+				default:
+					return;
+
+			}
+
+		$(window).on('load', function() {
+
+			$('body').delay(200).queue(function() {
+
+				$('body').removeClass('loading');
+
+			});
+
+		});
+
+	};
+
+	/*
+	AJAX NAVIGATION
+	*/
+	var currentItem = '',
+		currentType = undefined,
+		itemScrollTop,
+		itemScrollLeft,
+		itemClone;
+
+	var currentPage,
+		currentPageClass,
+		currentProjectClass,
+		targetPage;
+
+		//Projets timelines
+
+	var scrollTop;
+
+	var logo = {
+
+		liamoneLogo: '<svg version="1.1" id="liamone-logoBlack" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96 36" enable-background="new 0 0 96 36" xml:space="preserve" width="96" height="36"> <title>Liamone, agence digitale</title> <g id="liamone"> <g> <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-148.8634" y1="-64.4275" x2="-137.6216" y2="-64.4275" gradientTransform="matrix(1.1878 0 0 1.1878 231.1475 92.702)"> <stop  offset="0" style="stop-color:#FFD300"/> <stop  offset="1" style="stop-color:#F39200"/> </linearGradient> <path fill="url(#SVGID_1_)" d="M54.7,17.6c0.6,1.3,1.5,2.5,2.7,3c1.2,0.6,2.5,0.6,3.7,0.2s2.3-1.1,2.8-2.1 c0.3-0.5,0.5-0.9,0.5-1.3c0-0.2,0-0.4-0.1-0.6c-0.1-0.3-0.2-0.5-0.3-0.7c-0.4-0.9-1.2-1.5-2.2-1.8c-0.9-0.3-1.9-0.2-2.3-0.1 c-0.2,0.1-0.3,0-0.4,0.2c-0.2,0.2-0.2,0.6-0.2,1.1c0.2,0.9,0.8,1.9,2.4,2l0.2,0.4C61,18.5,60,18.8,59,18.7c-1-0.2-2-0.8-2.6-1.7 c-0.6-0.8-1-2-1-3.2c0.1-0.6,0.3-1.3,0.6-1.9c0.4-0.6,0.9-1.1,1.4-1.4c0.3-0.2,0.5-0.3,0.9-0.5c0.2-0.1,0.2-0.1,0.4-0.2 c0.2-0.1,0.3-0.1,0.4-0.1c0.6-0.2,1.1-0.2,1.7-0.2c1.1,0,2.1,0.3,3,0.8c1.8,0.9,3.2,2.6,3.8,4.5c0.2,0.5,0.2,1,0.3,1.4 c0.1,0.5,0,1.1-0.1,1.6c-0.2,1-0.7,2-1.4,2.6c-1.3,1.4-3,2.1-4.7,2.4c-1.7,0.2-3.5-0.2-4.8-1.2s-2.1-2.6-2.4-4H54.7z"/> <g> <g> <path fill="#628C2E" d="M61.9,4.2c-1.2,1.9-0.9,4.3-0.8,5l0,0c0.1-0.1,0.1-0.2,0.1-0.3s0.1-0.2,0.1-0.3s0.1-0.2,0.2-0.3 c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0.2-0.3C62,7.6,62,7.5,62.1,7.4c0.1-0.1,0.1-0.2,0.2-0.3c0.2-0.2,0.3-0.4,0.4-0.6 c0.2-0.2,0.3-0.4,0.4-0.6c0.2-0.2,0.3-0.4,0.4-0.6c0.2-0.2,0.3-0.4,0.4-0.5c0.2-0.2,0.3-0.3,0.4-0.5c0.1-0.1,0.1-0.2,0.2-0.2 C64.6,4,64.6,4,64.7,3.9c0.1-0.1,0.2-0.2,0.3-0.3c0,0,0-0.1,0-0.1s-0.1,0.1-0.2,0.3c-0.1,0.1-0.2,0.2-0.3,0.3 c-0.1,0.1-0.1,0.1-0.2,0.2s-0.1,0.2-0.2,0.2C64,4.7,63.8,4.8,63.7,5c-0.2,0.2-0.3,0.4-0.4,0.5c0,0.1-0.1,0.3-0.3,0.5 s-0.3,0.4-0.4,0.6c-0.2,0.2-0.3,0.4-0.4,0.6c-0.1,0.1-0.1,0.2-0.2,0.3c0.1,0.1,0,0.2,0,0.4c-0.1,0.1-0.1,0.2-0.2,0.3 c-0.1,0.1-0.1,0.2-0.2,0.3c-0.1,0.1-0.1,0.2-0.1,0.3c-0.1,0.1-0.1,0.2-0.1,0.3c-0.1,0.1-0.1,0.2-0.1,0.3v0.1 c0.7-0.2,3-0.9,4.2-2.7c1.4-2.2,0.8-5.2,0.8-5.2S63.3,2.1,61.9,4.2z"/> <path fill="#9BBD1E" d="M60,5.5c0.8,1.4,0.5,3.3,0.4,3.8c0,0,0,0,0-0.1S60.3,9.1,60.3,9c0-0.1-0.1-0.2-0.1-0.2 c-0.1-0.1-0.1-0.2-0.1-0.2s0-0.1-0.1-0.2c0-0.1,0-0.1-0.1-0.2S59.8,8,59.8,7.9c-0.1-0.1-0.1-0.2-0.1-0.3 c-0.1-0.2-0.2-0.3-0.3-0.5s-0.2-0.3-0.3-0.5s-0.2-0.3-0.3-0.5s-0.2-0.3-0.3-0.4s-0.2-0.3-0.3-0.4s-0.1-0.1-0.1-0.2 c0,0.2-0.1,0.1-0.1,0.1C58,5.1,57.9,5,57.8,5c-0.1-0.1-0.2-0.2-0.2-0.2s0.1,0.1,0.2,0.2c0.1,0,0.1,0.1,0.2,0.2 c0,0.1,0,0.1,0.1,0.2s0.1,0.1,0.1,0.2c0.1,0.1,0.2,0.3,0.3,0.4c0.1,0.2,0.2,0.3,0.3,0.4c0.1,0.2,0.2,0.3,0.3,0.5 s0.2,0.3,0.3,0.5s0.2,0.3,0.3,0.5c0.1,0.1,0.1,0.2,0.1,0.3c0.1,0.1,0.1,0.2,0.1,0.3S60,8.7,60,8.8C60.1,8.9,60.1,9,60.1,9 L60,8.9v0.2l0.1,0.2c0,0,0,0,0,0.1c-0.6-0.2-2.2-0.8-3-2.2c-1-1.7-0.3-3.9-0.3-3.9S59,3.8,60,5.5z"/> </g> </g> </g> <g> <path fill="#1C1B1B" d="M0.2,23V5.4h2.2V21h9.8v2H0.2L0.2,23z"/> <path fill="#1C1B1B" d="M14.4,7.7V5h2.2v2.7H14.4z M14.4,23V10.1h2.2V23H14.4z"/> <path fill="#1C1B1B" d="M23.3,23.3c-0.6,0-1.2-0.1-1.7-0.3c-0.5-0.2-1-0.5-1.4-0.9s-0.7-0.8-0.9-1.3c-0.2-0.5-0.3-1-0.3-1.6 s0.2-1.1,0.4-1.6s0.6-0.9,1.1-1.2c0.5-0.4,1.1-0.6,1.8-0.8c0.7-0.2,1.4-0.3,2.2-0.3c0.6,0,1.2,0.1,1.9,0.2 c0.6,0.1,1.2,0.3,1.7,0.5v-1c0-1-0.3-1.9-0.9-2.5s-1.4-0.9-2.5-0.9c-1.3,0-2.7,0.5-4.1,1.5l-0.7-1.4c1.7-1.1,3.4-1.7,5-1.7 c1.7,0,3,0.5,4,1.3c0.9,0.9,1.4,2.2,1.4,3.8v5.4c0,0.5,0.2,0.8,0.7,0.8V23c-0.2,0.1-0.4,0.1-0.6,0.1s-0.3,0-0.5,0 c-0.4,0-0.8-0.1-1-0.4s-0.4-0.6-0.5-0.9l-0.1-0.9c-0.6,0.8-1.3,1.3-2.2,1.8C25.3,23.1,24.4,23.3,23.3,23.3z M23.9,21.7 c0.8,0,1.5-0.2,2.2-0.4c0.7-0.3,1.2-0.7,1.5-1.1c0.3-0.3,0.5-0.6,0.5-1v-1.9c-1-0.4-2.2-0.6-3.3-0.6c-1.1,0-2,0.2-2.7,0.7 s-1,1.1-1,1.8c0,0.4,0.1,0.7,0.2,1c0.2,0.3,0.4,0.6,0.6,0.8c0.3,0.2,0.6,0.4,0.9,0.6C23.2,21.6,23.5,21.7,23.9,21.7z"/> <path fill="#1C1B1B" d="M53.2,23H51v-7.2c0-1.3-0.2-2.4-0.7-3c-0.4-0.6-1.1-1-2-1s-1.7,0.3-2.4,0.9c-0.7,0.6-1.2,1.4-1.5,2.5V23 h-2.2v-7.2c0-1.4-0.2-2.4-0.6-3c-0.4-0.6-1.1-0.9-1.9-0.9c-0.9,0-1.7,0.3-2.4,0.9c-0.7,0.6-1.2,1.4-1.5,2.5V23h-2.2V10.1h2v2.8 c0.5-1,1.2-1.7,2.1-2.2c0.8-0.5,1.8-0.8,2.8-0.8c1.1,0,2,0.3,2.6,0.9c0.6,0.6,1,1.3,1.2,2.3c1.1-2.1,2.8-3.1,5-3.1 c0.7,0,1.3,0.2,1.9,0.4c0.5,0.3,0.9,0.7,1.2,1.1c0.3,0.5,0.5,1.1,0.6,1.7c0.1,0.6,0.2,1.4,0.2,2.2L53.2,23L53.2,23z"/> <path fill="#1C1B1B" d="M80.4,23h-2.2v-7.2c0-1.4-0.2-2.4-0.6-3c-0.4-0.6-1.1-0.9-1.9-0.9c-0.5,0-0.9,0.1-1.3,0.3 c-0.5,0.2-0.9,0.4-1.2,0.7c-0.4,0.3-0.7,0.7-1,1.1c-0.3,0.4-0.5,0.9-0.7,1.3V23h-2.2V10.1h2v2.8c0.5-0.9,1.2-1.7,2.2-2.2 c1-0.6,2-0.8,3.1-0.8c0.7,0,1.3,0.2,1.9,0.4c0.5,0.3,0.9,0.7,1.2,1.1c0.3,0.5,0.5,1.1,0.6,1.7c0.1,0.6,0.2,1.4,0.2,2.2L80.4,23 L80.4,23z"/> <path fill="#1C1B1B" d="M89.5,23.3c-1,0-1.9-0.2-2.7-0.5c-0.8-0.4-1.5-0.8-2.1-1.4s-1-1.3-1.3-2.2c-0.3-0.8-0.5-1.7-0.5-2.6 s0.2-1.8,0.5-2.6s0.8-1.5,1.3-2.1c0.6-0.6,1.3-1.1,2.1-1.4c0.8-0.4,1.7-0.5,2.7-0.5s1.9,0.2,2.7,0.6s1.5,0.8,2.1,1.4 c0.6,0.6,1,1.3,1.3,2.1s0.5,1.7,0.5,2.5c0,0.2,0,0.4,0,0.5c0,0.2,0,0.3-0.1,0.4H85.3c0.1,0.6,0.2,1.2,0.5,1.8c0.3,0.5,0.6,1,1,1.3 s0.8,0.7,1.3,0.9c0.5,0.2,1,0.3,1.6,0.3c0.4,0,0.8-0.1,1.2-0.2c0.4-0.1,0.7-0.3,1.1-0.4c0.3-0.2,0.6-0.4,0.9-0.7 c0.3-0.3,0.5-0.6,0.6-0.9l1.9,0.5c-0.2,0.5-0.5,0.9-0.9,1.3s-0.8,0.7-1.3,1s-1,0.5-1.6,0.7C90.7,23.2,90.1,23.3,89.5,23.3z M93.9,15.7c-0.1-0.6-0.2-1.2-0.5-1.7s-0.6-1-1-1.3c-0.4-0.4-0.8-0.7-1.3-0.9s-1-0.3-1.7-0.3s-1.1,0.1-1.7,0.3s-1,0.5-1.3,0.9 C86,13,85.7,13.5,85.5,14c-0.3,0.5-0.4,1.1-0.4,1.7H93.9z"/> </g> </g> <g id="agence-digitale"> <path fill="#1C1B1B" d="M4.1,27.9l2.8,6.5h-1l-0.8-2H2l-0.8,2h-1L3,27.9C3,27.9,4.1,27.9,4.1,27.9z M4.7,31.8l-1.2-3l0,0l-1.2,3 H4.7z"/> <path fill="#1C1B1B" d="M12.5,34.3c-0.4,0.2-0.9,0.2-1.3,0.2c-0.6,0-1-0.1-1.5-0.3c-0.4-0.2-0.8-0.4-1.1-0.7s-0.5-0.7-0.7-1.1 c-0.2-0.4-0.3-0.8-0.3-1.2c0-0.5,0.1-0.9,0.2-1.4C8,29.4,8.2,29,8.5,28.7c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.5-0.3 c0.4,0,0.8,0.1,1.1,0.1c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,1h-1c-0.1-0.3-0.2-0.5-0.3-0.7 c-0.2-0.2-0.3-0.3-0.5-0.5c-0.2-0.1-0.4-0.2-0.7-0.3c-0.3-0.1-0.5-0.1-0.8-0.1c-0.5,0-0.8,0.1-1.1,0.3c-0.3,0.2-0.6,0.4-0.8,0.6 c-0.2,0.3-0.4,0.6-0.5,0.9c-0.1,0.4-0.2,0.7-0.2,1s0.1,0.7,0.2,1c0.1,0.3,0.3,0.6,0.5,0.8c0.2,0.3,0.5,0.5,0.8,0.6 c0.3,0.2,0.7,0.2,1.1,0.2c0.4,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.7-0.5c0.2-0.2,0.4-0.4,0.5-0.7s0.2-0.6,0.2-0.8H11v-0.7h3.2v3.4 h-0.6l-0.3-0.8C13.4,34,13,34.2,12.5,34.3z"/> <path fill="#1C1B1B" d="M21.5,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5L21.5,27.9L21.5,27.9z"/> <path fill="#1C1B1B" d="M24.3,27.9l3.8,5.3l0,0v-5.3H29v6.5h-1.1l-3.8-5.2l0,0v5.2h-0.9v-6.5C23.2,27.9,24.3,27.9,24.3,27.9z"/> <path fill="#1C1B1B" d="M35.6,28.9c-0.4-0.3-0.8-0.4-1.3-0.4s-0.8,0.1-1.1,0.2c-0.3,0.2-0.6,0.4-0.8,0.6s-0.4,0.5-0.5,0.9 c-0.1,0.3-0.2,0.7-0.2,1c0,0.4,0.1,0.7,0.2,1.1c0.1,0.4,0.3,0.6,0.5,0.9s0.5,0.5,0.8,0.6c0.3,0.2,0.7,0.2,1.1,0.2 c0.3,0,0.6-0.1,0.9-0.2c0.3-0.1,0.5-0.2,0.7-0.4s0.3-0.4,0.4-0.6c0.1-0.3,0.2-0.5,0.2-0.8h1c-0.1,0.8-0.4,1.5-1,1.9 c-0.6,0.5-1.3,0.7-2.2,0.7c-0.6,0-1.1-0.1-1.5-0.3s-0.8-0.4-1.1-0.7c-0.3-0.3-0.5-0.7-0.6-1.1c-0.2-0.4-0.2-0.9-0.2-1.3 c0-0.5,0.1-0.9,0.2-1.3c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.7c0.4-0.2,0.9-0.3,1.5-0.3c0.4,0,0.8,0.1,1.1,0.2 c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,0.9h-1C36.2,29.4,35.9,29.1,35.6,28.9z"/> <path fill="#1C1B1B" d="M44.2,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5L44.2,27.9L44.2,27.9z"/> <path fill="#1C1B1B" d="M51.8,27.9c1.1,0,2,0.3,2.6,0.8s0.9,1.3,0.9,2.3c0,0.6-0.1,1-0.2,1.5c-0.2,0.4-0.4,0.8-0.6,1.1 c-0.3,0.3-0.7,0.5-1.1,0.7c-0.5,0.2-1,0.3-1.6,0.3h-2.5v-6.5h2.5V27.9z M51.9,33.7c0.1,0,0.3,0,0.4,0s0.4-0.1,0.5-0.1 c0.2-0.1,0.4-0.2,0.6-0.3c0.2-0.1,0.4-0.3,0.5-0.5c0.2-0.2,0.3-0.4,0.4-0.7c0.1-0.3,0.2-0.6,0.2-1s-0.1-0.8-0.2-1.1 c-0.1-0.3-0.2-0.6-0.4-0.8c-0.2-0.2-0.5-0.4-0.8-0.5s-0.7-0.2-1.1-0.2h-1.6v5.1L51.9,33.7L51.9,33.7z"/> <path fill="#1C1B1B" d="M58.1,27.9v6.5h-1v-6.5C57.1,27.9,58.1,27.9,58.1,27.9z"/> <path fill="#1C1B1B" d="M64.7,34.3c-0.4,0.2-0.9,0.2-1.3,0.2c-0.6,0-1-0.1-1.5-0.3s-0.8-0.4-1.1-0.7s-0.5-0.7-0.7-1.1 c-0.2-0.4-0.3-0.8-0.3-1.2c0-0.5,0.1-0.9,0.2-1.4c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.5-0.3 c0.4,0,0.8,0.1,1.1,0.1c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,1h-1c-0.1-0.3-0.2-0.5-0.3-0.7 c-0.2-0.2-0.3-0.3-0.5-0.5c-0.2-0.1-0.4-0.2-0.7-0.3c-0.3-0.1-0.5-0.1-0.8-0.1c-0.5,0-0.8,0.1-1.1,0.3s-0.6,0.4-0.8,0.6 c-0.2,0.3-0.4,0.6-0.5,0.9c-0.1,0.4-0.2,0.7-0.2,1s0.1,0.7,0.2,1c0.1,0.3,0.3,0.6,0.5,0.8c0.2,0.3,0.5,0.5,0.8,0.6 c0.3,0.2,0.7,0.2,1.1,0.2c0.4,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.8-0.5c0.2-0.2,0.4-0.4,0.5-0.7s0.2-0.6,0.2-0.8h-2.3v-0.7h3.2v3.4 H66l-0.3-0.8C65.5,34,65.1,34.2,64.7,34.3z"/> <path fill="#1C1B1B" d="M69.6,27.9v6.5h-1v-6.5C68.6,27.9,69.6,27.9,69.6,27.9z"/> <path fill="#1C1B1B" d="M71.1,28.7V28h5.8v0.7h-2.4v5.8h-1v-5.8H71.1z"/> <path fill="#1C1B1B" d="M80.4,27.9l2.8,6.5h-1.1l-0.8-2h-3l-0.8,2h-1l2.8-6.5C79.3,27.9,80.4,27.9,80.4,27.9z M81,31.8l-1.2-3l0,0 l-1.2,3H81z"/> <path fill="#1C1B1B" d="M85.5,27.9v5.8h3.8v0.7h-4.8v-6.5L85.5,27.9L85.5,27.9z"/> <path fill="#1C1B1B" d="M95.8,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5L95.8,27.9L95.8,27.9z"/> </g> </svg>',
+			liamoneLogoHome: '<svg version="1.1" id="liamone-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96 36" xml:space="preserve" width="96" height="36"> <title>Liamone agence digitale</title> <g id="liamone"> <g> <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-148.8634" y1="100.3365" x2="-137.6216" y2="100.3365" gradientTransform="matrix(1.1878 0 0 -1.1878 231.1475 135.4628)"> <stop  offset="0" style="stop-color:#FFD300"/> <stop  offset="1" style="stop-color:#F39200"/> </linearGradient> <path fill="url(#SVGID_1_)" d="M54.7,17.6c0.6,1.3,1.5,2.5,2.7,3c1.2,0.6,2.5,0.6,3.7,0.2c1.2-0.4,2.3-1.1,2.8-2.1 c0.3-0.5,0.5-0.9,0.5-1.3c0-0.2,0-0.4-0.1-0.6c-0.1-0.3-0.2-0.5-0.3-0.7c-0.4-0.9-1.2-1.5-2.2-1.8c-0.9-0.3-1.9-0.2-2.3-0.1 c-0.2,0.1-0.3,0-0.4,0.2c-0.2,0.2-0.2,0.6-0.2,1.1c0.2,0.9,0.8,1.9,2.4,2l0.2,0.4C61,18.5,60,18.8,59,18.7c-1-0.2-2-0.8-2.6-1.7 c-0.6-0.8-1-2-1-3.2c0.1-0.6,0.3-1.3,0.6-1.9c0.4-0.6,0.9-1.1,1.4-1.4c0.3-0.2,0.5-0.3,0.9-0.5c0.2-0.1,0.2-0.1,0.4-0.2 c0.2-0.1,0.3-0.1,0.4-0.1c0.6-0.2,1.1-0.2,1.7-0.2c1.1,0,2.1,0.3,3,0.8c1.8,0.9,3.2,2.6,3.8,4.5c0.2,0.5,0.2,1,0.3,1.4 c0.1,0.5,0,1.1-0.1,1.6c-0.2,1-0.7,2-1.4,2.6c-1.3,1.4-3,2.1-4.7,2.4c-1.7,0.2-3.5-0.2-4.8-1.2c-1.3-1-2.1-2.6-2.4-4L54.7,17.6z"/> <g> <g> <path fill="#628C2E" d="M61.9,4.2c-1.2,1.9-0.9,4.3-0.8,5V9.2c0.1-0.1,0.1-0.2,0.1-0.3s0.1-0.2,0.1-0.3s0.1-0.2,0.2-0.3 c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0.2-0.3c0.2-0.2,0.3-0.4,0.4-0.6 c0.2-0.2,0.3-0.4,0.4-0.6c0.2-0.2,0.3-0.4,0.4-0.6c0.2-0.2,0.3-0.4,0.4-0.5c0.2-0.2,0.3-0.3,0.4-0.5c0.1-0.1,0.1-0.2,0.2-0.2 c0.1-0.1,0.1-0.1,0.2-0.2c0.1-0.1,0.2-0.2,0.3-0.3C65,3.6,65,3.5,65,3.5s-0.1,0.1-0.2,0.3c-0.1,0.1-0.2,0.2-0.3,0.3 c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0.1-0.1,0.2-0.2,0.2c-0.1,0.2-0.3,0.3-0.4,0.5c-0.2,0.2-0.3,0.4-0.4,0.5C63.3,5.6,63.2,5.8,63,6 c-0.2,0.2-0.3,0.4-0.4,0.6c-0.2,0.2-0.3,0.4-0.4,0.6c-0.1,0.1-0.1,0.2-0.2,0.3C62.1,7.6,62,7.7,62,7.9c-0.1,0.1-0.1,0.2-0.2,0.3 c-0.1,0.1-0.1,0.2-0.2,0.3c-0.1,0.1-0.1,0.2-0.1,0.3c-0.1,0.1-0.1,0.2-0.1,0.3c-0.1,0.1-0.1,0.2-0.1,0.3v0.1 c0.7-0.2,3-0.9,4.2-2.7c1.4-2.2,0.8-5.2,0.8-5.2S63.3,2.1,61.9,4.2z"/> <path fill="#9BBD1E" d="M60,5.5c0.8,1.4,0.5,3.3,0.4,3.8c0,0,0,0,0-0.1c0-0.1-0.1-0.1-0.1-0.2c0-0.1-0.1-0.2-0.1-0.2 c-0.1-0.1-0.1-0.2-0.1-0.2S60.1,8.5,60,8.4C60,8.3,60,8.3,59.9,8.2S59.8,8,59.8,7.9c-0.1-0.1-0.1-0.2-0.1-0.3 c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.2-0.2-0.3-0.3-0.4 c-0.1-0.1-0.2-0.3-0.3-0.4c-0.1-0.1-0.1-0.1-0.1-0.2C58.1,5.3,58,5.2,58,5.2C58,5.1,57.9,5,57.8,5c-0.1-0.1-0.2-0.2-0.2-0.2 s0.1,0.1,0.2,0.2C57.9,5,57.9,5.1,58,5.2C58,5.3,58,5.3,58.1,5.4c0.1,0.1,0.1,0.1,0.1,0.2c0.1,0.1,0.2,0.3,0.3,0.4 c0.1,0.2,0.2,0.3,0.3,0.4c0.1,0.2,0.2,0.3,0.3,0.5c0.1,0.2,0.2,0.3,0.3,0.5c0.1,0.2,0.2,0.3,0.3,0.5c0.1,0.1,0.1,0.2,0.1,0.3 c0.1,0.1,0.1,0.2,0.1,0.3s0.1,0.2,0.1,0.3c0.1,0.1,0.1,0.2,0.1,0.2S60,8.9,60,8.9S60,9.1,60,9.1s0.1,0.2,0.1,0.2c0,0,0,0,0,0.1 c-0.6-0.2-2.2-0.8-3-2.2c-1-1.7-0.3-3.9-0.3-3.9S59,3.8,60,5.5z"/> </g> </g> </g> <g> <path fill="#FFFFFF" d="M0.2,23V5.4h2.2V21h9.8v2L0.2,23L0.2,23z"/> <path fill="#FFFFFF" d="M14.4,7.7V5h2.2v2.7H14.4z M14.4,23V10.1h2.2V23H14.4z"/> <path fill="#FFFFFF" d="M23.3,23.3c-0.6,0-1.2-0.1-1.7-0.3c-0.5-0.2-1-0.5-1.4-0.9c-0.4-0.4-0.7-0.8-0.9-1.3 c-0.2-0.5-0.3-1-0.3-1.6c0-0.6,0.2-1.1,0.4-1.6s0.6-0.9,1.1-1.2c0.5-0.4,1.1-0.6,1.8-0.8c0.7-0.2,1.4-0.3,2.2-0.3 c0.6,0,1.2,0.1,1.9,0.2c0.6,0.1,1.2,0.3,1.7,0.5v-1c0-1-0.3-1.9-0.9-2.5c-0.6-0.6-1.4-0.9-2.5-0.9c-1.3,0-2.7,0.5-4.1,1.5 l-0.7-1.4c1.7-1.1,3.4-1.7,5-1.7c1.7,0,3,0.5,4,1.3c0.9,0.9,1.4,2.2,1.4,3.8v5.4c0,0.5,0.2,0.8,0.7,0.8V23 c-0.2,0.1-0.4,0.1-0.6,0.1c-0.2,0-0.3,0-0.5,0c-0.4,0-0.8-0.1-1-0.4s-0.4-0.6-0.5-0.9l-0.1-0.9c-0.6,0.8-1.3,1.3-2.2,1.8 C25.3,23.1,24.4,23.3,23.3,23.3z M23.9,21.7c0.8,0,1.5-0.2,2.2-0.4c0.7-0.3,1.2-0.7,1.5-1.1c0.3-0.3,0.5-0.6,0.5-1v-1.9 c-1-0.4-2.2-0.6-3.3-0.6c-1.1,0-2,0.2-2.7,0.7c-0.7,0.5-1,1.1-1,1.8c0,0.4,0.1,0.7,0.2,1c0.2,0.3,0.4,0.6,0.6,0.8 c0.3,0.2,0.6,0.4,0.9,0.6C23.2,21.6,23.5,21.7,23.9,21.7z"/> <path fill="#FFFFFF" d="M53.2,23h-2.2v-7.2c0-1.3-0.2-2.4-0.7-3c-0.4-0.6-1.1-1-2-1c-0.9,0-1.7,0.3-2.4,0.9 c-0.7,0.6-1.2,1.4-1.5,2.5V23h-2.2v-7.2c0-1.4-0.2-2.4-0.6-3c-0.4-0.6-1.1-0.9-1.9-0.9c-0.9,0-1.7,0.3-2.4,0.9 c-0.7,0.6-1.2,1.4-1.5,2.5V23h-2.2V10.1h2v2.8c0.5-1,1.2-1.7,2.1-2.2c0.8-0.5,1.8-0.8,2.8-0.8c1.1,0,2,0.3,2.6,0.9 c0.6,0.6,1,1.3,1.2,2.3c1.1-2.1,2.8-3.1,5-3.1c0.7,0,1.3,0.2,1.9,0.4c0.5,0.3,0.9,0.7,1.2,1.1c0.3,0.5,0.5,1.1,0.6,1.7 c0.1,0.6,0.2,1.4,0.2,2.2L53.2,23L53.2,23z"/> <path fill="#FFFFFF" d="M80.4,23h-2.2v-7.2c0-1.4-0.2-2.4-0.6-3c-0.4-0.6-1.1-0.9-1.9-0.9c-0.5,0-0.9,0.1-1.3,0.3 c-0.5,0.2-0.9,0.4-1.2,0.7c-0.4,0.3-0.7,0.7-1,1.1c-0.3,0.4-0.5,0.9-0.7,1.3V23h-2.2V10.1h2v2.8c0.5-0.9,1.2-1.7,2.2-2.2 c1-0.6,2-0.8,3.1-0.8c0.7,0,1.3,0.2,1.9,0.4c0.5,0.3,0.9,0.7,1.2,1.1c0.3,0.5,0.5,1.1,0.6,1.7c0.1,0.6,0.2,1.4,0.2,2.2L80.4,23 L80.4,23z"/> <path fill="#FFFFFF" d="M89.5,23.3c-1,0-1.9-0.2-2.7-0.5c-0.8-0.4-1.5-0.8-2.1-1.4s-1-1.3-1.3-2.2c-0.3-0.8-0.5-1.7-0.5-2.6 c0-0.9,0.2-1.8,0.5-2.6c0.3-0.8,0.8-1.5,1.3-2.1c0.6-0.6,1.3-1.1,2.1-1.4c0.8-0.4,1.7-0.5,2.7-0.5c1,0,1.9,0.2,2.7,0.6 s1.5,0.8,2.1,1.4c0.6,0.6,1,1.3,1.3,2.1c0.3,0.8,0.5,1.7,0.5,2.5c0,0.2,0,0.4,0,0.5c0,0.2,0,0.3-0.1,0.4H85.3 c0.1,0.6,0.2,1.2,0.5,1.8c0.3,0.5,0.6,1,1,1.3s0.8,0.7,1.3,0.9c0.5,0.2,1,0.3,1.6,0.3c0.4,0,0.8-0.1,1.2-0.2 c0.4-0.1,0.7-0.3,1.1-0.4c0.3-0.2,0.6-0.4,0.9-0.7c0.3-0.3,0.5-0.6,0.6-0.9l1.9,0.5c-0.2,0.5-0.5,0.9-0.9,1.3 c-0.4,0.4-0.8,0.7-1.3,1c-0.5,0.3-1,0.5-1.6,0.7C90.7,23.2,90.1,23.3,89.5,23.3z M93.9,15.7c-0.1-0.6-0.2-1.2-0.5-1.7 c-0.3-0.5-0.6-1-1-1.3c-0.4-0.4-0.8-0.7-1.3-0.9c-0.5-0.2-1-0.3-1.7-0.3s-1.1,0.1-1.7,0.3s-1,0.5-1.3,0.9C86,13,85.7,13.5,85.5,14 c-0.3,0.5-0.4,1.1-0.4,1.7H93.9z"/> </g> </g> <g id="agence-digitale"> <path fill="#FFFFFF" d="M4.1,27.9l2.8,6.5H5.9l-0.8-2H2l-0.8,2h-1l2.8-6.5H4.1z M4.7,31.8l-1.2-3l0,0l-1.2,3H4.7z"/> <path fill="#FFFFFF" d="M12.5,34.3c-0.4,0.2-0.9,0.2-1.3,0.2c-0.6,0-1-0.1-1.5-0.3c-0.4-0.2-0.8-0.4-1.1-0.7 c-0.3-0.3-0.5-0.7-0.7-1.1c-0.2-0.4-0.3-0.8-0.3-1.2c0-0.5,0.1-0.9,0.2-1.4c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.8 c0.4-0.2,0.9-0.3,1.5-0.3c0.4,0,0.8,0.1,1.1,0.1c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,1h-1 c-0.1-0.3-0.2-0.5-0.3-0.7c-0.2-0.2-0.3-0.3-0.5-0.5c-0.2-0.1-0.4-0.2-0.7-0.3c-0.3-0.1-0.5-0.1-0.8-0.1c-0.5,0-0.8,0.1-1.1,0.3 c-0.3,0.2-0.6,0.4-0.8,0.6c-0.2,0.3-0.4,0.6-0.5,0.9c-0.1,0.4-0.2,0.7-0.2,1s0.1,0.7,0.2,1c0.1,0.3,0.3,0.6,0.5,0.8 c0.2,0.3,0.5,0.5,0.8,0.6c0.3,0.2,0.7,0.2,1.1,0.2c0.4,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.7-0.5c0.2-0.2,0.4-0.4,0.5-0.7 c0.1-0.3,0.2-0.6,0.2-0.8h-2.3v-0.7h3.2v3.4h-0.6l-0.3-0.8C13.4,34,13,34.2,12.5,34.3z"/> <path fill="#FFFFFF" d="M21.5,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5h5V27.9z"/> <path fill="#FFFFFF" d="M24.3,27.9l3.8,5.3l0,0v-5.3H29v6.5h-1.1l-3.8-5.2l0,0v5.2h-0.9v-6.5H24.3z"/> <path fill="#FFFFFF" d="M35.6,28.9c-0.4-0.3-0.8-0.4-1.3-0.4c-0.5,0-0.8,0.1-1.1,0.2c-0.3,0.2-0.6,0.4-0.8,0.6s-0.4,0.5-0.5,0.9 c-0.1,0.3-0.2,0.7-0.2,1c0,0.4,0.1,0.7,0.2,1.1c0.1,0.4,0.3,0.6,0.5,0.9s0.5,0.5,0.8,0.6c0.3,0.2,0.7,0.2,1.1,0.2 c0.3,0,0.6-0.1,0.9-0.2c0.3-0.1,0.5-0.2,0.7-0.4c0.2-0.2,0.3-0.4,0.4-0.6c0.1-0.3,0.2-0.5,0.2-0.8h1c-0.1,0.8-0.4,1.5-1,1.9 c-0.6,0.5-1.3,0.7-2.2,0.7c-0.6,0-1.1-0.1-1.5-0.3c-0.4-0.2-0.8-0.4-1.1-0.7c-0.3-0.3-0.5-0.7-0.6-1.1c-0.2-0.4-0.2-0.9-0.2-1.3 c0-0.5,0.1-0.9,0.2-1.3c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.7c0.4-0.2,0.9-0.3,1.5-0.3c0.4,0,0.8,0.1,1.1,0.2 c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,0.9h-1C36.2,29.4,35.9,29.1,35.6,28.9z"/> <path fill="#FFFFFF" d="M44.2,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5h5V27.9z"/> <path fill="#FFFFFF" d="M51.8,27.9c1.1,0,2,0.3,2.6,0.8c0.6,0.5,0.9,1.3,0.9,2.3c0,0.6-0.1,1-0.2,1.5c-0.2,0.4-0.4,0.8-0.6,1.1 c-0.3,0.3-0.7,0.5-1.1,0.7c-0.5,0.2-1,0.3-1.6,0.3h-2.5v-6.5H51.8z M51.9,33.7c0.1,0,0.3,0,0.4,0s0.4-0.1,0.5-0.1 c0.2-0.1,0.4-0.2,0.6-0.3c0.2-0.1,0.4-0.3,0.5-0.5c0.2-0.2,0.3-0.4,0.4-0.7c0.1-0.3,0.2-0.6,0.2-1c0-0.4-0.1-0.8-0.2-1.1 c-0.1-0.3-0.2-0.6-0.4-0.8c-0.2-0.2-0.5-0.4-0.8-0.5c-0.3-0.1-0.7-0.2-1.1-0.2h-1.6v5.1L51.9,33.7L51.9,33.7z"/> <path fill="#FFFFFF" d="M58.1,27.9v6.5h-1v-6.5H58.1z"/> <path fill="#FFFFFF" d="M64.7,34.3c-0.4,0.2-0.9,0.2-1.3,0.2c-0.6,0-1-0.1-1.5-0.3s-0.8-0.4-1.1-0.7c-0.3-0.3-0.5-0.7-0.7-1.1 c-0.2-0.4-0.3-0.8-0.3-1.2c0-0.5,0.1-0.9,0.2-1.4c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.5-0.3 c0.4,0,0.8,0.1,1.1,0.1c0.4,0.1,0.7,0.2,0.9,0.4c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.3,0.6,0.4,1h-1c-0.1-0.3-0.2-0.5-0.3-0.7 c-0.2-0.2-0.3-0.3-0.5-0.5c-0.2-0.1-0.4-0.2-0.7-0.3c-0.3-0.1-0.5-0.1-0.8-0.1c-0.5,0-0.8,0.1-1.1,0.3s-0.6,0.4-0.8,0.6 c-0.2,0.3-0.4,0.6-0.5,0.9c-0.1,0.4-0.2,0.7-0.2,1s0.1,0.7,0.2,1c0.1,0.3,0.3,0.6,0.5,0.8c0.2,0.3,0.5,0.5,0.8,0.6 c0.3,0.2,0.7,0.2,1.1,0.2c0.4,0,0.7-0.1,1-0.2c0.3-0.1,0.6-0.3,0.8-0.5c0.2-0.2,0.4-0.4,0.5-0.7c0.1-0.3,0.2-0.6,0.2-0.8h-2.3v-0.7 h3.2v3.4H66l-0.3-0.8C65.5,34,65.1,34.2,64.7,34.3z"/> <path fill="#FFFFFF" d="M69.6,27.9v6.5h-1v-6.5H69.6z"/> <path fill="#FFFFFF" d="M71.1,28.7V28h5.8v0.7h-2.4v5.8h-1v-5.8H71.1z"/> <path fill="#FFFFFF" d="M80.4,27.9l2.8,6.5h-1.1l-0.8-2h-3l-0.8,2h-1l2.8-6.5H80.4z M81,31.8l-1.2-3l0,0l-1.2,3H81z"/> <path fill="#FFFFFF" d="M85.5,27.9v5.8h3.8v0.7h-4.8v-6.5L85.5,27.9L85.5,27.9z"/> <path fill="#FFFFFF" d="M95.8,27.9v0.7h-4.1v2.1h3.7v0.7h-3.7v2.2h4.1v0.7h-5v-6.5h5V27.9z"/> </g> </svg>'
+	
+	};
+
+	var init = {
+
+		/*HOME*/
+		headerfooter: function() {
+
+			console.log('Header & Footer chargé');
+
+			$('.menu-top a, .menu-bottom a').on('click', function(e) {
+
+				var rel = $(this).prop('rel');
+
+				if( rel === 'external')  {return;}
+
+				e.preventDefault();
+
+				var target = $(this),
+					targetUrl = target.attr('href');
+
+				if( $('body').hasClass('menu-open') ) {
+
+					$('.menu-toggle').trigger('click').delay(150).queue(function() {
+
+						ajaxNav.loadPage(targetUrl);
+						history.pushState({page:targetUrl}, null, targetUrl);
+						$(this).dequeue();
+
+					});
+
+				}
+				else {
+
+					ajaxNav.loadPage(targetUrl);
+					history.pushState({page:targetUrl}, null, targetUrl);
+
+				}
+
+				controller.scrollTo(0);
+
+			});
+
+		},
+		home: function() {
+
+			console.log('Accueil chargé');
+			pageAnimation.home();
+			init3DScene()
+
+			//HOMEPAGE FUNCTIONS
+			$('main.home .cta-scroll').on('click', function(e) {
+
+				e.preventDefault();
+				controller.scrollTo('.liamone');
+			
+			});
+
+			//Actus cards toggle & hide
+			if (actuCard.length > 7 )  {
+
+				actuCard.slice(7).hide();
+				initFunctions.toggleActus(actuCard);
+
+			}
+
+		},
+		/*PROJECTS*/
+		projects: function() {
+
+			console.log('Page Projets');
+
+			$('#top-menu li:first-of-type').addClass('activ-page');
+
+			$('.projects-list .project-item').on('click', '.link-toProject', function(e) {
+
+				e.preventDefault();
+				currentItem = $(this).parent().parent(),
+				itemPosTop = currentItem.get[0].getBoundingClientRect(),
+				itemPosLeft = initFunctions.calculatePosition(currentItem).left,
+				itemClone = currentItem.clone();
+
+				console.log(itemPosTop);
+
+				var singleUrl = currentItem.find('.btn').attr('href');
+				history.pushState({page:singleUrl}, null, singleUrl);
+
+				TweenMax.to(currentItem.find('.project-link'), 0.3, {autoAlpha: 0, ease: Linear.easeNone, onComplete: function() {
+
+						itemClone.addClass('project-clone').css({
+
+							position: 'fixed',
+							height: currentItem.outerHeight(),
+							top: itemPosTop,
+							left: itemPosLeft,
+							zIndex: 800
+
+						});
+
+						TweenMax.set(itemClone, {left: itemScrollLeft, top: itemScrollTop} );
+						TweenMax.to(itemClone, 0.5, { left: 0, top: 0, width: '100%', height: '100%', ease: Linear.easeNone} );
+					
+					} 
+
+				} );
+
+				$('body').addClass('load-project').removeClass('loading');
+
+				itemClone.appendTo('body').delay(20).queue(function() {
+
+					$(this).addClass('is-active').delay(900).queue(function(){
+
+						$.ajax({
+
+							type: "GET",
+							url: singleUrl,
+							success: function(data) {
+
+								var dataProject = $(data).find('.project-focus');
+						   		TweenLite.set(window, {scrollTo: {y: 0, autoKill:false}}); 
+								var newTitle = dataProject.data('project');
+								document.title = 'Liamone - '+ newTitle;
+								currentProjectClass = newTitle;
+
+								console.log(newTitle);
+
+								$('.content-container').append(dataProject).delay(30).queue(function() {
+
+									$('.content-container > main').not('.project-focus').remove();
+									itemClone.hide();
+									$('body').addClass('project-added').removeClass('load-project');
+									init.projectFocus();
+									$(this).dequeue();
+
+								});
+
+							}
+
+						});
+
+						$(this).dequeue();
+
+					});
+
+					$(this).dequeue();
+
+				});
+
+			});
+
+			pageAnimation.projects();
+			initFunctions.projectMask();
+			
+		},
+		/*PROJECT*/
+		projectFocus: function() {
+
+			console.log('Détail du projet');
+
+			pageAnimation.projectFocus();
+
+			$('.project-focus .cta-scroll').on('click', function(e) {
+
+				e.preventDefault();
+				controller.scrollTo('.project-context');
+			
+			});
+
+		},
+		/*SERVICES*/
+		services: function() {
+
+			console.log('Page Services');
+
+			$('#top-menu li:nth-of-type(2)').addClass('activ-page');
+			pageAnimation.services();
 			initFunctions.serviceSwiper();
 
 			TweenLite.set( $('.services > section h2'), {autoAlpha: 0, x: '-50%'} );
@@ -1227,27 +1411,7 @@ jQuery(document).ready(function($) {
 			console.log('Page Formations');
 
 			$('#top-menu li:nth-of-type(3)').addClass('activ-page');
-
-			tlTraining = new TimelineLite({paused: true, delay: 0.3});
-
-			TweenLite.set( $('.training h1 > span'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.training h1 .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.training hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.training .hero-grey p'), {autoAlpha: 0} );
-			TweenLite.set( $('.training .block-img'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.training .filter-cta'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.training .block-formation .row'), {autoAlpha: 0, y: '5%'} );
-
-			tlTraining
-				.to( $('.training h1 > span'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
-				.to( $('.training h1 .dot'), 0.4, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2 )
-				.to( $('.training hr'), 0.5, {autoAlpha: 1, x: '+100%', ease: Power2.easeOut}, 0.3 )
-				.to( $('.training .hero-grey p'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.5 )
-				.to( $('.training .block-img'), 0.5, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.7 )
-				.to( $('.training .filter-cta'), 0.5, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.9 )
-				.to( $('.training .block-formation .row'), 0.9, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 1.2 );
-
-			tlTraining.play().timeScale(1);
+			pageAnimation.training();
 			initFunctions.trainingTabs();
 
 		},
@@ -1257,31 +1421,14 @@ jQuery(document).ready(function($) {
 			console.log('Page Jobs');
 
 			$('#top-menu li:nth-of-type(4)').addClass('activ-page');
-
-			tlJobs = new TimelineLite({paused: true, delay: 0.3});
-			
-			TweenLite.set( $('.jobs h1 > span'), {autoAlpha: 0, x: '-100%' } );
-			TweenLite.set( $('.jobs h1 .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.jobs .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.jobs .hero-grey p'), {autoAlpha: 0} );
-			TweenLite.set( $('.jobs .hero-grey img'), {autoAlpha: 0} );
-			TweenLite.set( $('.jobs .block-job'), {autoAlpha: 0, y: '5%'} );
-
-			tlJobs
-				.to( $('.jobs h1 > span'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
-				.to( $('.jobs h1 .dot'), 0.6, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2 )
-				.to( $('.jobs .hero-grey hr'), 0.6, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.3 )
-				.to( $('.jobs .hero-grey p'), 0.4, {autoAlpha: 1, ease: Linear.easeNone}, 0.5 )
-				.to( $('.jobs .hero-grey img'), 0.6, {autoAlpha: 1, ease: Linear.easeNone}, 0.7 )
-				.to( $('.jobs .block-job'), 0.5, {autoAlpha: 1, y: '-=5%', ease: Power2.easeIn}, 1);
-
-			tlJobs.play().timeScale(1);
+			pageAnimation.jobs();
 
 		},
 		/*JOB*/
 		jobDetail: function() {
 
 			console.log("Détail de l'annonce");
+
 		},
 		/*TEAM*/
 		team: function() {
@@ -1296,25 +1443,7 @@ jQuery(document).ready(function($) {
 			console.log('Page Contact');
 
 			$('#top-menu li:last-of-type').addClass('activ-page');
-
-			tlContact = new TimelineLite({paused: true, delay: 0.3});
-
-			TweenLite.set( $('.contact h1 > span'), {autoAlpha: 0} );
-			TweenLite.set( $('.contact h1 .dot'), {autoAlpha: 0} );
-			TweenLite.set( $('.contact .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.contact .demand-type .btn'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.contact .find-us'), {autoAlpha: 0} );
-
-			tlContact
-				.to( $('.contact h1 > span'), 0.8, {autoAlpha: 1, ease: Linear.easeNone}, 0 )
-				.to( $('.contact h1 .dot'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.2)
-				.to( $('.contact .hero-grey hr'), 0.5, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.4 )
-				.to( $('.contact .demand-type .btn:first-of-type'), 0.4, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.6 )
-				.to( $('.contact .demand-type .btn:nth-of-type(2)'), 0.4, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.7 )
-				.to( $('.contact .demand-type .btn:last-of-type'), 0.4, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.8 )
-				.to( $('.contact .find-us'), 0.8, {autoAlpha: 1, ease: Linear.easeNone}, 1 );
-
-			tlContact.play().timeScale(1);
+			pageAnimation.contact();
 			initFunctions.contactFormControls();
 
 			if( typeof currentType !== undefined ) {
@@ -1329,7 +1458,9 @@ jQuery(document).ready(function($) {
 
 	};
 
-	/*BUILD*/
+	/*
+	BUILD
+	*/
 	var ajaxNav = {
 
 		build: function() {
@@ -1419,7 +1550,7 @@ jQuery(document).ready(function($) {
 								.addClass(targetPageClass)
 								.delay(500).queue(function() {
 
-							$(this).removeClass('loading').delay(300).queue(function() {
+							$(this).removeClass('loading').delay(600).queue(function() {
 
 								$(this).addClass('loaded');
 								$(this).dequeue();
@@ -1535,13 +1666,25 @@ jQuery(document).ready(function($) {
 
 			}
 
+			initFunctions.loading();
+
 		}
 
 	};
 
+	//In All case
+	initFunctions.geoLayerShapes();
+
+	//If history API is supported, call ajax navigation
 	if ( window.history && window.history.pushState ) {
 	
 		ajaxNav.build();
+
+	}
+	//Else, no-ajax navigation
+	else {
+
+		siteNav();
 
 	}
 

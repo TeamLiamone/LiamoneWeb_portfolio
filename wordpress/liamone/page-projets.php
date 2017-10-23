@@ -29,13 +29,52 @@ get_header(); ?>
         
         <div class="projects-wrap container">
 
-			<?php
-			while ( have_posts() ) : the_post();
+            <ul class="projects-list row">
+            <?php
+            /*
+            while ( have_posts() ) : the_post();
 
-				get_template_part( 'template-parts/page/content', 'page' );
+                get_template_part( 'template-parts/page/content', 'page' );
 
-			endwhile; // End of the loop.
-			?>
+            endwhile; // End of the loop.
+            */
+
+            $args = array(
+                            'posts_per_page' => 10,
+                            'cat' => 8,
+                            'order' => 'DESC',
+                            'orderby' => 'date'
+                );
+
+            $projects = new WP_Query( $args ); ?>
+
+            <?php if( $projects->have_posts() ) : ?>
+
+                <?php while ( $projects->have_posts() ) : $projects->the_post(); ?>
+
+                    <li class="project-item <?php echo strtolower(the_title('', '', false)); ?> in-view col-xxsm-12">
+                        <div class="project-link">
+                            <h2><?php the_title(); ?></h2>
+                            <p><?php the_excerpt(); ?></p>
+                            <a class="btn link-toProject" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                <span class="visible-text">Découvrir</span>
+                                <i class="icon-right"></i>
+                            </a>
+                        </div>
+                        <div class="project-cover">
+                            <div class="mask link-toDetail link-toProject">
+                                <div class="fade"></div>
+                                <div class="media project-img"></div>
+                            </div>
+                        </div>
+                    </li>
+
+                <?php endwhile; ?> 
+
+                <?php wp_reset_postdata(); ?>
+
+            <?php endif; ?>
+            </ul>
 
         </div>
 

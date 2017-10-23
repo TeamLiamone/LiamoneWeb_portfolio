@@ -10,7 +10,7 @@
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage Twenty_Seventeen
+ * @subpackage Liamone
  * @since 1.0
  * @version 1.0
  */
@@ -101,43 +101,47 @@ get_header(home); ?>
                         <p class="big-number under-title">03</p>
                     </div>
                     <div class="block-content col-xxsm-12">
-                       <?php 
-                            $args = array(
-                                            'posts_per_page' => 3,
-                                            'category' => 8,
-                                            'order' => 'DESC',
-                                            'orderby' => 'date'
-                                );
-                            $lastProjects = new WP_Query( $args ); ?>
-                            <?php if ( $lastProjects->have_posts() ) : ?>
+                        <?php 
+                        $args = array(
+                                        'posts_per_page' => 3,
+                                        'cat' => 8,
+                                        'order' => 'DESC',
+                                        'orderby' => 'date'
+                            );
+                        $lastProjects = new WP_Query( $args ); ?>
+                        <?php if ( $lastProjects->have_posts() ) : ?>
 
-                                <!-- the loop -->
-                                <?php while ( $lastProjects->have_posts() ) : $lastProjects->the_post(); ?>
-                                    
-                                    <figure id="projet-<?php the_title(); ?>" class="block-card">
-                                        <?php if ( has_post_thumbnail() ) : ?>
-        
-                                         <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
+                            <!-- the loop -->
+                            <?php while ( $lastProjects->have_posts() ) : $lastProjects->the_post(); ?>
+                                
+                                <figure id="projet-<?php the_title(); ?>" class="block-card">
+                                    <?php if ( has_post_thumbnail() ) : ?>
+    
+                                        <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
 
-                                        <?php endif; ?>
-                                        <figcaption class="card-caption">
-                                            <h3><?php the_title(); ?></h3>
-                                            <p><?php the_tags( '#', ', #'); ?></p>
-                                            <a class="btn bordered" href="<?php the_permalink(); ?>" title="Découvrir le projet <?php the_title(); ?>">
-                                                Voir le projet
-                                                <i class="icon-right"></i>
-                                            </a>
-                                        </figcaption>
-                                    </figure>
-                                <?php endwhile; ?>
-                                <!-- end of the loop -->
+                                    <?php else: ?>
+                                        
+                                        <img src="" alt="">
 
-                                <?php wp_reset_postdata(); ?>
+                                    <?php endif; ?>
+                                    <figcaption class="card-caption">
+                                        <h3><?php the_title(); ?></h3>
+                                        <p><?php the_tags( '#', ', #'); ?></p>
+                                        <a class="btn bordered" href="<?php the_permalink(); ?>" title="Découvrir le projet <?php the_title(); ?>">
+                                            Voir le projet
+                                            <i class="icon-right"></i>
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            <?php endwhile; ?>
+                            <!-- end of the loop -->
 
-                            <?php else : ?>
-                                <!--No content-->
-                                <!--./No content-->
-                            <?php endif; ?>                   
+                            <?php wp_reset_postdata(); ?>
+
+                        <?php else : ?>
+                            <!--No content-->
+                            <!--./No content-->
+                        <?php endif; ?>                   
                     </div>
                 </div>
             </div>
