@@ -38,12 +38,46 @@ get_header(); ?>
                     <div class="block-content col-xxsm-12">
 
             			<?php
-            			while ( have_posts() ) : the_post();
 
-            				get_template_part( 'template-parts/page/content', 'page' );
+                        $args = array(
+                                        'posts_per_page' => 20,
+                                        'cat' => 4,
+                                        'order' => 'DESC',
+                                        'orderby' => 'date'
+                            );
 
-            			endwhile; // End of the loop.
-            			?>
+                        $lastJobs = new WP_Query( $args ); 
+
+                        if( $lastJobs->have_posts() ) : 
+                        
+                            while ( $lastJobs->have_posts() ) : $lastJobs->the_post(); ?>
+                            
+                            <!--Block annonce-->
+                            <div class="block-job clearfix">
+                                <div class="job-content">
+                                    <h2 class="job-title"><?php the_title(); ?></h2>
+                                    <p class="job-info"><?php the_tags('', ' - ')?></p>
+                                    <p class="job-description"><?php the_excerpt(); ?></p>
+                                </div>
+                                <div class="job-cta">
+                                    <a class="btn bordered" title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">En savoir plus<i class="icon-right"></i></a>
+                                </div>
+                            </div>
+                            <!--./Block annonce-->
+                            <?php endwhile;
+                            wp_reset_postdata(); ?>
+
+                        <?php else : 
+
+                            while ( have_posts() ) : the_post();
+
+                                get_template_part( 'template-parts/page/content', 'page' );
+
+                            endwhile; // End of the loop.
+
+                        /*
+                        */
+                        endif; ?>
 
                     </div>
                 </div>

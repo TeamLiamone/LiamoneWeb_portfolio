@@ -4,11 +4,10 @@
  */
 
 ?>
-<ul id="post-<?php the_ID(); ?>" class="projects-list row">
+<ul class="projects-list row">
 	
 		<?php
 			the_content();
 
 		?>
-	</div>
 </ul>

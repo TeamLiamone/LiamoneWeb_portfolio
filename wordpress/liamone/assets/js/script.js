@@ -1,19 +1,6 @@
 /*
 http://www.liamoneweb.fr/wp-content/themes/liamone/assets/
 */
-/*
- data-ae-anim="" data-ae-delay="" data-ae-trigger=""
-*/
-
-/*
-History api detection
-if ( window.history && window.history.pushState ) {
-  // Do stuff…
-}
-*/
-
-
-
 /*Document*/
 jQuery(document).ready(function($) {
 
@@ -407,22 +394,9 @@ jQuery(document).ready(function($) {
 			});
 
 		},
-		calculatePosition(element) {
+		onScroll: function() {
 
-			var rect = element.getBoundingClientRect();
-
-			var scrollTop = window.pageYOffset || root.scrollTop || body.scrollTop || 0;
-			var scrollLeft = window.pageXOffset || root.scrollLeft || body.scrollLeft || 0;
-
-			var clientTop = root.clientTop || body.clientTop || 0;
-			var clientLeft = root.clientLeft || body.clientLeft || 0;
-
-			return {
-				top: Math.round(rect.top + scrollTop - clientTop),
-				left: Math.round(rect.left + scrollLeft - clientLeft),
-				height: rect.height,
-				width: rect.width
-			};
+			scrollTop = $(window).scrollTop();
 
 		},
 
@@ -470,13 +444,13 @@ jQuery(document).ready(function($) {
 
 			//ANIMATION HERO HEADER
 			TweenLite.set( $('.hero-title > span'), {autoAlpha: 0, y: '25%'} )
-			TweenLite.set( $('.hero-title .dot'), {autoAlpha: 0, scaleX: '0', scaleY: '0', transformOrigin: '50% 50%'} )
+			TweenLite.set( $('.hero-title .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} )
 			TweenLite.set( $('.cta-scroll'), {autoAlpha: 0, y: '25%'} )
 			
 			tlHero
 				.to( $('.hero-title > span:first-child'), 0.8, {autoAlpha: 1, y:'-=25%', ease: Power2.easeOut}, 0 )
 				.to( $('.hero-title > span:last-child'), 0.8, {autoAlpha: 1, y:'-=25%', ease: Power2.easeOut}, 0.2 )
-				.to( $('.hero-title .dot'), 0.4, {autoAlpha: 1, scaleX: '1', scaleY: '1', ease: Power2.easeIn}, 0.3 )
+				.to( $('.hero-title .dot'), 0.4, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.3 )
 				.to( $('.cta-scroll'), 0.5, {y:'-=25%', autoAlpha: 1, ease: Power4.easeOut}, 0.4 );
 
 			tlHero.play().timeScale(1);
@@ -486,8 +460,8 @@ jQuery(document).ready(function($) {
 			TweenLite.set( $('.liamone .big-title > span'), {autoAlpha: 0, x: '-100%'} );
 			TweenLite.set( $('.liamone p'), {autoAlpha: 0} );
 			TweenLite.set( $('.liamone hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.liamone .dot'), {autoAlpha: 0, scaleX: '0', scaleY: '0', transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.liamone .right-block img'), {autoAlpha: 0, transformOrigin: '0 50%', scaleX: '0'} );
+			TweenLite.set( $('.liamone .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.liamone .right-block img'), {autoAlpha: 0, transformOrigin: '0 50%', scaleX: 0} );
 			TweenLite.set( $('.liamone .big-number'), {autoAlpha: 0, y: '40%'} );
 
 			tlLiamone
@@ -495,9 +469,9 @@ jQuery(document).ready(function($) {
 				.to( $('.liamone .big-title > span:first-of-type'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.2 )
 				.to( $('.liamone .big-title > span:nth-of-type(2)'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.3 )
 				.to( $('.liamone .big-title > span:last-of-type'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.4 )
-				.to( $('.liamone .dot'), 0.5, {autoAlpha: 1, scaleX: '1', sclaeY: '1', ease: Power2.easeIn}, 0.45 )
+				.to( $('.liamone .dot'), 0.5, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.45 )
 				.to( $('.liamone hr'), 0.5, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn}, 0.5 )
-				.to( $('.liamone .right-block img'), 0.8, {autoAlpha: 1, scaleX: '1', ease: 'cubicAnim'}, 0.5 )
+				.to( $('.liamone .right-block img'), 0.8, {autoAlpha: 1, scaleX: 1, ease: 'cubicAnim'}, 0.5 )
 				.to( $('.liamone p'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.7 )
 				.to( $('.liamone .big-number'), 0.6, {autoAlpha: 1, y: '-=40%', ease: Power2.easeOut}, 1 );
 
@@ -518,7 +492,7 @@ jQuery(document).ready(function($) {
 
 			//ANIMATION PROJETS SECTION
 			TweenLite.set( $('.projet .big-title'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.projet .dot'), {autoAlpha: 0, scale: '0', transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.projet .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
 			TweenLite.set( $('.projet hr'), {autoAlpha: 0, x: '-100%'} );
 			TweenLite.set( $('.projet .big-number'), {autoAlpha: 0, y: '100%'} );
 			TweenLite.set( $('.projet .block-card img'), {autoAlpha: 0, x: '-100%'} );
@@ -527,7 +501,7 @@ jQuery(document).ready(function($) {
 
 			tlProjets
 				.to( $('.projet .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
-				.to( $('.projet .dot'), 0.5, {autoAlpha: 1, scale: '1', ease: Power2.easeIn}, 0.2)
+				.to( $('.projet .dot'), 0.5, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2)
 				.to( $('.projet hr'), 0.4, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn}, 0.3 )
 				//1st project card
 				.to( $('.projet .block-card:first-of-type img'), 1, {autoAlpha: 1, x: '+=100%', ease: 'cubicAnim'}, 0.5 )
@@ -554,13 +528,13 @@ jQuery(document).ready(function($) {
 			TweenLite.set( $('.expertises .big-title'), {autoAlpha: 0, x: '-100%'} );
 			TweenLite.set( $('.expertises .big-number'), {autoAlpha: 0, y: '100%'} );
 			TweenLite.set( $('.expertises hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.expertises .dot'), {autoAlpha: 0, scale: '0', transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.expertises .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
 			TweenLite.set( $('.expertises p'), {autoAlpha: 0} );
 			TweenLite.set( $('.expertises .content-list'), {autoAlpha: 0, y: '5%'} );
 
 			tlExpertises
 				.to( $('.expertises .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
-				.to( $('.expertises .dot'), 0.5, {autoAlpha: 1, scale: '1', ease: Power2.easeIn}, 0.2)
+				.to( $('.expertises .dot'), 0.5, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2)
 				.to( $('.expertises hr'), 0.4, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn}, 0.3 )
 				.to( $('.expertises .block-content p:first-child'), 0.4, {autoAlpha: 1, ease: Linear.easeNone}, 0.5 )
 				.to( $('.expertises .block-content p:last-child'), 0.4, {autoAlpha: 1, ease: Linear.easeNone}, 0.6 )
@@ -576,10 +550,11 @@ jQuery(document).ready(function($) {
 			TweenLite.set( $('.competences .big-number'), {autoAlpha: 0, y: '100%'} );
 			TweenLite.set( $('.competences hr'), {autoAlpha: 0, x: '-100%'} );
 			TweenLite.set( $('.competences .content-caption'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.competences .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
 
 			tlCompetences
 				.to( $('.competences .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
-				.to( $('.competences .dot'), 0.5, {autoAlpha: 1,  scale: '1', ease: Power2.easeIn}, 0.2 )
+				.to( $('.competences .dot'), 0.5, {autoAlpha: 1,  scale: 1, ease: Power2.easeIn}, 0.2 )
 				.to( $('.competences hr'), 0.4, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn}, 0.3 )
 				.to( $('.competences .content-caption:first-of-type'), 0.6, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.5 )
 				.to( $('.competences .content-caption:nth-of-type(2)'), 0.6, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.65 )
@@ -591,11 +566,12 @@ jQuery(document).ready(function($) {
 			TweenLite.set( $('.clients .big-title'), {autoAlpha: 0, x: '-100%'} );
 			TweenLite.set( $('.clients .big-number'), {autoAlpha: 0, y: '100%'} );
 			TweenLite.set( $('.clients hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.clients .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
 			TweenLite.set( $('.clients .client-card'), {autoAlpha: 0, y: '5%'} );
 
 			tlClients
 				.to( $('.clients .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
-				.to( $('.clients .dot'), 0.5, {autoAlpha: 1,  scale: '1', ease: Power2.easeIn}, 0.2 )
+				.to( $('.clients .dot'), 0.5, {autoAlpha: 1,  scale: 1, ease: Power2.easeIn}, 0.2 )
 				.to( $('.clients hr'), 0.4, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn, onComplete: function() {
 
 						$('.clients .client-card').each(function() {
@@ -614,6 +590,7 @@ jQuery(document).ready(function($) {
 			TweenLite.set( $('.actus .big-title'), {autoAlpha: 0, x: '-100%'} );
 			TweenLite.set( $('.actus .big-number'), {autoAlpha: 0, y: '100%'} );
 			TweenLite.set( $('.actus hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.actus .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
 			TweenLite.set( $('.actus .actu-card'), {autoAlpha: 0} );
 
 			tlActus
@@ -1102,7 +1079,7 @@ jQuery(document).ready(function($) {
 
 		});
 
-	}
+	};
 
 	/*
 	NO-AJAX
@@ -1189,7 +1166,7 @@ jQuery(document).ready(function($) {
 
 		//Projets timelines
 
-	var scrollTop;
+	var scrollTop = $(window).scrollTop();
 
 	var logo = {
 
@@ -1198,6 +1175,7 @@ jQuery(document).ready(function($) {
 	
 	};
 
+	//Page initialization
 	var init = {
 
 		/*HOME*/
@@ -1238,6 +1216,8 @@ jQuery(document).ready(function($) {
 
 			});
 
+			TweenLite.ticker.addEventListener("tick", initFunctions.onScroll);
+
 		},
 		home: function() {
 
@@ -1272,40 +1252,40 @@ jQuery(document).ready(function($) {
 			$('.projects-list .project-item').on('click', '.link-toProject', function(e) {
 
 				e.preventDefault();
-				currentItem = $(this).parent().parent(),
-				itemPosTop = currentItem.get[0].getBoundingClientRect(),
-				itemPosLeft = initFunctions.calculatePosition(currentItem).left,
+				currentItem = $(this).parent().parent();
+				itemScrollTop = currentItem.offset().top;
+				itemScrollLeft = currentItem.offset().left;
 				itemClone = currentItem.clone();
 
-				console.log(itemPosTop);
+				var cloneTl = new TimelineLite({paused: true, delay: 0.1});
+				cloneTl.to(itemClone, 0.2, {width: '100%', height: '100vh', left: 0, top: 0, autoRound: false, ease: Power1.easeOut} );
 
 				var singleUrl = currentItem.find('.btn').attr('href');
 				history.pushState({page:singleUrl}, null, singleUrl);
 
-				TweenMax.to(currentItem.find('.project-link'), 0.3, {autoAlpha: 0, ease: Linear.easeNone, onComplete: function() {
+				TweenLite.to(currentItem.find('.project-link'), 0.3, {autoAlpha: 0, ease: Linear.easeNone} );
 
-						itemClone.addClass('project-clone').css({
+				itemClone.addClass('project-clone is-inView').css({
 
-							position: 'fixed',
-							height: currentItem.outerHeight(),
-							top: itemPosTop,
-							left: itemPosLeft,
-							zIndex: 800
+					position: 'fixed',
+					zIndex: 800,
+					height: currentItem.outerHeight(),
+					width: currentItem.outerWidth(),
+					left: itemScrollLeft,
+					top: itemScrollTop - scrollTop
 
-						});
+				});
 
-						TweenMax.set(itemClone, {left: itemScrollLeft, top: itemScrollTop} );
-						TweenMax.to(itemClone, 0.5, { left: 0, top: 0, width: '100%', height: '100%', ease: Linear.easeNone} );
-					
-					} 
-
-				} );
+				TweenLite.set(itemClone, {transformOrigin: '50% 50%'} );
 
 				$('body').addClass('load-project').removeClass('loading');
 
-				itemClone.appendTo('body').delay(20).queue(function() {
+				itemClone.appendTo('body').delay(40).queue(function() {
+
+					cloneTl.play().timeScale(1);
 
 					$(this).addClass('is-active').delay(900).queue(function(){
+
 
 						$.ajax({
 
@@ -1314,7 +1294,9 @@ jQuery(document).ready(function($) {
 							success: function(data) {
 
 								var dataProject = $(data).find('.project-focus');
+								var projectNav = $(data).find('.post-navigation');
 						   		TweenLite.set(window, {scrollTo: {y: 0, autoKill:false}}); 
+
 								var newTitle = dataProject.data('project');
 								document.title = 'Liamone - '+ newTitle;
 								currentProjectClass = newTitle;
@@ -1323,9 +1305,10 @@ jQuery(document).ready(function($) {
 
 								$('.content-container').append(dataProject).delay(30).queue(function() {
 
-									$('.content-container > main').not('.project-focus').remove();
+									$('.content-container main').not('.project-focus').remove();
 									itemClone.hide();
 									$('body').addClass('project-added').removeClass('load-project');
+									$('.content-container').append(projectNav);
 									init.projectFocus();
 									$(this).dequeue();
 
@@ -1347,7 +1330,7 @@ jQuery(document).ready(function($) {
 
 			pageAnimation.projects();
 			initFunctions.projectMask();
-			
+
 		},
 		/*PROJECT*/
 		projectFocus: function() {
@@ -1355,12 +1338,34 @@ jQuery(document).ready(function($) {
 			console.log('Détail du projet');
 
 			pageAnimation.projectFocus();
+			$('.project-clone').remove();
 
 			$('.project-focus .cta-scroll').on('click', function(e) {
 
 				e.preventDefault();
 				controller.scrollTo('.project-context');
 			
+			});
+
+			$('.project-nav').on('click', 'a', function(e) {
+
+				e.preventDefault();
+
+				var target = $(this),
+					targetUrl = target.attr('href');
+
+				ajaxNav.loadPage(targetUrl);
+				history.pushState({page:targetUrl}, null, targetUrl);
+
+				var newTitle = $('main').data('project');
+				document.title = 'Liamone - '+ newTitle;
+
+				currentProjectClass = newTitle;
+
+				controller.scrollTo(0);
+
+				init.projectFocus();
+
 			});
 
 		},
@@ -1458,9 +1463,7 @@ jQuery(document).ready(function($) {
 
 	};
 
-	/*
-	BUILD
-	*/
+	//Site ajax functions
 	var ajaxNav = {
 
 		build: function() {
@@ -1518,16 +1521,24 @@ jQuery(document).ready(function($) {
 					success: function(data) {
 
 						var pageData =  $(data).find('main'),
+							postNavigation = $(data).find('.post-navigation'),
 							newTitle = pageData.data('page-title'),
 							targetPageClass = pageData.data('page-class');
 
 						document.title = "Liamone - "+ newTitle;
 
+
 						//Delete last page
-						$('.content-container > main').remove();
+						$('.content-container > *').remove();
 
 						//Insert new page
 						$('.content-container').prepend(pageData);
+
+						if( postNavigation ) {
+
+							$('.content-container').append(postNavigation);
+
+						}
 
 						currentPage = $('main');
 
@@ -1654,6 +1665,9 @@ jQuery(document).ready(function($) {
 					break;
 				case 'job-page':
 					init.jobs();
+					break;
+				case 'offer-page':
+					init.jobDetail();
 					break;
 				case 'team-page':
 					init.team();

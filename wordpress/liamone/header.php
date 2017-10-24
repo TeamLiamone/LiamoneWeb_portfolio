@@ -208,5 +208,5 @@
     <!--./Geo layer-->
 
     <!--Page content-->
-    <div class="content-container">
+    <div class="content-container" aria-live="polite" aria-relevant="all">
 

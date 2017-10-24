@@ -2397,11 +2397,8 @@ Pages
   background-position: right bottom;
 }
 
-.project-clone .project-cover .mask {
-  width: 100% !important;
-}
-
-.project-clone .project-cover .mask > .project-img {
+.project-clone > .project-cover .mask,
+.project-clone > .project-cover .mask > .project-img {
   width: 100% !important;
 }
 

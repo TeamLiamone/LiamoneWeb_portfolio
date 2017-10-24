@@ -108,16 +108,16 @@ get_header(home); ?>
                                         'order' => 'DESC',
                                         'orderby' => 'date'
                             );
-                        $lastProjects = new WP_Query( $args ); ?>
-                        <?php if ( $lastProjects->have_posts() ) : ?>
+                        $lastProjects = new WP_Query( $args );
+                        if ( $lastProjects->have_posts() ) : ?>
 
                             <!-- the loop -->
                             <?php while ( $lastProjects->have_posts() ) : $lastProjects->the_post(); ?>
                                 
                                 <figure id="projet-<?php the_title(); ?>" class="block-card">
-                                    <?php if ( has_post_thumbnail() ) : ?>
+                                    <?php if ( has_post_thumbnail() ) :
     
-                                        <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
+                                        the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
 
                                     <?php else: ?>
                                         
@@ -133,10 +133,8 @@ get_header(home); ?>
                                         </a>
                                     </figcaption>
                                 </figure>
-                            <?php endwhile; ?>
-                            <!-- end of the loop -->
-
-                            <?php wp_reset_postdata(); ?>
+                            <?php endwhile;
+                            wp_reset_postdata(); ?>
 
                         <?php else : ?>
                             <!--No content-->

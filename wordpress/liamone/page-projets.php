@@ -46,11 +46,11 @@ get_header(); ?>
                             'orderby' => 'date'
                 );
 
-            $projects = new WP_Query( $args ); ?>
+            $projects = new WP_Query( $args );
 
-            <?php if( $projects->have_posts() ) : ?>
+            if( $projects->have_posts() ) : 
 
-                <?php while ( $projects->have_posts() ) : $projects->the_post(); ?>
+                while ( $projects->have_posts() ) : $projects->the_post(); ?>
 
                     <li class="project-item <?php echo strtolower(the_title('', '', false)); ?> in-view col-xxsm-12">
                         <div class="project-link">
@@ -69,10 +69,17 @@ get_header(); ?>
                         </div>
                     </li>
 
-                <?php endwhile; ?> 
+                <?php endwhile;  
+                wp_reset_postdata(); ?>
 
-                <?php wp_reset_postdata(); ?>
+            <?php else :
 
+                while ( have_posts() ) : the_post();
+
+                    get_template_part( 'template-parts/page/content', 'page' );
+
+                endwhile; // End of the loop.?>
+                
             <?php endif; ?>
             </ul>
 

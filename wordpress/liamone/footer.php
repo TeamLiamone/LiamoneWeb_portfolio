@@ -43,13 +43,13 @@
                 <h2>Réseaux</h2>
                 <ul class="footer-nav">
                     <li class="nav-item">
-                        <a class="item-link" href="https://www.facebook.com/LiamoneWeb" rel="external" title="Nous suivre sur facebook">Facebook</a>
+                        <a class="item-link" href="https://www.facebook.com/liamone.web/" rel="external" title="Nous suivre sur facebook">Facebook</a>
                     </li>
                     <li class="nav-item">
-                        <a class="item-link" href="https://www.linkedin.com/company/liamone-web---agence-web-digitale-technologique" rel="external" title="Nous suivre sur LinkedIn">LinkedIn</a>
+                        <a class="item-link" href="https://fr.linkedin.com/company/liamone-web" rel="external" title="Nous suivre sur LinkedIn">LinkedIn</a>
                     </li>
                     <li class="nav-item">
-                        <a class="item-link" href="#" rel="external" title="Nous suivre sur instagram">Instagram</a>
+                        <a class="item-link" href="https://www.instagram.com/liamone.web/?hl=fr" rel="external" title="Nous suivre sur instagram">Instagram</a>
                     </li>
                 </ul>
             </nav>
