@@ -7,7 +7,7 @@
 get_header(); ?>
 
     <!--Liamone page container-->
-    <main class="training page-container fluid-container" data-page-title="Formations" data-page-class="training-page">
+    <main class="training page-container fluid-container" data-page-title="Formations" data-page-class="training-page" data-page-href="http://www.liamoneweb.fr/formations/">
 
         <header class="hero-grey">
             <div class="container">

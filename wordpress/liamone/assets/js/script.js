@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
 
 	//Variables
 	var demandType,
-		lastSTop = 0,
+		lastScrollTop = 0,
 		wH = $(window).height(),
 		wW = $(window).width(),
 		actuCard = $('.actus').find('figure.actu-card');
@@ -428,7 +428,130 @@ jQuery(document).ready(function($) {
 		tlContact;
 
 	var pageAnimation = {
-	
+
+		setHome: function() {
+
+			TweenLite.set( $('.hero-title > span'), {autoAlpha: 0, y: '25%'} );
+			TweenLite.set( $('.hero-title .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.cta-scroll'), {autoAlpha: 0, y: '25%'} );
+			TweenLite.set( $('#backgroundTHREE canvas'), {autoAlpha: 0} );
+
+			TweenLite.set( $('.liamone .yellow-title'), {autoAlpha: 0, x:'-100%'} );
+			TweenLite.set( $('.liamone .big-title > span'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.liamone p'), {autoAlpha: 0} );
+			TweenLite.set( $('.liamone hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.liamone .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.liamone .right-block img'), {autoAlpha: 0, transformOrigin: '0 50%', scaleX: 0} );
+			TweenLite.set( $('.liamone .big-number'), {autoAlpha: 0, y: '40%'} );
+			TweenLite.set( $('.objectif .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.objectif .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.objectif hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.objectif p, .objectif a'), {autoAlpha: 0} );
+
+			TweenLite.set( $('.projet .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.projet .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.projet hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.projet .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.projet .block-card img'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.projet .card-caption'), {autoAlpha: 0, x: '5%'} );
+			TweenLite.set( [$('.projet .card-caption h3'), $('.projet .card-caption p'), $('.projet .card-caption a')], {autoAlpha: 0} );
+
+			TweenLite.set( $('.expertises .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.expertises .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.expertises hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.expertises .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.expertises p'), {autoAlpha: 0} );
+			TweenLite.set( $('.expertises .content-list'), {autoAlpha: 0, y: '5%'} );
+
+			TweenLite.set( $('.competences .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.competences .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.competences hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.competences .content-caption'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.competences .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+
+			TweenLite.set( $('.clients .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.clients .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.clients hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.clients .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.clients .client-card'), {autoAlpha: 0, y: '5%'} );
+
+			TweenLite.set( $('.actus .big-title'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.actus .big-number'), {autoAlpha: 0, y: '100%'} );
+			TweenLite.set( $('.actus hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.actus .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.actus .actu-card'), {autoAlpha: 0} );
+
+		},
+		setProjects: function() {
+
+			TweenLite.set( $('.projects .hero-title > span'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.projects .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.projects hr'), {autoAlpha: 0, x: '-100%'} );
+		
+		},
+		setProject: function() {
+
+			TweenLite.set( $('.project-focus h1'), {autoAlpha: 0, y: '15%'} );
+			TweenLite.set( $('.project-focus .project-heading p'), {autoAlpha: 0} );
+			TweenLite.set( $('.project-focus .project-heading hr'), {autoAlpha: 0, y: '-100%'} );
+			TweenLite.set( $('.project-focus .project-tag li'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.project-focus .cta-scroll'), {autoAlpha: 0, y: '-100%'} );
+
+			TweenLite.set( $('.project-context .project-objectif'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.project-context .project-response'), {autoAlpha: 0, y: '5%'} );
+
+			TweenLite.set( $('.project-brand h2'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.project-brand h3'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.project-brand hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.project-brand p'), {autoAlpha: 0} );
+			TweenLite.set( $('.project-brand img'), {autoAlpha: 0} );
+
+			TweenLite.set( $('.project-design h2'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.project-design h3'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.project-design hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.project-design p'), {autoAlpha: 0} );
+			TweenLite.set( $('.project-design img'), {autoAlpha: 0} );
+			
+		},
+		setServices: function() {
+
+			TweenLite.set( $('.services .content-slider'), {autoAlpha: 0} );
+			TweenLite.set( $('.services .slider-nav'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.services h1 > span'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.services .separator'), {autoAlpha: 0, x: '-100%', transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.services h1 .dot'), {autoAlpha: 0, scale: 0} );
+			
+		},
+		setTraining: function() {
+
+			TweenLite.set( $('.training h1 > span'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.training h1 .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.training hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.training .hero-grey p'), {autoAlpha: 0} );
+			TweenLite.set( $('.training .block-img'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.training .filter-cta'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.training .block-formation .row'), {autoAlpha: 0, y: '5%'} );
+
+		},
+		setJobs: function() {
+
+			TweenLite.set( $('.jobs h1 > span'), {autoAlpha: 0, x: '-100%' } );
+			TweenLite.set( $('.jobs h1 .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
+			TweenLite.set( $('.jobs .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.jobs .hero-grey p'), {autoAlpha: 0} );
+			TweenLite.set( $('.jobs .hero-grey img'), {autoAlpha: 0} );
+			TweenLite.set( $('.jobs .block-job'), {autoAlpha: 0, y: '5%'} );
+
+		},
+		setContact: function() {
+
+			TweenLite.set( $('.contact h1 > span'), {autoAlpha: 0} );
+			TweenLite.set( $('.contact h1 .dot'), {autoAlpha: 0} );
+			TweenLite.set( $('.contact .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.contact .demand-type .btn'), {autoAlpha: 0, y: '5%'} );
+			TweenLite.set( $('.contact .find-us'), {autoAlpha: 0} );
+
+		},
 		home: function() {
 
 			CustomEase.create('cubicAnim', '1, 0, 0.5, 1');
@@ -442,28 +565,17 @@ jQuery(document).ready(function($) {
 			tlClients = new TimelineLite({paused: true, delay: 0.1});
 			tlActus = new TimelineLite({paused: true, delay: 0.1});
 
-			//ANIMATION HERO HEADER
-			TweenLite.set( $('.hero-title > span'), {autoAlpha: 0, y: '25%'} )
-			TweenLite.set( $('.hero-title .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} )
-			TweenLite.set( $('.cta-scroll'), {autoAlpha: 0, y: '25%'} )
-			
+			//ANIMATION HERO HEADER			
 			tlHero
 				.to( $('.hero-title > span:first-child'), 0.8, {autoAlpha: 1, y:'-=25%', ease: Power2.easeOut}, 0 )
 				.to( $('.hero-title > span:last-child'), 0.8, {autoAlpha: 1, y:'-=25%', ease: Power2.easeOut}, 0.2 )
 				.to( $('.hero-title .dot'), 0.4, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.3 )
-				.to( $('.cta-scroll'), 0.5, {y:'-=25%', autoAlpha: 1, ease: Power4.easeOut}, 0.4 );
+				.to( $('.cta-scroll'), 0.5, {y:'-=25%', autoAlpha: 1, ease: Power4.easeOut}, 0.4 )
+				.to( $('#backgroundTHREE canvas'), 0.5, {autoAlpha: 0, ease: Linear.easeNone}, 0.6 );
 
 			tlHero.play().timeScale(1);
 
 			//ANIMATION LIAMONE SECTION
-			TweenLite.set( $('.liamone .yellow-title'), {autoAlpha: 0, x:'-100%'} );
-			TweenLite.set( $('.liamone .big-title > span'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.liamone p'), {autoAlpha: 0} );
-			TweenLite.set( $('.liamone hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.liamone .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.liamone .right-block img'), {autoAlpha: 0, transformOrigin: '0 50%', scaleX: 0} );
-			TweenLite.set( $('.liamone .big-number'), {autoAlpha: 0, y: '40%'} );
-
 			tlLiamone
 				.to( $('.liamone .yellow-title'), 0.8,{autoAlpha: 1, x: '+=100%',ease: Power2.easeOut}, 0 )
 				.to( $('.liamone .big-title > span:first-of-type'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.2 )
@@ -477,11 +589,6 @@ jQuery(document).ready(function($) {
 
 
 			//ANIMATION OBJECTIFS SECTION
-			TweenLite.set( $('.objectif .big-title'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.objectif .big-number'), {autoAlpha: 0, y: '100%'} );
-			TweenLite.set( $('.objectif hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.objectif p, .objectif a'), {autoAlpha: 0} );
-
 			tlObjectifs
 				.to( $('.objectif .big-title'), 0.8, {autoAlpha: 1, x:'+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.objectif hr'), 0.8, {autoAlpha: 1, x:'+=100%', ease: Power2.easeOut}, 0.2 )
@@ -491,14 +598,6 @@ jQuery(document).ready(function($) {
 
 
 			//ANIMATION PROJETS SECTION
-			TweenLite.set( $('.projet .big-title'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.projet .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.projet hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.projet .big-number'), {autoAlpha: 0, y: '100%'} );
-			TweenLite.set( $('.projet .block-card img'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.projet .card-caption'), {autoAlpha: 0, x: '5%'} );
-			TweenLite.set( [$('.projet .card-caption h3'), $('.projet .card-caption p'), $('.projet .card-caption a')], {autoAlpha: 0} );
-
 			tlProjets
 				.to( $('.projet .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.projet .dot'), 0.5, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2)
@@ -525,13 +624,6 @@ jQuery(document).ready(function($) {
 
 
 			//ANIMATION EXPERTISES SECTION
-			TweenLite.set( $('.expertises .big-title'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.expertises .big-number'), {autoAlpha: 0, y: '100%'} );
-			TweenLite.set( $('.expertises hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.expertises .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.expertises p'), {autoAlpha: 0} );
-			TweenLite.set( $('.expertises .content-list'), {autoAlpha: 0, y: '5%'} );
-
 			tlExpertises
 				.to( $('.expertises .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.expertises .dot'), 0.5, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2)
@@ -546,12 +638,6 @@ jQuery(document).ready(function($) {
 
 
 			//ANIMATION COMPETENCES SECTION
-			TweenLite.set( $('.competences .big-title'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.competences .big-number'), {autoAlpha: 0, y: '100%'} );
-			TweenLite.set( $('.competences hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.competences .content-caption'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.competences .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-
 			tlCompetences
 				.to( $('.competences .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.competences .dot'), 0.5, {autoAlpha: 1,  scale: 1, ease: Power2.easeIn}, 0.2 )
@@ -563,12 +649,6 @@ jQuery(document).ready(function($) {
 				.to( $('.competences .big-number'), 0.6, {autoAlpha: 1, y: '-=100%', ease: Power2.easeOut}, 1 );
 
 			//ANIMATION CLIENTS SECTION
-			TweenLite.set( $('.clients .big-title'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.clients .big-number'), {autoAlpha: 0, y: '100%'} );
-			TweenLite.set( $('.clients hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.clients .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.clients .client-card'), {autoAlpha: 0, y: '5%'} );
-
 			tlClients
 				.to( $('.clients .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.clients .dot'), 0.5, {autoAlpha: 1,  scale: 1, ease: Power2.easeIn}, 0.2 )
@@ -587,12 +667,6 @@ jQuery(document).ready(function($) {
 
 
 			//ANIMATION ACTUS SECTION
-			TweenLite.set( $('.actus .big-title'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.actus .big-number'), {autoAlpha: 0, y: '100%'} );
-			TweenLite.set( $('.actus hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.actus .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.actus .actu-card'), {autoAlpha: 0} );
-
 			tlActus
 				.to( $('.actus .big-title'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.actus .dot'), 0.5, {autoAlpha: 1,  scale: '1', ease: Power2.easeIn}, 0.2 )
@@ -700,10 +774,6 @@ jQuery(document).ready(function($) {
 
 			tlProjects = new TimelineLite({paused: true, delay: 0.2});
 
-			TweenLite.set( $('.projects .hero-title > span'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.projects .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.projects hr'), {autoAlpha: 0, x: '-100%'} );
-
 			tlProjects
 				.to( $('.projects .hero-title > span:first-of-type'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.projects .hero-title > span:last-of-type'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.1 )
@@ -718,12 +788,6 @@ jQuery(document).ready(function($) {
 			tlProject = new TimelineLite({paused:true, delay: 0.2});
 
 			//Project-focus INTRO
-			TweenLite.set( $('.project-focus h1'), {autoAlpha: 0, y: '15%'} );
-			TweenLite.set( $('.project-focus .project-heading p'), {autoAlpha: 0} );
-			TweenLite.set( $('.project-focus .project-heading hr'), {autoAlpha: 0, y: '-100%'} );
-			TweenLite.set( $('.project-focus .project-tag li'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.project-focus .cta-scroll'), {autoAlpha: 0, y: '-100%'} );
-
 			tlProject
 				.to( $('.project-focus h1'), 0.8, { autoAlpha: 1, y: '-=15%', ease: Power2.easeOut}, 0 )
 				.to( $('.project-focus .project-heading p'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.2 )
@@ -736,21 +800,12 @@ jQuery(document).ready(function($) {
 			//Context section
 			var tlContext = new TimelineLite({delay: 0.1});
 
-			TweenLite.set( $('.project-context .project-objectif'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.project-context .project-response'), {autoAlpha: 0, y: '5%'} );
-
 			tlContext
 				.to( $('.project-context .project-objectif'), 0.6, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0 )
 				.to( $('.project-context .project-response'), 0.6, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0.2);
 
 			//Brand section
 			var tlBrand = new TimelineLite({delay: 0.1});
-
-			TweenLite.set( $('.project-brand h2'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.project-brand h3'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.project-brand hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.project-brand p'), {autoAlpha: 0} );
-			TweenLite.set( $('.project-brand img'), {autoAlpha: 0} );
 
 			tlBrand
 				.to( $('.project-brand h2'), 0.6, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0 )
@@ -761,12 +816,6 @@ jQuery(document).ready(function($) {
 
 			//Design section
 			var tlDesign = new TimelineLite({delay: 0.1});
-
-			TweenLite.set( $('.project-design h2'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.project-design h3'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.project-design hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.project-design p'), {autoAlpha: 0} );
-			TweenLite.set( $('.project-design img'), {autoAlpha: 0} );
 
 			tlDesign
 				.to( $('.project-design h2'), 0.6, {autoAlpha: 1, y: '-=5%', ease: Power2.easeOut}, 0 )
@@ -814,12 +863,6 @@ jQuery(document).ready(function($) {
 
 			tlServices = new TimelineLite({paused: true, delay: 0.2});
 
-			TweenLite.set( $('.services .content-slider'), {autoAlpha: 0} );
-			TweenLite.set( $('.services .slider-nav'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.services h1 > span'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.services .separator'), {autoAlpha: 0, x: '-100%', transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.services h1 .dot'), {autoAlpha: 0, scale: 0} );
-
 			tlServices
 				.to( $('.services h1 > span'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.services .separator'), 0.6, {autoAlpha: 1, x: '+=100%', ease: Power2.easeIn}, 0.2 )
@@ -833,14 +876,6 @@ jQuery(document).ready(function($) {
 		training: function() {
 
 			tlTraining = new TimelineLite({paused: true, delay: 0.3});
-
-			TweenLite.set( $('.training h1 > span'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.training h1 .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.training hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.training .hero-grey p'), {autoAlpha: 0} );
-			TweenLite.set( $('.training .block-img'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.training .filter-cta'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.training .block-formation .row'), {autoAlpha: 0, y: '5%'} );
 
 			tlTraining
 				.to( $('.training h1 > span'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
@@ -858,13 +893,6 @@ jQuery(document).ready(function($) {
 
 			tlJobs = new TimelineLite({paused: true, delay: 0.3});
 			
-			TweenLite.set( $('.jobs h1 > span'), {autoAlpha: 0, x: '-100%' } );
-			TweenLite.set( $('.jobs h1 .dot'), {autoAlpha: 0, scale: 0, transformOrigin: '50% 50%'} );
-			TweenLite.set( $('.jobs .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.jobs .hero-grey p'), {autoAlpha: 0} );
-			TweenLite.set( $('.jobs .hero-grey img'), {autoAlpha: 0} );
-			TweenLite.set( $('.jobs .block-job'), {autoAlpha: 0, y: '5%'} );
-
 			tlJobs
 				.to( $('.jobs h1 > span'), 0.8, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0 )
 				.to( $('.jobs h1 .dot'), 0.6, {autoAlpha: 1, scale: 1, ease: Power2.easeIn}, 0.2 )
@@ -883,12 +911,6 @@ jQuery(document).ready(function($) {
 
 			tlContact = new TimelineLite({paused: true, delay: 0.3});
 
-			TweenLite.set( $('.contact h1 > span'), {autoAlpha: 0} );
-			TweenLite.set( $('.contact h1 .dot'), {autoAlpha: 0} );
-			TweenLite.set( $('.contact .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
-			TweenLite.set( $('.contact .demand-type .btn'), {autoAlpha: 0, y: '5%'} );
-			TweenLite.set( $('.contact .find-us'), {autoAlpha: 0} );
-
 			tlContact
 				.to( $('.contact h1 > span'), 0.8, {autoAlpha: 1, ease: Linear.easeNone}, 0 )
 				.to( $('.contact h1 .dot'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.2)
@@ -903,6 +925,7 @@ jQuery(document).ready(function($) {
 		}
 
 	};
+
 	/*
 	THREE.JS
 	*/	
@@ -969,7 +992,7 @@ jQuery(document).ready(function($) {
 			var cubeWidth, cubeHeight, cubeLength, 
 				randomX, randomY, randomZ;
 
-			for( var i = 0; i < 16; i++ ) {
+			for( var i = 0; i < 24; i++ ) {
 
 				randomZ = Math.random() * (0.95 - 0.1) + 0.1;
 				randomX = Math.random() * (0.75 - 0.2) + 0.2;
@@ -1000,9 +1023,6 @@ jQuery(document).ready(function($) {
 				scene.add(mesh);
 
 			}
-
-		},
-		animateGeometry: function() {
 
 		},
 		render: function() {
@@ -1092,6 +1112,7 @@ jQuery(document).ready(function($) {
 
 				case 'home-page':
 
+					pageAnimation.setHome();
 					initFunctions.loading();
 					pageAnimation.home();
 					init3DScene();
@@ -1110,26 +1131,32 @@ jQuery(document).ready(function($) {
 					};
 					break;
 				case 'projects-page':
+					pageAnimation.setProjects();
 					pageAnimation.projects();
 					initFunctions.projectMask();
 					break;
 				case 'projectFocus':
+					pageAnimation.setProject();
 					pageAnimation.projectFocus();
 					break;
 				case 'services-page':
+					pageAnimation.setServices();
 					pageAnimation.services();
 					initFunctions.serviceSwiper();
 					break;
 				case 'training-page':
+					pageAnimation.setTraining();
 					pageAnimation.training();
 					initFunctions.trainingTabs();
 					break;
 				case 'job-page':
+					pageAnimation.setJobs();
 					pageAnimation.jobs();
 					break;
 				case 'team-page':
 					break;
 				case 'contact-page':
+					pageAnimation.setContact();
 					pageAnimation.contact();
 					initFunctions.contactFormcontrols();
 					break;
@@ -1157,16 +1184,12 @@ jQuery(document).ready(function($) {
 		currentType = undefined,
 		itemScrollTop,
 		itemScrollLeft,
-		itemClone;
-
-	var currentPage,
+		itemClone,
+		currentPage,
 		currentPageClass,
 		currentProjectClass,
-		targetPage;
-
-		//Projets timelines
-
-	var scrollTop = $(window).scrollTop();
+		targetPage,
+		scrollTop = $(window).scrollTop();
 
 	var logo = {
 
@@ -1563,6 +1586,7 @@ jQuery(document).ready(function($) {
 
 							$(this).removeClass('loading').delay(600).queue(function() {
 
+
 								$(this).addClass('loaded');
 								$(this).dequeue();
 
@@ -1649,21 +1673,27 @@ jQuery(document).ready(function($) {
 			switch(pageClass) {
 
 				case 'home-page':
+					pageAnimation.setHome();
 					init.home();
 					break;
 				case 'projects-page':
+					pageAnimation.setProjects();
 					init.projects();
 					break;
 				case 'projectFocus':
+					pageAnimation.setProject();
 					init.projectFocus();
 					break;
 				case 'services-page':
+					pageAnimation.setServices();
 					init.services();
 					break;
 				case 'training-page':
+					pageAnimation.setTraining();
 					init.training();
 					break;
 				case 'job-page':
+					pageAnimation.setJobs();
 					init.jobs();
 					break;
 				case 'offer-page':
@@ -1673,6 +1703,7 @@ jQuery(document).ready(function($) {
 					init.team();
 					break;
 				case 'contact-page':
+					pageAnimation.setContact();
 					init.contact();
 					break;
 				default:
@@ -1686,11 +1717,30 @@ jQuery(document).ready(function($) {
 
 	};
 
-	//In All case
+	//ajaxNav.build();
+	//siteNav();
+
+	//Init geometry background layer
 	initFunctions.geoLayerShapes();
+
+	$(window).scroll( function(e) {
+
+		var currentScrollTop = $(this).scrollTop();
+
+		initFunctions.geoLayer(currentScrollTop, lastScrollTop);
+		lastScrollTop = currentScrollTop;
+
+	});
 
 	//If history API is supported, call ajax navigation
 	if ( window.history && window.history.pushState ) {
+
+		pageAnimation.setHome();
+		pageAnimation.setProject();
+		pageAnimation.setProjects();
+		pageAnimation.setServices();
+		pageAnimation.setTraining();
+		pageAnimation.setContact();
 	
 		ajaxNav.build();
 

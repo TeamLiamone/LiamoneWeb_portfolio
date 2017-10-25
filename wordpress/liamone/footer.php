@@ -43,18 +43,18 @@
                 <h2>Réseaux</h2>
                 <ul class="footer-nav">
                     <li class="nav-item">
-                        <a class="item-link" href="https://www.facebook.com/liamone.web/" rel="external" title="Nous suivre sur facebook">Facebook</a>
+                        <a class="item-link" target="_blank" href="https://www.facebook.com/liamone.web/" rel="external" title="Nous suivre sur facebook">Facebook</a>
                     </li>
                     <li class="nav-item">
-                        <a class="item-link" href="https://fr.linkedin.com/company/liamone-web" rel="external" title="Nous suivre sur LinkedIn">LinkedIn</a>
+                        <a class="item-link" target="_blank" href="https://fr.linkedin.com/company/liamone-web" rel="external" title="Nous suivre sur LinkedIn">LinkedIn</a>
                     </li>
                     <li class="nav-item">
-                        <a class="item-link" href="https://www.instagram.com/liamone.web/?hl=fr" rel="external" title="Nous suivre sur instagram">Instagram</a>
+                        <a class="item-link" target="_blank" href="https://www.instagram.com/liamone.web/?hl=fr" rel="external" title="Nous suivre sur instagram">Instagram</a>
                     </li>
                 </ul>
             </nav>
             <div class="mention col-xxsm-12">
-                <p><i class="icon-copyright"></i> Liamone 2017. Design with <i class="icon-heart"></i> by Liamone. <a href="http://www.liamoneweb.fr/?page_id=157" title="Mentions légales">Mentions légales</a></p>
+                <p><i class="icon-copyright"></i> Liamone 2017. Design with <i class="icon-heart"></i> by Liamone. <a href="http://www.liamoneweb.fr/mentions-legales/" title="Mentions légales">Mentions légales</a></p>
             </div>
         </div>
     </footer>

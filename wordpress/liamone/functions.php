@@ -629,3 +629,13 @@ function liamoneJs_scripts() {
 }
 
 add_action('wp_enqueue_scripts', 'liamoneJs_scripts');
+
+//Dequeue Jquery migrate
+function dequeue_jquery_migrate( &$scripts){
+	if(!is_admin()){
+		$scripts->remove( 'jquery');
+		$scripts->add( 'jquery', false, array( 'jquery-core' ), '1.10.2' );
+	}
+}
+
+add_filter( 'wp_default_scripts', 'dequeue_jquery_migrate' );

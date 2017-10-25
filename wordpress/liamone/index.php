@@ -18,7 +18,7 @@
 get_header(home); ?>
 
     <!--Liamone page container-->
-    <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page" data-page-href="index.php">
+    <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page" data-page-href="http://www.liamoneweb.fr">
         
         <!--Hero-->
         <header id="backgroundTHREE" class="hero-header row">
@@ -412,7 +412,7 @@ get_header(home); ?>
                         <div class="actualite actu-card">
                             <h2>Quoi<br> de neuf ?</h2>
                         </div>
-                        <figure class="actu-card">
+                        <!--<figure class="actu-card">
                             <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
                             <figcaption>
                                 <span class="rounded">
@@ -563,7 +563,10 @@ get_header(home); ?>
                                     <i class="icon-instagram"></i>
                                 </span>
                             </figcaption>
-                        </figure>
+                        </figure>-->
+                        <?php
+                        /*echo do_shortcode('[fts_instagram instagram_id=4835098778 pics_count=6 type=user profile_wrap=no super_gallery=yes columns=4 force_columns=no space_between_photos=1px icon_size=65px hide_date_likes_comments=yes]');*/
+                        ?>
                     </div>
                     <div class="col-xxsm-12">
                         <button class="btn bordered" type="button">En voir plus</button>

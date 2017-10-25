@@ -7,7 +7,7 @@
 get_header(); ?>
 
     <!--Liamone page container-->
-    <main class="projects page-container fluid-container" data-page-title="Projets" data-page-class="projects-page">
+    <main class="projects page-container fluid-container" data-page-title="Projets" data-page-class="projects-page" data-page-href="http://www.liamoneweb.fr/projets/">
         
         <header class="hero-grey">
             <div class="container">
@@ -31,13 +31,6 @@ get_header(); ?>
 
             <ul class="projects-list row">
             <?php
-            /*
-            while ( have_posts() ) : the_post();
-
-                get_template_part( 'template-parts/page/content', 'page' );
-
-            endwhile; // End of the loop.
-            */
 
             $args = array(
                             'posts_per_page' => 10,
