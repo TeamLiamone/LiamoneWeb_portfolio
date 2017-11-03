@@ -18,7 +18,7 @@
 get_header(home); ?>
 
     <!--Liamone page container-->
-    <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page" data-page-href="http://www.liamoneweb.fr">
+    <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page" data-page-href="http://www.liamoneweb.fr/">
         
         <!--Hero-->
         <header id="backgroundTHREE" class="hero-header row">
@@ -58,7 +58,7 @@ get_header(home); ?>
                         </div>
                     </div>
                     <div class="right-block col-xxsm-12 col-sm-6 col-sm-offset-1">
-                        <img src="http://via.placeholder.com/620x466" alt="" width="620" height="466">
+                        <img class="progressive__img progressive--not-loaded" data-progressive="http://via.placeholder.com/620x466" src="wp-content/themes/liamone/assets/img/illustration/img-lazyload-middle.jpg" alt="" width="620" height="466">
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@ get_header(home); ?>
                     <div class="right-block col-xxsm-12 col-sm-6">
                         <div class="block-content">
                             <p><span class="black-text">Accompagner nos clients dans leur stratégie,</span><br>les aider à définir leur identité visuelle en fonction des échanges et des idées et ainsi leur permettre de développer leur activité.</p>
-                            <a class="btn white" href="http://www.liamoneweb.fr/?page_id=141" title="Nous contacter">Contactez-nous<i class="icon-right"></i></a>
+                            <a class="btn white" href="http://www.liamoneweb.fr/contact/" title="Nous contacter">Contactez-nous<i class="icon-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -116,12 +116,21 @@ get_header(home); ?>
                                 
                                 <figure id="projet-<?php the_title(); ?>" class="block-card">
                                     <?php if ( has_post_thumbnail() ) :
-    
-                                        the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
+
+                                        $thumbdata = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+                                        $lazysrc = 'http://www.liamoneweb.fr/wp-content/themes/liamone/assets/img/illustration/img-lazyload-middle2.jpg';
+
+                                        $attr = array(
+                                                'class' => 'img-fluid progressive__img progressive--not-loaded',
+                                                'data-progressive' => $thumbdata[0],
+                                                'src' => $lazysrc
+                                            );
+
+                                        the_post_thumbnail('full', $attr); ?>
 
                                     <?php else: ?>
                                         
-                                        <img src="" alt="">
+                                        <img src="wp-content/themes/liamone/assets/img/illustration/img-lazyload-middle2.jpg" alt="" width="571" height="370">
 
                                     <?php endif; ?>
                                     <figcaption class="card-caption">
@@ -155,7 +164,7 @@ get_header(home); ?>
                         <p>Quel que soit votre projet: identité graphique, refonte en responsive design ou lorem ispeum sic dolor amet et fili et spiriti</p>
                     </div>
                     <div class="right-block col-xxsm-12 col-sm-4 col-sm-offset-1 col-lg-offset-2">
-                        <a class="btn white" href="http://www.liamoneweb.fr/?page_id=141" title="Nous contacter">Contactez-nous<i class="icon-right"></i></a>
+                        <a class="btn white" href="http://www.liamoneweb.fr/contact/" title="Nous contacter">Contactez-nous<i class="icon-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -376,19 +385,19 @@ get_header(home); ?>
                         <p class="big-number under-title">06</p>
                     </div>
                     <div class="block-content col-xxsm-12">
-                        <div class="client-card client-1">
+                        <div class="client-card client-1 progressive__bg progressive--not-loaded" data-progressive="wp-content/themes/liamone/assets/img/client/sponsoweb-logo.png" style="background-image: url('wp-content/themes/liamone/assets/img/illustration/img-lazyload-square.jpg');">
                             <p class="sr-only">Sponsoweb</p>
                         </div>
-                        <div class="client-card client-2">
+                        <div class="client-card client-2 progressive__bg progressive--not-loaded" data-progressive="wp-content/themes/liamone/assets/img/client/autobiz-logo.png" style="background-image: url('wp-content/themes/liamone/assets/img/illustration/img-lazyload-square.jpg');">
                             <p class="sr-only">Autobiz</p>
                         </div>
-                        <div class="client-card client-3">
+                        <div class="client-card client-3 progressive__bg progressive--not-loaded" data-progressive="wp-content/themes/liamone/assets/img/client/orange-logo.jpg" style="background-image: url('wp-content/themes/liamone/assets/img/illustration/img-lazyload-square.jpg');">
                             <p class="sr-only">Orange</p>
                         </div>
-                        <div class="client-card client-4">
+                        <div class="client-card client-4 progressive__bg progressive--not-loaded" data-progressive="wp-content/themes/liamone/assets/img/client/voyagesncf-logo.jpg" style="background-image: url('wp-content/themes/liamone/assets/img/illustration/img-lazyload-square.jpg');">
                             <p class="sr-only">Voyage SNCF</p>
                         </div>
-                        <div class="client-card client-5">
+                        <div class="client-card client-5 progressive__bg progressive--not-loaded" data-progressive="wp-content/themes/liamone/assets/img/client/immodefrance-logo.jpg" style="background-image: url('wp-content/themes/liamone/assets/img/illustration/img-lazyload-square.jpg');">
                             <p class="sr-only">Immo de France</p>
                         </div>
                     </div>
@@ -412,30 +421,6 @@ get_header(home); ?>
                         <div class="actualite actu-card">
                             <h2>Quoi<br> de neuf ?</h2>
                         </div>
-                        <!--<figure class="actu-card">
-                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
-                            <figcaption>
-                                <span class="rounded">
-                                    <i class="icon-twitter"></i>
-                                </span>
-                            </figcaption>
-                        </figure>
-                        <figure class="actu-card">
-                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
-                            <figcaption>
-                                <span class="rounded">
-                                    <i class="icon-instagram"></i>
-                                </span>
-                            </figcaption>
-                        </figure>
-                        <figure class="actu-card">
-                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
-                            <figcaption>
-                                <span class="rounded">
-                                    <i class="icon-facebook"></i>
-                                </span>
-                            </figcaption>
-                        </figure>
                         <figure class="actu-card">
                             <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
                             <figcaption>
@@ -504,14 +489,6 @@ get_header(home); ?>
                             <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
                             <figcaption>
                                 <span class="rounded">
-                                    <i class="icon-instagram"></i>
-                                </span>
-                            </figcaption>
-                        </figure>
-                        <figure class="actu-card">
-                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
-                            <figcaption>
-                                <span class="rounded">
                                     <i class="icon-facebook"></i>
                                 </span>
                             </figcaption>
@@ -563,10 +540,39 @@ get_header(home); ?>
                                     <i class="icon-instagram"></i>
                                 </span>
                             </figcaption>
-                        </figure>-->
-                        <?php
-                        /*echo do_shortcode('[fts_instagram instagram_id=4835098778 pics_count=6 type=user profile_wrap=no super_gallery=yes columns=4 force_columns=no space_between_photos=1px icon_size=65px hide_date_likes_comments=yes]');*/
-                        ?>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-instagram"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-facebook"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-twitter"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
+                        <figure class="actu-card">
+                            <img src="http://via.placeholder.com/270x270" alt="" width="270" height="270">
+                            <figcaption>
+                                <span class="rounded">
+                                    <i class="icon-instagram"></i>
+                                </span>
+                            </figcaption>
+                        </figure>
                     </div>
                     <div class="col-xxsm-12">
                         <button class="btn bordered" type="button">En voir plus</button>

@@ -24,8 +24,8 @@ get_header(); ?>
 		endif;
 		
 		the_post_navigation( array(
-			'prev_text' => '<span aria-hidden="false" class="btn-name">' . __( 'Previous', 'twentyseventeen' ) . '</span> <span class="project-name">%title</span><span class="nav-title-icon-wrapper">' . '<span class="btn-ico"><i class="icon-left-1"></i></span>',
-			'next_text' => '<span aria-hidden="false" class="btn-name">' . __( 'Next', 'twentyseventeen' ) . '</span> <span class="project-name">%title</span>' . '<span class="btn-ico"><i class="icon-right-1"></i></span>',
+			'prev_text' => '<span aria-hidden="false" class="btn-name">' . __( 'Précédent', 'twentyseventeen' ) . '</span> <span class="project-name">%title</span>' . '<span class="btn-ico"><i class="icon-left-1"></i></span>',
+			'next_text' => '<span aria-hidden="false" class="btn-name">' . __( 'Suivant', 'twentyseventeen' ) . '</span> <span class="project-name">%title</span>' . '<span class="btn-ico"><i class="icon-right-1"></i></span>',
 		) );
 
 	endwhile; // End of the loop.

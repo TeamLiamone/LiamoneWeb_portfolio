@@ -7,7 +7,7 @@
 get_header(); ?>
 
     <!--Liamone page container-->
-    <main class="legal-notice fluid-container" data-page-title="Mentions Légales" data-page-class="legalNotice-page" data-page-href="http://www.liamoneweb.fr/http://www.liamoneweb.fr/mentions-legales/">
+    <main class="legal-notice fluid-container" data-page-title="Mentions-Légales" data-page-class="legalNotice-page" data-page-href="http://www.liamoneweb.fr/mentions-legales/">
 
         <header class="hero-grey">
             <div class="container">

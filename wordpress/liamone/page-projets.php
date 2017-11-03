@@ -31,6 +31,13 @@ get_header(); ?>
 
             <ul class="projects-list row">
             <?php
+            /*
+            while ( have_posts() ) : the_post();
+
+                get_template_part( 'template-parts/page/content', 'page' );
+
+            endwhile; // End of the loop.
+            */
 
             $args = array(
                             'posts_per_page' => 10,
