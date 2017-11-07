@@ -15,7 +15,9 @@ jQuery(document).ready(function($) {
 		lastScrollTop = 0,
 		wH = $(window).height(),
 		wW = $(window).width(),
-		actuCard = $('.actus').find('figure.actu-card');
+		actuCard = $('.actus').find('figure.actu-card'),
+		form = $('#form-contactUs'),
+		formHasError = false;
 
 
 	controller.scrollTo( function(newpos){
@@ -23,6 +25,7 @@ jQuery(document).ready(function($) {
 		TweenMax.to(window, 1, {scrollTo: {y: newpos}, ease: Power4.easeInOut } );
 	
 	});
+
 
 	//Functions utilities
 	var initFunctions = {
@@ -38,44 +41,6 @@ jQuery(document).ready(function($) {
 				});
 
 			}
-
-		},
-		animateElements: function(element) {
-
-			element.each(function() {
-
-				var div = $(this),
-					anim = div.data('ae-anim'),
-					delay = div.data('ae-delay'),
-					trigger = div.data('ae-trigger'),
-					aDelay,
-					aTrigger;
-
-				aDelay = delay ? delay : 1;
-				aTrigger = trigger ? trigger : div;
-
-				div.css({
-				    '-webkit-animation-delay': aDelay +'s',
-				    '-moz-animation-delay': aDelay +'s',
-				    'animation-delay': aDelay +'s'
-				});
-
-				div.addClass('animated');
-
-				var animScene = new ScrollMagic.Scene({
-
-					triggerElement: aTrigger,
-					offset: -100,
-					triggerHook: 0,
-					reverse: false,
-					duration: '100%'
-
-				})
-				.setTween( TweenMax.fromTo( this, 1, {autoAlpha: 0}, {autoAlpha: 1, ease: Power1.EaseInOut}))
-				.setClassToggle(this, anim)
-				.addTo(controller);
-
-			});
 
 		},
 		getTab: function(content, target) {
@@ -253,6 +218,10 @@ jQuery(document).ready(function($) {
 		},
 		demandIsType: function(type) {
 
+			$('#input-project, #input-formation, #input-object')
+				.removeAttr('required')
+				.removeAttr('aria-required');
+
 			if( type === 'project' ) {
 
 				$('#is-project, #is-company').fadeIn(500);
@@ -263,9 +232,9 @@ jQuery(document).ready(function($) {
 
 				$('#is-training, #is-contact').hide();
 
-				$('#input-formation, #input-object')
+				/*$('#input-formation, #input-object')
 					.removeAttr('required')
-					.removeAttr('aria-required');
+					.removeAttr('aria-required');*/
 
 			}
 			else if( type === 'training' ) {
@@ -278,9 +247,9 @@ jQuery(document).ready(function($) {
 
 				$('#is-project, #is-contact, #is-company').hide();
 
-				$('#input-company, #input-object')
+				/*$('#input-company, #input-object')
 					.removeAttr('required')
-					.removeAttr('aria-required');
+					.removeAttr('aria-required');*/
 
 			}
 			else if( type === 'contact' ) {
@@ -293,9 +262,9 @@ jQuery(document).ready(function($) {
 
 				$('#is-project, #is-training, #is-company').hide();
 
-				$('#input-project, #input-formation')
+				/*$('#input-project, #input-formation')
 					.removeAttr('required')
-					.removeAttr('aria-required')
+					.removeAttr('aria-required');*/
 
 			}
 
@@ -348,6 +317,50 @@ jQuery(document).ready(function($) {
 				initFunctions.closeContactForm();
 
 			});
+
+		},
+		clearError: function(el) {
+
+			el.removeClass('has-error sended').html('');
+
+		},
+		controlField: function() {
+
+			var fields = $('#form-contactUs').find('input, textarea, select');
+
+			fields.on('input change', function(e) {
+
+				e.preventDefault();
+				formHasError = false;
+
+				var formAlert = $('#error-alert > .error-msg');
+
+				if( $(this).prop('required') ) {
+
+					if( !$(this).val().trim() ) {
+
+						formHasError = true;
+						$(this).addClass('error');
+						formAlert.addClass('has-error').html('Merci de remplir les champs requis !');
+
+					}
+					else {
+
+						formHasError = false;
+						$(this).removeClass('error');
+						initFunctions.clearError(formAlert);
+
+					}
+						
+				}
+
+			});
+
+		},
+		controlError: function() {
+
+			var errors = form.find('error');
+			formHasError =  errors.length ? true : false;
 
 		},
 		getRandomInt: function(min, max) {
@@ -451,7 +464,9 @@ jQuery(document).ready(function($) {
 		//Equipe timelines
 		tlTeam,
 		//Contact timelines
-		tlContact;
+		tlContact,
+		//404 timelines
+		tl404;
 
 	var pageAnimation = {
 
@@ -578,11 +593,20 @@ jQuery(document).ready(function($) {
 			TweenLite.set( $('.contact .find-us'), {autoAlpha: 0} );
 
 		},
+		set404: function() {
+
+			TweenLite.set( $('.error-404 h1 > span'), {autoAlpha: 0} );
+			TweenLite.set( $('.error-404 h1 .dot'), {autoAlpha: 0} );
+			TweenLite.set( $('.error-404 .hero-grey hr'), {autoAlpha: 0, x: '-100%'} );
+			TweenLite.set( $('.error-404 p'), {autoAlpha: 0} );
+			TweenLite.set( $('.error-404 a'), {autoAlpha: 0} );
+
+		},
 		home: function() {
 
 			CustomEase.create('cubicAnim', '1, 0, 0.5, 1');
 
-			tlHero = new TimelineLite({paused: true, delay: 0.2});
+			tlHero = new TimelineLite({paused: true, delay: 0.6});
 			tlLiamone = new TimelineLite({paused: true, delay: 0.1});
 			tlObjectifs = new TimelineLite({paused: true, delay: 0.2});
 			tlProjets = new TimelineLite({paused: true, delay: 0.1});
@@ -948,6 +972,20 @@ jQuery(document).ready(function($) {
 
 			tlContact.play().timeScale(1);
 
+		},
+		error404: function() {
+
+			tl404 = new TimelineLite({paused: true, delay: 0.3});
+
+			tl404
+				.to( $('.error-404 h1 > span'), 0.8, {autoAlpha: 1, ease: Linear.easeNone}, 0 )
+				.to( $('.error-404 h1 .dot'), 0.5, {autoAlpha: 1, ease: Linear.easeNone}, 0.2)
+				.to( $('.error-404 .hero-grey hr'), 0.5, {autoAlpha: 1, x: '+=100%', ease: Power2.easeOut}, 0.4 )
+				.to( $('.error-404 p'), 0.4, {autoAlpha: 1, ease: Linear.easeNone}, 0.6 )
+				.to( $('.error-404 a'), 0.4, {autoAlpha: 1, ease: Linear.easeNone}, 0.7 );
+
+			tl404.play().timeScale(1);
+
 		}
 
 	};
@@ -1154,6 +1192,7 @@ jQuery(document).ready(function($) {
 
 						actuCard.slice(7).hide();
 						initFunctions.toggleActus(actuCard);
+
 					};
 					break;
 				case 'projects-page':
@@ -1274,6 +1313,7 @@ jQuery(document).ready(function($) {
 			pageAnimation.setHome();
 			pageAnimation.home();
 			init3DScene();
+			progressively.init();
 
 			//HOMEPAGE FUNCTIONS
 			$('main.home .cta-scroll').on('click', function(e) {
@@ -1506,7 +1546,6 @@ jQuery(document).ready(function($) {
 			document.title = 'Liamone - '+ newTitle;
 			currentProjectClass = newTitle;
 
-
 		},
 		/*TEAM*/
 		team: function() {
@@ -1524,6 +1563,7 @@ jQuery(document).ready(function($) {
 			pageAnimation.setContact();
 			pageAnimation.contact();
 			initFunctions.contactFormControls();
+			initFunctions.controlField();
 
 			if( typeof currentType !== undefined ) {
 
@@ -1533,30 +1573,72 @@ jQuery(document).ready(function($) {
 
 			}
 
+			var formAlert = $('#error-alert > .error-msg'),
+				form = $('#form-contactUs');
+
 			$('#form-contactUs').on('submit', function(e) {
 
 				e.preventDefault();
+				initFunctions.controlError();
 
-				/*$.ajax({
-					url: ,
-					type: 'POST', 
-					processData: false,
-					data: ,
-					contentType: false,
-					dataType: 'json',
-					sucess: function(data) {
+				var ajaxUrl = "http://wwW.liamoneweb.fr/wp-admin/admin-ajax.php";
 
-						console.log("Envoi réussi !");
-					},
-					error: function(data) {
+				if( !formHasError ) {
 
-						console.log("L'envoi a échoué !");
-					},
+					$.ajax({
+						url: ajaxUrl,
+						type: 'POST', 
+						data: form.serialize(),	
+						success: function(response) {
 
+							console.log("Formulaire envoyé");
+							form[0].reset();
 
-				});
-				*/
+							//Add notification form success
+							formAlert.addClass('sended').html("Merci ! votre message a bien été envoyé, nous vous contacterons dans les plus brefs délais.");
+							setTimeout( function() {
+
+								initFunctions.closeContactForm();
+								initFunctions.clearError(formAlert);
+
+							}, 3000);
+
+						},
+						error: function(error) {
+
+							console.log("Echec de l'envoi");
+
+							clearError(formAlert);
+							formAlert.addClass('has-error')
+										.html("Oops, l'envoi a échoué, merci de réessayer.");
+
+							setTimeout( function() {
+
+								initFunctions.closeContactForm();
+								initFunctions.clearError();
+
+							}, 3000);
+						
+						},
+
+					});
+
+				}
+				else {
+
+					formAlert.addClass('has-error').html('Merci de remplir les champs requis !');
+
+				}
+				
 			});
+
+		},
+		/*ERROR 404*/
+		error404: function() {
+
+			console.log('Erreur 404');
+			pageAnimation.set404();
+			pageAnimation.error404();
 
 		}
 
@@ -1775,6 +1857,9 @@ jQuery(document).ready(function($) {
 				case 'contact-page':
 					init.contact();
 					break;
+				case '404-page':
+					init.error404();
+					break;		
 				default:
 					return;
 
@@ -1791,8 +1876,6 @@ jQuery(document).ready(function($) {
 
 	//Init geometry background layer & progressively.js
 	initFunctions.geoLayerShapes();
-	progressively.init();
-
 
 	$(window).scroll( function(e) {
 
@@ -1803,15 +1886,10 @@ jQuery(document).ready(function($) {
 
 	});
 
-	//If history API is supported, call ajax navigation
-	if ( window.history && window.history.pushState ) {
+	var renderLiamone = window.history && window.history.pushState ? ajaxNav.build() : siteNav();
 
-		pageAnimation.setHome();
-		pageAnimation.setProject();
-		pageAnimation.setProjects();
-		pageAnimation.setServices();
-		pageAnimation.setTraining();
-		pageAnimation.setContact();
+	//If history API is supported, call ajax navigation
+	/*if ( window.history && window.history.pushState ) {
 	
 		ajaxNav.build();
 
@@ -1821,6 +1899,6 @@ jQuery(document).ready(function($) {
 
 		siteNav();
 
-	}
+	}*/
 
 });
