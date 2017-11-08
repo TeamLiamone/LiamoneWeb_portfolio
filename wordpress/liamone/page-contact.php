@@ -99,7 +99,16 @@ get_header(); ?>
                     <?php wp_nonce_field('ajax_contact_nonce', 'security'); ?>
 
                     <div class="form-group">
-                        <button id="send-form" class="btn bordered" type="submit">Envoyer</button>
+                        <button id="send-form" class="btn bordered" type="submit">
+                            <span class="submit-phrasing">Envoyer</span>
+                            <span class="submit-loader">
+                                <span class="loader-rect1"></span>
+                                <span class="loader-rect2"></span>
+                                <span class="loader-rect3"></span>
+                                <span class="loader-rect4"></span>
+                                <span class="loader-rect5"></span>
+                            </span>
+                        </button>
                         <span class="req-mention">*: Champs requis</span>
                     </div>
 

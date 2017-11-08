@@ -1,5 +1,6 @@
 {
-    "name": "",
+    "name": "LiamoneWeb",
+    "short_name": "Liamone",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

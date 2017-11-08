@@ -54,7 +54,7 @@
                 </ul>
             </nav>
             <div class="mention col-xxsm-12">
-                <p><i class="icon-copyright"></i> Liamone 2017. Design with <i class="icon-heart"></i> by Liamone. <a href="http://www.liamoneweb.fr/?page_id=157" title="Accéder aux mentions légales">Mentions légales</a></p>
+                <p><i class="icon-copyright"></i> Liamone 2017. Design with <i class="icon-heart"></i> by Liamone. <a href="http://www.liamoneweb.fr/mentions-legales/" title="Accéder aux mentions légales">Mentions légales</a></p>
             </div>
         </div>
     </footer>

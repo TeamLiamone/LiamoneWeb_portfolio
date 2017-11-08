@@ -409,6 +409,20 @@ jQuery(document).ready(function($) {
 			});
 
 		},
+		toggleGeoLayer: function() {
+
+			if( $('main').is('.services, .jobs, .training, .contact') ) {
+
+				$('#geo-layer').css('display', 'none');
+
+			}
+			else {
+
+				$('#geo-layer').css('display', 'block');
+
+			}
+
+		},
 		toggleActus: function(card) {
 
 			$('.actus').on('click', '.btn', function(e) {
@@ -1225,6 +1239,10 @@ jQuery(document).ready(function($) {
 					pageAnimation.contact();
 					initFunctions.contactFormcontrols();
 					break;
+				case '404-page':
+					pageAnimation.set404();
+					pageAnimation.error404();
+					break;
 				default:
 					return;
 
@@ -1330,6 +1348,25 @@ jQuery(document).ready(function($) {
 				initFunctions.toggleActus(actuCard);
 
 			}
+
+			$('.card-caption').on('click', 'a', function(e) {
+
+				e.preventDefault();
+
+				var target = $(this),
+					targetUrl = target.attr('href');
+
+				ajaxNav.loadPage(targetUrl);
+				history.pushState({page:targetUrl}, null, targetUrl);
+
+				controller.scrollTo(0);
+				init.projectFocus();
+
+			});
+
+			var newTitle = $('main').data('project');
+			document.title = 'Liamone - '+ newTitle;
+			currentProjectClass = newTitle;
 
 		},
 		/*PROJECTS*/
@@ -1580,6 +1617,8 @@ jQuery(document).ready(function($) {
 
 				e.preventDefault();
 				initFunctions.controlError();
+				$('#send-form .submit-phrasing').fadeOut(250);
+				$('#send-form .submit-loader').addClass('sending-mail');
 
 				var ajaxUrl = "http://wwW.liamoneweb.fr/wp-admin/admin-ajax.php";
 
@@ -1595,11 +1634,16 @@ jQuery(document).ready(function($) {
 							form[0].reset();
 
 							//Add notification form success
+							$('#send-form').find('.submit-loader').addClass('mail-send');
 							formAlert.addClass('sended').html("Merci ! votre message a bien été envoyé, nous vous contacterons dans les plus brefs délais.");
+							
 							setTimeout( function() {
 
 								initFunctions.closeContactForm();
 								initFunctions.clearError(formAlert);
+								$('#send-form .submit-loader').removeClass('mail-send sending-mail');
+								$('#send-form .submit-phrasing').fadeIn(200);
+
 
 							}, 3000);
 
@@ -1609,6 +1653,7 @@ jQuery(document).ready(function($) {
 							console.log("Echec de l'envoi");
 
 							clearError(formAlert);
+							$('#send-form').find('.submit-loader').addClass('mail-error');
 							formAlert.addClass('has-error')
 										.html("Oops, l'envoi a échoué, merci de réessayer.");
 
@@ -1616,6 +1661,9 @@ jQuery(document).ready(function($) {
 
 								initFunctions.closeContactForm();
 								initFunctions.clearError();
+								$('#send-form .submit-loader').removeClass('mail-send sending-mail');
+								$('#send-form .submit-phrasing').fadeIn(200);
+
 
 							}, 3000);
 						
@@ -1866,6 +1914,7 @@ jQuery(document).ready(function($) {
 			}
 
 			initFunctions.loading();
+			initFunctions.toggleGeoLayer();
 
 		}
 
