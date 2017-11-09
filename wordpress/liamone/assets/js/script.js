@@ -91,39 +91,39 @@ jQuery(document).ready(function($) {
 		filter: function(value) {
 
 			var listToFilter = $('.block-formation .row'),
-				itemToShow = $('.block-formation').find('div[data-category*='+value+']');
+				itemToShow = $('.block-formation .container > div[data-category*='+value+']'),
+				itemToHide = $('.block-formation .container > div:not([data-category*='+value+'])');
 
 			var hideItemTl = new TimelineLite({paused: true}),
 				showItemTl = new TimelineLite({paused: true});
 
 			hideItemTl
-				.set(listToFilter, {x: '0', autoAlpha: 1} )
-				.to(listToFilter, 0.5, {x: '+=10%', autoAlpha: 0, ease: Power3.easeOut, onComplete: function() {
+				.set(itemToHide, {autoAlpha: 1} )
+				.to(itemToHide, 0.35, {autoAlpha: 0, ease: Linear.easeNone, onComplete: function() {
 
-						listToFilter.css('display', 'none');
-						showItemTl.play();
+						itemToHide.css('display', 'none');
 
 					}
 
 				});
 
-			hideItemTl.play().timeScale(1);
-
 			showItemTl
-				.set(itemToShow, {x: '-10%', autoAlpha: 0})
-				.to(itemToShow, 0.5, {x: '+=10%', autoAlpha: 1, ease: Power3.easeIn, onComplete: function() {
+				.set(itemToShow, {autoAlpha: 0, scale: 1} )
+				.to(itemToShow, 0.5, { autoAlpha: 1, ease: Linear.easeNone, onComplete: function() {
 
 						itemToShow.css('display', 'block');
 
 					}
 
 				})
-				.set(itemToShow, {x: '0', autoAlpha: 1});
+				.set(itemToShow, {scale: 1, autoAlpha: 1} );
 
+			hideItemTl.play().timeScale(1);
+			showItemTl.play().timeScale(1);
 
-			if( value === '' ) {
+			if( !value ) {
 
-				TweenLite.set(listToFilter, {x: '0', autoAlpha: 1, onComplete: function() {
+				TweenLite.set(listToFilter, {autoAlpha: 1, onComplete: function() {
 
 						listToFilter.css('display', 'block');
 
@@ -153,7 +153,6 @@ jQuery(document).ready(function($) {
 						duration: '100%'
 
 					})
-					//.setTween(TweenMax.fromTo(textToExpand, 1, {autoAlpha: 0}, {autoAlpha: 1, ease: Power1.EaseInOut} ) )
 					.setClassToggle(this, 'is-inView')
 					.addTo(controller);
 
@@ -232,10 +231,6 @@ jQuery(document).ready(function($) {
 
 				$('#is-training, #is-contact').hide();
 
-				/*$('#input-formation, #input-object')
-					.removeAttr('required')
-					.removeAttr('aria-required');*/
-
 			}
 			else if( type === 'training' ) {
 
@@ -247,10 +242,6 @@ jQuery(document).ready(function($) {
 
 				$('#is-project, #is-contact, #is-company').hide();
 
-				/*$('#input-company, #input-object')
-					.removeAttr('required')
-					.removeAttr('aria-required');*/
-
 			}
 			else if( type === 'contact' ) {
 
@@ -261,10 +252,6 @@ jQuery(document).ready(function($) {
 					.attr('aria-required', true);
 
 				$('#is-project, #is-training, #is-company').hide();
-
-				/*$('#input-project, #input-formation')
-					.removeAttr('required')
-					.removeAttr('aria-required');*/
 
 			}
 
@@ -1194,6 +1181,7 @@ jQuery(document).ready(function($) {
 					initFunctions.loading();
 					pageAnimation.home();
 					init3DScene();
+					progressively.init();
 
 					$('main.home .cta-scroll').on('click', function(e) {
 
@@ -1217,6 +1205,14 @@ jQuery(document).ready(function($) {
 				case 'projectFocus':
 					pageAnimation.setProject();
 					pageAnimation.projectFocus();
+
+					$('.project-focus .cta-scroll').on('click', function(e) {
+
+						e.preventDefault();
+						controller.scrollTo('.project-context');
+					
+					});
+
 					break;
 				case 'services-page':
 					pageAnimation.setServices();
@@ -1232,12 +1228,15 @@ jQuery(document).ready(function($) {
 					pageAnimation.setJobs();
 					pageAnimation.jobs();
 					break;
+				case 'offer-page':
+					break;
 				case 'team-page':
 					break;
 				case 'contact-page':
 					pageAnimation.setContact();
 					pageAnimation.contact();
-					initFunctions.contactFormcontrols();
+					initFunctions.contactFormControls();
+					initFunctions.controlField();
 					break;
 				case '404-page':
 					pageAnimation.set404();
@@ -1323,8 +1322,8 @@ jQuery(document).ready(function($) {
 			});
 
 			TweenLite.ticker.addEventListener("tick", initFunctions.onScroll);
-
 		},
+
 		home: function() {
 
 			console.log('Accueil chargé');
@@ -1363,10 +1362,6 @@ jQuery(document).ready(function($) {
 				init.projectFocus();
 
 			});
-
-			var newTitle = $('main').data('project');
-			document.title = 'Liamone - '+ newTitle;
-			currentProjectClass = newTitle;
 
 		},
 		/*PROJECTS*/
@@ -1579,9 +1574,9 @@ jQuery(document).ready(function($) {
 
 			});
 
-			var newTitle = $('main').data('project');
+			var newTitle = $('main').data('page-title');
 			document.title = 'Liamone - '+ newTitle;
-			currentProjectClass = newTitle;
+			currentPageClass = newTitle;
 
 		},
 		/*TEAM*/
@@ -1641,7 +1636,7 @@ jQuery(document).ready(function($) {
 
 								initFunctions.closeContactForm();
 								initFunctions.clearError(formAlert);
-								$('#send-form .submit-loader').removeClass('mail-send sending-mail');
+								$('#send-form .submit-loader').removeClass('mail-send sending-mail mail-error');
 								$('#send-form .submit-phrasing').fadeIn(200);
 
 
@@ -1661,7 +1656,7 @@ jQuery(document).ready(function($) {
 
 								initFunctions.closeContactForm();
 								initFunctions.clearError();
-								$('#send-form .submit-loader').removeClass('mail-send sending-mail');
+								$('#send-form .submit-loader').removeClass('mail-send sending-mail mail-error');
 								$('#send-form .submit-phrasing').fadeIn(200);
 
 
@@ -1921,7 +1916,7 @@ jQuery(document).ready(function($) {
 	};
 
 	//ajaxNav.build();
-	//siteNav();
+	siteNav();
 
 	//Init geometry background layer & progressively.js
 	initFunctions.geoLayerShapes();
@@ -1935,19 +1930,8 @@ jQuery(document).ready(function($) {
 
 	});
 
-	var renderLiamone = window.history && window.history.pushState ? ajaxNav.build() : siteNav();
+	//If history API supported, launch ajax navigation, else, normal navigation
+	//var renderLiamone = window.history && window.history.pushState ? ajaxNav.build() : siteNav();
 
-	//If history API is supported, call ajax navigation
-	/*if ( window.history && window.history.pushState ) {
-	
-		ajaxNav.build();
-
-	}
-	//Else, no-ajax navigation
-	else {
-
-		siteNav();
-
-	}*/
 
 });

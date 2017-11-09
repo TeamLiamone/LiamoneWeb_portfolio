@@ -297,8 +297,8 @@ Base
   opacity: 1;
   background-color: #dc9227;
   visibility: hidden;
-  -webkit-transform: translateY(-100vh);
-          transform: translateY(-100vh);
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
   -webkit-transition: opacity 0.3s cubic-bezier(1, 0, 0, 1) 0.2s, visibility 0.8s cubic-bezier(1, 0, 0, 1) 0.2s, -webkit-transform 0.8s cubic-bezier(1, 0, 0, 1) 0.2s;
   transition: opacity 0.3s cubic-bezier(1, 0, 0, 1) 0.2s, visibility 0.8s cubic-bezier(1, 0, 0, 1) 0.2s, -webkit-transform 0.8s cubic-bezier(1, 0, 0, 1) 0.2s;
   transition: transform 0.8s cubic-bezier(1, 0, 0, 1) 0.2s, opacity 0.3s cubic-bezier(1, 0, 0, 1) 0.2s, visibility 0.8s cubic-bezier(1, 0, 0, 1) 0.2s;
@@ -315,8 +315,8 @@ Base
   opacity: 1;
   visibility: hidden;
   background-color: #f1f1f1;
-  -webkit-transform: translateY(-110vh);
-          transform: translateY(-110vh);
+  -webkit-transform: translateY(-110%);
+          transform: translateY(-110%);
   -webkit-transition: opacity 0.2s cubic-bezier(1, 0, 0, 1) 0.3s, visibility 0.6s cubic-bezier(1, 0, 0, 1) 0.3s, -webkit-transform 0.6s cubic-bezier(1, 0, 0, 1) 0.3s;
   transition: opacity 0.2s cubic-bezier(1, 0, 0, 1) 0.3s, visibility 0.6s cubic-bezier(1, 0, 0, 1) 0.3s, -webkit-transform 0.6s cubic-bezier(1, 0, 0, 1) 0.3s;
   transition: transform 0.6s cubic-bezier(1, 0, 0, 1) 0.3s, opacity 0.2s cubic-bezier(1, 0, 0, 1) 0.3s, visibility 0.6s cubic-bezier(1, 0, 0, 1) 0.3s;
@@ -2958,7 +2958,7 @@ Pages
 }
 
 .contact .find-us a {
-  padding: 1em;
+  padding: 0.5em;
 }
 
 .contact .find-us .gmap {
@@ -3339,6 +3339,15 @@ Pages
   -webkit-box-shadow: 3px 8px 20px 2px rgba(0, 0, 0, 0.25);
           box-shadow: 3px 8px 20px 2px rgba(0, 0, 0, 0.25);
   margin: 2em auto;
+}
+
+.project-focus .project-design .design-illustration img.no-shadow {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.project-focus .project-design .design-illustration img.no-right {
+  margin-left: 0;
+  float: left;
 }
 
 .project-focus .project-brand .brand-illustration {
@@ -3984,6 +3993,12 @@ Media-queries
   }
   .footer-nav {
     margin-top: 1em;
+  }
+  .footer-nav li > .item-link:hover,  
+  .footer-nav li > .item-link:focus,
+  .mention a:hover,  
+  .mention a:focus  {
+    color: #ffb100;
   }
   /*Footer*/
   /*Jobs*/
@@ -4818,8 +4833,8 @@ Media-queries
     padding: 6.25em 0;
   }
   body.loading header.menu-top {
-    -webkit-transform: translateY(-15vh);
-            transform: translateY(-15vh);
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
     -webkit-transition: -webkit-transform 0.4s cubic-bezier(1, 0, 0, 1);
     transition: -webkit-transform 0.4s cubic-bezier(1, 0, 0, 1);
     transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
@@ -4836,7 +4851,7 @@ Media-queries
   .menu-container {
     position: relative;
     display: block;
-    max-width: initial;
+    max-width: 75%;
     min-height: auto;
     -webkit-transform: translateX(0);
             transform: translateX(0);
@@ -5247,4 +5262,25 @@ Media-queries
     max-width: 70%;
   }
   /*End Home*/
+}
+
+@media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+
+  @media screen and (min-width: 768px) {
+
+    .projects-list .project-link .btn .icon-right {
+      transform: translate3d(1em, 1.5em, 0);
+      -webkit-transform: translate3d(1em, 1.5em, 0);
+    }
+    .projects-list .is-inView.project-item .visible-text {
+      transform: translateX(25%);
+      -webkit-transform: translateX(25%);
+    }
+    .projects-list .is-inView.project-item .btn .icon-right {
+      transform: translate3d(8em, 1.5em, 0);
+      -webkit-transform: translate3d(8em, 1.5em, 0);
+    }
+
+  }
+
 }
