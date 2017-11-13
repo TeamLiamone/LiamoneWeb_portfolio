@@ -50,7 +50,7 @@ function twentyseventeen_custom_header_setup() {
 		),
 	) );
 }
-add_action( 'after_setup_theme', 'twentyseventeen_custom_header_setup' );
+//add_action( 'after_setup_theme', 'twentyseventeen_custom_header_setup' );
 
 if ( ! function_exists( 'twentyseventeen_header_style' ) ) :
 /**

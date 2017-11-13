@@ -37,20 +37,6 @@
     <link rel="manifest" href="<?php echo get_theme_file_uri(); ?>/assets/img/favicon/manifest.json">
     <link rel="mask-icon" href="<?php echo get_theme_file_uri(); ?>/assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">    
-
-    <!--Facebook Share window-->
-    <meta property="og:title" content="Liamone | Agence web à Versailles">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="www.liamoneweb.com">
-    <meta property="og:description" content="Liamone est une agence digitale spécialisée dans la conception / refonte de site internet, la création d'application mobile, le référencement et la création de contenu digital.">
-    <meta property="og:image" content="">
-
-    <!--Twitter Share window-->
-    <meta property="twitter:title" content="Liamone | Agence web à Versailles">
-    <meta property="twitter:type" content="website">
-    <meta property="twitter:url" content="www.liamoneweb.com">
-    <meta property="twitter:description" content="Liamone est une agence digitale spécialisée dans la conception / refonte de site internet, la création d'application mobile, le référencement et la création de contenu digital.">
-    <meta property="twitter:image" content="">
         
 <?php wp_head(); ?>
 </head>

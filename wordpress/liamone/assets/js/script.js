@@ -1237,6 +1237,77 @@ jQuery(document).ready(function($) {
 					pageAnimation.contact();
 					initFunctions.contactFormControls();
 					initFunctions.controlField();
+
+					var formAlert = $('#error-alert > .error-msg'),
+						form = $('#form-contactUs');
+
+					$('#form-contactUs').on('submit', function(e) {
+
+						e.preventDefault();
+						initFunctions.controlError();
+						$('#send-form .submit-phrasing').fadeOut(250);
+						$('#send-form .submit-loader').addClass('sending-mail');
+
+						var ajaxUrl = "http://wwW.liamoneweb.fr/wp-admin/admin-ajax.php";
+
+						if( !formHasError ) {
+
+							$.ajax({
+								url: ajaxUrl,
+								type: 'POST', 
+								data: form.serialize(),	
+								success: function(response) {
+
+									console.log("Formulaire envoyé");
+									form[0].reset();
+
+									//Add notification form success
+									$('#send-form').find('.submit-loader').addClass('mail-send');
+									formAlert.addClass('sended').html("Merci ! votre message a bien été envoyé, nous vous contacterons dans les plus brefs délais.");
+									
+									setTimeout( function() {
+
+										initFunctions.closeContactForm();
+										initFunctions.clearError(formAlert);
+										$('#send-form .submit-loader').removeClass('mail-send sending-mail mail-error');
+										$('#send-form .submit-phrasing').fadeIn(200);
+
+
+									}, 3000);
+
+								},
+								error: function(error) {
+
+									console.log("Echec de l'envoi");
+
+									clearError(formAlert);
+									$('#send-form').find('.submit-loader').addClass('mail-error');
+									formAlert.addClass('has-error')
+												.html("Oops, l'envoi a échoué, merci de réessayer.");
+
+									setTimeout( function() {
+
+										initFunctions.closeContactForm();
+										initFunctions.clearError();
+										$('#send-form .submit-loader').removeClass('mail-send sending-mail mail-error');
+										$('#send-form .submit-phrasing').fadeIn(200);
+
+
+									}, 3000);
+								
+								},
+
+							});
+
+						}
+						else {
+
+							formAlert.addClass('has-error').html('Merci de remplir les champs requis !');
+
+						}
+
+					});
+
 					break;
 				case '404-page':
 					pageAnimation.set404();
@@ -1692,7 +1763,7 @@ jQuery(document).ready(function($) {
 
 		build: function() {
 
-			console.log("%cLiamone \u00a9 2017", "color: #ffc900;")
+			console.log("%cLiamone \u00a9 2017", "color: #ffd300;");
 
 			var targetURL = $('main').data('page-href');
 			history.pushState({page:targetURL}, null, targetURL);
@@ -1915,10 +1986,7 @@ jQuery(document).ready(function($) {
 
 	};
 
-	//ajaxNav.build();
-	siteNav();
-
-	//Init geometry background layer & progressively.js
+	//Init geometry background layer
 	initFunctions.geoLayerShapes();
 
 	$(window).scroll( function(e) {
@@ -1931,7 +1999,7 @@ jQuery(document).ready(function($) {
 	});
 
 	//If history API supported, launch ajax navigation, else, normal navigation
-	//var renderLiamone = window.history && window.history.pushState ? ajaxNav.build() : siteNav();
+	var renderLiamone = window.history && window.history.pushState ? ajaxNav.build() : siteNav();
 
 
 });

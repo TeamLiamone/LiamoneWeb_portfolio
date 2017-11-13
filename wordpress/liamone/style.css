@@ -221,11 +221,11 @@ aside {
 }
 
 h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title {
-  font-family: 'Futura Bold', 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 p:not(.big-number) {
-  font-family: 'Helvetica Neue', 'Roboto', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, .big-title, .dot, .hero-header .hero-title, .block-card:before, .job-card .list-response, .slider-nav .slider-count .swiper-pagination-current, .menu-home a:not(.menu-brand), .menu-bottom .cta-mail, .liamone .little-title, .objectif .right-block p, .services .hero-img a, .services section, .contact .find-us li, .training header select, .block-formation .item-title, .project-focus .project-link .project-url, .project-nav .project-name, .error-404 .hero-grey a {
@@ -4000,6 +4000,10 @@ Media-queries
   .mention a:focus  {
     color: #ffb100;
   }
+  .footer-nav li > .item-link:hover:before  {
+    display: none;
+  }   
+
   /*Footer*/
   /*Jobs*/
   .block-job .job-content,
@@ -5247,14 +5251,6 @@ Media-queries
   .col-xlg-pull-12 {
     left: 100%;
   }
-  /*Home*/
-  /*.home  {
-
-    section {
-      padding: 20vh 0;
-    }
-
-  }*/
   .projet .block-content {
     max-height: 730px;
   }

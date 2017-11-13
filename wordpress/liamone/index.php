@@ -15,7 +15,8 @@
  * @version 1.0
  */
 
-get_header(home); ?>
+get_header(); ?>
+
 
     <!--Liamone page container-->
     <main class="home page-container fluid-container" data-page-title="Agence web à Versailles" data-page-class="home-page" data-page-href="http://www.liamoneweb.fr/">
@@ -109,24 +110,27 @@ get_header(home); ?>
                                         'orderby' => 'date'
                             );
                         $lastProjects = new WP_Query( $args );
-                        if ( $lastProjects->have_posts() ) : ?>
+                        if ( $lastProjects->have_posts() ) : 
 
-                            <!-- the loop -->
-                            <?php while ( $lastProjects->have_posts() ) : $lastProjects->the_post(); ?>
+                            // the loop
+                            while ( $lastProjects->have_posts() ) : $lastProjects->the_post(); ?>
                                 
                                 <figure id="projet-<?php the_title(); ?>" class="block-card">
                                     <?php if ( has_post_thumbnail() ) :
 
-                                        $thumbdata = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+                                        $thumbdata = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full', false );
+                                        $thumbdata = $thumbdata[0];
                                         $lazysrc = 'http://www.liamoneweb.fr/wp-content/themes/liamone/assets/img/illustration/img-lazyload-middle2.jpg';
-
+/*
                                         $attr = array(
                                                 'class' => 'img-fluid progressive__img progressive--not-loaded',
-                                                'data-progressive' => $thumbdata[0],
+                                                'data-progressive' => $thumbdata,
                                                 'src' => $lazysrc
-                                            );
+                                            );*/
 
-                                        the_post_thumbnail('full', $attr); ?>
+                                        echo '<img class="img-fluid progressive__img progressive--not-loaded" src="'. $lazysrc .'" data-progressive="'. $thumbdata .'" >'
+
+                                        /*the_post_thumbnail('', $attr); */?>
 
                                     <?php else: ?>
                                         

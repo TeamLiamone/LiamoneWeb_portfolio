@@ -533,16 +533,17 @@ require get_parent_theme_file_path( '/inc/icon-functions.php' );
 
 
 /**
-Custom Liamone THEME
-*/
+* Custom Liamone THEME
+**/
 
-//Support svg
+/**
+*Add svg support
+*/
 function add_svg_to_upload_mimes( $upload_mimes ) {
 	$upload_mimes['svg'] = 'image/svg+xml';
 	$upload_mimes['svgz'] = 'image/svg+xml';
 	return $upload_mimes;
 }
-
 add_filter( 'upload_mimes', 'add_svg_to_upload_mimes', 10, 1 );
 
 //empêcher l’éditeur wysiwyg d’ajouter des balises <p> et <br> :
@@ -550,23 +551,12 @@ add_filter( 'upload_mimes', 'add_svg_to_upload_mimes', 10, 1 );
 remove_filter('the_content', 'wpautop');
 //sur les fichiers ‘exerpt’
 remove_filter( 'the_excerpt', 'wpautop' );
-
 //empêche la conversion des certaines entités texte en entités HTML
 remove_filter( 'the_content', 'wptexturize');
 
 /**
-Add script
+* Add script
 **/
-/*function liamoneCss_scripts() {
-	
-	wp_register_script('SwiperCss', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css', array(), '4.0.2', false);	
-
-	wp_enqueue_script('SwiperCss');
-}
-
-add_action('wp_enqueue_scripts', 'liamoneCss_scripts');
-*/	
-
 function liamoneJs_scripts() {
 
 	//wp_register_script('Modernizr', get_theme_file_uri('/assets/js/plugins/Modernizr-3.5.0.min.js'), array(), '3.5.0', false);	
@@ -590,6 +580,9 @@ function liamoneJs_scripts() {
 
 	}
 
+	//script used to embed video etc... by default
+	wp_deregister_script( 'wp-embed' );
+
 	//wp_enqueue_script('Modernizr');
 	wp_enqueue_script('progressively');
 	wp_enqueue_script('scrollMagic');
@@ -603,21 +596,45 @@ function liamoneJs_scripts() {
 	wp_enqueue_script('liamoneScript');
 	
 }
-
 add_action('wp_enqueue_scripts', 'liamoneJs_scripts');
 
 /**
-* Dequeue jQuery Migrate script in WordPress.
-*/
-function remove_jquery_migrate( &$scripts) {
-    if(!is_admin()) {
-        $scripts->remove( 'jquery');
-        $scripts->add( 'jquery', false, array( 'jquery-core' ), '1.12.4' );
-    }
-}
-//add_filter( 'wp_default_scripts', 'remove_jquery_migrate' );
+ * Defer
+ */
+function add_defer_attribute($tag, $handle) {
 
-//Remove the srcset attribute from post thumbnail
+   $scripts_to_defer = array();
+
+   foreach($scripts_to_defer as $defer_script) {
+
+      if ($defer_script === $handle) {
+      	return str_replace(' src', ' defer="defer" src', $tag);
+      }
+   }
+   return $tag;
+}
+
+/**
+ * Async
+ */
+function add_async_attribute($tag, $handle) {
+
+   $scripts_to_async = array();
+
+   foreach($scripts_to_async as $async_script) {
+
+      if ($async_script === $handle) {
+      	return str_replace(' src', ' async="async" src', $tag);
+      }
+   }
+   return $tag;
+}
+//add_filter('script_loader_tag', 'add_async_attribute', 11, 2);
+//add_filter('script_loader_tag', 'add_defer_attribute', 11, 2);
+
+/**
+* Remove the srcset attribute from post thumbnail
+*/
 add_filter( 'post_thumbnail_size', function( $size ) {
 	if( is_string( $size ) && 'full' === $size )
 
@@ -630,7 +647,11 @@ add_filter( 'post_thumbnail_size', function( $size ) {
 
 } );
 
-//Show loaded scripts
+remove_action( 'wp_footer', 'seventeen_include_svg_icons', 99999 );
+
+/**
+* Show loaded scripts
+*/
 function wpcustom_inspect_scripts_and_styles() {
 	global $wp_scripts;
 	global $wp_styles;
@@ -649,5 +670,41 @@ function wpcustom_inspect_scripts_and_styles() {
 	$scripts_list, 
 	$styles_list);
 }
- 
 //add_action( 'wp_print_scripts', 'wpcustom_inspect_scripts_and_styles' );
+
+/**
+* Remove Emoji's
+*/
+function disable_wp_emojicons() {
+
+  // all actions related to emojis
+  remove_action( 'admin_print_styles', 'print_emoji_styles' );
+  remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+  remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+  remove_action( 'wp_print_styles', 'print_emoji_styles' );
+  remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+  remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+  remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+
+  // filter to remove TinyMCE emojis
+  add_filter( 'emoji_svg_url', '__return_false' );
+
+  // filter to remove the DNS prefetch
+  add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+}
+add_action( 'init', 'disable_wp_emojicons' );
+
+// filter to disable TinyMCE emojicons
+function disable_emojicons_tinymce( $plugins ) {
+  if ( is_array( $plugins ) ) {
+    return array_diff( $plugins, array( 'wpemoji' ) );
+  } else {
+    return array();
+  }
+}
+
+// Remove Manifest Link from WordPress Head
+// Disable Windows Live Writer Support
+remove_action('wp_head', 'wlwmanifest_link');
+//Remove wordpress generator version
+remove_action('wp_head', 'wp_generator');

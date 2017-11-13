@@ -10,6 +10,7 @@
 /**
  * Add SVG definitions to the footer.
  */
+/*
 function twentyseventeen_include_svg_icons() {
 	// Define SVG sprite file.
 	$svg_icons = get_parent_theme_file_path( '/assets/images/svg-icons.svg' );
@@ -20,7 +21,7 @@ function twentyseventeen_include_svg_icons() {
 	}
 }
 add_action( 'wp_footer', 'twentyseventeen_include_svg_icons', 9999 );
-
+*/
 /**
  * Return SVG markup.
  *
