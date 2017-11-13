@@ -119,18 +119,15 @@ get_header(); ?>
                                     <?php if ( has_post_thumbnail() ) :
 
                                         $thumbdata = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full', false );
-                                        $thumbdata = $thumbdata[0];
                                         $lazysrc = 'http://www.liamoneweb.fr/wp-content/themes/liamone/assets/img/illustration/img-lazyload-middle2.jpg';
-/*
+                                        /*
                                         $attr = array(
                                                 'class' => 'img-fluid progressive__img progressive--not-loaded',
                                                 'data-progressive' => $thumbdata,
                                                 'src' => $lazysrc
-                                            );*/
-
-                                        echo '<img class="img-fluid progressive__img progressive--not-loaded" src="'. $lazysrc .'" data-progressive="'. $thumbdata .'" >'
-
-                                        /*the_post_thumbnail('', $attr); */?>
+                                            );
+                                        */
+                                        echo '<img class="img-fluid progressive__img progressive--not-loaded" src="'. $lazysrc .'" data-progressive="'. $thumbdata[0] .'" >'?>
 
                                     <?php else: ?>
                                         

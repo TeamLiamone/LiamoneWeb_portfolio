@@ -212,7 +212,7 @@ aside {
 }
 
 .loader:before, .loader .loader-icon, .sr-only, .block-card .card-caption:after, .slider-nav .slider-arrows button:first-of-type, .slider-nav .slider-arrows button:last-of-type, .slider-nav .slider-count p, .menu-top, .nav-item > a:before, #backgroundTHREE canvas, .cta-scroll, .big-number, .parallax-geometry > .shape, .skewed-bg, .contact .contact-form .reveal-form, .contact .contact-form .close-form, .block-formation .content-titles a:before, .projects-list .project-link,
-.project-focus .project-link, .project-cover, .project-cover .mask, .project-cover .mask > .project-img, .project-nav .btn-ico, .error-404 .illustration-404 svg {
+.project-focus .project-link, .project-cover, .project-cover .mask, .project-cover .mask > .project-img, .project-nav .btn-ico, .error-404 .illustration-404 .bg-404 {
   position: absolute;
 }
 
@@ -3446,12 +3446,34 @@ Pages
   height: 25vh;
 }
 
-.error-404 .illustration-404 svg {
-  z-index: 2;
-  top: -60%;
-  left: 25%;
-  width: 50%;
-  height: auto;
+.error-404 .illustration-404 .bg-404 {
+  display: none;
+  z-index: 3;
+  top: -160%;
+  left: 35%;
+  width: 428px;
+  height: 453px;
+  background: url('http://www.liamoneweb.fr/wp-content/themes/liamone/assets/img/background/error404-spritesheet.png');
+  -webkit-animation: playSprite 1.5s steps(36) infinite;
+          animation: playSprite 1.5s steps(36) infinite;
+}
+
+@-webkit-keyframes playSprite {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -15408px;
+  }
+}
+
+@keyframes playSprite {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -15408px;
+  }
 }
 
 /*****************
@@ -4276,8 +4298,9 @@ Media-queries
   /*End Listed Project*/
   /*End Projects*/
   /*404*/
-  .error-404 .illustration-404 svg {
+  .error-404 .illustration-404 .bg-404 {
     top: -100%;
+    left: 30%;
     z-index: 3;
   }
   /*End 404*/
@@ -4627,8 +4650,8 @@ Media-queries
   }
   /*End Projects*/
   /*404*/
-  .error-404 .illustration-404 svg {
-    width: 428px;
+  .error-404 .illustration-404 .bg-404 {
+    display: block;
     left: calc( (100vw - 428px) / 2);
     top: -145%;
   }
@@ -5031,7 +5054,7 @@ Media-queries
   .error-404 .illustration-404 {
     height: 24vh;
   }
-  .error-404 .illustration-404 svg {
+  .error-404 .illustration-404 .bg-404 {
     top: -120%;
   }
   /*End 404*/
